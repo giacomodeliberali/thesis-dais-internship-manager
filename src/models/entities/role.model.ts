@@ -1,4 +1,4 @@
-import { BaseEntity } from "./index";
+import { BaseEntity } from "./base";
 
 /**
  * A user role

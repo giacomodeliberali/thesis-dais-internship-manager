@@ -1,9 +1,9 @@
-import { BaseEntity } from "./index";
+import { BaseEntity } from "./base";
 
 /**
  * A typed response from a repository
  */
-export class ServiceResponse<T extends BaseEntity<T>> {
+export class RepositoryResponse<T extends BaseEntity<T>> {
 
     /** The creates or updated object id */
     public objectId: string;
@@ -12,10 +12,10 @@ export class ServiceResponse<T extends BaseEntity<T>> {
     public isOk: boolean;
 
     /**
-     * Creates a new service response
+     * Create a new typed repository response
      * @param item The response
      */
-    constructor(item?: Partial<ServiceResponse<T>>) {
+    constructor(item?: Partial<RepositoryResponse<T>>) {
         if (item)
             Object.assign(this, item);
     }
