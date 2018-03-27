@@ -1,4 +1,4 @@
-import { BaseEntity, ServiceResponse, IWrite, IRead, Query } from "gdl-thesis-core/dist";
+import { BaseEntity, RepositoryResponse, IWrite, IRead, Query } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 
 export abstract class BaseRepository<T extends BaseEntity<T>> implements IWrite<T>, IRead<T> {
@@ -32,9 +32,9 @@ export abstract class BaseRepository<T extends BaseEntity<T>> implements IWrite<
      * Creates a new item
      * @param item The item to create
      */
-    private async create(item: T): Promise<ServiceResponse<T>> {
+    private async create(item: T): Promise<RepositoryResponse<T>> {
         const result = await this._collection.insertOne(item);
-        return new ServiceResponse({
+        return new RepositoryResponse({
             isOk: !!result.result.ok,
             objectId: result.insertedId.toHexString()
         });
@@ -44,7 +44,7 @@ export abstract class BaseRepository<T extends BaseEntity<T>> implements IWrite<
      * Create or update an element
      * @param element The element to create or update
      */
-    async update(item: T): Promise<ServiceResponse<T>> {
+    async update(item: T): Promise<RepositoryResponse<T>> {
         if (!item._id)
             return this.create(item);
 
@@ -52,7 +52,7 @@ export abstract class BaseRepository<T extends BaseEntity<T>> implements IWrite<
             _id: this.getObjectId(item._id)
         }, item);
 
-        return new ServiceResponse({
+        return new RepositoryResponse({
             isOk: !!result.result.ok,
             objectId: result.upsertedId._id.toHexString()
         });
