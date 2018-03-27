@@ -16,6 +16,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.15.5",
     "express-session": "^1.15.6",
+    "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git",
     "mongodb": "^3.0.5",
     "rxjs": "^5.5.8"
   },

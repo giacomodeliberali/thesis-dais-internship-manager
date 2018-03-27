@@ -9,7 +9,7 @@ import * as path from "path";
 import { UsersController } from "./controllers/users.controller";
 import { UsersRepository } from "./repositories";
 import { Db, MongoClient, ObjectID } from "mongodb";
-import { ApiResponse } from "./models/entities/api-response.model";
+import { ApiResponse } from "gdl-thesis-core/dist";
 
 /**
  * Create Express server.

@@ -10,7 +10,7 @@ gulp.task("tslint", () =>
         .pipe(tslint.report())
 );
 
-gulp.task("compile", ["tslint"], () => {
+gulp.task("build", ["tslint"], () => {
     tsProject.src()
         .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
@@ -30,4 +30,4 @@ gulp.task("typedoc", function () {
         }));
 });
 
-gulp.task("default", ["compile"]);
+gulp.task("default", ["build"]);

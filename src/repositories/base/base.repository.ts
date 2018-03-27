@@ -1,5 +1,4 @@
-import { BaseEntity, ServiceResponse } from "../../models/entities/base";
-import { IWrite, IRead, Query } from "../../models";
+import { BaseEntity, ServiceResponse, IWrite, IRead, Query } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 
 export abstract class BaseRepository<T extends BaseEntity<T>> implements IWrite<T>, IRead<T> {

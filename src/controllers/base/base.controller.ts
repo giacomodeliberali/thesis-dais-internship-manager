@@ -1,8 +1,6 @@
 import { Request, Response, Router } from "express";
 import { BaseRepository } from '../../repositories';
-import { User } from "../../models";
-import { BaseEntity } from "../../models/entities/base";
-import { ApiResponse } from "../../models/entities/api-response.model";
+import { User, BaseEntity, ApiResponse } from "gdl-thesis-core/dist";
 
 /**
  * GET /

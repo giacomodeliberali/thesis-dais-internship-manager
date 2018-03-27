@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { UsersRepository } from '../repositories';
-import { User } from "../models";
+import { User } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
 
 
