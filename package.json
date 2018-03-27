@@ -1,6 +1,7 @@
 {
   "name": "gdl-thesis-server",
   "version": "1.0.0",
+  "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "description": "The server side package of the thesis",
   "main": "dist/server.js",
   "scripts": {
@@ -8,7 +9,6 @@
     "gulp": "./node_modules/.bin/gulp",
     "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json"
   },
-  "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "dependencies": {
     "@angular/compiler": "^5.2.9",
     "@angular/core": "^5.2.9",
