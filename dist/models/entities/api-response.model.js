@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var base_1 = require("./base");
 /**
- * A generic API response
+ * A generic rest API response. Used in Express controllers
  */
 var ApiResponse = /** @class */ (function (_super) {
     __extends(ApiResponse, _super);

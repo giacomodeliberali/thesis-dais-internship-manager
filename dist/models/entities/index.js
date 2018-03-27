@@ -9,3 +9,5 @@ __export(require("./internship.model"));
 __export(require("./internship-proposal.model"));
 __export(require("./user.model"));
 __export(require("./api-response.model"));
+__export(require("./repository-response.model"));
+__export(require("./role.model"));

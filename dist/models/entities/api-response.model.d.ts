@@ -2,7 +2,7 @@
 import { Constructor } from './base';
 import { Response } from 'express';
 /**
- * A generic API response
+ * A generic rest API response. Used in Express controllers
  */
 export declare class ApiResponse<T = any> extends Constructor<ApiResponse> {
     /** The response HTTP code */
