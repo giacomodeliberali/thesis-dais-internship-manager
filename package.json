@@ -1,16 +1,17 @@
 {
-  "name": "gdl-thesis-server",
+  "name": "gdl-thesis-core",
   "version": "1.0.0",
+  "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
+  "description": "The core shared package of the thesis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/giacomodeliberali/thesis.git"
+    "url": "https://github.com/giacomodeliberali/thesis-core.git"
   },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/mongodb": "^3.0.9",
