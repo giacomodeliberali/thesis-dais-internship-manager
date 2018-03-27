@@ -5,3 +5,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./entities"));
 __export(require("./enums"));
+__export(require("./defaults.model"));
