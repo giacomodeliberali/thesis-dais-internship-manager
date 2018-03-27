@@ -8,3 +8,4 @@ __export(require("./company.model"));
 __export(require("./internship.model"));
 __export(require("./internship-proposal.model"));
 __export(require("./user.model"));
+__export(require("./api-response.model"));
