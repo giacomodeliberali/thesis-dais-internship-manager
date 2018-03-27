@@ -2,12 +2,11 @@
   "name": "gdl-thesis-core",
   "version": "1.0.0",
   "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
-  "description": "The core shared package of the thesis",
+  "description": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/giacomodeliberali/thesis-core.git"
   },
-  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "tsc"
@@ -24,6 +23,7 @@
     "@types/express": "^4.11.1",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
+    "gulp-sequence": "^1.0.0",
     "gulp-typedoc": "^2.2.0",
     "typedoc": "^0.11.1"
   }
