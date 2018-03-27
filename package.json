@@ -1,15 +1,14 @@
 {
-  "name": "express-typescript-skeleton",
+  "name": "gdl-thesis-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The server side package of the thesis",
   "main": "dist/server.js",
   "scripts": {
     "start": "npm run gulp && node dist/server.js",
     "gulp": "./node_modules/.bin/gulp",
-    "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json"
   },
-  "author": "",
+  "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "dependencies": {
     "@angular/compiler": "^5.2.9",
     "@angular/core": "^5.2.9",
