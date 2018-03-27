@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/giacomodeliberali/thesis-core.git"
   },
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },

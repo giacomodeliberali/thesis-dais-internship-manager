@@ -25,7 +25,7 @@ gulp.task('copy-package-json', function () {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('build', (cb) => {
+gulp.task('tsc', (cb) => {
     return exec('tsc', (err, stdout, stderr) => {
         if (err)
             console.log(err);
@@ -35,6 +35,11 @@ gulp.task('build', (cb) => {
     });
 });
 
+gulp.task('build', function (cb) {
+    gulpSequence('tsc', 'copy-package-json', cb);
+});
+
+
 gulp.task('default', function (cb) {
-    gulpSequence('build', 'copy-package-json', 'typedoc', cb);
+    gulpSequence('build', 'typedoc', cb);
 });
