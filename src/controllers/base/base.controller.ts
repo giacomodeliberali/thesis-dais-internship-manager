@@ -1,27 +1,32 @@
 import { Request, Response, Router } from "express";
 import { BaseRepository } from '../../repositories';
-import { User, BaseEntity, ApiResponse } from "gdl-thesis-core/dist";
+import { IBaseEntity, ApiResponse, inject } from "gdl-thesis-core/dist";
 
 /**
  * GET /
  * Home page.
  */
-export class BaseController<T extends BaseEntity<T>> {
+export class BaseController<T extends IBaseEntity> {
 
     /** The express router */
     private router: Router = Router();
 
     /** The collection name */
     get routeName() {
-        return this.baseService.collectionName;
+        return this.baseRepository.collectionName;
     }
 
     /**
-     * Creates a new base controller
-     * @param baseService The generic base service
+     * Create a new base controller and attaches CRUD method with 'routeName' express route
+     * @param baseRepository The generic base repository with CRUD operations
+     * @param app The express application used to register a new route for this controller
      */
-    constructor(protected baseService: BaseRepository<T>) {
+    constructor(
+        protected baseRepository: BaseRepository<T>,
+        private app: any) {
+
         this.attachApi();
+        this.app.use(`/${this.routeName}`, this.getRoutes());
     }
 
     /**
@@ -30,7 +35,7 @@ export class BaseController<T extends BaseEntity<T>> {
     private attachApi() {
         this.router.get('/', (req, res) => {
             console.log(`GET [${this.routeName}/]`);
-            return this.baseService.find().then(value => {
+            return this.baseRepository.find().then(value => {
                 return new ApiResponse({
                     data: value,
                     httpCode: 200,
@@ -50,7 +55,7 @@ export class BaseController<T extends BaseEntity<T>> {
             console.log(`GET [${this.routeName}/${req.params.id}]`);
 
             try {
-                const result = await this.baseService.get(req.params.id);
+                const result = await this.baseRepository.get(req.params.id);
 
                 return new ApiResponse({
                     data: result,
@@ -71,7 +76,7 @@ export class BaseController<T extends BaseEntity<T>> {
 
         this.router.delete('/:id', (req, res) => {
             console.log(`DELETE [${this.routeName}/${req.params.id}]`);
-            return this.baseService.delete(req.params.id).then(value => {
+            return this.baseRepository.delete(req.params.id).then(value => {
                 res.status(200).send(value);
             }).catch(error => {
                 res.status(500).send(error);
@@ -81,7 +86,7 @@ export class BaseController<T extends BaseEntity<T>> {
         this.router.post('/', (req, res) => {
             console.log(`POST [${this.routeName}]`, req.body);
 
-            return this.baseService.update(req.body).then(value => {
+            return this.baseRepository.update(req.body).then(value => {
                 res.status(200).send(value);
             }).catch(error => {
                 res.status(500).send(error);

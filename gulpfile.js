@@ -6,8 +6,8 @@ var typedoc = require("gulp-typedoc");
 
 gulp.task("tslint", () =>
     gulp.src('src/**/*.ts')
-        .pipe(tslint())
-        .pipe(tslint.report())
+    .pipe(tslint())
+    .pipe(tslint.report())
 );
 
 gulp.task("build", ["tslint"], () => {
@@ -26,7 +26,8 @@ gulp.task("typedoc", function () {
             out: "docs",
             mode: "file",
             name: "Thesis - Server",
-            readme: "./readme.md"
+            readme: "./readme.md",
+            ignoreCompilerErrors: true
         }));
 });
 

@@ -72,29 +72,110 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a></li>
 								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a></li>
+								<li class="tsd-kind-class"><a href="classes/irolesrepository.html" class="tsd-kind-icon">IRoles<wbr>Repository</a></li>
+								<li class="tsd-kind-class"><a href="classes/iusersrepository.html" class="tsd-kind-icon">IUsers<wbr>Repository</a></li>
+								<li class="tsd-kind-class"><a href="classes/rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a></li>
+								<li class="tsd-kind-class"><a href="classes/rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a></li>
 								<li class="tsd-kind-class"><a href="classes/userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a></li>
 								<li class="tsd-kind-class"><a href="classes/usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable"><a href="globals.html#rolemodel" class="tsd-kind-icon">Role<wbr>Model</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#roleschema" class="tsd-kind-icon">Role<wbr>Schema</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a></li>
+								<li class="tsd-kind-variable"><a href="globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#app" class="tsd-kind-icon">app</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#uri" class="tsd-kind-icon">uri</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-is-not-exported"><a href="globals.html#autopopulaterole" class="tsd-kind-icon">auto<wbr>Populate<wbr>Role</a></li>
+								<li class="tsd-kind-function"><a href="globals.html#normalize" class="tsd-kind-icon">normalize</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal"><a href="globals.html#environment" class="tsd-kind-icon">environment</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="rolemodel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Role<wbr>Model</h3>
+					<div class="tsd-signature tsd-kind-icon">Role<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Role</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;Role&gt;(&quot;Role&quot;, RoleSchema, &quot;roles&quot;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in schemas/role.schema.ts:18</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <a href="globals.html#rolemodel">RoleModel</a> mongoose schema model</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="roleschema" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Role<wbr>Schema</h3>
+					<div class="tsd-signature tsd-kind-icon">Role<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: String,type: Number})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in schemas/role.schema.ts:6</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The [[Role]] mongoose schema</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="usermodel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Model</h3>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;User&gt;(&quot;User&quot;, UserSchema, Defaults.collectionsName.users)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in schemas/user.schema.ts:35</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <a href="globals.html#usermodel">UserModel</a> mongoose schema model</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable">
+					<a name="userschema" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Schema</h3>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: String,email: String,phone: [{type: String}],role: { type: Schema.Types.ObjectId, ref: &#x27;Role&#x27; },birthDate: Date,registrationDate: Date})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in schemas/user.schema.ts:6</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The [[user]] mongoose schema</p>
+						</div>
+					</div>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 					<a name="app" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> app</h3>
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Express</span><span class="tsd-signature-symbol"> =&nbsp;express()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/dda4f1e/src/server.ts#L17">server.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/9c1ab3b/src/server.ts#L29">server.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -106,12 +187,114 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 					<a name="uri" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> uri</h3>
-					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mongodb+srv://giacomodeliberali:CHV1a0UL56oeei3X@cluster0-9gjz3.mongodb.net/test"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mongodb+srv://giacomodeliberali:CHV1a0UL56oeei3X@cluster0-9gjz3.mongodb.net/test&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"mongodb://giacomodeliberali:CHV1a0UL56oeei3X@cluster0-shard-00-00-9gjz3.mongodb.net:27017,cluster0-shard-00-01-9gjz3.mongodb.net:27017,cluster0-shard-00-02-9gjz3.mongodb.net:27017/test?ssl&#x3D;true&amp;replicaSet&#x3D;Cluster0-shard-0&amp;authSource&#x3D;admin"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mongodb://giacomodeliberali:CHV1a0UL56oeei3X@cluster0-shard-00-00-9gjz3.mongodb.net:27017,cluster0-shard-00-01-9gjz3.mongodb.net:27017,cluster0-shard-00-02-9gjz3.mongodb.net:27017/test?ssl&#x3D;true&amp;replicaSet&#x3D;Cluster0-shard-0&amp;authSource&#x3D;admin&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/dda4f1e/src/server.ts#L39">server.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/9c1ab3b/src/server.ts#L54">server.ts:54</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The mongoose connection URL</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-is-not-exported">
+					<a name="autopopulaterole" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> auto<wbr>Populate<wbr>Role</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">auto<wbr>Populate<wbr>Role<span class="tsd-signature-symbol">(</span>next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in schemas/user.schema.ts:26</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Auto populates &#39;role&#39; property before any &#39;find&#39; and &#39;findOne&#39;</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>next: <span class="tsd-signature-type">Function</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="normalize" class="tsd-anchor"></a>
+					<h3>normalize</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">normalize<span class="tsd-signature-symbol">(</span>doc<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IBaseEntity</span>, ret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IBaseEntity</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in schemas/base/normalize-schema.ts:8</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Ensure returned object has property id instead of _id and __v</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>doc: <span class="tsd-signature-type">IBaseEntity</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The original document</p>
+									</div>
+								</li>
+								<li>
+									<h5>ret: <span class="tsd-signature-type">IBaseEntity</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The document to return</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The document options</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal">
+					<a name="environment" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> environment</h3>
+					<div class="tsd-signature tsd-kind-icon">environment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in environment.ts:1</li>
+						</ul>
+					</aside>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="environment.isdebug" class="tsd-anchor"></a>
+						<h3>is<wbr>Debug</h3>
+						<div class="tsd-signature tsd-kind-icon">is<wbr>Debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in environment.ts:2</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -132,16 +315,49 @@
 						<a href="classes/baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/irolesrepository.html" class="tsd-kind-icon">IRoles<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/iusersrepository.html" class="tsd-kind-icon">IUsers<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#rolemodel" class="tsd-kind-icon">Role<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#roleschema" class="tsd-kind-icon">Role<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#app" class="tsd-kind-icon">app</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#uri" class="tsd-kind-icon">uri</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#autopopulaterole" class="tsd-kind-icon">auto<wbr>Populate<wbr>Role</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#normalize" class="tsd-kind-icon">normalize</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#environment" class="tsd-kind-icon">environment</a>
 					</li>
 				</ul>
 			</nav>
