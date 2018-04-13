@@ -10,15 +10,21 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var constructor_moongose_model_1 = require("./constructor-moongose.model");
 /**
  * A database record entry
  */
 var BaseEntity = /** @class */ (function (_super) {
     __extends(BaseEntity, _super);
-    function BaseEntity() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    /**
+     * Creates a generic type T instance object
+     * @param item The item to assign to this instance
+     */
+    function BaseEntity(item) {
+        var _this = _super.call(this) || this;
+        if (item)
+            Object.assign(_this, item);
+        return _this;
     }
     return BaseEntity;
-}(constructor_moongose_model_1.ConstructorMongoose));
+}(Document));
 exports.BaseEntity = BaseEntity;
