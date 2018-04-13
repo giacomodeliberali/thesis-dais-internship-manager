@@ -7,3 +7,4 @@ __export(require("./role-type.enum"));
 __export(require("./internship-status.type.enum"));
 __export(require("./company-status-type.enum"));
 __export(require("./internship-proposal-status.type.enum"));
+__export(require("./log-level.enum"));
