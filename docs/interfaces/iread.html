@@ -77,7 +77,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>T<span class="tsd-signature-symbol">: </span><a href="../classes/baseentity.html" class="tsd-signature-type">BaseEntity</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						<h4>T<span class="tsd-signature-symbol">: </span><a href="ibaseentity.html" class="tsd-signature-type">IBaseEntity</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -116,7 +116,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/interfaces/read.interface.ts#L19">models/interfaces/read.interface.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/read.interface.ts#L19">models/interfaces/read.interface.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -147,7 +147,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/interfaces/read.interface.ts#L25">models/interfaces/read.interface.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/read.interface.ts#L25">models/interfaces/read.interface.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -178,7 +178,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/interfaces/read.interface.ts#L13">models/interfaces/read.interface.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/read.interface.ts#L13">models/interfaces/read.interface.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,7 +191,7 @@
 								<li>
 									<h5>id: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The item identifier (id property of <a href="../classes/baseentity.html">BaseEntity</a>)</p>
+										<p>The item identifier (id property of [[BaseEntity]])</p>
 									</div>
 								</li>
 							</ul>
@@ -221,16 +221,13 @@
 						<a href="../enums/internshipstatustype.html" class="tsd-kind-icon">Internship<wbr>Status<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum">
+						<a href="../enums/loglevel.html" class="tsd-kind-icon">Log<wbr>Level</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="../enums/roletype.html" class="tsd-kind-icon">Role<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="../classes/baseentity.html" class="tsd-kind-icon">Base<wbr>Entity</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/company.html" class="tsd-kind-icon">Company</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/constructor.html" class="tsd-kind-icon">Constructor</a>
@@ -239,19 +236,19 @@
 						<a href="../classes/defaults.html" class="tsd-kind-icon">Defaults</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="../classes/internship.html" class="tsd-kind-icon">Internship</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
+						<a href="../classes/loggerservice.html" class="tsd-kind-icon">Logger<wbr>Service</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/repositoryresponse.html" class="tsd-kind-icon">Repository<wbr>Response</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/role.html" class="tsd-kind-icon">Role</a>
+					<li class=" tsd-kind-interface">
+						<a href="company.html" class="tsd-kind-icon">Company</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/user.html" class="tsd-kind-icon">User</a>
+					<li class=" tsd-kind-interface">
+						<a href="ibaseentity.html" class="tsd-kind-icon">IBase<wbr>Entity</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="ilogger.html" class="tsd-kind-icon">ILogger</a>
 					</li>
 				</ul>
 				<ul class="current">
@@ -273,6 +270,18 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="iwrite.html" class="tsd-kind-icon">IWrite</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="internship.html" class="tsd-kind-icon">Internship</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="role.html" class="tsd-kind-icon">Role</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="user.html" class="tsd-kind-icon">User</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#query" class="tsd-kind-icon">Query</a>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BaseEntity | Thesis - Core</title>
+	<title>LoggerService | Thesis - Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="baseentity.html">BaseEntity</a>
+					<a href="loggerservice.html">LoggerService</a>
 				</li>
 			</ul>
-			<h1>Class BaseEntity&lt;T&gt;</h1>
+			<h1>Class LoggerService</h1>
 		</div>
 	</div>
 </header>
@@ -69,114 +69,82 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A database record entry</p>
+						<p>A logger service</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="constructor.html" class="tsd-signature-type">Constructor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">BaseEntity</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="company.html" class="tsd-signature-type">Company</a>
-									</li>
-									<li>
-										<a href="user.html" class="tsd-signature-type">User</a>
-									</li>
-									<li>
-										<a href="internship.html" class="tsd-signature-type">Internship</a>
-									</li>
-									<li>
-										<a href="internshipproposal.html" class="tsd-signature-type">InternshipProposal</a>
-									</li>
-									<li>
-										<a href="role.html" class="tsd-signature-type">Role</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<span class="target">LoggerService</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/ilogger.html" class="tsd-signature-type">ILogger</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="baseentity.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="loggerservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="baseentity.html#_id" class="tsd-kind-icon">_id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="baseentity.html#_rowversion" class="tsd-kind-icon">_row<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="baseentity.html#code" class="tsd-kind-icon">code</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="baseentity.html#rowversion" class="tsd-kind-icon">row<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="loggerservice.html#loglevel" class="tsd-kind-icon">log<wbr>Level</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="baseentity.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="loggerservice.html#error" class="tsd-kind-icon">error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="loggerservice.html#log" class="tsd-kind-icon">log</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Entity<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="baseentity.html" class="tsd-signature-type">BaseEntity</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Logger<wbr>Service<span class="tsd-signature-symbol">(</span>logLevel<span class="tsd-signature-symbol">: </span><a href="../enums/loglevel.html" class="tsd-signature-type">LogLevel</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="loggerservice.html" class="tsd-signature-type">LoggerService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="constructor.html">Constructor</a>.<a href="constructor.html#constructor-1">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/constructor.model.ts#L1">models/entities/base/constructor.model.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/services/logger.service.ts#L7">services/logger.service.ts:7</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Creates a generic type T instance object</p>
+									<p>Create a new <a href="loggerservice.html">LoggerService</a></p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> item: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>logLevel: <a href="../enums/loglevel.html" class="tsd-signature-type">LogLevel</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The item to assign to this instance</p>
+											<p>The log level</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="baseentity.html" class="tsd-signature-type">BaseEntity</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="loggerservice.html" class="tsd-signature-type">LoggerService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -184,97 +152,84 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_id" class="tsd-anchor"></a>
-					<h3>_id</h3>
-					<div class="tsd-signature tsd-kind-icon">_id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="loglevel" class="tsd-anchor"></a>
+					<h3>log<wbr>Level</h3>
+					<div class="tsd-signature tsd-kind-icon">log<wbr>Level<span class="tsd-signature-symbol">:</span> <a href="../enums/loglevel.html" class="tsd-signature-type">LogLevel</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/base-entity.model.ts#L9">models/entities/base/base-entity.model.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/services/logger.service.ts#L13">services/logger.service.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The record identifier</p>
+							<p>The log level</p>
 						</div>
 					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_rowversion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _row<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">_row<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/base-entity.model.ts#L20">models/entities/base/base-entity.model.ts:20</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The record row version (for private set)</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/base-entity.model.ts#L12">models/entities/base/base-entity.model.ts:12</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The record human friendly code</p>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="rowversion" class="tsd-anchor"></a>
-					<h3>row<wbr>Version</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rowVersion<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/base-entity.model.ts#L15">models/entities/base/base-entity.model.ts:15</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The record row version</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
+					<a name="error" class="tsd-anchor"></a>
+					<h3>error</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">error<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ilogger.html">ILogger</a>.<a href="../interfaces/ilogger.html#error">error</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/e81be42/src/models/entities/base/base-entity.model.ts#L25">models/entities/base/base-entity.model.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/services/logger.service.ts#L30">services/logger.service.ts:30</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Updates this instance rowVersion with the current timestamp and return the instance</p>
+									<p>Log an exception</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The parameters to log</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="log" class="tsd-anchor"></a>
+					<h3>log</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">log<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/ilogger.html">ILogger</a>.<a href="../interfaces/ilogger.html#log">log</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/services/logger.service.ts#L21">services/logger.service.ts:21</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Log a message</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>params: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The parameters to log</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -300,40 +255,13 @@
 						<a href="../enums/internshipstatustype.html" class="tsd-kind-icon">Internship<wbr>Status<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum">
+						<a href="../enums/loglevel.html" class="tsd-kind-icon">Log<wbr>Level</a>
+					</li>
+					<li class=" tsd-kind-enum">
 						<a href="../enums/roletype.html" class="tsd-kind-icon">Role<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
-					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-has-type-parameter">
-						<a href="baseentity.html" class="tsd-kind-icon">Base<wbr>Entity</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="baseentity.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="baseentity.html#_id" class="tsd-kind-icon">_id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="baseentity.html#_rowversion" class="tsd-kind-icon">_row<wbr>Version</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="baseentity.html#code" class="tsd-kind-icon">code</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="baseentity.html#rowversion" class="tsd-kind-icon">row<wbr>Version</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="baseentity.html#get" class="tsd-kind-icon">get</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="company.html" class="tsd-kind-icon">Company</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="constructor.html" class="tsd-kind-icon">Constructor</a>
@@ -341,26 +269,56 @@
 					<li class=" tsd-kind-class">
 						<a href="defaults.html" class="tsd-kind-icon">Defaults</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="internship.html" class="tsd-kind-icon">Internship</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="loggerservice.html" class="tsd-kind-icon">Logger<wbr>Service</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="loggerservice.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="loggerservice.html#loglevel" class="tsd-kind-icon">log<wbr>Level</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="loggerservice.html#error" class="tsd-kind-icon">error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="loggerservice.html#log" class="tsd-kind-icon">log</a>
+							</li>
+						</ul>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
-					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="repositoryresponse.html" class="tsd-kind-icon">Repository<wbr>Response</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="role.html" class="tsd-kind-icon">Role</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/company.html" class="tsd-kind-icon">Company</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="user.html" class="tsd-kind-icon">User</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ibaseentity.html" class="tsd-kind-icon">IBase<wbr>Entity</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/ilogger.html" class="tsd-kind-icon">ILogger</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/iread.html" class="tsd-kind-icon">IRead</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/iwrite.html" class="tsd-kind-icon">IWrite</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/internship.html" class="tsd-kind-icon">Internship</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/role.html" class="tsd-kind-icon">Role</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/user.html" class="tsd-kind-icon">User</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#query" class="tsd-kind-icon">Query</a>

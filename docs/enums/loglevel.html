@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>IWrite | Thesis - Core</title>
+	<title>LogLevel | Thesis - Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="iwrite.html">IWrite</a>
+					<a href="loglevel.html">LogLevel</a>
 				</li>
 			</ul>
-			<h1>Interface IWrite&lt;T&gt;</h1>
+			<h1>Enumeration LogLevel</h1>
 		</div>
 	</div>
 </header>
@@ -69,103 +69,55 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Mark the entity as writable</p>
+						<p>The <a href="../classes/loggerservice.html">LoggerService</a> log level</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T<span class="tsd-signature-symbol">: </span><a href="ibaseentity.html" class="tsd-signature-type">IBaseEntity</a></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">IWrite</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="iwrite.html#delete" class="tsd-kind-icon">delete</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="iwrite.html#update" class="tsd-kind-icon">update</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="loglevel.html#exception" class="tsd-kind-icon">Exception</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="loglevel.html#verbose" class="tsd-kind-icon">Verbose</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="delete" class="tsd-anchor"></a>
-					<h3>delete</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/write.interface.ts#L19">models/interfaces/write.interface.ts:19</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Delete an existing element</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The element identifier</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="exception" class="tsd-anchor"></a>
+					<h3>Exception</h3>
+					<div class="tsd-signature tsd-kind-icon">Exception<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/enums/log-level.enum.ts#L9">models/enums/log-level.enum.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Log only exception</p>
+						</div>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
-					<a name="update" class="tsd-anchor"></a>
-					<h3>update</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/repositoryresponse.html" class="tsd-signature-type">RepositoryResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/write.interface.ts#L13">models/interfaces/write.interface.ts:13</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Create or update an element</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>element: <span class="tsd-signature-type">T</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The element to create or update</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../classes/repositoryresponse.html" class="tsd-signature-type">RepositoryResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="verbose" class="tsd-anchor"></a>
+					<h3>Verbose</h3>
+					<div class="tsd-signature tsd-kind-icon">Verbose<span class="tsd-signature-symbol">:</span> </div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/enums/log-level.enum.ts#L6">models/enums/log-level.enum.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Log all messages</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -180,19 +132,31 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/companystatustype.html" class="tsd-kind-icon">Company<wbr>Status<wbr>Type</a>
+						<a href="companystatustype.html" class="tsd-kind-icon">Company<wbr>Status<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="../enums/internshipproposalstatustype.html" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Status<wbr>Type</a>
+						<a href="internshipproposalstatustype.html" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Status<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-enum">
-						<a href="../enums/internshipstatustype.html" class="tsd-kind-icon">Internship<wbr>Status<wbr>Type</a>
+						<a href="internshipstatustype.html" class="tsd-kind-icon">Internship<wbr>Status<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-enum">
-						<a href="../enums/loglevel.html" class="tsd-kind-icon">Log<wbr>Level</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-enum">
+						<a href="loglevel.html" class="tsd-kind-icon">Log<wbr>Level</a>
+						<ul>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="loglevel.html#exception" class="tsd-kind-icon">Exception</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="loglevel.html#verbose" class="tsd-kind-icon">Verbose</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-enum">
-						<a href="../enums/roletype.html" class="tsd-kind-icon">Role<wbr>Type</a>
+						<a href="roletype.html" class="tsd-kind-icon">Role<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
@@ -210,43 +174,31 @@
 						<a href="../classes/repositoryresponse.html" class="tsd-kind-icon">Repository<wbr>Response</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="company.html" class="tsd-kind-icon">Company</a>
+						<a href="../interfaces/company.html" class="tsd-kind-icon">Company</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="ibaseentity.html" class="tsd-kind-icon">IBase<wbr>Entity</a>
+						<a href="../interfaces/ibaseentity.html" class="tsd-kind-icon">IBase<wbr>Entity</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="ilogger.html" class="tsd-kind-icon">ILogger</a>
+						<a href="../interfaces/ilogger.html" class="tsd-kind-icon">ILogger</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
-						<a href="iread.html" class="tsd-kind-icon">IRead</a>
+						<a href="../interfaces/iread.html" class="tsd-kind-icon">IRead</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
-						<a href="iwrite.html" class="tsd-kind-icon">IWrite</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="iwrite.html#delete" class="tsd-kind-icon">delete</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="iwrite.html#update" class="tsd-kind-icon">update</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface">
-						<a href="internship.html" class="tsd-kind-icon">Internship</a>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="../interfaces/iwrite.html" class="tsd-kind-icon">IWrite</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
+						<a href="../interfaces/internship.html" class="tsd-kind-icon">Internship</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="role.html" class="tsd-kind-icon">Role</a>
+						<a href="../interfaces/internshipproposal.html" class="tsd-kind-icon">Internship<wbr>Proposal</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="user.html" class="tsd-kind-icon">User</a>
+						<a href="../interfaces/role.html" class="tsd-kind-icon">Role</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/user.html" class="tsd-kind-icon">User</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#query" class="tsd-kind-icon">Query</a>
