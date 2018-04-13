@@ -8,3 +8,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./base-entity.model"));
 __export(require("./constructor.model"));
+__export(require("./constructor-moongose.model"));
