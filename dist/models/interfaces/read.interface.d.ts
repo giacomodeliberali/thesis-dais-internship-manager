@@ -1,9 +1,9 @@
-import { BaseEntity } from "../entities/base";
+import { IBaseEntity } from "./base";
 import { Query } from "./index";
 /**
  * Mark the entity as readable
  */
-export interface IRead<T extends BaseEntity<T>> {
+export interface IRead<T extends IBaseEntity> {
     /**
      * Return the item with specified id if exists, null otherwise.
      * @param id The item identifier (id property of [[BaseEntity]])

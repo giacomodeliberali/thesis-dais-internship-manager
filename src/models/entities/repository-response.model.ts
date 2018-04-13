@@ -1,9 +1,9 @@
-import { BaseEntity } from "./base";
+import { IBaseEntity } from "../interfaces";
 
 /**
  * A typed response from a repository
  */
-export class RepositoryResponse<T extends BaseEntity<T>> {
+export class RepositoryResponse<T extends IBaseEntity> {
 
     /** The creates or updated object id */
     public objectId: string;

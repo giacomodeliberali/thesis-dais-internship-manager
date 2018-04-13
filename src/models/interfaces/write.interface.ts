@@ -1,10 +1,10 @@
-import { BaseEntity } from "../entities/base";
+import { IBaseEntity } from "./base";
 import { RepositoryResponse } from "../index";
 
 /**
  * Mark the entity as writable
  */
-export interface IWrite<T extends BaseEntity<T>> {
+export interface IWrite<T extends IBaseEntity> {
 
     /**
      * Create or update an element

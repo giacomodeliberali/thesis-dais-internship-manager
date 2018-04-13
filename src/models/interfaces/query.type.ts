@@ -1,5 +1,3 @@
-import { BaseEntity } from "../entities/base";
-
 /**
  * The query interface used to make request in MongoDB
  */
