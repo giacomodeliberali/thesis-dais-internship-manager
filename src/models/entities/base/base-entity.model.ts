@@ -6,7 +6,7 @@ import { Constructor } from "./constructor.model";
 export abstract class BaseEntity<T> extends Constructor<T> {
 
     /** The record identifier */
-    public _id: string;
+    public id: string;
 
     /** The record human friendly code */
     public code: string;
