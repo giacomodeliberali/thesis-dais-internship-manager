@@ -6,7 +6,9 @@ var Defaults = /** @class */ (function () {
     /** The MongoDB collections name */
     Defaults.collectionsName = {
         /** The [[User]] collection */
-        users: "users"
+        users: "users",
+        /** The [[Role]] collection  */
+        roles: "roles"
     };
     return Defaults;
 }());
