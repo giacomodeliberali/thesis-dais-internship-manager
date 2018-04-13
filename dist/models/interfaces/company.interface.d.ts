@@ -1,6 +1,6 @@
 import { CompanyStatusType } from "../enums";
 import { IBaseEntity } from "./base";
-import { IUser } from "./index";
+import { User } from "./index";
 /** A company */
 export interface Company extends IBaseEntity {
     /** The name */
@@ -14,5 +14,5 @@ export interface Company extends IBaseEntity {
     /** The phones number */
     phones: Array<number>;
     /** The owners of this company */
-    owners: Array<IUser>;
+    owners: Array<User>;
 }

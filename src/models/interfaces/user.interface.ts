@@ -4,7 +4,7 @@ import { Role } from "./index";
 /**
  * A registred user
  */
-export interface IUser extends IBaseEntity {
+export interface User extends IBaseEntity {
 
     /** The full name */
     name: string;
