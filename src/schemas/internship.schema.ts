@@ -11,7 +11,15 @@ export const InternshipSchema: Schema = new Schema({
     startDate: Date,
     endDate: Date,
     totalHours: Number,
-    address: String,
+    address: {
+        street: String,
+        number: String,
+        floor: String,
+        city: String,
+        zip: String,
+        state: String,
+        country: String
+    },
     description: String,
     title: String,
     tags: [

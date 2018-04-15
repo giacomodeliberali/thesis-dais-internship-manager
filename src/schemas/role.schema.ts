@@ -5,7 +5,12 @@ import { normalize } from "./base";
 /** The [[Role]] mongoose schema */
 export const RoleSchema: Schema = new Schema({
     id: String,
-    name: String,
+    name: {
+        type: String,
+        index: {
+            unique: true
+        }
+    },
     type: Number
 });
 

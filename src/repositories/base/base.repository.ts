@@ -4,7 +4,7 @@ import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType } from "mongoose";
 
 @injectable()
-export class BaseRepository<T extends IBaseEntity = any> implements IWrite<T>, IRead<T> {
+export class BaseRepository<T extends IBaseEntity = any> {
 
     /** The collection name, used also as controller route name */
     public collectionName: string;
@@ -41,18 +41,12 @@ export class BaseRepository<T extends IBaseEntity = any> implements IWrite<T>, I
      * Creates a new item
      * @param item The item to create
      */
-    private async create(item: T): Promise<RepositoryResponse<T>> {
-        const result = await this.model.create(item);
+    private async create(item: T): Promise<T> {
+        return this.model.create(item).then(result => {
+            if (result && result._id)
+                return this.model.findById(result._id);
 
-        if (result && result._id)
-            return new RepositoryResponse({
-                isOk: true,
-                objectId: result._id
-            });
-
-
-        return new RepositoryResponse({
-            isOk: false
+            return null;
         });
     }
 
@@ -60,16 +54,14 @@ export class BaseRepository<T extends IBaseEntity = any> implements IWrite<T>, I
      * Create or update an element
      * @param element The element to create or update
      */
-    async update(item: T): Promise<RepositoryResponse<T>> {
+    async update(item: T): Promise<T> {
         if (!item.id)
             return this.create(item);
 
-        const result = await this.model.findByIdAndUpdate(item.id, item);
-
-        return new RepositoryResponse({
-            isOk: !!result,
-            objectId: result.id
-        });
+        return this.model.findByIdAndUpdate(item.id, item)
+            .then(result => {
+                return this.get(item.id);
+            });
     }
 
     /**
@@ -77,7 +69,9 @@ export class BaseRepository<T extends IBaseEntity = any> implements IWrite<T>, I
      * @param id The element identifier
      */
     async delete(id: string): Promise<boolean> {
-        return this.model.deleteOne(id);
+        return this.model.findByIdAndRemove(id)
+            .then(res => !!res)
+            .catch(ex => false);
     }
 
     /**

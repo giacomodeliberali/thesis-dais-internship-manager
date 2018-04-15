@@ -35,62 +35,78 @@ export class BaseController<T extends IBaseEntity> {
     public attachCrud() {
         this.router.get('/', (req, res) => {
             console.log(`GET [${this.routeName}/]`);
-            return this.baseRepository.find().then(value => {
-                return new ApiResponse({
-                    data: value,
-                    httpCode: 200,
-                    response: res
-                }).send();
-            }).catch(error => {
-                return new ApiResponse({
-                    data: null,
-                    httpCode: 500,
-                    response: res,
-                    exception: error
-                }).send();
-            });
+            return this.baseRepository.find()
+                .then(value => {
+                    return new ApiResponse({
+                        data: value,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                }).catch(error => {
+                    return new ApiResponse({
+                        data: null,
+                        httpCode: 500,
+                        response: res,
+                        exception: error
+                    }).send();
+                });
         });
 
-        this.router.get('/:id', async (req, res) => {
+        this.router.get('/:id', (req, res) => {
             console.log(`GET [${this.routeName}/${req.params.id}]`);
-
-            try {
-                const result = await this.baseRepository.get(req.params.id);
-
-                return new ApiResponse({
-                    data: result,
-                    httpCode: 200,
-                    response: res
-                }).send();
-
-            } catch (error) {
-                console.log("===>", error);
-                return new ApiResponse({
-                    data: null,
-                    httpCode: 500,
-                    response: res,
-                    exception: error
-                }).send();
-            }
+            this.baseRepository.get(req.params.id)
+                .then(result => {
+                    return new ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                }).catch(ex => {
+                    return new ApiResponse({
+                        data: null,
+                        httpCode: 500,
+                        response: res,
+                        exception: ex
+                    }).send();
+                });
         });
 
-        this.router.delete('/:id', (req, res) => {
+        this.router.delete('/:id', async (req, res) => {
             console.log(`DELETE [${this.routeName}/${req.params.id}]`);
-            return this.baseRepository.delete(req.params.id).then(value => {
-                res.status(200).send(value);
-            }).catch(error => {
-                res.status(500).send(error);
-            });
+            this.baseRepository.delete(req.params.id)
+                .then(result => {
+                    return new ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                }).catch(ex => {
+                    return new ApiResponse({
+                        data: null,
+                        httpCode: 500,
+                        response: res,
+                        exception: ex
+                    }).send();
+                });
         });
 
-        this.router.post('/', (req, res) => {
+        this.router.post('/', async (req, res) => {
             console.log(`POST [${this.routeName}]`, req.body);
-
-            return this.baseRepository.update(req.body).then(value => {
-                res.status(200).send(value);
-            }).catch(error => {
-                res.status(500).send(error);
-            });
+            this.baseRepository.update(req.body)
+                .then(result => {
+                    return new ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                }).catch(ex => {
+                    return new ApiResponse({
+                        data: null,
+                        httpCode: 500,
+                        response: res,
+                        exception: ex
+                    }).send();
+                });
         });
 
         return this;

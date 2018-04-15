@@ -6,7 +6,12 @@ import { normalize } from "./base";
 export const UserSchema: Schema = new Schema({
     id: String,
     name: String,
-    email: String,
+    email: {
+        type: String,
+        index: {
+            unique: true
+        }
+    },
     phone: [
         {
             type: String
@@ -14,7 +19,16 @@ export const UserSchema: Schema = new Schema({
     ],
     role: { type: Schema.Types.ObjectId, ref: 'Role' },
     birthDate: Date,
-    registrationDate: Date
+    registrationDate: Date,
+    residenceAddress: {
+        street: String,
+        number: String,
+        floor: String,
+        city: String,
+        zip: String,
+        state: String,
+        country: String
+    }
 });
 
 
