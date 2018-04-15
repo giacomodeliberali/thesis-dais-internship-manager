@@ -1,11 +1,14 @@
 import { Request, Response, Router } from "express";
 import { BaseRepository } from '../../repositories';
-import { IBaseEntity, ApiResponse, inject } from "gdl-thesis-core/dist";
+import { IBaseEntity, ApiResponse } from "gdl-thesis-core/dist";
+import { inject, injectable, unmanaged } from "inversify";
+import { types } from "../../di-types";
 
 /**
  * GET /
  * Home page.
  */
+@injectable()
 export class BaseController<T extends IBaseEntity> {
 
     /** The express router */
@@ -22,17 +25,14 @@ export class BaseController<T extends IBaseEntity> {
      * @param app The express application used to register a new route for this controller
      */
     constructor(
-        protected baseRepository: BaseRepository<T>,
-        private app: any) {
-
-        this.attachApi();
-        this.app.use(`/${this.routeName}`, this.getRoutes());
+        @unmanaged() protected baseRepository: BaseRepository<T>,
+        @unmanaged() private app: any) {
     }
 
     /**
      * Attaches to the current route the CRUD operations
      */
-    private attachApi() {
+    public attachCrud() {
         this.router.get('/', (req, res) => {
             console.log(`GET [${this.routeName}/]`);
             return this.baseRepository.find().then(value => {
@@ -92,12 +92,15 @@ export class BaseController<T extends IBaseEntity> {
                 res.status(500).send(error);
             });
         });
+
+        return this;
     }
 
     /**
-     * Return the routes defined by this controller
+     * Register this controller routes to the global express application
      */
-    getRoutes() {
-        return this.router;
+    public register() {
+        this.app.use(`/${this.routeName}`, this.router);
+        return this;
     }
 }

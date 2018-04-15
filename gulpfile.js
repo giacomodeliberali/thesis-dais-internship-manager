@@ -27,7 +27,7 @@ gulp.task("typedoc", function () {
             mode: "file",
             name: "Thesis - Server",
             readme: "./readme.md",
-            ignoreCompilerErrors: true
+            experimentalDecorators: true
         }));
 });
 

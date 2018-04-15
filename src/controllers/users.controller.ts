@@ -1,11 +1,14 @@
 import { Request, Response, Router } from "express";
-import { User, inject } from "gdl-thesis-core/dist";
+import { User } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
-import { IUsersRepository } from "../repositories/base/users.repository.interface";
+import { inject, injectable } from "inversify";
+import { UsersRepository } from "../repositories";
+import { types } from "../di-types";
 
 /**
  * The [[User]] controller
  */
+@injectable()
 export class UsersController extends BaseController<User> {
 
   /**
@@ -13,7 +16,10 @@ export class UsersController extends BaseController<User> {
    * @param usersRepository The users repository
    * @param app The express application used to register a new route for this controller
    */
-  constructor(usersRepository: IUsersRepository, app: any) {
+  constructor(
+    usersRepository: UsersRepository,
+    @inject(types.App) app: Express.Application) {
+
     super(usersRepository, app);
   }
 }

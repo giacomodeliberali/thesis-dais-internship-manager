@@ -1,12 +1,14 @@
 import { Request, Response, Router } from "express";
-import { Role, inject } from "gdl-thesis-core/dist";
+import { Role } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
-import { IUsersRepository } from "../repositories/base/users.repository.interface";
-import { IRolesRepository } from "../repositories/base/roles.repository.interface";
+import { inject, injectable } from "inversify";
+import { RolesRepository } from "../repositories";
+import { types } from "../di-types";
 
 /**
- * The roles controller
+ * The [[Role]] controller
  */
+@injectable()
 export class RolesController extends BaseController<Role> {
 
   /**
@@ -14,7 +16,10 @@ export class RolesController extends BaseController<Role> {
    * @param rolesRepository The roles repository
    * @param app The express application used to register a new route for this controller
    */
-  constructor(rolesRepository: IRolesRepository, app: any) {
+  constructor(
+    rolesRepository: RolesRepository,
+    @inject(types.App) app: Express.Application) {
+
     super(rolesRepository, app);
   }
 }

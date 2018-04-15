@@ -4,7 +4,7 @@ import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType } from "mongoose";
 
 @injectable()
-export abstract class BaseRepository<T extends IBaseEntity> implements IWrite<T>, IRead<T> {
+export class BaseRepository<T extends IBaseEntity = any> implements IWrite<T>, IRead<T> {
 
     /** The collection name, used also as controller route name */
     public collectionName: string;
@@ -17,7 +17,10 @@ export abstract class BaseRepository<T extends IBaseEntity> implements IWrite<T>
      * @param model The moongose model for this repository
      * @param collectionName The collection name, used also as controller route name
      */
-    constructor(@unmanaged() model: Model<T>, @unmanaged() collectionName: string) {
+    constructor(
+        @unmanaged() model: Model<T>,
+        @unmanaged() collectionName: string) {
+
         this.model = model;
         this.collectionName = collectionName;
     }
