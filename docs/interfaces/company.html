@@ -105,6 +105,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#owners" class="tsd-kind-icon">owners</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#phones" class="tsd-kind-icon">phones</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#registrationdate" class="tsd-kind-icon">registration<wbr>Date</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="company.html#schema" class="tsd-kind-icon">schema</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#status" class="tsd-kind-icon">status</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="company.html#vatcode" class="tsd-kind-icon">vat<wbr>Code</a></li>
@@ -162,7 +163,7 @@
 					<div class="tsd-signature tsd-kind-icon">address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L12">models/interfaces/company.interface.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L12">models/interfaces/company.interface.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -260,7 +261,7 @@
 						<p>Inherited from <a href="ibaseentity.html">IBaseEntity</a>.<a href="ibaseentity.html#id">id</a></p>
 						<p>Overrides MongooseDocumentOptionals.id</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/base/base-entity.interface.ts#L9">models/interfaces/base/base-entity.interface.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/base/base-entity.interface.ts#L9">models/interfaces/base/base-entity.interface.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -291,7 +292,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L9">models/interfaces/company.interface.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L9">models/interfaces/company.interface.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -306,7 +307,7 @@
 					<div class="tsd-signature tsd-kind-icon">owners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L24">models/interfaces/company.interface.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L24">models/interfaces/company.interface.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -318,15 +319,30 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="phones" class="tsd-anchor"></a>
 					<h3>phones</h3>
-					<div class="tsd-signature tsd-kind-icon">phones<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">phones<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L21">models/interfaces/company.interface.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L21">models/interfaces/company.interface.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The phones number</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="registrationdate" class="tsd-anchor"></a>
+					<h3>registration<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">registration<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L27">models/interfaces/company.interface.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The registration date</p>
 						</div>
 					</div>
 				</section>
@@ -352,7 +368,7 @@
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <a href="../enums/companystatustype.html" class="tsd-signature-type">CompanyStatusType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L15">models/interfaces/company.interface.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L15">models/interfaces/company.interface.ts:15</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -367,7 +383,7 @@
 					<div class="tsd-signature tsd-kind-icon">vat<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/2b28180/src/models/interfaces/company.interface.ts#L18">models/interfaces/company.interface.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/ca3bd26/src/models/interfaces/company.interface.ts#L18">models/interfaces/company.interface.ts:18</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -1162,6 +1178,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="company.html#phones" class="tsd-kind-icon">phones</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="company.html#registrationdate" class="tsd-kind-icon">registration<wbr>Date</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="company.html#schema" class="tsd-kind-icon">schema</a>
