@@ -11,7 +11,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "update": "npm i --save git+https://github.com/giacomodeliberali/thesis-core.git#master"
   },
   "private": true,
   "dependencies": {
