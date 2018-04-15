@@ -58,5 +58,3 @@ typings/
 .env
 
 # local folders/files
-dist
-package-lock.json

@@ -101,6 +101,8 @@ mongoose.connect(environment.connectionString).then(client => {
     }).send();
   });
 
+}).catch(ex => {
+  console.error("Can not connect to mongoDB!");
 });
 
 
