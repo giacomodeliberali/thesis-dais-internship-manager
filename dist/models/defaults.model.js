@@ -7,8 +7,15 @@ var Defaults = /** @class */ (function () {
     Defaults.collectionsName = {
         /** The [[User]] collection */
         users: "users",
-        /** The [[Role]] collection  */
-        roles: "roles"
+        /** The [[Role]] collect
+         * ion  */
+        roles: "roles",
+        /** The [[Company]] collection  */
+        companies: "companies",
+        /** The [[Internship]] collection  */
+        internships: "internships",
+        /** The [[InternshipProposal]] collection  */
+        internshipProposals: "internshipProposals"
     };
     return Defaults;
 }());

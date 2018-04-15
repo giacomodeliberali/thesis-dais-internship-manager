@@ -18,9 +18,11 @@ export interface Company extends IBaseEntity {
     vatCode: string;
 
     /** The phones number */
-    phones: Array<number>;
+    phones: Array<string>;
 
     /** The owners of this company */
     owners: Array<User>;
 
+    /** The registration date */
+    registrationDate: Date;
 }

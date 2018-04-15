@@ -3,5 +3,8 @@ export declare abstract class Defaults {
     static collectionsName: {
         users: string;
         roles: string;
+        companies: string;
+        internships: string;
+        internshipProposals: string;
     };
 }
