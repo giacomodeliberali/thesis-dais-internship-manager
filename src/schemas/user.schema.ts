@@ -1,8 +1,8 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { User, Defaults } from "gdl-thesis-core/dist";
+import { User, Defaults, Company } from "gdl-thesis-core/dist";
 import { normalize } from "./base";
 
-/** The [[user]] mongoose schema */
+/** The [[User]] mongoose schema */
 export const UserSchema: Schema = new Schema({
     id: String,
     name: String,
@@ -23,13 +23,13 @@ UserSchema.set('toJSON', {
 });
 
 /** Auto populates 'role' property before any 'find' and 'findOne' */
-const autoPopulateRole = function (next: Function) {
+const autoPopulateReferences = function (next: Function) {
     this.populate('role');
     next();
 };
 
-UserSchema.pre("find", autoPopulateRole);
-UserSchema.pre("findOne", autoPopulateRole);
+UserSchema.pre("find", autoPopulateReferences);
+UserSchema.pre("findOne", autoPopulateReferences);
 
 /** The [[UserModel]] mongoose schema model  */
 export const UserModel: Model<User> = model<User>("User", UserSchema, Defaults.collectionsName.users);

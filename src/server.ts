@@ -8,9 +8,9 @@ import "reflect-metadata";
  * Controllers (route handlers).
  */
 import { UsersController } from "./controllers/users.controller";
-import { UsersRepository, BaseRepository } from "./repositories";
+import { UsersRepository, BaseRepository, CompaniesRepository, InternshipsRepository, InternshipsProposalsRepository } from "./repositories";
 import { Db, MongoClient, ObjectID } from "mongodb";
-import { ApiResponse, User, Role } from "gdl-thesis-core/dist";
+import { ApiResponse, User, Role, Company, Internship, InternshipProposal } from "gdl-thesis-core/dist";
 import { Container } from "inversify";
 
 
@@ -18,11 +18,17 @@ import mongoose = require('mongoose');
 import { Model } from "mongoose";
 // Schemas
 import { UserModel } from './schemas/user.schema';
+import { CompanyModel } from './schemas/company.schema';
 import { RoleModel } from "./schemas/role.schema";
 import { RolesRepository } from "./repositories/roles.repository";
 import { RolesController } from "./controllers/roles.controller";
 import { environment } from "./environment";
 import { types } from "./di-types";
+import { CompaniesController } from "./controllers/companies.controller";
+import { InternshipsController } from "./controllers/internships.controller";
+import { InternshipProposalsController } from "./controllers/internship-proposals.controller";
+import { InternshipModel } from "./schemas/internship.schema";
+import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
 
 /**
  * Create Express server.
@@ -64,16 +70,25 @@ mongoose.connect(environment.connectionString).then(client => {
   container.bind<Express.Application>(types.App).toConstantValue(app);
 
   // Bind all mongoose models
-  container.bind<Model<User>>(UserModel).toConstantValue(UserModel);
-  container.bind<Model<Role>>(RoleModel).toConstantValue(RoleModel);
+  container.bind<Model<User>>(types.Models.User).toConstantValue(UserModel);
+  container.bind<Model<Role>>(types.Models.Role).toConstantValue(RoleModel);
+  container.bind<Model<Company>>(types.Models.Company).toConstantValue(CompanyModel);
+  container.bind<Model<Internship>>(types.Models.InternShip).toConstantValue(InternshipModel);
+  container.bind<Model<InternshipProposal>>(types.Models.InternShipProposal).toConstantValue(InternshipProposalModel);
 
   // Bind all repositories
   container.bind<UsersRepository>(UsersRepository).to(UsersRepository).inTransientScope();
   container.bind<RolesRepository>(RolesRepository).to(RolesRepository).inTransientScope();
+  container.bind<CompaniesRepository>(CompaniesRepository).to(CompaniesRepository).inTransientScope();
+  container.bind<InternshipsRepository>(InternshipsRepository).to(InternshipsRepository).inTransientScope();
+  container.bind<InternshipsProposalsRepository>(InternshipsProposalsRepository).to(InternshipsProposalsRepository).inTransientScope();
 
   // Create the required controllers
   const usersController = container.resolve(UsersController).attachCrud().register();
   const rolesController = container.resolve(RolesController).attachCrud().register();
+  const companiesController = container.resolve(CompaniesController).attachCrud().register();
+  const internshipsController = container.resolve(InternshipsController).attachCrud().register();
+  const internshipProposalsController = container.resolve(InternshipProposalsController).attachCrud().register();
 });
 
 
