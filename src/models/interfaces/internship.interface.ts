@@ -1,6 +1,7 @@
 import { IBaseEntity } from "./base";
 import { Company } from "./company.interface";
 import { InternshipStatusType } from "../enums";
+import { Address } from "./index";
 
 /**
  * A internship created by a [[Company]]
@@ -20,7 +21,7 @@ export interface Internship extends IBaseEntity {
     totalHours: number;
 
     /** The location address */
-    address: string;
+    address: Address;
 
     /** The description */
     description: string;

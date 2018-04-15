@@ -1,5 +1,5 @@
 import { IBaseEntity } from "./base";
-import { Role } from "./index";
+import { Role, Address } from "./index";
 
 /**
  * A registred user
@@ -23,5 +23,8 @@ export interface User extends IBaseEntity {
 
     /** The registration date */
     registrationDate: Date;
+
+    /** The residence address */
+    residenceAddress: Address;
 
 }
