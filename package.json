@@ -4,8 +4,12 @@
   "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "description": "The server side package of the thesis",
   "main": "dist/server.js",
+  "engines": {
+    "node": "9.7.1"
+  },
   "scripts": {
-    "start": "npm run gulp && node dist/server.js",
+    "start": "node dist/server.js",
+    "dev": "gulp && npm run start start",
     "gulp": "./node_modules/.bin/gulp",
     "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
     "doc": "gulp typedoc",

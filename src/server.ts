@@ -89,6 +89,18 @@ mongoose.connect(environment.connectionString).then(client => {
   const companiesController = container.resolve(CompaniesController).attachCrud().register();
   const internshipsController = container.resolve(InternshipsController).attachCrud().register();
   const internshipProposalsController = container.resolve(InternshipProposalsController).attachCrud().register();
+
+
+  // Add 404 handler
+  app.all('*', (req, res) => {
+    return new ApiResponse({
+      data: null,
+      exception: new Error("Route not found") as any,
+      httpCode: 404,
+      response: res,
+    }).send();
+  });
+
 });
 
 
