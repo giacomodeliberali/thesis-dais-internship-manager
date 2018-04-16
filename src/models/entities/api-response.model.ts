@@ -13,7 +13,7 @@ export class ApiResponse<T = any> extends Constructor<ApiResponse> {
     public data: T;
 
     /** The exception, populated when isOk() === false */
-    public exception: string;
+    public exception: any;
 
     /** The response stream */
     public response: Response;
@@ -42,8 +42,17 @@ export class ApiResponse<T = any> extends Constructor<ApiResponse> {
             return value;
         };
 
+        // Stringify the exception: if is a function take its return value
+        if (content.exception && typeof content.exception == "function") {
+            try {
+                content.exception = content.exception();
+            } catch (ex) {
+                // Do nothing 
+            }
+        }
+
         // Stringify the exception
-        if (content.exception)
+        if (content.exception && typeof content.exception == "object")
             content.exception = JSON.stringify(content.exception, replaceErrors);
 
         // Populate the flag
