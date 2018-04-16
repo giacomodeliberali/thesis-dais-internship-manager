@@ -3,11 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const dist_1 = require("gdl-thesis-core/dist");
 const base_1 = require("./base");
+const autopopulate = require("mongoose-autopopulate");
 /** The [[Internship]] mongoose schema */
 exports.InternshipSchema = new mongoose_1.Schema({
     id: String,
     company: {
-        type: mongoose_1.Schema.Types.ObjectId, ref: 'Company'
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Company',
+        autopopulate: true
     },
     startDate: Date,
     endDate: Date,
@@ -32,15 +35,11 @@ exports.InternshipSchema = new mongoose_1.Schema({
     status: Number,
     rejectReason: String
 });
+/** Ensure returned object has property id instead of _id and __v */
 exports.InternshipSchema.set('toJSON', {
     transform: base_1.normalize
 });
 /** Auto populates 'company' property before any 'find' and 'findOne' */
-const autoPopulateReferences = function (next) {
-    this.populate('company');
-    next();
-};
-exports.InternshipSchema.pre("find", autoPopulateReferences);
-exports.InternshipSchema.pre("findOne", autoPopulateReferences);
+exports.InternshipSchema.plugin(autopopulate);
 /** The [[CompanyModel]] mongoose schema model  */
 exports.InternshipModel = mongoose_1.model("Internship", exports.InternshipSchema, dist_1.Defaults.collectionsName.internships);

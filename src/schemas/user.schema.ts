@@ -1,6 +1,7 @@
 import { Document, Schema, Model, model } from "mongoose";
 import { User, Defaults, Company } from "gdl-thesis-core/dist";
 import { normalize } from "./base";
+import * as autopopulate from "mongoose-autopopulate";
 
 /** The [[User]] mongoose schema */
 export const UserSchema: Schema = new Schema({
@@ -17,7 +18,11 @@ export const UserSchema: Schema = new Schema({
             type: String
         }
     ],
-    role: { type: Schema.Types.ObjectId, ref: 'Role' },
+    role: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role',
+        autopopulate: true
+    },
     birthDate: Date,
     registrationDate: Date,
     residenceAddress: {
@@ -31,19 +36,13 @@ export const UserSchema: Schema = new Schema({
     }
 });
 
-
+/** Ensure returned object has property id instead of _id and __v */
 UserSchema.set('toJSON', {
     transform: normalize
 });
 
-/** Auto populates 'role' property before any 'find' and 'findOne' */
-const autoPopulateReferences = function (next: Function) {
-    this.populate('role');
-    next();
-};
-
-UserSchema.pre("find", autoPopulateReferences);
-UserSchema.pre("findOne", autoPopulateReferences);
+/** Auto populates 'Role' property before any 'find' and 'findOne' */
+UserSchema.plugin(autopopulate);
 
 /** The [[UserModel]] mongoose schema model  */
 export const UserModel: Model<User> = model<User>("User", UserSchema, Defaults.collectionsName.users);

@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const dist_1 = require("gdl-thesis-core/dist");
 const base_1 = require("./base");
+const autopopulate = require("mongoose-autopopulate");
 /** The [[User]] mongoose schema */
 exports.UserSchema = new mongoose_1.Schema({
     id: String,
@@ -18,7 +19,11 @@ exports.UserSchema = new mongoose_1.Schema({
             type: String
         }
     ],
-    role: { type: mongoose_1.Schema.Types.ObjectId, ref: 'Role' },
+    role: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Role',
+        autopopulate: true
+    },
     birthDate: Date,
     registrationDate: Date,
     residenceAddress: {
@@ -31,15 +36,11 @@ exports.UserSchema = new mongoose_1.Schema({
         country: String
     }
 });
+/** Ensure returned object has property id instead of _id and __v */
 exports.UserSchema.set('toJSON', {
     transform: base_1.normalize
 });
-/** Auto populates 'role' property before any 'find' and 'findOne' */
-const autoPopulateReferences = function (next) {
-    this.populate('role');
-    next();
-};
-exports.UserSchema.pre("find", autoPopulateReferences);
-exports.UserSchema.pre("findOne", autoPopulateReferences);
+/** Auto populates 'Role' property before any 'find' and 'findOne' */
+exports.UserSchema.plugin(autopopulate);
 /** The [[UserModel]] mongoose schema model  */
 exports.UserModel = mongoose_1.model("User", exports.UserSchema, dist_1.Defaults.collectionsName.users);

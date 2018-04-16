@@ -7,13 +7,11 @@ exports.RoleSchema = new mongoose_1.Schema({
     id: String,
     name: {
         type: String,
-        index: {
-            unique: true
-        }
+        unique: true
     },
     type: Number
 });
-// Ensure returned object has property id instead of _id and __v
+/** Ensure returned object has property id instead of _id and __v */
 exports.RoleSchema.set('toJSON', {
     transform: base_1.normalize
 });

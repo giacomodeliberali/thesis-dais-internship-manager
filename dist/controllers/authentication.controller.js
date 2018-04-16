@@ -133,6 +133,11 @@ let AuthenticationController = class AuthenticationController {
         }));
         return this;
     }
+    /**
+     * Handle all 404 routes.
+     *
+     * Must be called *after* every controller registration.
+     */
     handleMissingRoutes() {
         // Add 404 handler
         this.app.all('*', (req, res) => {

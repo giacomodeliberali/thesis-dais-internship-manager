@@ -7,14 +7,12 @@ export const RoleSchema: Schema = new Schema({
     id: String,
     name: {
         type: String,
-        index: {
-            unique: true
-        }
+        unique: true
     },
     type: Number
 });
 
-// Ensure returned object has property id instead of _id and __v
+/** Ensure returned object has property id instead of _id and __v */
 RoleSchema.set('toJSON', {
     transform: normalize
 });
