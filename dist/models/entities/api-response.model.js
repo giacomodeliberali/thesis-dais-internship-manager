@@ -37,8 +37,17 @@ var ApiResponse = /** @class */ (function (_super) {
             }
             return value;
         };
+        // Stringify the exception: if is a function take its return value
+        if (content.exception && typeof content.exception == "function") {
+            try {
+                content.exception = content.exception();
+            }
+            catch (ex) {
+                // Do nothing 
+            }
+        }
         // Stringify the exception
-        if (content.exception)
+        if (content.exception && typeof content.exception == "object")
             content.exception = JSON.stringify(content.exception, replaceErrors);
         // Populate the flag
         content.isOk = content.httpCode >= 200 && content.httpCode < 300;

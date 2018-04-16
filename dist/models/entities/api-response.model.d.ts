@@ -10,7 +10,7 @@ export declare class ApiResponse<T = any> extends Constructor<ApiResponse> {
     /** The result data */
     data: T;
     /** The exception, populated when isOk() === false */
-    exception: string;
+    exception: any;
     /** The response stream */
     response: Response;
     /** Indicates if the response is valid */

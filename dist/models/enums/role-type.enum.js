@@ -10,11 +10,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var RoleType;
 (function (RoleType) {
     /** The student. Can see internship and create an [[InternshipProposal]] */
-    RoleType[RoleType["Student"] = 0] = "Student";
+    RoleType[RoleType["Student"] = 1] = "Student";
     /** The professor. Must confirm its presence in an [[InternshipProposal]] */
-    RoleType[RoleType["Tutor"] = 1] = "Tutor";
+    RoleType[RoleType["Tutor"] = 2] = "Tutor";
     /** The company. Can create an [[Internship]] */
-    RoleType[RoleType["Company"] = 2] = "Company";
+    RoleType[RoleType["Company"] = 4] = "Company";
     /** The admin. Can approve [[Internship]] */
-    RoleType[RoleType["Admin"] = 4] = "Admin";
+    RoleType[RoleType["Admin"] = 8] = "Admin";
 })(RoleType = exports.RoleType || (exports.RoleType = {}));
