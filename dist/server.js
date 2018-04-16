@@ -24,6 +24,7 @@ const internships_controller_1 = require("./controllers/internships.controller")
 const internship_proposals_controller_1 = require("./controllers/internship-proposals.controller");
 const internship_schema_1 = require("./schemas/internship.schema");
 const internship_proposal_schema_1 = require("./schemas/internship-proposal.schema");
+const authentication_controller_1 = require("./controllers/authentication.controller");
 /**
  * Create Express server.
  */
@@ -70,20 +71,32 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     container.bind(repositories_1.InternshipsRepository).to(repositories_1.InternshipsRepository).inTransientScope();
     container.bind(repositories_1.InternshipsProposalsRepository).to(repositories_1.InternshipsProposalsRepository).inTransientScope();
     // Create the required controllers
-    const usersController = container.resolve(users_controller_1.UsersController).attachCrud().register();
-    const rolesController = container.resolve(roles_controller_1.RolesController).attachCrud().register();
-    const companiesController = container.resolve(companies_controller_1.CompaniesController).attachCrud().register();
-    const internshipsController = container.resolve(internships_controller_1.InternshipsController).attachCrud().register();
-    const internshipProposalsController = container.resolve(internship_proposals_controller_1.InternshipProposalsController).attachCrud().register();
-    // Add 404 handler
-    app.all('*', (req, res) => {
-        return new dist_1.ApiResponse({
-            data: null,
-            exception: new Error("Route not found"),
-            httpCode: 404,
-            response: res,
-        }).send();
-    });
+    const usersController = container
+        .resolve(users_controller_1.UsersController)
+        // .useAuth()
+        .attachCrud()
+        .register();
+    const rolesController = container
+        .resolve(roles_controller_1.RolesController)
+        .attachCrud()
+        .register();
+    const companiesController = container
+        .resolve(companies_controller_1.CompaniesController)
+        .attachCrud()
+        .register();
+    const internshipsController = container
+        .resolve(internships_controller_1.InternshipsController)
+        .attachCrud()
+        .register();
+    const internshipProposalsController = container
+        .resolve(internship_proposals_controller_1.InternshipProposalsController)
+        .attachCrud()
+        .register();
+    // Initialize Auth controller and catch all 404
+    const authController = container
+        .resolve(authentication_controller_1.AuthenticationController)
+        .handleMissingRoutes()
+        .register();
 }).catch(ex => {
     console.error("Can not connect to mongoDB!");
 });

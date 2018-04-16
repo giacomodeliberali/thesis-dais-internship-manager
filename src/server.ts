@@ -29,6 +29,7 @@ import { InternshipsController } from "./controllers/internships.controller";
 import { InternshipProposalsController } from "./controllers/internship-proposals.controller";
 import { InternshipModel } from "./schemas/internship.schema";
 import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
+import { AuthenticationController } from "./controllers/authentication.controller";
 
 /**
  * Create Express server.
@@ -84,22 +85,38 @@ mongoose.connect(environment.connectionString).then(client => {
   container.bind<InternshipsProposalsRepository>(InternshipsProposalsRepository).to(InternshipsProposalsRepository).inTransientScope();
 
   // Create the required controllers
-  const usersController = container.resolve(UsersController).attachCrud().register();
-  const rolesController = container.resolve(RolesController).attachCrud().register();
-  const companiesController = container.resolve(CompaniesController).attachCrud().register();
-  const internshipsController = container.resolve(InternshipsController).attachCrud().register();
-  const internshipProposalsController = container.resolve(InternshipProposalsController).attachCrud().register();
 
+  const usersController = container
+    .resolve(UsersController)
+    // .useAuth()
+    .attachCrud()
+    .register();
 
-  // Add 404 handler
-  app.all('*', (req, res) => {
-    return new ApiResponse({
-      data: null,
-      exception: new Error("Route not found") as any,
-      httpCode: 404,
-      response: res,
-    }).send();
-  });
+  const rolesController = container
+    .resolve(RolesController)
+    .attachCrud()
+    .register();
+
+  const companiesController = container
+    .resolve(CompaniesController)
+    .attachCrud()
+    .register();
+
+  const internshipsController = container
+    .resolve(InternshipsController)
+    .attachCrud()
+    .register();
+
+  const internshipProposalsController = container
+    .resolve(InternshipProposalsController)
+    .attachCrud()
+    .register();
+
+  // Initialize Auth controller and catch all 404
+  const authController = container
+    .resolve(AuthenticationController)
+    .handleMissingRoutes()
+    .register();
 
 }).catch(ex => {
   console.error("Can not connect to mongoDB!");
