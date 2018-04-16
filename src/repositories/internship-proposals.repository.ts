@@ -3,7 +3,7 @@ import { Defaults, InternshipProposal } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { InternshipProposalModel } from "../schemas/internship-proposal.schema";
 import { Model } from "mongoose";
-import { types } from "../di-types";
+import { types } from "../utils/di-types";
 
 /**
  * The [[InternshipsProposalsRepository]] repository

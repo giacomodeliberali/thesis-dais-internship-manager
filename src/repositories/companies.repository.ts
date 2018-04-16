@@ -3,7 +3,7 @@ import { Defaults, Company } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { CompanyModel } from "../schemas/company.schema";
 import { Model } from "mongoose";
-import { types } from "../di-types";
+import { types } from "../utils/di-types";
 
 /**
  * The [[Company]] repository

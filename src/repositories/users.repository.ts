@@ -2,7 +2,7 @@ import { BaseRepository } from "./base";
 import { Defaults, User } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { Model } from "mongoose";
-import { types } from "../di-types";
+import { types } from "../utils/di-types";
 
 /**
  * The [[user]] repository

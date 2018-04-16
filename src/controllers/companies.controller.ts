@@ -3,7 +3,7 @@ import { Company } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
 import { inject, injectable } from "inversify";
 import { CompaniesRepository } from "../repositories";
-import { types } from "../di-types";
+import { types } from "../utils/di-types";
 
 /**
  * The [[Company]] controller

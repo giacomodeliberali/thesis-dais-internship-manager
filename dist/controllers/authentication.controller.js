@@ -22,10 +22,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const inversify_1 = require("inversify");
-const di_types_1 = require("../di-types");
+const di_types_1 = require("../utils/di-types");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../environment");
 const dist_1 = require("gdl-thesis-core/dist");
+const ServerDefaults_1 = require("../ServerDefaults");
 /**
  * The Auth controller
  */
@@ -45,7 +46,7 @@ let AuthenticationController = class AuthenticationController {
      */
     useAuth() {
         this.router.post('/token', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const token = req.headers['token'];
+            const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
             if (token) {
                 // Verify token
                 try {
@@ -137,7 +138,9 @@ let AuthenticationController = class AuthenticationController {
         this.app.all('*', (req, res) => {
             return new dist_1.ApiResponse({
                 data: null,
-                exception: new Error("Route not found"),
+                exception: {
+                    message: "Route not found"
+                },
                 httpCode: 404,
                 response: res,
             }).send();

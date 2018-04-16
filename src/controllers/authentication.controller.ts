@@ -1,10 +1,11 @@
 import { Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
-import { types } from "../di-types";
+import { types } from "../utils/di-types";
 import { verify, sign, decode } from "jsonwebtoken";
 import { environment } from "../environment";
 import { ApiResponse } from "gdl-thesis-core/dist";
 import { cat } from "shelljs";
+import { ServerDefaults } from "../ServerDefaults";
 
 /**
  * The Auth controller
@@ -30,7 +31,7 @@ export class AuthenticationController {
    */
   private useAuth() {
     this.router.post('/token', async (req, res, next) => {
-      const token = req.headers['token'] as string;
+      const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
       if (token) {
         // Verify token
         try {
@@ -118,15 +119,23 @@ export class AuthenticationController {
         }).send();
       }
     });
+
     return this;
   }
 
+  /**
+   * Handle all 404 routes. 
+   * 
+   * Must be called *after* every controller registration.
+   */
   public handleMissingRoutes() {
     // Add 404 handler
     this.app.all('*', (req: Request, res: Response) => {
       return new ApiResponse({
         data: null,
-        exception: new Error("Route not found") as any,
+        exception: {
+          message: "Route not found"
+        } as any,
         httpCode: 404,
         response: res,
       }).send();

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const base_controller_1 = require("./base/base.controller");
 const inversify_1 = require("inversify");
 const repositories_1 = require("../repositories");
-const di_types_1 = require("../di-types");
+const di_types_1 = require("../utils/di-types");
 /**
  * The [[Role]] controller
  */

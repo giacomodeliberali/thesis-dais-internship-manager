@@ -1,4 +1,4 @@
-import { IBaseEntity, RepositoryResponse, IWrite, IRead, Query, Defaults } from "gdl-thesis-core/dist";
+import { IBaseEntity, RepositoryResponse, Query, Defaults } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType } from "mongoose";

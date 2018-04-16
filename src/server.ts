@@ -11,7 +11,7 @@ import { UsersController } from "./controllers/users.controller";
 import { UsersRepository, BaseRepository, CompaniesRepository, InternshipsRepository, InternshipsProposalsRepository } from "./repositories";
 import { Db, MongoClient, ObjectID } from "mongodb";
 import { ApiResponse, User, Role, Company, Internship, InternshipProposal } from "gdl-thesis-core/dist";
-import { Container } from "inversify";
+import { container } from "./utils/di-container";
 
 
 import mongoose = require('mongoose');
@@ -23,13 +23,14 @@ import { RoleModel } from "./schemas/role.schema";
 import { RolesRepository } from "./repositories/roles.repository";
 import { RolesController } from "./controllers/roles.controller";
 import { environment } from "./environment";
-import { types } from "./di-types";
+import { types } from "./utils/di-types";
 import { CompaniesController } from "./controllers/companies.controller";
 import { InternshipsController } from "./controllers/internships.controller";
 import { InternshipProposalsController } from "./controllers/internship-proposals.controller";
 import { InternshipModel } from "./schemas/internship.schema";
 import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
 import { AuthenticationController } from "./controllers/authentication.controller";
+import { adminScope, companyScope, studentScope, tutorScope } from "./utils/auth/scopes";
 
 /**
  * Create Express server.
@@ -64,8 +65,6 @@ app.use((err: any, req: express.Request, res: express.Response, next: Function) 
 
 // Connect
 mongoose.connect(environment.connectionString).then(client => {
-  // Initialize the IoC container
-  const container = new Container();
 
   // Bind express application
   container.bind<Express.Application>(types.App).toConstantValue(app);
@@ -88,7 +87,6 @@ mongoose.connect(environment.connectionString).then(client => {
 
   const usersController = container
     .resolve(UsersController)
-    // .useAuth()
     .attachCrud()
     .register();
 
@@ -115,8 +113,10 @@ mongoose.connect(environment.connectionString).then(client => {
   // Initialize Auth controller and catch all 404
   const authController = container
     .resolve(AuthenticationController)
-    .handleMissingRoutes()
-    .register();
+    .register()
+    .handleMissingRoutes();
+
+  console.log("All controllers resolved!");
 
 }).catch(ex => {
   console.error("Can not connect to mongoDB!");

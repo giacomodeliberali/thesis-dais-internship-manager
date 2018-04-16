@@ -26,6 +26,7 @@ const dist_1 = require("gdl-thesis-core/dist");
 const inversify_1 = require("inversify");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../../environment");
+const ServerDefaults_1 = require("../../ServerDefaults");
 /**
  * GET /
  * Home page.
@@ -46,19 +47,31 @@ let BaseController = class BaseController {
     get routeName() {
         return this.baseRepository.collectionName;
     }
+    useMiddleware(middleware) {
+        if (middleware && middleware.length) {
+            this.router.use(middleware);
+        }
+        return this;
+    }
     /**
-     * Attach to the current route the CRUD operations
+     * Attach to the current route the CRUD operations.
+     *
+     * A user scope can be specified using a scope middleware.
      */
-    attachCrud() {
+    attachCrud(...middleware) {
         return this
+            .useMiddleware(middleware)
             .useCreate()
             .useRead()
             .useDelete();
     }
     /**
      * Attach to the current route the create operation
+     *
+     * A user scope can be specified using a scope middleware.
      */
-    useCreate() {
+    useCreate(...middleware) {
+        this.useMiddleware(middleware);
         this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
             console.log(`POST [${this.routeName}]`, req.body);
             this.baseRepository.update(req.body)
@@ -81,8 +94,11 @@ let BaseController = class BaseController {
     }
     /**
      * Attach to the current route the read all and ready by id operation
+     *
+     * A user scope can be specified using a scope middleware.
      */
-    useRead() {
+    useRead(...middleware) {
+        this.useMiddleware(middleware);
         this.router.get('/', (req, res) => {
             console.log(`GET [${this.routeName}/]`);
             return this.baseRepository.find()
@@ -123,8 +139,11 @@ let BaseController = class BaseController {
     }
     /**
      * Attach to the current route the delete operation
+     *
+     * A user scope can be specified using a scope middleware.
      */
-    useDelete() {
+    useDelete(...middleware) {
+        this.useMiddleware(middleware);
         this.router.delete('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
             console.log(`DELETE [${this.routeName}/${req.params.id}]`);
             this.baseRepository.delete(req.params.id)
@@ -147,17 +166,21 @@ let BaseController = class BaseController {
     }
     /**
      * Enable JWT token verification. Every method called after this call will use authentication
+     *
+     * A user scope can be specified using a scope middleware.
      */
     useAuth() {
-        this.router.all('*', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+        this.router.use('*', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const token = req.headers['token'];
+                const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
                 if (token) {
                     // Verify token
                     const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret);
                     // Is is valid proceed
-                    if (isValid)
+                    if (isValid) {
+                        req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName] = jsonwebtoken_1.decode(token);
                         return next();
+                    }
                     // Otherwise throw an auth error
                     return new dist_1.ApiResponse({
                         response: res,
