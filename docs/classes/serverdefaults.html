@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Thesis - Server</title>
+	<title>ServerDefaults | Thesis - Server</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">Thesis - Server</a>
+					<a href="../index.html" class="title">Thesis - Server</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -53,150 +53,208 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="globals.html">Globals</a>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="serverdefaults.html">ServerDefaults</a>
 				</li>
 			</ul>
-			<h1> Thesis - Server</h1>
+			<h1>Class ServerDefaults</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<h1 id="thesis-server">Thesis - Server</h1>
-				<p>This is the server side app, author: <em>Giacomo De Liberali, <a href="mailto:deliberali.giacomo@gmail.com">deliberali.giacomo@gmail.com</a></em></p>
-				<h2 id="architecture">Architecture</h2>
-				<p>The infrastructure is divided in different abstraction levels:</p>
-				<ul>
-					<li>Schemas</li>
-					<li>Repositories</li>
-					<li>Controllers</li>
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The default values for the server</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">ServerDefaults</span>
+					</li>
 				</ul>
-				<h3 id="schemas">Schemas</h3>
-				<p>Schemas are the definition of MongoDB collections, built using the ORM <em>mongoose</em>.</p>
-				<h3 id="repositories">Repositories</h3>
-				<p>Repositories are the entities who read from and write into mongoose schema models.</p>
-				<h2 id="controllers">Controllers</h2>
-				<p>Controllers expose repositories methods through an <em>ExpressJs</em> named route.</p>
-				<h2 id="deploy">Deploy</h2>
-				<p>The app is published in <em>Heroku</em> and visible <a href="https://arcane-tundra-32042.herokuapp.com/">here</a>.</p>
-			</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="serverdefaults.html#authuserbodypropertyname" class="tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="serverdefaults.html#jwttokenheadername" class="tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="authuserbodypropertyname" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;__user&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/ServerDefaults.ts#L9">ServerDefaults.ts:9</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The request.body.popertyName used to populate the decoded JWT token in baseController.useAuth()</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="jwttokenheadername" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> jwt<wbr>Token<wbr>Header<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;token&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/ServerDefaults.ts#L6">ServerDefaults.ts:6</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The JWT header token name</p>
+						</div>
+					</div>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="classes/authenticationcontroller.html" class="tsd-kind-icon">Authentication<wbr>Controller</a>
+						<a href="authenticationcontroller.html" class="tsd-kind-icon">Authentication<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
+						<a href="basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="classes/baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
+						<a href="baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/companiescontroller.html" class="tsd-kind-icon">Companies<wbr>Controller</a>
+						<a href="companiescontroller.html" class="tsd-kind-icon">Companies<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/companiesrepository.html" class="tsd-kind-icon">Companies<wbr>Repository</a>
+						<a href="companiesrepository.html" class="tsd-kind-icon">Companies<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/internshipproposalscontroller.html" class="tsd-kind-icon">Internship<wbr>Proposals<wbr>Controller</a>
+						<a href="internshipproposalscontroller.html" class="tsd-kind-icon">Internship<wbr>Proposals<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/internshipscontroller.html" class="tsd-kind-icon">Internships<wbr>Controller</a>
+						<a href="internshipscontroller.html" class="tsd-kind-icon">Internships<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/internshipsproposalsrepository.html" class="tsd-kind-icon">Internships<wbr>Proposals<wbr>Repository</a>
+						<a href="internshipsproposalsrepository.html" class="tsd-kind-icon">Internships<wbr>Proposals<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/internshipsrepository.html" class="tsd-kind-icon">Internships<wbr>Repository</a>
+						<a href="internshipsrepository.html" class="tsd-kind-icon">Internships<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
+						<a href="rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+						<a href="rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="serverdefaults.html#authuserbodypropertyname" class="tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="serverdefaults.html#jwttokenheadername" class="tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="classes/usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
+						<a href="usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
+						<a href="../globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#companyschema" class="tsd-kind-icon">Company<wbr>Schema</a>
+						<a href="../globals.html#companyschema" class="tsd-kind-icon">Company<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#internshipmodel" class="tsd-kind-icon">Internship<wbr>Model</a>
+						<a href="../globals.html#internshipmodel" class="tsd-kind-icon">Internship<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#internshipproposalmodel" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Model</a>
+						<a href="../globals.html#internshipproposalmodel" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#internshipproposalschema" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Schema</a>
+						<a href="../globals.html#internshipproposalschema" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#internshipschema" class="tsd-kind-icon">Internship<wbr>Schema</a>
+						<a href="../globals.html#internshipschema" class="tsd-kind-icon">Internship<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#rolemodel" class="tsd-kind-icon">Role<wbr>Model</a>
+						<a href="../globals.html#rolemodel" class="tsd-kind-icon">Role<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#roleschema" class="tsd-kind-icon">Role<wbr>Schema</a>
+						<a href="../globals.html#roleschema" class="tsd-kind-icon">Role<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a>
+						<a href="../globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a>
+						<a href="../globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#app" class="tsd-kind-icon">app</a>
+						<a href="../globals.html#app" class="tsd-kind-icon">app</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="globals.html#container" class="tsd-kind-icon">container</a>
+						<a href="../globals.html#container" class="tsd-kind-icon">container</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#adminscope" class="tsd-kind-icon">admin<wbr>Scope</a>
+						<a href="../globals.html#adminscope" class="tsd-kind-icon">admin<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#autopopulatereferences" class="tsd-kind-icon">auto<wbr>Populate<wbr>References</a>
+						<a href="../globals.html#autopopulatereferences" class="tsd-kind-icon">auto<wbr>Populate<wbr>References</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#checkbodyuser" class="tsd-kind-icon">check<wbr>Body<wbr>User</a>
+						<a href="../globals.html#checkbodyuser" class="tsd-kind-icon">check<wbr>Body<wbr>User</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#companyscope" class="tsd-kind-icon">company<wbr>Scope</a>
+						<a href="../globals.html#companyscope" class="tsd-kind-icon">company<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#normalize" class="tsd-kind-icon">normalize</a>
+						<a href="../globals.html#normalize" class="tsd-kind-icon">normalize</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#studentscope" class="tsd-kind-icon">student<wbr>Scope</a>
+						<a href="../globals.html#studentscope" class="tsd-kind-icon">student<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-function">
-						<a href="globals.html#tutorscope" class="tsd-kind-icon">tutor<wbr>Scope</a>
+						<a href="../globals.html#tutorscope" class="tsd-kind-icon">tutor<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#environment" class="tsd-kind-icon">environment</a>
+						<a href="../globals.html#environment" class="tsd-kind-icon">environment</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#types" class="tsd-kind-icon">types</a>
+						<a href="../globals.html#types" class="tsd-kind-icon">types</a>
 					</li>
 				</ul>
 			</nav>
@@ -266,7 +324,7 @@
 	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
-<script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

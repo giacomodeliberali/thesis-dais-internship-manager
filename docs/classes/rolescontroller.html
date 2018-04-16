@@ -113,6 +113,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#attachcrud" class="tsd-kind-icon">attach<wbr>Crud</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#useauth" class="tsd-kind-icon">use<wbr>Auth</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#usecreate" class="tsd-kind-icon">use<wbr>Create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#usedelete" class="tsd-kind-icon">use<wbr>Delete</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="rolescontroller.html#useread" class="tsd-kind-icon">use<wbr>Read</a></li>
 							</ul>
 						</section>
 					</div>
@@ -131,7 +135,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/f9e8abf/src/controllers/roles.controller.ts#L12">controllers/roles.controller.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/roles.controller.ts#L12">controllers/roles.controller.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -172,7 +176,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#baserepository">baseRepository</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/f9e8abf/src/controllers/base/base.controller.ts#L28">controllers/base/base.controller.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L32">controllers/base/base.controller.ts:32</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -195,7 +199,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#routename">routeName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/f9e8abf/src/controllers/base/base.controller.ts#L18">controllers/base/base.controller.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L22">controllers/base/base.controller.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -214,21 +218,28 @@
 					<a name="attachcrud" class="tsd-anchor"></a>
 					<h3>attach<wbr>Crud</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">attach<wbr>Crud<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">attach<wbr>Crud<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#attachcrud">attachCrud</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/f9e8abf/src/controllers/base/base.controller.ts#L35">controllers/base/base.controller.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L48">controllers/base/base.controller.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Attaches to the current route the CRUD operations</p>
+									<p>Attach to the current route the CRUD operations.</p>
 								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
@@ -244,7 +255,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#register">register</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/f9e8abf/src/controllers/base/base.controller.ts#L102">controllers/base/base.controller.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L206">controllers/base/base.controller.ts:206</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -252,6 +263,120 @@
 									<p>Register this controller routes to the global express application</p>
 								</div>
 							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="useauth" class="tsd-anchor"></a>
+					<h3>use<wbr>Auth</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Auth<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#useauth">useAuth</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L164">controllers/base/base.controller.ts:164</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Enable JWT token verification. Every method called after this call will use authentication</p>
+								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="usecreate" class="tsd-anchor"></a>
+					<h3>use<wbr>Create</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Create<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#usecreate">useCreate</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L61">controllers/base/base.controller.ts:61</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attach to the current route the create operation</p>
+								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="usedelete" class="tsd-anchor"></a>
+					<h3>use<wbr>Delete</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Delete<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#usedelete">useDelete</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L136">controllers/base/base.controller.ts:136</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attach to the current route the delete operation</p>
+								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="useread" class="tsd-anchor"></a>
+					<h3>use<wbr>Read</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Read<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="basecontroller.html">BaseController</a>.<a href="basecontroller.html#useread">useRead</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/610b455/src/controllers/base/base.controller.ts#L89">controllers/base/base.controller.ts:89</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attach to the current route the read all and ready by id operation</p>
+								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
@@ -268,6 +393,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="authenticationcontroller.html" class="tsd-kind-icon">Authentication<wbr>Controller</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
 					</li>
@@ -312,12 +440,27 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="rolescontroller.html#register" class="tsd-kind-icon">register</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rolescontroller.html#useauth" class="tsd-kind-icon">use<wbr>Auth</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rolescontroller.html#usecreate" class="tsd-kind-icon">use<wbr>Create</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rolescontroller.html#usedelete" class="tsd-kind-icon">use<wbr>Delete</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="rolescontroller.html#useread" class="tsd-kind-icon">use<wbr>Read</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
 						<a href="rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
@@ -358,14 +501,29 @@
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#app" class="tsd-kind-icon">app</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#autopopulateowners" class="tsd-kind-icon">auto<wbr>Populate<wbr>Owners</a>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#container" class="tsd-kind-icon">container</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#adminscope" class="tsd-kind-icon">admin<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="../globals.html#autopopulatereferences" class="tsd-kind-icon">auto<wbr>Populate<wbr>References</a>
 					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="../globals.html#checkbodyuser" class="tsd-kind-icon">check<wbr>Body<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#companyscope" class="tsd-kind-icon">company<wbr>Scope</a>
+					</li>
 					<li class=" tsd-kind-function">
 						<a href="../globals.html#normalize" class="tsd-kind-icon">normalize</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#studentscope" class="tsd-kind-icon">student<wbr>Scope</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#tutorscope" class="tsd-kind-icon">tutor<wbr>Scope</a>
 					</li>
 					<li class=" tsd-kind-object-literal">
 						<a href="../globals.html#environment" class="tsd-kind-icon">environment</a>
