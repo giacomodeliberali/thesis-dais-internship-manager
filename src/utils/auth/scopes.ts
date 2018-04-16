@@ -2,6 +2,14 @@ import { Response, Request } from "express";
 import { ApiResponse, User, RoleType } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../../ServerDefaults";
 
+/**
+ * Check if the current request has a body property with the decoded JWT information.
+ * If this value exists and its 'role' property has value it gets returned, otherwise
+ * an auth error will be sent in the response stream.
+ * 
+ * @param request The request
+ * @param response The response
+ */
 function checkBodyUser(request: Request, response: Response): User {
     // Pick decoded user
     const user: User = request.body[ServerDefaults.authUserBodyPropertyName];
