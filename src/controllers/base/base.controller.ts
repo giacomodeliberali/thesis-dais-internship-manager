@@ -8,6 +8,7 @@ import { environment } from "../../environment";
 import { RequestParamHandler } from "express-serve-static-core";
 import { ServerDefaults } from "../../ServerDefaults";
 import { adminScope } from "../../utils/auth/scopes";
+import { CurdOptions } from "../../models/interfaces/crud-options.interface";
 
 /**
  * The base controller with CRUD and authentication
@@ -217,21 +218,4 @@ export class BaseController<T extends IBaseEntity> {
         this.app.use(`/${this.routeName}`, this.router);
         return this;
     }
-}
-
-interface CurdOptions {
-
-    middleware?: Array<RequestHandler>;
-
-    createUpdate?: {
-        middleware?: Array<RequestHandler>
-    };
-
-    read?: {
-        middleware?: Array<RequestHandler>
-    };
-
-    delete?: {
-        middleware?: Array<RequestHandler>
-    };
 }
