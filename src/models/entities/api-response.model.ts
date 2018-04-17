@@ -52,8 +52,8 @@ export class ApiResponse<T = any> extends Constructor<ApiResponse> {
         }
 
         // Stringify the exception
-        if (content.exception && typeof content.exception == "object")
-            content.exception = JSON.stringify(content.exception, replaceErrors);
+/*         if (content.exception && typeof content.exception == "object")
+            content.exception = JSON.stringify(content.exception, replaceErrors); */
 
         // Populate the flag
         content.isOk = content.httpCode >= 200 && content.httpCode < 300;
