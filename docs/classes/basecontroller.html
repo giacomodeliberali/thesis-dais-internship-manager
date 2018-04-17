@@ -69,8 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>GET /
-						Home page.</p>
+						<p>The base controller with CRUD and authentication</p>
 					</div>
 				</div>
 			</section>
@@ -121,8 +120,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basecontroller.html#app" class="tsd-kind-icon">app</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basecontroller.html#baserepository" class="tsd-kind-icon">base<wbr>Repository</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basecontroller.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="basecontroller.html#baserepository" class="tsd-kind-icon">base<wbr>Repository</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basecontroller.html#isauthenabled" class="tsd-kind-icon">is<wbr>Auth<wbr>Enabled</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="basecontroller.html#router" class="tsd-kind-icon">router</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -134,10 +134,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#attachcrud" class="tsd-kind-icon">attach<wbr>Crud</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#register" class="tsd-kind-icon">register</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#useauth" class="tsd-kind-icon">use<wbr>Auth</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#usecreate" class="tsd-kind-icon">use<wbr>Create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#usecrud" class="tsd-kind-icon">use<wbr>Crud</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#usedelete" class="tsd-kind-icon">use<wbr>Delete</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="basecontroller.html#usemiddleware" class="tsd-kind-icon">use<wbr>Middleware</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="basecontroller.html#useread" class="tsd-kind-icon">use<wbr>Read</a></li>
@@ -158,7 +158,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L24">controllers/base/base.controller.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L28">controllers/base/base.controller.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -198,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L33">controllers/base/base.controller.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L37">controllers/base/base.controller.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,13 +207,13 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="baserepository" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> base<wbr>Repository</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> base<wbr>Repository</h3>
 					<div class="tsd-signature tsd-kind-icon">base<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="baserepository.html" class="tsd-signature-type">BaseRepository</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L32">controllers/base/base.controller.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L36">controllers/base/base.controller.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -222,13 +222,28 @@
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="isauthenabled" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> is<wbr>Auth<wbr>Enabled</h3>
+					<div class="tsd-signature tsd-kind-icon">is<wbr>Auth<wbr>Enabled<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L23">controllers/base/base.controller.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates if the authentication has been enabled in this controller</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="router" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> router</h3>
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol"> =&nbsp;Router()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L19">controllers/base/base.controller.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L20">controllers/base/base.controller.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -250,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L22">controllers/base/base.controller.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L26">controllers/base/base.controller.ts:26</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -266,35 +281,6 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="attachcrud" class="tsd-anchor"></a>
-					<h3>attach<wbr>Crud</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">attach<wbr>Crud<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L48">controllers/base/base.controller.ts:48</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Attach to the current route the CRUD operations.</p>
-								</div>
-								<p>A user scope can be specified using a scope middleware.</p>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="register" class="tsd-anchor"></a>
 					<h3>register</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -304,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L206">controllers/base/base.controller.ts:206</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L217">controllers/base/base.controller.ts:217</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,13 +306,13 @@
 					<a name="useauth" class="tsd-anchor"></a>
 					<h3>use<wbr>Auth</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>Auth<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Auth<span class="tsd-signature-symbol">(</span>use<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L164">controllers/base/base.controller.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L172">controllers/base/base.controller.ts:172</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -335,6 +321,15 @@
 								</div>
 								<p>A user scope can be specified using a scope middleware.</p>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> use: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Indicate if the authentication must be used or not - default true</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
@@ -343,13 +338,13 @@
 					<a name="usecreate" class="tsd-anchor"></a>
 					<h3>use<wbr>Create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>Create<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Create<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L61">controllers/base/base.controller.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L67">controllers/base/base.controller.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -361,7 +356,37 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="usecrud" class="tsd-anchor"></a>
+					<h3>use<wbr>Crud</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Crud<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/curdoptions.html" class="tsd-signature-type">CurdOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L54">controllers/base/base.controller.ts:54</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attach to the current route the CRUD operations.</p>
+								</div>
+								<p>A user scope can be specified using a scope middleware.</p>
+								<p>Delete operation required Admin scope by default in all callection</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/curdoptions.html" class="tsd-signature-type">CurdOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -372,13 +397,13 @@
 					<a name="usedelete" class="tsd-anchor"></a>
 					<h3>use<wbr>Delete</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>Delete<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Delete<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L136">controllers/base/base.controller.ts:136</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L142">controllers/base/base.controller.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +415,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -407,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L36">controllers/base/base.controller.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L40">controllers/base/base.controller.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -424,13 +449,13 @@
 					<a name="useread" class="tsd-anchor"></a>
 					<h3>use<wbr>Read</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>Read<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Read<span class="tsd-signature-symbol">(</span>middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/controllers/base/base.controller.ts#L89">controllers/base/base.controller.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/base/base.controller.ts#L95">controllers/base/base.controller.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -442,7 +467,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -475,17 +500,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="basecontroller.html#app" class="tsd-kind-icon">app</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="basecontroller.html#baserepository" class="tsd-kind-icon">base<wbr>Repository</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="basecontroller.html#isauthenabled" class="tsd-kind-icon">is<wbr>Auth<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="basecontroller.html#router" class="tsd-kind-icon">router</a>
 							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 								<a href="basecontroller.html#routename" class="tsd-kind-icon">route<wbr>Name</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="basecontroller.html#attachcrud" class="tsd-kind-icon">attach<wbr>Crud</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="basecontroller.html#register" class="tsd-kind-icon">register</a>
@@ -495,6 +520,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="basecontroller.html#usecreate" class="tsd-kind-icon">use<wbr>Create</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="basecontroller.html#usecrud" class="tsd-kind-icon">use<wbr>Crud</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="basecontroller.html#usedelete" class="tsd-kind-icon">use<wbr>Delete</a>
@@ -545,6 +573,9 @@
 					<li class=" tsd-kind-class">
 						<a href="usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
 					</li>
@@ -577,6 +608,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#app" class="tsd-kind-icon">app</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#bcrypt" class="tsd-kind-icon">bcrypt</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#container" class="tsd-kind-icon">container</a>

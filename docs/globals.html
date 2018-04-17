@@ -87,6 +87,12 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface"><a href="interfaces/curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Variables</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-variable"><a href="globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a></li>
@@ -100,6 +106,7 @@
 								<li class="tsd-kind-variable"><a href="globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a></li>
 								<li class="tsd-kind-variable"><a href="globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#app" class="tsd-kind-icon">app</a></li>
+								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#bcrypt" class="tsd-kind-icon">bcrypt</a></li>
 								<li class="tsd-kind-variable tsd-is-not-exported"><a href="globals.html#container" class="tsd-kind-icon">container</a></li>
 							</ul>
 						</section>
@@ -129,10 +136,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="companymodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Company<wbr>Model</h3>
-					<div class="tsd-signature tsd-kind-icon">Company<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Company</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;Company&gt;(&quot;Company&quot;, CompanySchema, Defaults.collectionsName.companies)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Company<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ICompany</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;ICompany&gt;(&quot;Company&quot;, CompanySchema, Defaults.collectionsName.companies)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/company.schema.ts#L40">schemas/company.schema.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/company.schema.ts#L40">schemas/company.schema.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -147,7 +154,7 @@
 					<div class="tsd-signature tsd-kind-icon">Company<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: String,address: {street: String,number: String,floor: String,city: String,zip: String,state: String,country: String},status: Number,vatCode: String,owners: [{type: Schema.Types.ObjectId,ref: &#x27;User&#x27;,autopopulate: true}],registrationDate: Date})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/company.schema.ts#L7">schemas/company.schema.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/company.schema.ts#L7">schemas/company.schema.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,10 +166,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="internshipmodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Internship<wbr>Model</h3>
-					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Internship</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;Internship&gt;(&quot;Internship&quot;, InternshipSchema, Defaults.collectionsName.internships)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IInternship</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;IInternship&gt;(&quot;Internship&quot;, InternshipSchema, Defaults.collectionsName.internships)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/internship.schema.ts#L48">schemas/internship.schema.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/internship.schema.ts#L48">schemas/internship.schema.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,10 +181,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="internshipproposalmodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Internship<wbr>Proposal<wbr>Model</h3>
-					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Proposal<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">InternshipProposal</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;InternshipProposal&gt;(&quot;InternshipProposal&quot;, InternshipProposalSchema, Defaults.collectionsName.internshipProposals)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Proposal<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IInternshipProposal</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;IInternshipProposal&gt;(&quot;InternshipProposal&quot;, InternshipProposalSchema, Defaults.collectionsName.internshipProposals)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/internship-proposal.schema.ts#L38">schemas/internship-proposal.schema.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/internship-proposal.schema.ts#L38">schemas/internship-proposal.schema.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Proposal<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,internship: {type: Schema.Types.ObjectId,ref: &#x27;Internship&#x27;,autopopulate: true},student: {type: Schema.Types.ObjectId,ref: &#x27;User&#x27;,autopopulate: true},professor: {type: Schema.Types.ObjectId,ref: &#x27;User&#x27;,autopopulate: true},creationDate: Date,status: Number})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/internship-proposal.schema.ts#L7">schemas/internship-proposal.schema.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/internship-proposal.schema.ts#L7">schemas/internship-proposal.schema.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,7 +214,7 @@
 					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,company: {type: Schema.Types.ObjectId,ref: &#x27;Company&#x27;,autopopulate: true},startDate: Date,endDate: Date,totalHours: Number,address: {street: String,number: String,floor: String,city: String,zip: String,state: String,country: String},description: String,title: String,tags: [{type: String}],studentsNumber: Number,status: Number,rejectReason: String})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/internship.schema.ts#L7">schemas/internship.schema.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/internship.schema.ts#L7">schemas/internship.schema.ts:7</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -219,10 +226,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="rolemodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> Role<wbr>Model</h3>
-					<div class="tsd-signature tsd-kind-icon">Role<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Role</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;Role&gt;(&quot;Role&quot;, RoleSchema, &quot;roles&quot;)</span></div>
+					<div class="tsd-signature tsd-kind-icon">Role<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IRole</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;IRole&gt;(&quot;Role&quot;, RoleSchema, &quot;roles&quot;)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/role.schema.ts#L21">schemas/role.schema.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/role.schema.ts#L21">schemas/role.schema.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -237,7 +244,7 @@
 					<div class="tsd-signature tsd-kind-icon">Role<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: {type: String,unique: true},type: Number})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/role.schema.ts#L6">schemas/role.schema.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/role.schema.ts#L6">schemas/role.schema.ts:6</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,10 +256,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="usermodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Model</h3>
-					<div class="tsd-signature tsd-kind-icon">User<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">User</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;User&gt;(&quot;User&quot;, UserSchema, Defaults.collectionsName.users)</span></div>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Model<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Model</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">IUser</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;model&lt;IUser&gt;(&quot;User&quot;, UserSchema, Defaults.collectionsName.users)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/user.schema.ts#L48">schemas/user.schema.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/user.schema.ts#L72">schemas/user.schema.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -264,10 +271,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-variable">
 					<a name="userschema" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> User<wbr>Schema</h3>
-					<div class="tsd-signature tsd-kind-icon">User<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: String,email: {type: String,index: {unique: true}},phone: [{type: String}],role: {type: Schema.Types.ObjectId,ref: &#x27;Role&#x27;,autopopulate: true},birthDate: Date,registrationDate: Date,residenceAddress: {street: String,number: String,floor: String,city: String,zip: String,state: String,country: String}})</span></div>
+					<div class="tsd-signature tsd-kind-icon">User<wbr>Schema<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Schema</span><span class="tsd-signature-symbol"> =&nbsp;new Schema({id: String,name: String,email: {type: String,index: {unique: true}},phone: [{type: String}],role: {type: Schema.Types.Mixed,ref: &#x27;Role&#x27;,autopopulate: true},birthDate: Date,registrationDate: Date,residenceAddress: {street: String,number: String,floor: String,city: String,zip: String,state: String,country: String},password: String})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/user.schema.ts#L7">schemas/user.schema.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/user.schema.ts#L9">schemas/user.schema.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -282,7 +289,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Express</span><span class="tsd-signature-symbol"> =&nbsp;express()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/server.ts#L38">server.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/server.ts#L38">server.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -292,12 +299,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
+					<a name="bcrypt" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> bcrypt</h3>
+					<div class="tsd-signature tsd-kind-icon">bcrypt<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;require(&#x27;bcrypt&#x27;)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/repositories/users.repository.ts#L8">repositories/users.repository.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-is-not-exported">
 					<a name="container" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> container</h3>
 					<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Container</span><span class="tsd-signature-symbol"> =&nbsp;new Container()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-container.ts#L4">utils/di-container.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-container.ts#L4">utils/di-container.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -319,7 +336,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/auth/scopes.ts#L46">utils/auth/scopes.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/auth/scopes.ts#L46">utils/auth/scopes.ts:46</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +379,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/auth/scopes.ts#L13">utils/auth/scopes.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/auth/scopes.ts#L13">utils/auth/scopes.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -401,7 +418,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/auth/scopes.ts#L75">utils/auth/scopes.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/auth/scopes.ts#L75">utils/auth/scopes.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,7 +461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/schemas/base/normalize-schema.ts#L8">schemas/base/normalize-schema.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/schemas/base/normalize-schema.ts#L8">schemas/base/normalize-schema.ts:8</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -487,7 +504,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/auth/scopes.ts#L104">utils/auth/scopes.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/auth/scopes.ts#L104">utils/auth/scopes.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -530,7 +547,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/auth/scopes.ts#L133">utils/auth/scopes.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/auth/scopes.ts#L133">utils/auth/scopes.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -572,7 +589,7 @@
 					<div class="tsd-signature tsd-kind-icon">environment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/environment.ts#L4">environment.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/environment.ts#L4">environment.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -586,7 +603,7 @@
 						<div class="tsd-signature tsd-kind-icon">connection<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;mongodb://giacomodeliberali:CHV1a0UL56oeei3X@cluster0-shard-00-00-9gjz3.mongodb.net:27017,cluster0-shard-00-01-9gjz3.mongodb.net:27017,cluster0-shard-00-02-9gjz3.mongodb.net:27017/test?ssl&#x3D;true&amp;replicaSet&#x3D;Cluster0-shard-0&amp;authSource&#x3D;admin&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/environment.ts#L9">environment.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/environment.ts#L9">environment.ts:9</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -601,7 +618,7 @@
 						<div class="tsd-signature tsd-kind-icon">is<wbr>Debug<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/environment.ts#L6">environment.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/environment.ts#L6">environment.ts:6</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -616,7 +633,7 @@
 						<div class="tsd-signature tsd-kind-icon">jwt<wbr>Secret<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Development13@unive!&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/environment.ts#L12">environment.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/environment.ts#L12">environment.ts:12</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -632,7 +649,7 @@
 					<div class="tsd-signature tsd-kind-icon">types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L4">utils/di-types/index.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L4">utils/di-types/index.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -646,7 +663,7 @@
 						<div class="tsd-signature tsd-kind-icon">App<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;App&quot;)</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L6">utils/di-types/index.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L6">utils/di-types/index.ts:6</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -661,7 +678,7 @@
 						<div class="tsd-signature tsd-kind-icon">Models<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L9">utils/di-types/index.ts:9</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L9">utils/di-types/index.ts:9</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -675,7 +692,7 @@
 							<div class="tsd-signature tsd-kind-icon">Company<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;CompanyModel&quot;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L10">utils/di-types/index.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L10">utils/di-types/index.ts:10</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -685,7 +702,7 @@
 							<div class="tsd-signature tsd-kind-icon">Intern<wbr>Ship<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;InternShipModel&quot;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L11">utils/di-types/index.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L11">utils/di-types/index.ts:11</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -695,7 +712,7 @@
 							<div class="tsd-signature tsd-kind-icon">Intern<wbr>Ship<wbr>Proposal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;InternShipProposalModel&quot;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L12">utils/di-types/index.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L12">utils/di-types/index.ts:12</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -705,7 +722,7 @@
 							<div class="tsd-signature tsd-kind-icon">Role<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;RoleModel&quot;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L14">utils/di-types/index.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L14">utils/di-types/index.ts:14</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -715,7 +732,7 @@
 							<div class="tsd-signature tsd-kind-icon">User<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> =&nbsp;Symbol.for(&quot;UserModel&quot;)</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/22b6f01/src/utils/di-types/index.ts#L13">utils/di-types/index.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/utils/di-types/index.ts#L13">utils/di-types/index.ts:13</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -775,6 +792,9 @@
 					<li class=" tsd-kind-class">
 						<a href="classes/usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
 					</li>
@@ -807,6 +827,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#app" class="tsd-kind-icon">app</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#bcrypt" class="tsd-kind-icon">bcrypt</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#container" class="tsd-kind-icon">container</a>

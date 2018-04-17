@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ServerDefaults | Thesis - Server</title>
+	<title>CurdOptions | Thesis - Server</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="serverdefaults.html">ServerDefaults</a>
+					<a href="curdoptions.html">CurdOptions</a>
 				</li>
 			</ul>
-			<h1>Class ServerDefaults</h1>
+			<h1>Interface CurdOptions</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The default values for the server</p>
+						<p>The CRUD options</p>
 					</div>
 				</div>
 			</section>
@@ -77,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ServerDefaults</span>
+						<span class="target">CurdOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -88,8 +88,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="serverdefaults.html#authuserbodypropertyname" class="tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="serverdefaults.html#jwttokenheadername" class="tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="curdoptions.html#createupdate" class="tsd-kind-icon">create<wbr>Update</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="curdoptions.html#delete" class="tsd-kind-icon">delete</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="curdoptions.html#middleware-2" class="tsd-kind-icon">middleware</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="curdoptions.html#read" class="tsd-kind-icon">read</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,34 +99,103 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="authuserbodypropertyname" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;__user&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="createupdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> create<wbr>Update</h3>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/ServerDefaults.ts#L9">ServerDefaults.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/models/interfaces/crud-options.interface.ts#L10">models/interfaces/crud-options.interface.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The request.body.popertyName used to populate the decoded JWT token in baseController.useAuth()</p>
+							<p>The create/update options</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The middleware to use before all create/update operations</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="delete" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> delete</h3>
+					<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/models/interfaces/crud-options.interface.ts#L22">models/interfaces/crud-options.interface.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The delete options</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The middleware to use before all delete operations</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="middleware-2" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> middleware</h3>
+					<div class="tsd-signature tsd-kind-icon">middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/models/interfaces/crud-options.interface.ts#L7">models/interfaces/crud-options.interface.ts:7</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The middleware to use in before all CRUD execution</p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="jwttokenheadername" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> jwt<wbr>Token<wbr>Header<wbr>Name</h3>
-					<div class="tsd-signature tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;token&quot;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="read" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> read</h3>
+					<div class="tsd-signature tsd-kind-icon">read<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/ServerDefaults.ts#L6">ServerDefaults.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/models/interfaces/crud-options.interface.ts#L16">models/interfaces/crud-options.interface.ts:16</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The JWT header token name</p>
+							<p>The read options</p>
 						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> middleware<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RequestHandler</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The middleware to use before all read operations</p>
+									</div>
+								</div>
+							</li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -140,62 +211,68 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-class">
-						<a href="authenticationcontroller.html" class="tsd-kind-icon">Authentication<wbr>Controller</a>
+						<a href="../classes/authenticationcontroller.html" class="tsd-kind-icon">Authentication<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
+						<a href="../classes/basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
+						<a href="../classes/baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="companiescontroller.html" class="tsd-kind-icon">Companies<wbr>Controller</a>
+						<a href="../classes/companiescontroller.html" class="tsd-kind-icon">Companies<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="companiesrepository.html" class="tsd-kind-icon">Companies<wbr>Repository</a>
+						<a href="../classes/companiesrepository.html" class="tsd-kind-icon">Companies<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="internshipproposalscontroller.html" class="tsd-kind-icon">Internship<wbr>Proposals<wbr>Controller</a>
+						<a href="../classes/internshipproposalscontroller.html" class="tsd-kind-icon">Internship<wbr>Proposals<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="internshipscontroller.html" class="tsd-kind-icon">Internships<wbr>Controller</a>
+						<a href="../classes/internshipscontroller.html" class="tsd-kind-icon">Internships<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="internshipsproposalsrepository.html" class="tsd-kind-icon">Internships<wbr>Proposals<wbr>Repository</a>
+						<a href="../classes/internshipsproposalsrepository.html" class="tsd-kind-icon">Internships<wbr>Proposals<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="internshipsrepository.html" class="tsd-kind-icon">Internships<wbr>Repository</a>
+						<a href="../classes/internshipsrepository.html" class="tsd-kind-icon">Internships<wbr>Repository</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
+						<a href="../classes/rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+						<a href="../classes/rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
+					<li class="current tsd-kind-interface">
+						<a href="curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="serverdefaults.html#authuserbodypropertyname" class="tsd-kind-icon">auth<wbr>User<wbr>Body<wbr>Property<wbr>Name</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="curdoptions.html#createupdate" class="tsd-kind-icon">create<wbr>Update</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="serverdefaults.html#jwttokenheadername" class="tsd-kind-icon">jwt<wbr>Token<wbr>Header<wbr>Name</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="curdoptions.html#delete" class="tsd-kind-icon">delete</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="curdoptions.html#middleware-2" class="tsd-kind-icon">middleware</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="curdoptions.html#read" class="tsd-kind-icon">read</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a>
-					</li>
 					<li class=" tsd-kind-variable">
 						<a href="../globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
 					</li>
