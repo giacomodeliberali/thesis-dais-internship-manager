@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { Defaults, InternshipProposal } from "gdl-thesis-core/dist";
+import { Defaults, IInternshipProposal } from "gdl-thesis-core/dist";
 import { normalize } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 
@@ -35,4 +35,4 @@ InternshipProposalSchema.set('toJSON', {
 InternshipProposalSchema.plugin(autopopulate);
 
 /** The [[InternshipProposalModel]] mongoose schema model  */
-export const InternshipProposalModel: Model<InternshipProposal> = model<InternshipProposal>("InternshipProposal", InternshipProposalSchema, Defaults.collectionsName.internshipProposals);
+export const InternshipProposalModel = model<IInternshipProposal>("InternshipProposal", InternshipProposalSchema, Defaults.collectionsName.internshipProposals);

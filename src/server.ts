@@ -10,7 +10,7 @@ import "reflect-metadata";
 import { UsersController } from "./controllers/users.controller";
 import { UsersRepository, BaseRepository, CompaniesRepository, InternshipsRepository, InternshipsProposalsRepository } from "./repositories";
 import { Db, MongoClient, ObjectID } from "mongodb";
-import { ApiResponse, User, Role, Company, Internship, InternshipProposal } from "gdl-thesis-core/dist";
+import { ApiResponse, IUser, IRole, ICompany, IInternship, IInternshipProposal } from "gdl-thesis-core/dist";
 import { container } from "./utils/di-container";
 
 
@@ -70,11 +70,11 @@ mongoose.connect(environment.connectionString).then(client => {
   container.bind<Express.Application>(types.App).toConstantValue(app);
 
   // Bind all mongoose models
-  container.bind<Model<User>>(types.Models.User).toConstantValue(UserModel);
-  container.bind<Model<Role>>(types.Models.Role).toConstantValue(RoleModel);
-  container.bind<Model<Company>>(types.Models.Company).toConstantValue(CompanyModel);
-  container.bind<Model<Internship>>(types.Models.InternShip).toConstantValue(InternshipModel);
-  container.bind<Model<InternshipProposal>>(types.Models.InternShipProposal).toConstantValue(InternshipProposalModel);
+  container.bind<Model<IUser>>(types.Models.User).toConstantValue(UserModel);
+  container.bind<Model<IRole>>(types.Models.Role).toConstantValue(RoleModel);
+  container.bind<Model<ICompany>>(types.Models.Company).toConstantValue(CompanyModel);
+  container.bind<Model<IInternship>>(types.Models.InternShip).toConstantValue(InternshipModel);
+  container.bind<Model<IInternshipProposal>>(types.Models.InternShipProposal).toConstantValue(InternshipProposalModel);
 
   // Bind all repositories
   container.bind<UsersRepository>(UsersRepository).to(UsersRepository).inTransientScope();
@@ -87,27 +87,27 @@ mongoose.connect(environment.connectionString).then(client => {
 
   const usersController = container
     .resolve(UsersController)
-    .attachCrud()
+    .useCrud()
     .register();
 
   const rolesController = container
     .resolve(RolesController)
-    .attachCrud()
+    .useCrud()
     .register();
 
   const companiesController = container
     .resolve(CompaniesController)
-    .attachCrud()
+    .useCrud()
     .register();
 
   const internshipsController = container
     .resolve(InternshipsController)
-    .attachCrud()
+    .useCrud()
     .register();
 
   const internshipProposalsController = container
     .resolve(InternshipProposalsController)
-    .attachCrud()
+    .useCrud()
     .register();
 
   // Initialize Auth controller and catch all 404

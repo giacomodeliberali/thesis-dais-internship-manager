@@ -9,14 +9,13 @@ import { RequestParamHandler } from "express-serve-static-core";
 import { ServerDefaults } from "../../ServerDefaults";
 
 /**
- * GET /
- * Home page.
+ * The base controller with CRUD and authentication
  */
 @injectable()
 export class BaseController<T extends IBaseEntity> {
 
     /** The express router */
-    private router: Router = Router();
+    protected router: Router = Router();
 
     /** The collection name */
     get routeName() {
@@ -29,7 +28,7 @@ export class BaseController<T extends IBaseEntity> {
      * @param app The express application used to register a new route for this controller
      */
     constructor(
-        @unmanaged() protected baseRepository: BaseRepository<T>,
+        @unmanaged() private baseRepository: BaseRepository<T>,
         @unmanaged() private app: any) {
     }
 
@@ -45,7 +44,7 @@ export class BaseController<T extends IBaseEntity> {
      * 
      * A user scope can be specified using a scope middleware.
      */
-    public attachCrud(...middleware: Array<RequestHandler>) {
+    public useCrud(...middleware: Array<RequestHandler>) {
         return this
             .useMiddleware(middleware)
             .useCreate()
@@ -61,7 +60,7 @@ export class BaseController<T extends IBaseEntity> {
     public useCreate(...middleware: Array<RequestHandler>) {
         this.useMiddleware(middleware);
         this.router.post('/', async (req, res) => {
-            console.log(`POST [${this.routeName}]`, req.body);
+            console.log(`POST [${this.routeName}]`);
             this.baseRepository.update(req.body)
                 .then(result => {
                     return new ApiResponse({

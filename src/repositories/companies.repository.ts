@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, Company } from "gdl-thesis-core/dist";
+import { Defaults, ICompany } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { CompanyModel } from "../schemas/company.schema";
 import { Model } from "mongoose";
@@ -9,14 +9,14 @@ import { types } from "../utils/di-types";
  * The [[Company]] repository
  */
 @injectable()
-export class CompaniesRepository extends BaseRepository<Company> {
+export class CompaniesRepository extends BaseRepository<ICompany> {
 
     /**
      * Initialize [[UsersRepository]]
      * @param companyModel The injected [[CompanyModel]] model
      */
     constructor(
-        @inject(types.Models.Company) protected companyModel: Model<Company>) {
+        @inject(types.Models.Company) protected companyModel: Model<ICompany>) {
 
         // Initialize [[BaseRepository]] 
         super(companyModel, Defaults.collectionsName.companies);

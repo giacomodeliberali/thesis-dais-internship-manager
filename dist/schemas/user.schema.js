@@ -20,7 +20,7 @@ exports.UserSchema = new mongoose_1.Schema({
         }
     ],
     role: {
-        type: mongoose_1.Schema.Types.ObjectId,
+        type: mongoose_1.Schema.Types.Mixed,
         ref: 'Role',
         autopopulate: true
     },
@@ -40,6 +40,24 @@ exports.UserSchema = new mongoose_1.Schema({
 exports.UserSchema.set('toJSON', {
     transform: base_1.normalize
 });
+/*
+const assemblyReferences = async function (next: Function) {
+
+    // Populate role
+    if (this.role) {
+        this.role = this.role.id as any;
+    }
+
+    if (this._update && this._update.role) {
+        this._update.role = this._update.role.id;
+    }
+    next();
+};
+
+// Update referenced fields
+UserSchema.pre<IUser>('validate', assemblyReferences);
+UserSchema.pre<IUser>('findOneAndUpdate', assemblyReferences);
+*/
 /** Auto populates 'Role' property before any 'find' and 'findOne' */
 exports.UserSchema.plugin(autopopulate);
 /** The [[UserModel]] mongoose schema model  */

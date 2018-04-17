@@ -28,8 +28,7 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../../environment");
 const ServerDefaults_1 = require("../../ServerDefaults");
 /**
- * GET /
- * Home page.
+ * The base controller with CRUD and authentication
  */
 let BaseController = class BaseController {
     /**
@@ -58,7 +57,7 @@ let BaseController = class BaseController {
      *
      * A user scope can be specified using a scope middleware.
      */
-    attachCrud(...middleware) {
+    useCrud(...middleware) {
         return this
             .useMiddleware(middleware)
             .useCreate()
@@ -73,7 +72,7 @@ let BaseController = class BaseController {
     useCreate(...middleware) {
         this.useMiddleware(middleware);
         this.router.post('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log(`POST [${this.routeName}]`, req.body);
+            console.log(`POST [${this.routeName}]`);
             this.baseRepository.update(req.body)
                 .then(result => {
                 return new dist_1.ApiResponse({

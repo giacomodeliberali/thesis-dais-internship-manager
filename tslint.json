@@ -13,7 +13,6 @@
     "deprecation": {
       "severity": "warn"
     },
-    "forin": true,
     "import-blacklist": [
       true,
       "rxjs",

@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { User, Defaults, Company } from "gdl-thesis-core/dist";
+import { User, Defaults, ICompany } from "gdl-thesis-core/dist";
 import { normalize } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 
@@ -37,4 +37,4 @@ CompanySchema.set('toJSON', {
 CompanySchema.plugin(autopopulate);
 
 /** The [[CompanyModel]] mongoose schema model  */
-export const CompanyModel: Model<Company> = model<Company>("Company", CompanySchema, Defaults.collectionsName.companies);
+export const CompanyModel = model<ICompany>("Company", CompanySchema, Defaults.collectionsName.companies);

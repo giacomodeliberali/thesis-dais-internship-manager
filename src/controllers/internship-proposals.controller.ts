@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { InternshipProposal } from "gdl-thesis-core/dist";
+import { IInternshipProposal } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
 import { inject, injectable } from "inversify";
 import { InternshipsProposalsRepository } from "../repositories";
@@ -9,7 +9,7 @@ import { types } from "../utils/di-types";
  * The [[InternshipProposal]] controller
  */
 @injectable()
-export class InternshipProposalsController extends BaseController<InternshipProposal> {
+export class InternshipProposalsController extends BaseController<IInternshipProposal> {
 
   /**
    * Create the controller that handles routes

@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { Role } from "gdl-thesis-core/dist";
+import { IRole } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
 import { inject, injectable } from "inversify";
 import { RolesRepository } from "../repositories";
@@ -9,7 +9,7 @@ import { types } from "../utils/di-types";
  * The [[Role]] controller
  */
 @injectable()
-export class RolesController extends BaseController<Role> {
+export class RolesController extends BaseController<IRole> {
 
   /**
    * Create the controller that handles routes
