@@ -15,4 +15,6 @@ export declare class User extends BaseEntity<User> {
     registrationDate: Date;
     /** The residence address */
     residenceAddress: Address;
+    /** The login password */
+    password: string;
 }

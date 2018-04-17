@@ -22,4 +22,7 @@ export class User extends BaseEntity<User>{
 
     /** The residence address */
     residenceAddress: Address;
+
+    /** The login password */
+    password: string;
 }
