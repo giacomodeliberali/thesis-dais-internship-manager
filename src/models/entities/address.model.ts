@@ -1,5 +1,7 @@
+import { Constructor } from "./index";
+
 /** Rappresent a physical address */
-export interface Address {
+export class Address  extends Constructor<Address>{
     /** The street */
     street: string;
 

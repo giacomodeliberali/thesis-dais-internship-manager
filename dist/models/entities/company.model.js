@@ -10,7 +10,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var base_1 = require("./base");
+var index_1 = require("./index");
 /** A company */
 var Company = /** @class */ (function (_super) {
     __extends(Company, _super);
@@ -18,5 +18,5 @@ var Company = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return Company;
-}(base_1.BaseEntity));
+}(index_1.BaseEntity));
 exports.Company = Company;

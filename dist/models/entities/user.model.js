@@ -10,15 +10,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var base_1 = require("./base");
-/**
- * A registred user
- */
+var index_1 = require("./index");
+/** A portal user */
 var User = /** @class */ (function (_super) {
     __extends(User, _super);
     function User() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return User;
-}(base_1.BaseEntity));
+}(index_1.BaseEntity));
 exports.User = User;

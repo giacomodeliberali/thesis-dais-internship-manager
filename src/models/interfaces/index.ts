@@ -1,4 +1,3 @@
-export * from "./address.interface";
 export * from "./query.type";
 export * from "./logger.interface";
 

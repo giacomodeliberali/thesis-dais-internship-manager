@@ -10,13 +10,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var _1 = require(".");
-/** A [[User]] role */
-var Role = /** @class */ (function (_super) {
-    __extends(Role, _super);
-    function Role() {
+var index_1 = require("./index");
+/** Rappresent a physical address */
+var Address = /** @class */ (function (_super) {
+    __extends(Address, _super);
+    function Address() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    return Role;
-}(_1.BaseEntity));
-exports.Role = Role;
+    return Address;
+}(index_1.Constructor));
+exports.Address = Address;

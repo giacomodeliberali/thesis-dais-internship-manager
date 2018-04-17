@@ -10,15 +10,13 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var base_1 = require("./base");
-/**
- * A [[Internship]] proposed by a student [[User]]
- */
+var index_1 = require("./index");
+/** In internship proposal */
 var InternshipProposal = /** @class */ (function (_super) {
     __extends(InternshipProposal, _super);
     function InternshipProposal() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     return InternshipProposal;
-}(base_1.BaseEntity));
+}(index_1.BaseEntity));
 exports.InternshipProposal = InternshipProposal;

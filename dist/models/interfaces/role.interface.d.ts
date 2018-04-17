@@ -1,10 +1,7 @@
 import { IBaseEntity } from "./base";
+import { Role } from "../index";
 /**
- * A user role
+ * A [[User]] role
  */
-export interface Role extends IBaseEntity {
-    /** The name (eg. Admin,Moderator,...) */
-    name: string;
-    /** The [[RoleTypeEnum]] values sum */
-    type: number;
+export interface IRole extends IBaseEntity, Role {
 }

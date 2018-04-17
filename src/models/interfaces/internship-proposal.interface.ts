@@ -1,25 +1,9 @@
 import { IBaseEntity } from "./base";
-import { Internship, User } from "./index";
-import { InternshipProposalStatusType } from "../enums";
+import { InternshipProposal } from "../entities";
 
 /**
- * A [[Internship]] proposed by a student [[IUser]]
+ * A [[Internship]] proposed by a student [[User]]
  */
-export interface InternshipProposal extends IBaseEntity {
-
-    /** The referral internship */
-    internship: Internship;
-
-    /** The student who requested this proposal  */
-    student: User;
-
-    /** The tutor for this stage */
-    professor: User;
-
-    /** The proposal creation date */
-    creationDate: Date;
-
-    /** The proposal status */
-    status: InternshipProposalStatusType;
+export interface IInternshipProposal extends IBaseEntity, InternshipProposal {
 
 }

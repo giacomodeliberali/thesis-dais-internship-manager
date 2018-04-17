@@ -10,21 +10,15 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
+var _1 = require(".");
 /**
- * A database record entry
+ * A base entity with constructor and identifier
  */
 var BaseEntity = /** @class */ (function (_super) {
     __extends(BaseEntity, _super);
-    /**
-     * Creates a generic type T instance object
-     * @param item The item to assign to this instance
-     */
-    function BaseEntity(item) {
-        var _this = _super.call(this) || this;
-        if (item)
-            Object.assign(_this, item);
-        return _this;
+    function BaseEntity() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     return BaseEntity;
-}(Document));
+}(_1.Constructor));
 exports.BaseEntity = BaseEntity;
