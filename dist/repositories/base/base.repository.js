@@ -66,10 +66,7 @@ let BaseRepository = class BaseRepository {
         return __awaiter(this, void 0, void 0, function* () {
             if (!item.id)
                 return this.create(item);
-            return this.model
-                .findOneAndUpdate({ _id: item.id }, item, {
-                runValidators: true
-            })
+            return this.model.findByIdAndUpdate(item.id, item)
                 .then(result => {
                 return this.get(item.id);
             });

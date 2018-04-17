@@ -69,24 +69,32 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     di_container_1.container.bind(repositories_1.InternshipsRepository).to(repositories_1.InternshipsRepository).inTransientScope();
     di_container_1.container.bind(repositories_1.InternshipsProposalsRepository).to(repositories_1.InternshipsProposalsRepository).inTransientScope();
     // Create the required controllers
+    // DEBUG
+    const useAuth = false;
+    // END DEBUG
     const usersController = di_container_1.container
         .resolve(users_controller_1.UsersController)
+        .useAuth(useAuth)
         .useCrud()
         .register();
     const rolesController = di_container_1.container
         .resolve(roles_controller_1.RolesController)
+        .useAuth(useAuth)
         .useCrud()
         .register();
     const companiesController = di_container_1.container
         .resolve(companies_controller_1.CompaniesController)
+        .useAuth(useAuth)
         .useCrud()
         .register();
     const internshipsController = di_container_1.container
         .resolve(internships_controller_1.InternshipsController)
+        .useAuth(useAuth)
         .useCrud()
         .register();
     const internshipProposalsController = di_container_1.container
         .resolve(internship_proposals_controller_1.InternshipProposalsController)
+        .useAuth(useAuth)
         .useCrud()
         .register();
     // Initialize Auth controller and catch all 404

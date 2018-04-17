@@ -7,6 +7,7 @@ import { verify, sign, decode } from 'jsonwebtoken';
 import { environment } from "../../environment";
 import { RequestParamHandler } from "express-serve-static-core";
 import { ServerDefaults } from "../../ServerDefaults";
+import { adminScope } from "../../utils/auth/scopes";
 
 /**
  * The base controller with CRUD and authentication
@@ -16,6 +17,9 @@ export class BaseController<T extends IBaseEntity> {
 
     /** The express router */
     protected router: Router = Router();
+
+    /** Indicates if the authentication has been enabled in this controller */
+    protected isAuthEnabled: boolean = false;
 
     /** The collection name */
     get routeName() {
@@ -43,13 +47,15 @@ export class BaseController<T extends IBaseEntity> {
      * Attach to the current route the CRUD operations.
      * 
      * A user scope can be specified using a scope middleware.
+     * 
+     * Delete operation required Admin scope by default in all callection
      */
-    public useCrud(...middleware: Array<RequestHandler>) {
+    public useCrud(options?: CurdOptions) {
         return this
-            .useMiddleware(middleware)
-            .useCreate()
-            .useRead()
-            .useDelete();
+            .useMiddleware(options ? options.middleware : null)
+            .useCreate(options && options.createUpdate ? options.createUpdate.middleware : null)
+            .useRead(options && options.read ? options.read.middleware : null)
+            .useDelete(options && options.delete ? options.delete.middleware : this.isAuthEnabled ? [adminScope] : null);
     }
 
     /**
@@ -57,7 +63,7 @@ export class BaseController<T extends IBaseEntity> {
      * 
      * A user scope can be specified using a scope middleware.
      */
-    public useCreate(...middleware: Array<RequestHandler>) {
+    public useCreate(middleware?: Array<RequestHandler>) {
         this.useMiddleware(middleware);
         this.router.post('/', async (req, res) => {
             console.log(`POST [${this.routeName}]`);
@@ -85,7 +91,7 @@ export class BaseController<T extends IBaseEntity> {
      * 
      * A user scope can be specified using a scope middleware.
      */
-    public useRead(...middleware: Array<RequestHandler>) {
+    public useRead(middleware?: Array<RequestHandler>) {
         this.useMiddleware(middleware);
         this.router.get('/', (req, res) => {
             console.log(`GET [${this.routeName}/]`);
@@ -132,7 +138,7 @@ export class BaseController<T extends IBaseEntity> {
      * 
      * A user scope can be specified using a scope middleware.
      */
-    public useDelete(...middleware: Array<RequestHandler>) {
+    public useDelete(middleware?: Array<RequestHandler>) {
         this.useMiddleware(middleware);
         this.router.delete('/:id', async (req, res) => {
             console.log(`DELETE [${this.routeName}/${req.params.id}]`);
@@ -159,43 +165,48 @@ export class BaseController<T extends IBaseEntity> {
      * Enable JWT token verification. Every method called after this call will use authentication
      * 
      * A user scope can be specified using a scope middleware.
+     * 
+     * @param use Indicate if the authentication must be used or not - default true
      */
-    public useAuth() {
-        this.router.use('*', async (req, res, next) => {
-            try {
-                const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
-                if (token) {
-                    // Verify token
-                    const isValid = verify(token, environment.jwtSecret);
+    public useAuth(use: boolean = true) {
+        this.isAuthEnabled = use;
+        if (use) {
+            this.router.use('*', async (req, res, next) => {
+                try {
+                    const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
+                    if (token) {
+                        // Verify token
+                        const isValid = verify(token, environment.jwtSecret);
 
-                    // Is is valid proceed
-                    if (isValid) {
-                        req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
-                        return next();
+                        // Is is valid proceed
+                        if (isValid) {
+                            req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
+                            return next();
+                        }
+
+                        // Otherwise throw an auth error
+                        return new ApiResponse({
+                            response: res,
+                            httpCode: 401,
+                            exception: "Invalid token. Unauthorized"
+                        }).send();
+                    } else {
+                        // Token not found, throw an auth error
+                        return new ApiResponse({
+                            response: res,
+                            httpCode: 401,
+                            exception: "Unauthorized"
+                        }).send();
                     }
-
-                    // Otherwise throw an auth error
+                } catch (ex) {
                     return new ApiResponse({
                         response: res,
-                        httpCode: 401,
-                        exception: "Invalid token. Unauthorized"
-                    }).send();
-                } else {
-                    // Token not found, throw an auth error
-                    return new ApiResponse({
-                        response: res,
-                        httpCode: 401,
-                        exception: "Unauthorized"
+                        httpCode: 500,
+                        exception: ex
                     }).send();
                 }
-            } catch (ex) {
-                return new ApiResponse({
-                    response: res,
-                    httpCode: 500,
-                    exception: ex
-                }).send();
-            }
-        });
+            });
+        }
         return this;
     }
 
@@ -206,4 +217,21 @@ export class BaseController<T extends IBaseEntity> {
         this.app.use(`/${this.routeName}`, this.router);
         return this;
     }
+}
+
+interface CurdOptions {
+
+    middleware?: Array<RequestHandler>;
+
+    createUpdate?: {
+        middleware?: Array<RequestHandler>
+    };
+
+    read?: {
+        middleware?: Array<RequestHandler>
+    };
+
+    delete?: {
+        middleware?: Array<RequestHandler>
+    };
 }

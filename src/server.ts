@@ -85,28 +85,37 @@ mongoose.connect(environment.connectionString).then(client => {
 
   // Create the required controllers
 
+  // DEBUG
+  const useAuth = false;
+  // END DEBUG
+
   const usersController = container
     .resolve(UsersController)
+    .useAuth(useAuth)
     .useCrud()
     .register();
 
   const rolesController = container
     .resolve(RolesController)
+    .useAuth(useAuth)
     .useCrud()
     .register();
 
   const companiesController = container
     .resolve(CompaniesController)
+    .useAuth(useAuth)
     .useCrud()
     .register();
 
   const internshipsController = container
     .resolve(InternshipsController)
+    .useAuth(useAuth)
     .useCrud()
     .register();
 
   const internshipProposalsController = container
     .resolve(InternshipProposalsController)
+    .useAuth(useAuth)
     .useCrud()
     .register();
 

@@ -34,11 +34,15 @@ exports.UserSchema = new mongoose_1.Schema({
         zip: String,
         state: String,
         country: String
-    }
+    },
+    password: String
 });
 /** Ensure returned object has property id instead of _id and __v */
 exports.UserSchema.set('toJSON', {
-    transform: base_1.normalize
+    transform: function (doc, ret, options) {
+        base_1.normalize(doc, ret, options);
+        delete ret.password;
+    }
 });
 /*
 const assemblyReferences = async function (next: Function) {

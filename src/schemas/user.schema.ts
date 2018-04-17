@@ -35,12 +35,16 @@ export const UserSchema: Schema = new Schema({
         zip: String,
         state: String,
         country: String
-    }
+    },
+    password: String
 });
 
 /** Ensure returned object has property id instead of _id and __v */
 UserSchema.set('toJSON', {
-    transform: normalize
+    transform: function (doc: IUser, ret: IUser, options: any) {
+        normalize(doc, ret, options);
+        delete ret.password;
+    }
 });
 /*
 const assemblyReferences = async function (next: Function) {

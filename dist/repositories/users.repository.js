@@ -25,6 +25,7 @@ const dist_1 = require("gdl-thesis-core/dist");
 const inversify_1 = require("inversify");
 const mongoose_1 = require("mongoose");
 const di_types_1 = require("../utils/di-types");
+const bcrypt = require('bcrypt');
 /**
  * The [[user]] repository
  */
@@ -59,6 +60,39 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
                 }
                 return false;
             });
+        });
+    }
+    /**
+     * Return the user if the email and password are matching, null otherwise
+     * @param email The user email
+     * @param password The user password
+     */
+    login(email, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model
+                .findOne({ email: email })
+                .then(user => {
+                if (user && bcrypt.compareSync(password, user.password))
+                    return user;
+            })
+                .catch(ex => {
+                return Promise.reject(ex);
+            });
+        });
+    }
+    /**
+     * Create a new user
+     * @param user The user to register
+     */
+    register(user) {
+        if (!user)
+            return Promise.resolve(null);
+        if (!user.password || !user.email)
+            return Promise.resolve(null);
+        user.password = bcrypt.hashSync(user.password, 8);
+        user.registrationDate = new Date();
+        return this.update(user).catch(ex => {
+            return Promise.reject(ex);
         });
     }
 };

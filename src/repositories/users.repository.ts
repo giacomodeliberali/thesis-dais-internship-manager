@@ -3,6 +3,9 @@ import { Defaults, IUser, User, RoleType } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
+import { UserModel } from "../schemas/user.schema";
+import { cat } from "shelljs";
+const bcrypt = require('bcrypt');
 
 /**
  * The [[user]] repository
@@ -40,6 +43,42 @@ export class UsersRepository extends BaseRepository<IUser> {
                 }
             }
             return false;
+        });
+    }
+
+    /**
+     * Return the user if the email and password are matching, null otherwise
+     * @param email The user email
+     * @param password The user password
+     */
+    public async login(email: string, password: string): Promise<IUser> {
+        return this.model
+            .findOne({ email: email })
+            .then(user => {
+                if (user && bcrypt.compareSync(password, user.password))
+                    return user;
+            })
+            .catch(ex => {
+                return Promise.reject(ex);
+            });
+    }
+
+    /**
+     * Create a new user
+     * @param user The user to register
+     */
+    public register(user: User) {
+
+        if (!user)
+            return Promise.resolve(null);
+        if (!user.password || !user.email)
+            return Promise.resolve(null);
+
+        user.password = bcrypt.hashSync(user.password, 8);
+        user.registrationDate = new Date();
+
+        return this.update(user as IUser).catch(ex => {
+            return Promise.reject(ex);
         });
     }
 

@@ -3,9 +3,9 @@ import { inject, injectable } from "inversify";
 import { types } from "../utils/di-types";
 import { verify, sign, decode } from "jsonwebtoken";
 import { environment } from "../environment";
-import { ApiResponse } from "gdl-thesis-core/dist";
-import { cat } from "shelljs";
+import { ApiResponse, User } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../ServerDefaults";
+import { UsersRepository } from "../repositories";
 
 /**
  * The Auth controller
@@ -21,69 +21,37 @@ export class AuthenticationController {
    * @param app The express application used to register a new route for this controller
    */
   constructor(
+    private usersRepository: UsersRepository,
     @inject(types.App) private app: any) {
 
-    this.useAuth();
   }
 
   /**
-   * Enable JWT generation and verification
+ * Register this controller routes
+ * @param useAllCustom Indicates if the custom routes should be registred automatically [default true]
+ */
+  public register(useAllCustom = true) {
+    if (useAllCustom)
+      this.useAllCustom();
+    this.app.use(`/auth`, this.router);
+    return this;
+  }
+
+  /**
+   * Use custom routes
    */
-  private useAuth() {
-    this.router.post('/token', async (req, res, next) => {
-      const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
-      if (token) {
-        // Verify token
-        try {
-          const isValid = verify(token, environment.jwtSecret);
+  public useAllCustom() {
+    return this
+      .useLogin()
+      .useRegister()
+      .useDecode();
+  }
 
-          // Is is valid return it
-          if (isValid)
-            return new ApiResponse({
-              response: res,
-              httpCode: 200,
-              data: token
-            }).send();
-
-          // Check if has body
-          if (!req.body) {
-            return new ApiResponse({
-              response: res,
-              httpCode: 400,
-              exception: "Bad request"
-            }).send();
-          }
-
-          // Return a new token
-          return sign(req.body, environment.jwtSecret);
-        } catch (ex) {
-          return new ApiResponse({
-            response: res,
-            httpCode: 500,
-            exception: ex
-          }).send();
-        }
-      } else {
-        // Check if has body
-        if (!req.body) {
-          return new ApiResponse({
-            response: res,
-            httpCode: 400,
-            exception: "Bad request"
-          }).send();
-        }
-
-        // Return a new token
-        return new ApiResponse({
-          response: res,
-          httpCode: 200,
-          data: sign(req.body, environment.jwtSecret)
-        }).send();
-      }
-    });
-
-    // Decodes the information about the given token
-    this.router.get('/token', async (req, res, next) => {
+  /**
+   * Decodes the information about the given token
+   */
+  private useDecode() {
+    this.router.get('/token/decode', async (req, res, next) => {
       const token = req.headers['token'] as string;
       if (token) {
         try {
@@ -124,6 +92,98 @@ export class AuthenticationController {
   }
 
   /**
+   * Login in a user and generate its token
+   */
+  private useLogin() {
+    this.router.post('/login', async (req, res, next) => {
+      // Check if has body
+      if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+        return new ApiResponse({
+          response: res,
+          httpCode: 400,
+          exception: {
+            message: "Bad request. Required parameters are 'email' and 'password'"
+          }
+        }).send();
+      }
+
+      const user = await this.usersRepository.login(req.body.email, req.body.password);
+
+      if (user) {
+        // Return a new token
+        return new ApiResponse({
+          response: res,
+          httpCode: 200,
+          data: sign(user.toJSON(), environment.jwtSecret)
+        }).send();
+      }
+
+      // Return a new token
+      return new ApiResponse({
+        response: res,
+        httpCode: 401,
+        exception: {
+          message: "Bad login attempt"
+        }
+      }).send();
+    });
+    return this;
+  }
+
+
+  /**
+   * Register a new user and generate its token
+   */
+  public useRegister() {
+    this.router.post('/register', async (req, res, next) => {
+      // Check if has body
+      console.log("REGISTER", req.body);
+      if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+        return new ApiResponse({
+          response: res,
+          httpCode: 400,
+          exception: {
+            message: "Bad request. Required parameters are 'email' and 'password'"
+          }
+        }).send();
+      }
+
+      const user: User = await this.usersRepository
+        .register(req.body)
+        .catch(ex => {
+          // Return a new token
+          return new ApiResponse({
+            response: res,
+            httpCode: 500,
+            exception: ex
+          }).send();
+        });
+
+      if (user) {
+        // Return a new token
+        return new ApiResponse({
+          response: res,
+          httpCode: 200,
+          data: {
+            user: user,
+            token: sign(user, environment.jwtSecret)
+          }
+        }).send();
+      }
+
+      // Return a new token
+      return new ApiResponse({
+        response: res,
+        httpCode: 500,
+        exception: {
+          message: "Something went wrong creating a new user"
+        }
+      }).send();
+    });
+    return this;
+  }
+
+  /**
    * Handle all 404 routes. 
    * 
    * Must be called *after* every controller registration.
@@ -140,14 +200,6 @@ export class AuthenticationController {
         response: res,
       }).send();
     });
-    return this;
-  }
-
-  /**
-   * Register this controller routes to the global express application
-   */
-  public register() {
-    this.app.use(`/auth`, this.router);
     return this;
   }
 }
