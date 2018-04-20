@@ -1,4 +1,5 @@
 import { Role, Address, BaseEntity } from "./index";
+import { AuthType } from "../enums/auth-type.enum";
 /** A portal user */
 export declare class User extends BaseEntity<User> {
     /** The full name */
@@ -15,6 +16,10 @@ export declare class User extends BaseEntity<User> {
     registrationDate: Date;
     /** The residence address */
     residenceAddress: Address;
-    /** The login password */
-    password: string;
+    /** The google id, populated if authType Google */
+    googleId?: string;
+    /** The user encrypted password, populated if authType is local */
+    password?: string;
+    /** The user auth type */
+    authType: AuthType;
 }
