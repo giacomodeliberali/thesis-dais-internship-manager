@@ -7,14 +7,14 @@
  */
 export enum RoleType {
     /** The student. Can see internship and create an [[InternshipProposal]] */
-    Student     = 1,
+    Student = 1,
 
     /** The professor. Must confirm its presence in an [[InternshipProposal]] */
-    Tutor       = 2,
+    Professor = 2,
 
     /** The company. Can create an [[Internship]] */
-    Company     = 4,
+    Company = 4,
 
     /** The admin. Can approve [[Internship]] */
-    Admin       = 8
+    Admin = 8
 }

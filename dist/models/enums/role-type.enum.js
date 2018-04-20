@@ -12,7 +12,7 @@ var RoleType;
     /** The student. Can see internship and create an [[InternshipProposal]] */
     RoleType[RoleType["Student"] = 1] = "Student";
     /** The professor. Must confirm its presence in an [[InternshipProposal]] */
-    RoleType[RoleType["Tutor"] = 2] = "Tutor";
+    RoleType[RoleType["Professor"] = 2] = "Professor";
     /** The company. Can create an [[Internship]] */
     RoleType[RoleType["Company"] = 4] = "Company";
     /** The admin. Can approve [[Internship]] */
