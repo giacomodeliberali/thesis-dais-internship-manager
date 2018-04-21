@@ -7,7 +7,7 @@ export declare class InternshipProposal extends BaseEntity<InternshipProposal> {
     /** The student who requested this proposal  */
     student: User;
     /** The tutor for this stage */
-    professor: User;
+    professor?: User;
     /** The proposal creation date */
     creationDate: Date;
     /** The proposal status */

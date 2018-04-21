@@ -4,5 +4,5 @@ import { Constructor } from ".";
  */
 export declare abstract class BaseEntity<T> extends Constructor<T> {
     /** The record identifier */
-    id: string;
+    id?: string;
 }

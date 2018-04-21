@@ -4,4 +4,6 @@ export declare abstract class Constructor<T> {
      * @param item The item to assign to this instance
      */
     constructor(item?: Partial<T>);
+    /** Return a clone with JSON.parse(JSON.stringify(this)) */
+    clone(): any;
 }

@@ -7,15 +7,15 @@ export declare class User extends BaseEntity<User> {
     /** The email (used also as username) */
     email: string;
     /** The phone numbers */
-    phone: Array<string>;
+    phone?: Array<string>;
     /** The role */
     role: Role;
     /** The birth date */
-    birthDate: Date;
+    birthDate?: Date;
     /** The registration date */
-    registrationDate: Date;
+    registrationDate?: Date;
     /** The residence address */
-    residenceAddress: Address;
+    residenceAddress?: Address;
     /** The google id, populated if authType Google */
     googleId?: string;
     /** The user encrypted password, populated if authType is local */
@@ -23,5 +23,5 @@ export declare class User extends BaseEntity<User> {
     /** The user auth type */
     authType: AuthType;
     /** The user image */
-    image: string;
+    image?: string;
 }

@@ -16,7 +16,7 @@ export class Internship extends BaseEntity<Internship>{
     totalHours: number;
 
     /** The location address */
-    address: Address;
+    address?: Address;
 
     /** The description */
     description: string;
@@ -25,7 +25,7 @@ export class Internship extends BaseEntity<Internship>{
     title: string;
 
     /** A list of related tags */
-    tags: Array<string>;
+    tags?: Array<string>;
 
     /** The number of students accepted for this stage */
     studentsNumber: number;

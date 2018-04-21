@@ -6,5 +6,5 @@ import { Document as MDocument } from 'mongoose';
 export interface IBaseEntity extends MDocument {
 
     /** The record identifier */
-    id: string;
+    id?: string;
 }

@@ -10,7 +10,7 @@ export class InternshipProposal extends BaseEntity<InternshipProposal>{
     student: User;
 
     /** The tutor for this stage */
-    professor: User;
+    professor?: User;
 
     /** The proposal creation date */
     creationDate: Date;

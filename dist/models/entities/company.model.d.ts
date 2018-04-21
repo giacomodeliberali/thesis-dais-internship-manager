@@ -13,5 +13,5 @@ export declare class Company extends BaseEntity<Company> {
     /** The owners of this company */
     owners: Array<User>;
     /** The registration date */
-    registrationDate: Date;
+    registrationDate?: Date;
 }

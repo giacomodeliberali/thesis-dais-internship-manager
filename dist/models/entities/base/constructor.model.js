@@ -9,6 +9,10 @@ var Constructor = /** @class */ (function () {
         if (item)
             Object.assign(this, item);
     }
+    /** Return a clone with JSON.parse(JSON.stringify(this)) */
+    Constructor.prototype.clone = function () {
+        return JSON.parse(JSON.stringify(this));
+    };
     return Constructor;
 }());
 exports.Constructor = Constructor;

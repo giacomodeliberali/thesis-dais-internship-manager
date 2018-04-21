@@ -7,4 +7,9 @@ export abstract class Constructor<T> {
         if (item)
             Object.assign(this, item);
     }
+
+    /** Return a clone with JSON.parse(JSON.stringify(this)) */
+    clone(): any {
+        return JSON.parse(JSON.stringify(this));
+    }
 }
