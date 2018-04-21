@@ -40,8 +40,10 @@ export class AuthenticationController {
     this
       .useLogin()
       .useRegister()
-      .useGoogleOAuth()
-      .useDecode();
+      .useGoogleOAuth();
+
+    if (environment.isDebug)
+      this.useTokenDecode();
 
     this.app.use(`/auth`, this.router);
 
@@ -51,7 +53,7 @@ export class AuthenticationController {
   /**
    * Decodes the information about the given token
    */
-  private useDecode() {
+  private useTokenDecode() {
     this.router.get('/token/decode', async (req, res, next) => {
       const token = req.headers['token'] as string;
       if (token) {
@@ -211,40 +213,58 @@ export class AuthenticationController {
         clientID: environment.googleOAuth.clientId,
         clientSecret: environment.googleOAuth.clientSecret
       },
-        async (accessToken: string, refreshToken: string, profile: any, next: Function) => {
+        async (accessToken: string, refreshToken: string, profile: any, next: (error: any, user?: User) => void) => {
+          // Login was successful
           try {
-            // Should have full user profile over here
-
+            // Check if user exist
             const existingUser = await this.usersRepository.findOne({ "googleId": profile.id });
             if (existingUser) {
+              // User exists, return it
               return next(null, existingUser.toJSON());
             }
 
+            // Pick email
             const email: string = profile.emails[0].value;
+
+            // Find a role corresponding with its email:
+            // If email ends with @stud.unive.it => Search for 'Student'
+            // If email ends with @unive.it => Search for 'Professor'
+            // Else operation not supported
+
             let role: IRole = null;
 
             if (email.endsWith("@stud.unive.it")) {
               // Student
               role = await this.rolesRepository.findOne({ type: RoleType.Student });
+              if (!role)
+                return next({ message: "Cannot find a valid role entry for 'Student'" });
             } else if (email.endsWith("@unive.it")) {
               // Professor
               role = await this.rolesRepository.findOne({ type: RoleType.Professor });
+              if (!role)
+                return next({ message: "Cannot find a valid role entry for 'Professor'" });
             } else {
-              return next({ message: "User email not supported. Only members of @unive can use this service." }, false);
+              return next({ message: "Operation not supported. Only members of @unive can use this service." });
             }
 
+            // Create the new user
             const newUser = await this.usersRepository.update({
               authType: AuthType.Google,
               email: email,
               googleId: profile.id,
               name: profile.displayName,
               registrationDate: new Date(),
-              role: role._id as any
+              role: role._id as any // To assign the reference
             } as IUser);
+
+            if (!newUser)
+              return next({ message: "Unknown error occured while creating the new user." });
+
+            // Return the new user
             next(null, newUser.toJSON());
           } catch (error) {
-            console.log("ERROR => ", error);
-            next(error, false);
+            // Return the error
+            next(error);
           }
         })
     );
@@ -257,6 +277,15 @@ export class AuthenticationController {
             response: res,
             httpCode: 401,
             exception: error
+          }).send();
+
+        if (!user)
+          return new ApiResponse({
+            response: res,
+            httpCode: 400,
+            exception: {
+              message: "Invalid parameter 'access_token'"
+            }
           }).send();
 
         return new ApiResponse({

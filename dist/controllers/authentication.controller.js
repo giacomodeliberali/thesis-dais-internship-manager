@@ -55,15 +55,16 @@ let AuthenticationController = class AuthenticationController {
         this
             .useLogin()
             .useRegister()
-            .useGoogleOAuth()
-            .useDecode();
+            .useGoogleOAuth();
+        if (environment_1.environment.isDebug)
+            this.useTokenDecode();
         this.app.use(`/auth`, this.router);
         return this;
     }
     /**
      * Decodes the information about the given token
      */
-    useDecode() {
+    useTokenDecode() {
         this.router.get('/token/decode', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const token = req.headers['token'];
             if (token) {
@@ -209,38 +210,53 @@ let AuthenticationController = class AuthenticationController {
             clientID: environment_1.environment.googleOAuth.clientId,
             clientSecret: environment_1.environment.googleOAuth.clientSecret
         }, (accessToken, refreshToken, profile, next) => __awaiter(this, void 0, void 0, function* () {
+            // Login was successful
             try {
-                // Should have full user profile over here
+                // Check if user exist
                 const existingUser = yield this.usersRepository.findOne({ "googleId": profile.id });
                 if (existingUser) {
+                    // User exists, return it
                     return next(null, existingUser.toJSON());
                 }
+                // Pick email
                 const email = profile.emails[0].value;
+                // Find a role corresponding with its email:
+                // If email ends with @stud.unive.it => Search for 'Student'
+                // If email ends with @unive.it => Search for 'Professor'
+                // Else operation not supported
                 let role = null;
                 if (email.endsWith("@stud.unive.it")) {
                     // Student
                     role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Student });
+                    if (!role)
+                        return next({ message: "Cannot find a valid role entry for 'Student'" });
                 }
                 else if (email.endsWith("@unive.it")) {
                     // Professor
                     role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Professor });
+                    if (!role)
+                        return next({ message: "Cannot find a valid role entry for 'Professor'" });
                 }
                 else {
-                    return next({ message: "User email not supported. Only members of @unive can use this service." }, false);
+                    return next({ message: "Operation not supported. Only members of @unive can use this service." });
                 }
+                // Create the new user
                 const newUser = yield this.usersRepository.update({
                     authType: auth_type_enum_1.AuthType.Google,
                     email: email,
                     googleId: profile.id,
                     name: profile.displayName,
                     registrationDate: new Date(),
-                    role: role._id
+                    role: role._id // To assign the reference
                 });
+                if (!newUser)
+                    return next({ message: "Unknown error occured while creating the new user." });
+                // Return the new user
                 next(null, newUser.toJSON());
             }
             catch (error) {
-                console.log("ERROR => ", error);
-                next(error, false);
+                // Return the error
+                next(error);
             }
         })));
         this.router.post('/google', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -250,6 +266,14 @@ let AuthenticationController = class AuthenticationController {
                         response: res,
                         httpCode: 401,
                         exception: error
+                    }).send();
+                if (!user)
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 400,
+                        exception: {
+                            message: "Invalid parameter 'access_token"
+                        }
                     }).send();
                 return new dist_1.ApiResponse({
                     response: res,
