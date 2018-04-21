@@ -6,7 +6,6 @@ const base_1 = require("./base");
 const autopopulate = require("mongoose-autopopulate");
 /** The [[Company]] mongoose schema */
 exports.CompanySchema = new mongoose_1.Schema({
-    id: String,
     name: String,
     address: {
         street: String,
@@ -29,9 +28,7 @@ exports.CompanySchema = new mongoose_1.Schema({
     registrationDate: Date
 });
 /** Ensure returned object has property id instead of _id and __v */
-exports.CompanySchema.set('toJSON', {
-    transform: base_1.normalize
-});
+base_1.normalizeSchema(exports.CompanySchema);
 /** Auto populates 'owners' property before any 'find' and 'findOne' */
 exports.CompanySchema.plugin(autopopulate);
 /** The [[CompanyModel]] mongoose schema model  */

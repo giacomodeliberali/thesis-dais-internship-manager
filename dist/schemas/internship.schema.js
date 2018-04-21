@@ -6,7 +6,6 @@ const base_1 = require("./base");
 const autopopulate = require("mongoose-autopopulate");
 /** The [[Internship]] mongoose schema */
 exports.InternshipSchema = new mongoose_1.Schema({
-    id: String,
     company: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'Company',
@@ -36,9 +35,7 @@ exports.InternshipSchema = new mongoose_1.Schema({
     rejectReason: String
 });
 /** Ensure returned object has property id instead of _id and __v */
-exports.InternshipSchema.set('toJSON', {
-    transform: base_1.normalize
-});
+base_1.normalizeSchema(exports.InternshipSchema);
 /** Auto populates 'company' property before any 'find' and 'findOne' */
 exports.InternshipSchema.plugin(autopopulate);
 /** The [[CompanyModel]] mongoose schema model  */

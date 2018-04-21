@@ -16,7 +16,6 @@ const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.en
 const bcrypt = require('bcrypt');
 /** The [[User]] mongoose schema */
 exports.UserSchema = new mongoose_1.Schema({
-    id: String,
     name: String,
     email: {
         type: String,
@@ -61,13 +60,23 @@ exports.UserSchema = new mongoose_1.Schema({
     },
     image: String
 });
-/** Ensure returned object has property id instead of _id and __v */
-exports.UserSchema.set('toJSON', {
-    transform: function (doc, ret, options) {
-        base_1.normalize(doc, ret, options);
+// Schema configuration
+exports.UserSchema
+    .set('toJSON', {
+    transform: function (doc, ret) {
+        base_1.normalizeToJson(doc, ret);
         delete ret.password;
-    }
+    },
+    virtuals: true
+})
+    .set('toObject', {
+    transform: function (doc, ret) {
+        base_1.normalizeToObject(doc, ret);
+        delete ret.password;
+    },
+    virtuals: true
 });
+// Schema hooks
 exports.UserSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -86,6 +95,7 @@ exports.UserSchema.pre('save', function (next) {
         }
     });
 });
+// Schema methods
 exports.UserSchema.methods.isValidPassword = function (newPassword) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -96,24 +106,7 @@ exports.UserSchema.methods.isValidPassword = function (newPassword) {
         }
     });
 };
-/*
-const assemblyReferences = async function (next: Function) {
-
-    // Populate role
-    if (this.role) {
-        this.role = this.role.id as any;
-    }
-
-    if (this._update && this._update.role) {
-        this._update.role = this._update.role.id;
-    }
-    next();
-};
-
-// Update referenced fields
-UserSchema.pre<IUser>('validate', assemblyReferences);
-UserSchema.pre<IUser>('findOneAndUpdate', assemblyReferences);
-*/
+// Schema plugins
 /** Auto populates 'Role' property before any 'find' and 'findOne' */
 exports.UserSchema.plugin(autopopulate);
 /** The [[UserModel]] mongoose schema model  */

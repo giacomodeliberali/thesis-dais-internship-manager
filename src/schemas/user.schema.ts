@@ -1,6 +1,6 @@
 import { Document, Schema, Model, model, SchemaType } from "mongoose";
 import { IUser, Defaults } from "gdl-thesis-core/dist";
-import { normalize } from "./base";
+import { normalizeToJson, normalizeSchema, normalizeToObject } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 import { RoleModel } from "./role.schema";
 import { ObjectID } from "bson";
@@ -9,7 +9,6 @@ const bcrypt = require('bcrypt');
 
 /** The [[User]] mongoose schema */
 export const UserSchema: Schema = new Schema({
-    id: String,
     name: String,
     email: {
         type: String,
@@ -55,13 +54,25 @@ export const UserSchema: Schema = new Schema({
     image: String
 });
 
-/** Ensure returned object has property id instead of _id and __v */
-UserSchema.set('toJSON', {
-    transform: function (doc: IUser, ret: IUser, options: any) {
-        normalize(doc, ret, options);
-        delete ret.password;
-    }
-});
+// Schema configuration
+
+UserSchema
+    .set('toJSON', {
+        transform: function (doc: IUser, ret: IUser) {
+            normalizeToJson(doc, ret);
+            delete ret.password;
+        },
+        virtuals: true
+    })
+    .set('toObject', {
+        transform: function (doc: IUser, ret: IUser) {
+            normalizeToObject(doc, ret);
+            delete ret.password;
+        },
+        virtuals: true
+    });
+
+// Schema hooks
 
 UserSchema.pre<IUser>('save', async function (next) {
     try {
@@ -80,6 +91,8 @@ UserSchema.pre<IUser>('save', async function (next) {
     }
 });
 
+// Schema methods
+
 UserSchema.methods.isValidPassword = async function (newPassword: string) {
     try {
         return await bcrypt.compare(newPassword, this.password);
@@ -87,24 +100,8 @@ UserSchema.methods.isValidPassword = async function (newPassword: string) {
         throw new Error(error);
     }
 };
-/*
-const assemblyReferences = async function (next: Function) {
 
-    // Populate role
-    if (this.role) {
-        this.role = this.role.id as any;
-    }
-
-    if (this._update && this._update.role) {
-        this._update.role = this._update.role.id;
-    }
-    next();
-};
-
-// Update referenced fields
-UserSchema.pre<IUser>('validate', assemblyReferences);
-UserSchema.pre<IUser>('findOneAndUpdate', assemblyReferences);
-*/
+// Schema plugins
 
 /** Auto populates 'Role' property before any 'find' and 'findOne' */
 UserSchema.plugin(autopopulate);

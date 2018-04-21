@@ -1,11 +1,10 @@
 import { Document, Schema, Model, model } from "mongoose";
 import { Defaults, IInternship } from "gdl-thesis-core/dist";
-import { normalize } from "./base";
+import { normalizeToJson, normalizeSchema } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 
 /** The [[Internship]] mongoose schema */
 export const InternshipSchema: Schema = new Schema({
-    id: String,
     company: {
         type: Schema.Types.ObjectId,
         ref: 'Company',
@@ -37,9 +36,8 @@ export const InternshipSchema: Schema = new Schema({
 
 
 /** Ensure returned object has property id instead of _id and __v */
-InternshipSchema.set('toJSON', {
-    transform: normalize
-});
+normalizeSchema(InternshipSchema);
+
 
 /** Auto populates 'company' property before any 'find' and 'findOne' */
 InternshipSchema.plugin(autopopulate);

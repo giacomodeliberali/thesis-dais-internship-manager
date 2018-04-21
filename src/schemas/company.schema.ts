@@ -1,11 +1,10 @@
 import { Document, Schema, Model, model } from "mongoose";
 import { User, Defaults, ICompany } from "gdl-thesis-core/dist";
-import { normalize } from "./base";
+import { normalizeToJson, normalizeSchema } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 
 /** The [[Company]] mongoose schema */
 export const CompanySchema: Schema = new Schema({
-    id: String,
     name: String,
     address: {
         street: String,
@@ -29,9 +28,7 @@ export const CompanySchema: Schema = new Schema({
 });
 
 /** Ensure returned object has property id instead of _id and __v */
-CompanySchema.set('toJSON', {
-    transform: normalize
-});
+normalizeSchema(CompanySchema);
 
 /** Auto populates 'owners' property before any 'find' and 'findOne' */
 CompanySchema.plugin(autopopulate);

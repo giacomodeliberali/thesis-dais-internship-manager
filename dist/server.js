@@ -72,7 +72,7 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     // Define global CRUD options
     const crudOptions = {
         delete: {
-            // Each delete operation required the admin scope
+            // Each delete operation require admin scope
             middleware: [scopes_1.adminScope]
         }
     };
