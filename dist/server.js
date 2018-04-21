@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const bodyParser = require("body-parser");
 require("reflect-metadata");
+const cors = require("cors");
 /**
  * Controllers (route handlers).
  */
@@ -37,6 +38,8 @@ app.set("port", process.env.PORT || 3000);
 // Add body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.options('*', cors());
 // Format JSON output
 app.set('json spaces', 2);
 // Add error handling middleware

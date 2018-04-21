@@ -3,7 +3,7 @@ import * as session from "express-session";
 import * as bodyParser from "body-parser";
 import * as path from "path";
 import "reflect-metadata";
-
+import * as cors from 'cors';
 /**
  * Controllers (route handlers).
  */
@@ -46,6 +46,8 @@ app.set("port", process.env.PORT || 3000);
 // Add body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.options('*', cors());
 
 // Format JSON output
 app.set('json spaces', 2);
