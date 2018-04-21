@@ -9,7 +9,7 @@ export abstract class Constructor<T> {
     }
 
     /** Return a clone with JSON.parse(JSON.stringify(this)) */
-    clone(): any {
+    clone?: () => any = () => {
         return JSON.parse(JSON.stringify(this));
     }
 }

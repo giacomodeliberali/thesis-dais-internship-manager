@@ -5,5 +5,5 @@ export declare abstract class Constructor<T> {
      */
     constructor(item?: Partial<T>);
     /** Return a clone with JSON.parse(JSON.stringify(this)) */
-    clone(): any;
+    clone?: () => any;
 }

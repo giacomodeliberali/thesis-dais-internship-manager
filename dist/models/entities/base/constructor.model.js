@@ -6,13 +6,14 @@ var Constructor = /** @class */ (function () {
      * @param item The item to assign to this instance
      */
     function Constructor(item) {
+        var _this = this;
+        /** Return a clone with JSON.parse(JSON.stringify(this)) */
+        this.clone = function () {
+            return JSON.parse(JSON.stringify(_this));
+        };
         if (item)
             Object.assign(this, item);
     }
-    /** Return a clone with JSON.parse(JSON.stringify(this)) */
-    Constructor.prototype.clone = function () {
-        return JSON.parse(JSON.stringify(this));
-    };
     return Constructor;
 }());
 exports.Constructor = Constructor;
