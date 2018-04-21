@@ -31,7 +31,8 @@ function checkBodyUser(request: Request, response: Response): User {
             response: response,
             httpCode: 500,
             exception: {
-                message: "Check that controller.useAuth() has been called before using any scope middleware"
+                message: "Check that controller.useAuth() has been called before using any scope middleware",
+                code: "auth/user-unauthorized"
             }
         }).send() as any;
     }
@@ -61,7 +62,8 @@ export function adminScope(request: Request, response: Response, next: Function)
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Admin' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Admin' scope",
+            code: "auth/user-unauthorized"
         } as any
     }).send();
 }
@@ -90,7 +92,8 @@ export function companyScope(request: Request, response: Response, next: Functio
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Company' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Company' scope",
+            code: "auth/user-unauthorized"
         } as any
     }).send();
 }
@@ -119,7 +122,8 @@ export function studentScope(request: Request, response: Response, next: Functio
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Student' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Student' scope",
+            code: "auth/user-unauthorized"
         } as any
     }).send();
 }
@@ -137,7 +141,7 @@ export function professorScope(request: Request, response: Response, next: Funct
 
     // Check if has role
     if (user) {
-        // Check Tutor scope
+        // Check Professor scope
         if ((user.role.type & Number(RoleType.Professor)) === Number(RoleType.Professor)) {
             return next();
         }
@@ -148,7 +152,8 @@ export function professorScope(request: Request, response: Response, next: Funct
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Tutor' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Professor' scope",
+            code: "auth/user-unauthorized"
         } as any
     }).send();
 }

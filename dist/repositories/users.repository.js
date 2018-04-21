@@ -76,7 +76,8 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
                     return Promise.resolve(user);
                 else
                     return Promise.reject({
-                        message: "Bad login attempt"
+                        message: "Bad login attempt",
+                        code: "auth/bad-login"
                     });
             })
                 .catch((ex) => {
@@ -89,14 +90,28 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
      * @param user The user to register
      */
     register(user) {
-        if (!user)
-            return Promise.resolve(null);
-        if (!user.password || !user.email)
-            return Promise.resolve(null);
-        user.registrationDate = new Date();
-        return this.update(user)
-            .catch(ex => {
-            return Promise.reject(ex);
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!user)
+                    return Promise.resolve(null);
+                if (!user.password || !user.email)
+                    return Promise.resolve(null);
+                const exist = yield this.model.findOne({ email: user.email });
+                if (exist) {
+                    return Promise.reject({
+                        message: "Email already taken",
+                        code: "auth/email-taken"
+                    });
+                }
+                user.registrationDate = new Date();
+                return this.update(user);
+            }
+            catch (ex) {
+                return Promise.reject({
+                    message: "Error creating a new user",
+                    error: ex
+                });
+            }
         });
     }
 };

@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
  * The [[user]] repository
  */
 @injectable()
-export class UsersRepository extends BaseRepository<IUser> {
+export class UsersRepository extends BaseRepository<IUser, User> {
 
     /**
      * Initialize [[UsersRepository]]
@@ -58,7 +58,8 @@ export class UsersRepository extends BaseRepository<IUser> {
                     return Promise.resolve(user);
                 else
                     return Promise.reject({
-                        message: "Bad login attempt"
+                        message: "Bad login attempt",
+                        code: "auth/bad-login"
                     });
             })
             .catch((ex: any) => {
@@ -70,19 +71,33 @@ export class UsersRepository extends BaseRepository<IUser> {
      * Create a new user
      * @param user The user to register
      */
-    public register(user: IUser) {
+    public async register(user: User): Promise<IUser> {
 
-        if (!user)
-            return Promise.resolve(null);
-        if (!user.password || !user.email)
-            return Promise.resolve(null);
+        try {
 
-        user.registrationDate = new Date();
+            if (!user)
+                return Promise.resolve(null);
+            if (!user.password || !user.email)
+                return Promise.resolve(null);
 
-        return this.update(user)
-            .catch(ex => {
-                return Promise.reject(ex);
+            const exist = await this.model.findOne({ email: user.email });
+            if (exist) {
+                return Promise.reject({
+                    message: "Email already taken",
+                    code: "auth/email-taken"
+                });
+            }
+
+            user.registrationDate = new Date();
+
+            return this.update(user);
+
+        } catch (ex) {
+            return Promise.reject({
+                message: "Error creating a new user",
+                error: ex
             });
+        }
     }
 
 }

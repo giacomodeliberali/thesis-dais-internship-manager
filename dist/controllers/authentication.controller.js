@@ -135,12 +135,13 @@ let AuthenticationController = class AuthenticationController {
                     data: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
                 }).send();
             }
-            // Return a new token
+            // Return error
             return new dist_1.ApiResponse({
                 response: res,
                 httpCode: 401,
                 exception: {
-                    message: "Bad login attempt"
+                    message: "Bad login attempt",
+                    code: "auth/bad-login"
                 }
             }).send();
         }));
@@ -151,55 +152,52 @@ let AuthenticationController = class AuthenticationController {
      */
     useRegister() {
         this.router.post('/register', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            // Check if has body
-            if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+            try {
+                // Check if has body
+                if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 400,
+                        exception: {
+                            message: "Bad request. Required parameters are 'email' and 'password'"
+                        }
+                    }).send();
+                }
+                // Set the authType to local
+                req.body.authType = auth_type_enum_1.AuthType.Local;
+                // Find 'Company' role
+                const role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Company, "Company");
+                req.body.role = role.id;
+                // Register the user
+                const user = yield this.usersRepository.register(req.body);
+                if (user) {
+                    // Return a new token
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 200,
+                        data: {
+                            user: user.toObject(),
+                            token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
+                        }
+                    }).send();
+                }
+                // Return a new token
                 return new dist_1.ApiResponse({
                     response: res,
-                    httpCode: 400,
+                    httpCode: 500,
                     exception: {
-                        message: "Bad request. Required parameters are 'email' and 'password'"
+                        message: "Something went wrong creating a new user"
                     }
                 }).send();
             }
-            if (req.body.authType !== auth_type_enum_1.AuthType.Local) {
-                return new dist_1.ApiResponse({
-                    response: res,
-                    httpCode: 400,
-                    exception: {
-                        message: "The authType must be 'Local'"
-                    }
-                }).send();
-            }
-            req.body.role = (yield this.rolesRepository.findOne({ type: dist_2.RoleType.Company }))._id;
-            const user = yield this.usersRepository
-                .register(req.body)
-                .catch(ex => {
+            catch (ex) {
                 // Return a new token
                 return new dist_1.ApiResponse({
                     response: res,
                     httpCode: 500,
                     exception: ex
                 }).send();
-            });
-            if (user) {
-                // Return a new token
-                return new dist_1.ApiResponse({
-                    response: res,
-                    httpCode: 200,
-                    data: {
-                        user: user,
-                        token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
-                    }
-                }).send();
             }
-            // Return a new token
-            return new dist_1.ApiResponse({
-                response: res,
-                httpCode: 500,
-                exception: {
-                    message: "Something went wrong creating a new user"
-                }
-            }).send();
         }));
         return this;
     }
@@ -227,15 +225,15 @@ let AuthenticationController = class AuthenticationController {
                 let role = null;
                 if (email.endsWith("@stud.unive.it")) {
                     // Student
-                    role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Student });
+                    role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Student, "Student");
                     if (!role)
-                        return next({ message: "Cannot find a valid role entry for 'Student'" });
+                        return next({ message: "Cannot get or create a valid role entry for 'Student'" });
                 }
                 else if (email.endsWith("@unive.it")) {
                     // Professor
-                    role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Professor });
+                    role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Professor, "Professor");
                     if (!role)
-                        return next({ message: "Cannot find a valid role entry for 'Professor'" });
+                        return next({ message: "Cannot get or create a valid role entry for 'Professor'" });
                 }
                 else {
                     return next({ message: "Operation not supported. Only members of @unive can use this service." });
@@ -250,7 +248,7 @@ let AuthenticationController = class AuthenticationController {
                     role: role._id // To assign the reference
                 });
                 if (!newUser)
-                    return next({ message: "Unknown error occured while creating the new user." });
+                    return next({ message: "Unknown error occur while creating the new user." });
                 // Return the new user
                 next(null, newUser.toJSON());
             }
@@ -272,7 +270,7 @@ let AuthenticationController = class AuthenticationController {
                         response: res,
                         httpCode: 400,
                         exception: {
-                            message: "Invalid parameter 'access_token"
+                            message: "Invalid parameter 'access_token'"
                         }
                     }).send();
                 return new dist_1.ApiResponse({

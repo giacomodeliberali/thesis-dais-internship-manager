@@ -98,7 +98,9 @@ mongoose.connect(environment.connectionString).then(client => {
   const usersController = container
     .resolve(UsersController)
     .useAuth()
-    .useCrud(crudOptions)
+    .useCrud({
+      middleware: [adminScope]
+    })
     .register();
 
   const rolesController = container

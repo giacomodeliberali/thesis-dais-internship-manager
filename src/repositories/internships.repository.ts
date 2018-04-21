@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, IInternship } from "gdl-thesis-core/dist";
+import { Defaults, IInternship, Internship } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { InternshipModel } from "../schemas/internship.schema";
 import { Model } from "mongoose";
@@ -9,7 +9,7 @@ import { types } from "../utils/di-types";
  * The [[Internship]] repository
  */
 @injectable()
-export class InternshipsRepository extends BaseRepository<IInternship> {
+export class InternshipsRepository extends BaseRepository<IInternship, Internship> {
 
     /**
      * Initialize [[InternshipsRepository]]

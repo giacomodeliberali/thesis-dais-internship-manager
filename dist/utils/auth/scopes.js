@@ -30,7 +30,8 @@ function checkBodyUser(request, response) {
             response: response,
             httpCode: 500,
             exception: {
-                message: "Check that controller.useAuth() has been called before using any scope middleware"
+                message: "Check that controller.useAuth() has been called before using any scope middleware",
+                code: "auth/user-unauthorized"
             }
         }).send();
     }
@@ -56,7 +57,8 @@ function adminScope(request, response, next) {
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Admin' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Admin' scope",
+            code: "auth/user-unauthorized"
         }
     }).send();
 }
@@ -82,7 +84,8 @@ function companyScope(request, response, next) {
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Company' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Company' scope",
+            code: "auth/user-unauthorized"
         }
     }).send();
 }
@@ -108,7 +111,8 @@ function studentScope(request, response, next) {
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Student' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Student' scope",
+            code: "auth/user-unauthorized"
         }
     }).send();
 }
@@ -124,7 +128,7 @@ function professorScope(request, response, next) {
     const user = checkBodyUser(request, response);
     // Check if has role
     if (user) {
-        // Check Tutor scope
+        // Check Professor scope
         if ((user.role.type & Number(dist_1.RoleType.Professor)) === Number(dist_1.RoleType.Professor)) {
             return next();
         }
@@ -134,7 +138,8 @@ function professorScope(request, response, next) {
         response: response,
         httpCode: 401,
         exception: {
-            message: "Missing required 'Tutor' scope"
+            message: "Insufficient permission to complete the operation. Missing required 'Professor' scope",
+            code: "auth/user-unauthorized"
         }
     }).send();
 }

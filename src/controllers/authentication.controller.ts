@@ -129,12 +129,13 @@ export class AuthenticationController {
         }).send();
       }
 
-      // Return a new token
+      // Return error
       return new ApiResponse({
         response: res,
         httpCode: 401,
         exception: {
-          message: "Bad login attempt"
+          message: "Bad login attempt",
+          code: "auth/bad-login"
         }
       }).send();
     });
@@ -145,68 +146,64 @@ export class AuthenticationController {
   /**
    * Register a new user and generate its token
    */
-  public useRegister() {
+  private useRegister() {
     this.router.post('/register', async (req, res, next) => {
-      // Check if has body
-      if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
-        return new ApiResponse({
-          response: res,
-          httpCode: 400,
-          exception: {
-            message: "Bad request. Required parameters are 'email' and 'password'"
-          }
-        }).send();
-      }
+      try {
+        // Check if has body
+        if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+          return new ApiResponse({
+            response: res,
+            httpCode: 400,
+            exception: {
+              message: "Bad request. Required parameters are 'email' and 'password'"
+            }
+          }).send();
+        }
 
-      if (req.body.authType !== AuthType.Local) {
-        return new ApiResponse({
-          response: res,
-          httpCode: 400,
-          exception: {
-            message: "The authType must be 'Local'"
-          }
-        }).send();
-      }
+        // Set the authType to local
+        req.body.authType = AuthType.Local;
 
-      req.body.role = (await this.rolesRepository.findOne({ type: RoleType.Company }))._id;
+        // Find 'Company' role
+        const role = await this.rolesRepository.getOrCreateOne(RoleType.Company, "Company");
+        req.body.role = role.id;
 
-      const user: IUser = await this.usersRepository
-        .register(req.body)
-        .catch(ex => {
+        // Register the user
+        const user = await this.usersRepository.register(req.body);
+
+        if (user) {
           // Return a new token
           return new ApiResponse({
             response: res,
-            httpCode: 500,
-            exception: ex
+            httpCode: 200,
+            data: {
+              user: user.toObject(),
+              token: sign(user.toJSON(), environment.jwtSecret)
+            }
           }).send();
-        });
+        }
 
-      if (user) {
         // Return a new token
         return new ApiResponse({
           response: res,
-          httpCode: 200,
-          data: {
-            user: user,
-            token: sign(user.toJSON(), environment.jwtSecret)
+          httpCode: 500,
+          exception: {
+            message: "Something went wrong creating a new user"
           }
         }).send();
+      } catch (ex) {
+        // Return a new token
+        return new ApiResponse({
+          response: res,
+          httpCode: 500,
+          exception: ex
+        }).send();
       }
-
-      // Return a new token
-      return new ApiResponse({
-        response: res,
-        httpCode: 500,
-        exception: {
-          message: "Something went wrong creating a new user"
-        }
-      }).send();
     });
     return this;
   }
 
   /** Use Google OAuth as auth provider */
-  public useGoogleOAuth() {
+  private useGoogleOAuth() {
     // Google OAuth Strategy
     passportUse('google-plus-token',
       new GooglePlusTokenStrategy({
@@ -235,14 +232,14 @@ export class AuthenticationController {
 
             if (email.endsWith("@stud.unive.it")) {
               // Student
-              role = await this.rolesRepository.findOne({ type: RoleType.Student });
+              role = await this.rolesRepository.getOrCreateOne(RoleType.Student, "Student");
               if (!role)
-                return next({ message: "Cannot find a valid role entry for 'Student'" });
+                return next({ message: "Cannot get or create a valid role entry for 'Student'" });
             } else if (email.endsWith("@unive.it")) {
               // Professor
-              role = await this.rolesRepository.findOne({ type: RoleType.Professor });
+              role = await this.rolesRepository.getOrCreateOne(RoleType.Professor, "Professor");
               if (!role)
-                return next({ message: "Cannot find a valid role entry for 'Professor'" });
+                return next({ message: "Cannot get or create a valid role entry for 'Professor'" });
             } else {
               return next({ message: "Operation not supported. Only members of @unive can use this service." });
             }
@@ -258,7 +255,7 @@ export class AuthenticationController {
             } as IUser);
 
             if (!newUser)
-              return next({ message: "Unknown error occured while creating the new user." });
+              return next({ message: "Unknown error occur while creating the new user." });
 
             // Return the new user
             next(null, newUser.toJSON());

@@ -1,16 +1,16 @@
-import { IBaseEntity, RepositoryResponse, Query, Defaults } from "gdl-thesis-core/dist";
+import { IBaseEntity, RepositoryResponse, Query, Defaults, BaseEntity } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType } from "mongoose";
 
 @injectable()
-export class BaseRepository<T extends IBaseEntity = any> {
+export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = any, Dto extends BaseEntity<Dto> = any> {
 
     /** The collection name, used also as controller route name */
     public collectionName: string;
 
     /** The moongose model for this repository */
-    protected model: Model<T>;
+    protected model: Model<MongooseDocumentOfDto>;
 
     /**
      * Initialize the base repository
@@ -18,7 +18,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * @param collectionName The collection name, used also as controller route name
      */
     constructor(
-        @unmanaged() model: Model<T>,
+        @unmanaged() model: Model<MongooseDocumentOfDto>,
         @unmanaged() collectionName: string) {
 
         this.model = model;
@@ -41,7 +41,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * Creates a new item
      * @param item The item to create
      */
-    private async create(item: T): Promise<T> {
+    private async create(item: Dto): Promise<MongooseDocumentOfDto> {
         return this.model.create(item).then(result => {
             if (result && result._id)
                 return this.model.findById(result._id);
@@ -54,7 +54,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * Create or update an element
      * @param element The element to create or update
      */
-    async update(item: T): Promise<T> {
+    async update(item: Dto): Promise<MongooseDocumentOfDto> {
         if (!item.id)
             return this.create(item);
 
@@ -78,7 +78,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * Return the item with specified id if exists, null otherwise.
      * @param id The item identifier (id property of [[BaseEntity]])
      */
-    async get(id: string): Promise<T> {
+    async get(id: string): Promise<MongooseDocumentOfDto> {
         return this.model.findById(id);
     }
 
@@ -86,7 +86,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * Return all elements matching the specified query
      * @param query The query. If not specified return the collection elements
      */
-    async find(query?: Query<T>): Promise<T[]> {
+    async find(query?: Query<Dto>): Promise<MongooseDocumentOfDto[]> {
         return this.model.find(query || {});
     }
 
@@ -94,7 +94,7 @@ export class BaseRepository<T extends IBaseEntity = any> {
      * Return a the first element matching the specified query
      * @param query The query. If not specified return the first collection element
      */
-    async findOne(query?: Query<T>): Promise<T> {
+    async findOne(query?: Query<Dto>): Promise<MongooseDocumentOfDto> {
         return this.model.findOne(query);
     }
 }
