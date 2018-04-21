@@ -6,7 +6,7 @@ export class User extends BaseEntity<User>{
     /** The full name */
     name: string;
 
-    /** The email (uses also as username) */
+    /** The email (used also as username) */
     email: string;
 
     /** The phone numbers */
@@ -32,4 +32,7 @@ export class User extends BaseEntity<User>{
 
     /** The user auth type */
     authType: AuthType;
+
+    /** The user image */
+    image: string;
 }
