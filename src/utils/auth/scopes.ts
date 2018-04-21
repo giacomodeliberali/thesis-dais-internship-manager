@@ -125,12 +125,12 @@ export function studentScope(request: Request, response: Response, next: Functio
 }
 
 /**
- * Permit execution if and only if current JWT token owner has role.type Tutor
+ * Permit execution if and only if current JWT token owner has role.type Professor
  * @param request The request with the populated body.__user
  * @param response The response stream
  * @param next The next middleware function
  */
-export function tutorScope(request: Request, response: Response, next: Function) {
+export function professorScope(request: Request, response: Response, next: Function) {
 
     // Pick decoded user
     const user = checkBodyUser(request, response);
@@ -138,7 +138,7 @@ export function tutorScope(request: Request, response: Response, next: Function)
     // Check if has role
     if (user) {
         // Check Tutor scope
-        if ((user.role.type & Number(RoleType.Tutor)) === Number(RoleType.Tutor)) {
+        if ((user.role.type & Number(RoleType.Professor)) === Number(RoleType.Professor)) {
             return next();
         }
     }

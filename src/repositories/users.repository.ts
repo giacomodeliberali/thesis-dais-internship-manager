@@ -4,7 +4,6 @@ import { inject, injectable } from "inversify";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
 import { UserModel } from "../schemas/user.schema";
-import { cat } from "shelljs";
 const bcrypt = require('bcrypt');
 
 /**
@@ -55,10 +54,14 @@ export class UsersRepository extends BaseRepository<IUser> {
         return this.model
             .findOne({ email: email })
             .then(user => {
-                if (user && bcrypt.compareSync(password, user.password))
-                    return user;
+                if (user && (user as any).isValidPassword(password))
+                    return Promise.resolve(user);
+                else
+                    return Promise.reject({
+                        message: "Bad login attempt"
+                    });
             })
-            .catch(ex => {
+            .catch((ex: any) => {
                 return Promise.reject(ex);
             });
     }
@@ -67,19 +70,19 @@ export class UsersRepository extends BaseRepository<IUser> {
      * Create a new user
      * @param user The user to register
      */
-    public register(user: User) {
+    public register(user: IUser) {
 
         if (!user)
             return Promise.resolve(null);
         if (!user.password || !user.email)
             return Promise.resolve(null);
 
-        user.password = bcrypt.hashSync(user.password, 8);
         user.registrationDate = new Date();
 
-        return this.update(user as IUser).catch(ex => {
-            return Promise.reject(ex);
-        });
+        return this.update(user)
+            .catch(ex => {
+                return Promise.reject(ex);
+            });
     }
 
 }

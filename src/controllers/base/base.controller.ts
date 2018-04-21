@@ -1,6 +1,6 @@
 import { Request, Response, Router, RequestHandler } from "express";
 import { BaseRepository } from '../../repositories';
-import { IBaseEntity, ApiResponse } from "gdl-thesis-core/dist";
+import { IBaseEntity, ApiResponse, IRole } from "gdl-thesis-core/dist";
 import { inject, injectable, unmanaged } from "inversify";
 import { types } from "../../utils/di-types";
 import { verify, sign, decode } from 'jsonwebtoken';
@@ -49,14 +49,14 @@ export class BaseController<T extends IBaseEntity> {
      * 
      * A user scope can be specified using a scope middleware.
      * 
-     * Delete operation required Admin scope by default in all callection
+     * Delete operation required Admin scope by default in all collection
      */
     public useCrud(options?: CurdOptions) {
         return this
             .useMiddleware(options ? options.middleware : null)
             .useCreate(options && options.createUpdate ? options.createUpdate.middleware : null)
             .useRead(options && options.read ? options.read.middleware : null)
-            .useDelete(options && options.delete ? options.delete.middleware : this.isAuthEnabled ? [adminScope] : null);
+            .useDelete(options && options.delete ? options.delete.middleware : null);
     }
 
     /**
@@ -166,48 +166,44 @@ export class BaseController<T extends IBaseEntity> {
      * Enable JWT token verification. Every method called after this call will use authentication
      * 
      * A user scope can be specified using a scope middleware.
-     * 
-     * @param use Indicate if the authentication must be used or not - default true
      */
-    public useAuth(use: boolean = true) {
-        this.isAuthEnabled = use;
-        if (use) {
-            this.router.use('*', async (req, res, next) => {
-                try {
-                    const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
-                    if (token) {
-                        // Verify token
-                        const isValid = verify(token, environment.jwtSecret);
+    public useAuth() {
+        this.isAuthEnabled = true;
+        this.router.use('*', async (req, res, next) => {
+            try {
+                const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
+                if (token) {
+                    // Verify token
+                    const isValid = verify(token, environment.jwtSecret);
 
-                        // Is is valid proceed
-                        if (isValid) {
-                            req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
-                            return next();
-                        }
-
-                        // Otherwise throw an auth error
-                        return new ApiResponse({
-                            response: res,
-                            httpCode: 401,
-                            exception: "Invalid token. Unauthorized"
-                        }).send();
-                    } else {
-                        // Token not found, throw an auth error
-                        return new ApiResponse({
-                            response: res,
-                            httpCode: 401,
-                            exception: "Unauthorized"
-                        }).send();
+                    // Is is valid proceed
+                    if (isValid) {
+                        req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
+                        return next();
                     }
-                } catch (ex) {
+
+                    // Otherwise throw an auth error
                     return new ApiResponse({
                         response: res,
-                        httpCode: 500,
-                        exception: ex
+                        httpCode: 401,
+                        exception: "Invalid token. Unauthorized"
+                    }).send();
+                } else {
+                    // Token not found, throw an auth error
+                    return new ApiResponse({
+                        response: res,
+                        httpCode: 401,
+                        exception: "Unauthorized"
                     }).send();
                 }
-            });
-        }
+            } catch (ex) {
+                return new ApiResponse({
+                    response: res,
+                    httpCode: 500,
+                    exception: ex
+                }).send();
+            }
+        });
         return this;
     }
 

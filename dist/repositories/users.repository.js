@@ -72,10 +72,14 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
             return this.model
                 .findOne({ email: email })
                 .then(user => {
-                if (user && bcrypt.compareSync(password, user.password))
-                    return user;
+                if (user && user.isValidPassword(password))
+                    return Promise.resolve(user);
+                else
+                    return Promise.reject({
+                        message: "Bad login attempt"
+                    });
             })
-                .catch(ex => {
+                .catch((ex) => {
                 return Promise.reject(ex);
             });
         });
@@ -89,9 +93,9 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
             return Promise.resolve(null);
         if (!user.password || !user.email)
             return Promise.resolve(null);
-        user.password = bcrypt.hashSync(user.password, 8);
         user.registrationDate = new Date();
-        return this.update(user).catch(ex => {
+        return this.update(user)
+            .catch(ex => {
             return Promise.reject(ex);
         });
     }

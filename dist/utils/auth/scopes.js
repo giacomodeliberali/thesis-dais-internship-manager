@@ -114,18 +114,18 @@ function studentScope(request, response, next) {
 }
 exports.studentScope = studentScope;
 /**
- * Permit execution if and only if current JWT token owner has role.type Tutor
+ * Permit execution if and only if current JWT token owner has role.type Professor
  * @param request The request with the populated body.__user
  * @param response The response stream
  * @param next The next middleware function
  */
-function tutorScope(request, response, next) {
+function professorScope(request, response, next) {
     // Pick decoded user
     const user = checkBodyUser(request, response);
     // Check if has role
     if (user) {
         // Check Tutor scope
-        if ((user.role.type & Number(dist_1.RoleType.Tutor)) === Number(dist_1.RoleType.Tutor)) {
+        if ((user.role.type & Number(dist_1.RoleType.Professor)) === Number(dist_1.RoleType.Professor)) {
             return next();
         }
     }
@@ -138,4 +138,4 @@ function tutorScope(request, response, next) {
         }
     }).send();
 }
-exports.tutorScope = tutorScope;
+exports.professorScope = professorScope;

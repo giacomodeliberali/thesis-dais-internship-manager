@@ -30,7 +30,8 @@ import { InternshipProposalsController } from "./controllers/internship-proposal
 import { InternshipModel } from "./schemas/internship.schema";
 import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
 import { AuthenticationController } from "./controllers/authentication.controller";
-import { adminScope, companyScope, studentScope, tutorScope } from "./utils/auth/scopes";
+import { adminScope, companyScope, studentScope, professorScope } from "./utils/auth/scopes";
+import { CurdOptions } from "./models/interfaces/crud-options.interface";
 
 /**
  * Create Express server.
@@ -83,40 +84,45 @@ mongoose.connect(environment.connectionString).then(client => {
   container.bind<InternshipsRepository>(InternshipsRepository).to(InternshipsRepository).inTransientScope();
   container.bind<InternshipsProposalsRepository>(InternshipsProposalsRepository).to(InternshipsProposalsRepository).inTransientScope();
 
+
+
+  // Define global CRUD options
+  const crudOptions: CurdOptions = {
+    delete: {
+      // Each delete operation require admin scope
+      middleware: [adminScope]
+    }
+  };
+
   // Create the required controllers
-
-  // DEBUG
-  const useAuth = false;
-  // END DEBUG
-
   const usersController = container
     .resolve(UsersController)
-    .useAuth(useAuth)
-    .useCrud()
+    .useAuth()
+    .useCrud(crudOptions)
     .register();
 
   const rolesController = container
     .resolve(RolesController)
-    .useAuth(useAuth)
-    .useCrud()
+    .useAuth()
+    .useCrud(crudOptions)
     .register();
 
   const companiesController = container
     .resolve(CompaniesController)
-    .useAuth(useAuth)
-    .useCrud()
+    .useAuth()
+    .useCrud(crudOptions)
     .register();
 
   const internshipsController = container
     .resolve(InternshipsController)
-    .useAuth(useAuth)
-    .useCrud()
+    .useAuth()
+    .useCrud(crudOptions)
     .register();
 
   const internshipProposalsController = container
     .resolve(InternshipProposalsController)
-    .useAuth(useAuth)
-    .useCrud()
+    .useAuth()
+    .useCrud(crudOptions)
     .register();
 
   // Initialize Auth controller and catch all 404
@@ -128,7 +134,7 @@ mongoose.connect(environment.connectionString).then(client => {
   console.log("All controllers resolved!");
 
 }).catch(ex => {
-  console.error("Can not connect to mongoDB!");
+  console.error("Application exception", ex);
 });
 
 

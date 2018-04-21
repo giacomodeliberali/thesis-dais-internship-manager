@@ -27,7 +27,6 @@ const inversify_1 = require("inversify");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../../environment");
 const ServerDefaults_1 = require("../../ServerDefaults");
-const scopes_1 = require("../../utils/auth/scopes");
 /**
  * The base controller with CRUD and authentication
  */
@@ -60,14 +59,14 @@ let BaseController = class BaseController {
      *
      * A user scope can be specified using a scope middleware.
      *
-     * Delete operation required Admin scope by default in all callection
+     * Delete operation required Admin scope by default in all collection
      */
     useCrud(options) {
         return this
             .useMiddleware(options ? options.middleware : null)
             .useCreate(options && options.createUpdate ? options.createUpdate.middleware : null)
             .useRead(options && options.read ? options.read.middleware : null)
-            .useDelete(options && options.delete ? options.delete.middleware : this.isAuthEnabled ? [scopes_1.adminScope] : null);
+            .useDelete(options && options.delete ? options.delete.middleware : null);
     }
     /**
      * Attach to the current route the create operation
@@ -172,48 +171,44 @@ let BaseController = class BaseController {
      * Enable JWT token verification. Every method called after this call will use authentication
      *
      * A user scope can be specified using a scope middleware.
-     *
-     * @param use Indicate if the authentication must be used or not - default true
      */
-    useAuth(use = true) {
-        this.isAuthEnabled = use;
-        if (use) {
-            this.router.use('*', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-                try {
-                    const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
-                    if (token) {
-                        // Verify token
-                        const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret);
-                        // Is is valid proceed
-                        if (isValid) {
-                            req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName] = jsonwebtoken_1.decode(token);
-                            return next();
-                        }
-                        // Otherwise throw an auth error
-                        return new dist_1.ApiResponse({
-                            response: res,
-                            httpCode: 401,
-                            exception: "Invalid token. Unauthorized"
-                        }).send();
+    useAuth() {
+        this.isAuthEnabled = true;
+        this.router.use('*', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
+                if (token) {
+                    // Verify token
+                    const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret);
+                    // Is is valid proceed
+                    if (isValid) {
+                        req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName] = jsonwebtoken_1.decode(token);
+                        return next();
                     }
-                    else {
-                        // Token not found, throw an auth error
-                        return new dist_1.ApiResponse({
-                            response: res,
-                            httpCode: 401,
-                            exception: "Unauthorized"
-                        }).send();
-                    }
-                }
-                catch (ex) {
+                    // Otherwise throw an auth error
                     return new dist_1.ApiResponse({
                         response: res,
-                        httpCode: 500,
-                        exception: ex
+                        httpCode: 401,
+                        exception: "Invalid token. Unauthorized"
                     }).send();
                 }
-            }));
-        }
+                else {
+                    // Token not found, throw an auth error
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 401,
+                        exception: "Unauthorized"
+                    }).send();
+                }
+            }
+            catch (ex) {
+                return new dist_1.ApiResponse({
+                    response: res,
+                    httpCode: 500,
+                    exception: ex
+                }).send();
+            }
+        }));
         return this;
     }
     /**

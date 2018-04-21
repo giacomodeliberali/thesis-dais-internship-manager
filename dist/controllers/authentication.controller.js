@@ -27,6 +27,11 @@ const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../environment");
 const dist_1 = require("gdl-thesis-core/dist");
 const repositories_1 = require("../repositories");
+const passport = require("passport");
+const passport_1 = require("passport");
+const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
+const dist_2 = require("gdl-thesis-core/dist");
+const GooglePlusTokenStrategy = require('passport-google-plus-token');
 /**
  * The Auth controller
  */
@@ -35,8 +40,9 @@ let AuthenticationController = class AuthenticationController {
      * Create the controller that handles authentication
      * @param app The express application used to register a new route for this controller
      */
-    constructor(usersRepository, app) {
+    constructor(usersRepository, rolesRepository, app) {
         this.usersRepository = usersRepository;
+        this.rolesRepository = rolesRepository;
         this.app = app;
         /** The express router */
         this.router = express_1.Router();
@@ -45,20 +51,14 @@ let AuthenticationController = class AuthenticationController {
    * Register this controller routes
    * @param useAllCustom Indicates if the custom routes should be registred automatically [default true]
    */
-    register(useAllCustom = true) {
-        if (useAllCustom)
-            this.useAllCustom();
-        this.app.use(`/auth`, this.router);
-        return this;
-    }
-    /**
-     * Use custom routes
-     */
-    useAllCustom() {
-        return this
+    register() {
+        this
             .useLogin()
             .useRegister()
+            .useGoogleOAuth()
             .useDecode();
+        this.app.use(`/auth`, this.router);
+        return this;
     }
     /**
      * Decodes the information about the given token
@@ -117,7 +117,15 @@ let AuthenticationController = class AuthenticationController {
                     }
                 }).send();
             }
-            const user = yield this.usersRepository.login(req.body.email, req.body.password);
+            const user = yield this.usersRepository.login(req.body.email, req.body.password)
+                .catch(ex => {
+                // Return a new token
+                return new dist_1.ApiResponse({
+                    response: res,
+                    httpCode: 401,
+                    exception: ex
+                }).send();
+            });
             if (user) {
                 // Return a new token
                 return new dist_1.ApiResponse({
@@ -143,7 +151,6 @@ let AuthenticationController = class AuthenticationController {
     useRegister() {
         this.router.post('/register', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             // Check if has body
-            console.log("REGISTER", req.body);
             if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
                 return new dist_1.ApiResponse({
                     response: res,
@@ -153,6 +160,16 @@ let AuthenticationController = class AuthenticationController {
                     }
                 }).send();
             }
+            if (req.body.authType !== auth_type_enum_1.AuthType.Local) {
+                return new dist_1.ApiResponse({
+                    response: res,
+                    httpCode: 400,
+                    exception: {
+                        message: "The authType must be 'Local'"
+                    }
+                }).send();
+            }
+            req.body.role = (yield this.rolesRepository.findOne({ type: dist_2.RoleType.Company }))._id;
             const user = yield this.usersRepository
                 .register(req.body)
                 .catch(ex => {
@@ -170,7 +187,7 @@ let AuthenticationController = class AuthenticationController {
                     httpCode: 200,
                     data: {
                         user: user,
-                        token: jsonwebtoken_1.sign(user, environment_1.environment.jwtSecret)
+                        token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
                     }
                 }).send();
             }
@@ -182,6 +199,67 @@ let AuthenticationController = class AuthenticationController {
                     message: "Something went wrong creating a new user"
                 }
             }).send();
+        }));
+        return this;
+    }
+    /** Use Google OAuth as auth provider */
+    useGoogleOAuth() {
+        // Google OAuth Strategy
+        passport_1.use('google-plus-token', new GooglePlusTokenStrategy({
+            clientID: environment_1.environment.googleOAuth.clientId,
+            clientSecret: environment_1.environment.googleOAuth.clientSecret
+        }, (accessToken, refreshToken, profile, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                // Should have full user profile over here
+                const existingUser = yield this.usersRepository.findOne({ "googleId": profile.id });
+                if (existingUser) {
+                    return next(null, existingUser.toJSON());
+                }
+                const email = profile.emails[0].value;
+                let role = null;
+                if (email.endsWith("@stud.unive.it")) {
+                    // Student
+                    role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Student });
+                }
+                else if (email.endsWith("@unive.it")) {
+                    // Professor
+                    role = yield this.rolesRepository.findOne({ type: dist_2.RoleType.Professor });
+                }
+                else {
+                    return next({ message: "User email not supported. Only members of @unive can use this service." }, false);
+                }
+                const newUser = yield this.usersRepository.update({
+                    authType: auth_type_enum_1.AuthType.Google,
+                    email: email,
+                    googleId: profile.id,
+                    name: profile.displayName,
+                    registrationDate: new Date(),
+                    role: role._id
+                });
+                next(null, newUser.toJSON());
+            }
+            catch (error) {
+                console.log("ERROR => ", error);
+                next(error, false);
+            }
+        })));
+        this.router.post('/google', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            passport.authenticate('google-plus-token', function (error, user) {
+                if (error)
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 401,
+                        exception: error
+                    }).send();
+                return new dist_1.ApiResponse({
+                    response: res,
+                    httpCode: 200,
+                    data: {
+                        user: user,
+                        token: jsonwebtoken_1.sign(user, environment_1.environment.jwtSecret)
+                    }
+                }).send();
+            })(req, res);
         }));
         return this;
     }
@@ -207,7 +285,8 @@ let AuthenticationController = class AuthenticationController {
 };
 AuthenticationController = __decorate([
     inversify_1.injectable(),
-    __param(1, inversify_1.inject(di_types_1.types.App)),
-    __metadata("design:paramtypes", [repositories_1.UsersRepository, Object])
+    __param(2, inversify_1.inject(di_types_1.types.App)),
+    __metadata("design:paramtypes", [repositories_1.UsersRepository,
+        repositories_1.RolesRepository, Object])
 ], AuthenticationController);
 exports.AuthenticationController = AuthenticationController;

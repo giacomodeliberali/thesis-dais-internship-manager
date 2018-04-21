@@ -4,6 +4,8 @@ import { normalize } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 import { RoleModel } from "./role.schema";
 import { ObjectID } from "bson";
+import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
+const bcrypt = require('bcrypt');
 
 /** The [[User]] mongoose schema */
 export const UserSchema: Schema = new Schema({
@@ -13,7 +15,8 @@ export const UserSchema: Schema = new Schema({
         type: String,
         index: {
             unique: true
-        }
+        },
+        required: true
     },
     phone: [
         {
@@ -36,7 +39,20 @@ export const UserSchema: Schema = new Schema({
         state: String,
         country: String
     },
-    password: String
+    password: {
+        type: String,
+        required: false
+    },
+    googleId: {
+        type: String,
+        required: false
+    },
+    authType: {
+        type: Number,
+        enum: [AuthType.Local, AuthType.Google],
+        required: true
+    },
+    image: String
 });
 
 /** Ensure returned object has property id instead of _id and __v */
@@ -46,6 +62,31 @@ UserSchema.set('toJSON', {
         delete ret.password;
     }
 });
+
+UserSchema.pre<IUser>('save', async function (next) {
+    try {
+        if (this.authType !== AuthType.Local)
+            return next();
+
+        // Generate a salt
+        const salt = await bcrypt.genSalt(10);
+        // Generate a password hash (salt + hash)
+        const passwordHash = await bcrypt.hash(this.password, salt);
+        // Re-assign hashed version over original, plain text password
+        this.password = passwordHash;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
+
+UserSchema.methods.isValidPassword = async function (newPassword: string) {
+    try {
+        return await bcrypt.compare(newPassword, this.password);
+    } catch (error) {
+        throw new Error(error);
+    }
+};
 /*
 const assemblyReferences = async function (next: Function) {
 

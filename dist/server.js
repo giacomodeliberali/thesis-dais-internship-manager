@@ -25,6 +25,7 @@ const internship_proposals_controller_1 = require("./controllers/internship-prop
 const internship_schema_1 = require("./schemas/internship.schema");
 const internship_proposal_schema_1 = require("./schemas/internship-proposal.schema");
 const authentication_controller_1 = require("./controllers/authentication.controller");
+const scopes_1 = require("./utils/auth/scopes");
 /**
  * Create Express server.
  */
@@ -68,34 +69,38 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     di_container_1.container.bind(repositories_1.CompaniesRepository).to(repositories_1.CompaniesRepository).inTransientScope();
     di_container_1.container.bind(repositories_1.InternshipsRepository).to(repositories_1.InternshipsRepository).inTransientScope();
     di_container_1.container.bind(repositories_1.InternshipsProposalsRepository).to(repositories_1.InternshipsProposalsRepository).inTransientScope();
+    // Define global CRUD options
+    const crudOptions = {
+        delete: {
+            // Each delete operation required the admin scope
+            middleware: [scopes_1.adminScope]
+        }
+    };
     // Create the required controllers
-    // DEBUG
-    const useAuth = false;
-    // END DEBUG
     const usersController = di_container_1.container
         .resolve(users_controller_1.UsersController)
-        .useAuth(useAuth)
-        .useCrud()
+        .useAuth()
+        .useCrud(crudOptions)
         .register();
     const rolesController = di_container_1.container
         .resolve(roles_controller_1.RolesController)
-        .useAuth(useAuth)
-        .useCrud()
+        .useAuth()
+        .useCrud(crudOptions)
         .register();
     const companiesController = di_container_1.container
         .resolve(companies_controller_1.CompaniesController)
-        .useAuth(useAuth)
-        .useCrud()
+        .useAuth()
+        .useCrud(crudOptions)
         .register();
     const internshipsController = di_container_1.container
         .resolve(internships_controller_1.InternshipsController)
-        .useAuth(useAuth)
-        .useCrud()
+        .useAuth()
+        .useCrud(crudOptions)
         .register();
     const internshipProposalsController = di_container_1.container
         .resolve(internship_proposals_controller_1.InternshipProposalsController)
-        .useAuth(useAuth)
-        .useCrud()
+        .useAuth()
+        .useCrud(crudOptions)
         .register();
     // Initialize Auth controller and catch all 404
     const authController = di_container_1.container
@@ -104,7 +109,7 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
         .handleMissingRoutes();
     console.log("All controllers resolved!");
 }).catch(ex => {
-    console.error("Can not connect to mongoDB!");
+    console.error("Application exception", ex);
 });
 /**
  * Start Express server.
