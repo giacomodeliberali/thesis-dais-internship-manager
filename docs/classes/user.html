@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ApiResponse | Thesis - Core</title>
+	<title>User | Thesis - Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="apiresponse.html">ApiResponse</a>
+					<a href="user.html">User</a>
 				</li>
 			</ul>
-			<h1>Class ApiResponse&lt;T&gt;</h1>
+			<h1>Class User</h1>
 		</div>
 	</div>
 </header>
@@ -69,26 +69,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A generic rest API response. Used in Express controllers</p>
+						<p>A portal user</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="constructor.html" class="tsd-signature-type">Constructor</a><span class="tsd-signature-symbol">&lt;</span><a href="apiresponse.html" class="tsd-signature-type">ApiResponse</a><span class="tsd-signature-symbol">&gt;</span>
+						<a href="baseentity.html" class="tsd-signature-type">BaseEntity</a><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ApiResponse</span>
+								<span class="target">User</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="../interfaces/iuser.html" class="tsd-signature-type">IUser</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -101,25 +98,30 @@
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="apiresponse.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="user.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apiresponse.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apiresponse.html#exception" class="tsd-kind-icon">exception</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apiresponse.html#httpcode" class="tsd-kind-icon">http<wbr>Code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apiresponse.html#isok" class="tsd-kind-icon">is<wbr>Ok</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="apiresponse.html#response" class="tsd-kind-icon">response</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#authtype" class="tsd-kind-icon">auth<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#birthdate" class="tsd-kind-icon">birth<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#email" class="tsd-kind-icon">email</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#googleid" class="tsd-kind-icon">google<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="user.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#image" class="tsd-kind-icon">image</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#phone" class="tsd-kind-icon">phone</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#registrationdate" class="tsd-kind-icon">registration<wbr>Date</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#residenceaddress" class="tsd-kind-icon">residence<wbr>Address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="user.html#role" class="tsd-kind-icon">role</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="apiresponse.html#clone" class="tsd-kind-icon">clone</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="apiresponse.html#extract" class="tsd-kind-icon">extract</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="apiresponse.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="user.html#clone" class="tsd-kind-icon">clone</a></li>
 							</ul>
 						</section>
 					</div>
@@ -131,7 +133,7 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Api<wbr>Response<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="apiresponse.html" class="tsd-signature-type">ApiResponse</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="apiresponse.html" class="tsd-signature-type">ApiResponse</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>User<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="user.html" class="tsd-signature-type">User</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -149,7 +151,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> item: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="apiresponse.html" class="tsd-signature-type">ApiResponse</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> item: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="user.html" class="tsd-signature-type">User</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The item to assign to this instance</p>
@@ -157,7 +159,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="apiresponse.html" class="tsd-signature-type">ApiResponse</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="user.html" class="tsd-signature-type">User</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -165,82 +167,188 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
+					<a name="authtype" class="tsd-anchor"></a>
+					<h3>auth<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Type<span class="tsd-signature-symbol">:</span> <a href="../enums/authtype.html" class="tsd-signature-type">AuthType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L14">models/entities/api-response.model.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L34">models/entities/user.model.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The result data</p>
+							<p>The user auth type</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="exception" class="tsd-anchor"></a>
-					<h3>exception</h3>
-					<div class="tsd-signature tsd-kind-icon">exception<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="birthdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> birth<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">birth<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L17">models/entities/api-response.model.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L19">models/entities/user.model.ts:19</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The exception, populated when isOk() === false</p>
+							<p>The birth date</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="httpcode" class="tsd-anchor"></a>
-					<h3>http<wbr>Code</h3>
-					<div class="tsd-signature tsd-kind-icon">http<wbr>Code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="email" class="tsd-anchor"></a>
+					<h3>email</h3>
+					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L11">models/entities/api-response.model.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L10">models/entities/user.model.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The response HTTP code</p>
+							<p>The email (used also as username)</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="isok" class="tsd-anchor"></a>
-					<h3>is<wbr>Ok</h3>
-					<div class="tsd-signature tsd-kind-icon">is<wbr>Ok<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="googleid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> google<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">google<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L23">models/entities/api-response.model.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L28">models/entities/user.model.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Indicates if the response is valid</p>
+							<p>The google id, populated if authType Google</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="id" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="baseentity.html">BaseEntity</a>.<a href="baseentity.html#id">id</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/base/base-entity.model.ts#L8">models/entities/base/base-entity.model.ts:8</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The record identifier</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="response" class="tsd-anchor"></a>
-					<h3>response</h3>
-					<div class="tsd-signature tsd-kind-icon">response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Response</span></div>
+					<a name="image" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> image</h3>
+					<div class="tsd-signature tsd-kind-icon">image<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L20">models/entities/api-response.model.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L37">models/entities/user.model.ts:37</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The response stream</p>
+							<p>The user image</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L7">models/entities/user.model.ts:7</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The full name</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="password" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> password</h3>
+					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L31">models/entities/user.model.ts:31</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The user encrypted password, populated if authType is local</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="phone" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> phone</h3>
+					<div class="tsd-signature tsd-kind-icon">phone<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L13">models/entities/user.model.ts:13</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The phone numbers</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="registrationdate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> registration<wbr>Date</h3>
+					<div class="tsd-signature tsd-kind-icon">registration<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L22">models/entities/user.model.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The registration date</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="residenceaddress" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> residence<wbr>Address</h3>
+					<div class="tsd-signature tsd-kind-icon">residence<wbr>Address<span class="tsd-signature-symbol">:</span> <a href="address.html" class="tsd-signature-type">Address</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L25">models/entities/user.model.ts:25</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The residence address</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="role" class="tsd-anchor"></a>
+					<h3>role</h3>
+					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <a href="role.html" class="tsd-signature-type">Role</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/user.model.ts#L16">models/entities/user.model.ts:16</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The role</p>
 						</div>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="clone" class="tsd-anchor"></a>
@@ -262,50 +370,6 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="extract" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> extract</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">extract<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/apiresponsedto.html" class="tsd-signature-type">ApiResponseDto</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L28">models/entities/api-response.model.ts:28</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Extract the information in this response</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/apiresponsedto.html" class="tsd-signature-type">ApiResponseDto</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="send" class="tsd-anchor"></a>
-					<h3>send</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-core/blob/85effe6/src/models/entities/api-response.model.ts#L69">models/entities/api-response.model.ts:69</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Send this response</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -342,42 +406,9 @@
 					<li class=" tsd-kind-class">
 						<a href="address.html" class="tsd-kind-icon">Address</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-has-type-parameter">
+					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="apiresponse.html" class="tsd-kind-icon">Api<wbr>Response</a>
-						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="apiresponse.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apiresponse.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apiresponse.html#exception" class="tsd-kind-icon">exception</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apiresponse.html#httpcode" class="tsd-kind-icon">http<wbr>Code</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apiresponse.html#isok" class="tsd-kind-icon">is<wbr>Ok</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="apiresponse.html#response" class="tsd-kind-icon">response</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="apiresponse.html#clone" class="tsd-kind-icon">clone</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="apiresponse.html#extract" class="tsd-kind-icon">extract</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="apiresponse.html#send" class="tsd-kind-icon">send</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="baseentity.html" class="tsd-kind-icon">Base<wbr>Entity</a>
 					</li>
@@ -405,9 +436,57 @@
 					<li class=" tsd-kind-class">
 						<a href="role.html" class="tsd-kind-icon">Role</a>
 					</li>
-					<li class=" tsd-kind-class">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
 						<a href="user.html" class="tsd-kind-icon">User</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+								<a href="user.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#authtype" class="tsd-kind-icon">auth<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#birthdate" class="tsd-kind-icon">birth<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#email" class="tsd-kind-icon">email</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#googleid" class="tsd-kind-icon">google<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="user.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#image" class="tsd-kind-icon">image</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#password" class="tsd-kind-icon">password</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#phone" class="tsd-kind-icon">phone</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#registrationdate" class="tsd-kind-icon">registration<wbr>Date</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#residenceaddress" class="tsd-kind-icon">residence<wbr>Address</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="user.html#role" class="tsd-kind-icon">role</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="user.html#clone" class="tsd-kind-icon">clone</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="../interfaces/apiresponsedto.html" class="tsd-kind-icon">Api<wbr>Response<wbr>Dto</a>
 					</li>
