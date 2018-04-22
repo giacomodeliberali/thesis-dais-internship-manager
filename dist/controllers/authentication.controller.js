@@ -108,42 +108,44 @@ let AuthenticationController = class AuthenticationController {
      */
     useLogin() {
         this.router.post('/login', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            // Check if has body
-            if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+            try {
+                // Check if has body
+                if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 400,
+                        exception: {
+                            message: "Bad request. Required parameters are 'email' and 'password'"
+                        }
+                    }).send();
+                }
+                const user = yield this.usersRepository.login(req.body.email, req.body.password);
+                if (user) {
+                    // Return a new token
+                    return new dist_1.ApiResponse({
+                        response: res,
+                        httpCode: 200,
+                        data: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
+                    }).send();
+                }
+                // Return error
                 return new dist_1.ApiResponse({
                     response: res,
-                    httpCode: 400,
+                    httpCode: 401,
                     exception: {
-                        message: "Bad request. Required parameters are 'email' and 'password'"
+                        message: "Bad login attempt",
+                        code: "auth/bad-login"
                     }
                 }).send();
             }
-            const user = yield this.usersRepository.login(req.body.email, req.body.password)
-                .catch(ex => {
+            catch (ex) {
                 // Return a new token
                 return new dist_1.ApiResponse({
                     response: res,
                     httpCode: 401,
                     exception: ex
                 }).send();
-            });
-            if (user) {
-                // Return a new token
-                return new dist_1.ApiResponse({
-                    response: res,
-                    httpCode: 200,
-                    data: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
-                }).send();
             }
-            // Return error
-            return new dist_1.ApiResponse({
-                response: res,
-                httpCode: 401,
-                exception: {
-                    message: "Bad login attempt",
-                    code: "auth/bad-login"
-                }
-            }).send();
         }));
         return this;
     }

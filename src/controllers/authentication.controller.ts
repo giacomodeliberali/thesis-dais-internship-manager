@@ -99,45 +99,46 @@ export class AuthenticationController {
    */
   private useLogin() {
     this.router.post('/login', async (req, res, next) => {
-      // Check if has body
-      if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
-        return new ApiResponse({
-          response: res,
-          httpCode: 400,
-          exception: {
-            message: "Bad request. Required parameters are 'email' and 'password'"
-          }
-        }).send();
-      }
+      try {
+        // Check if has body
+        if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
+          return new ApiResponse({
+            response: res,
+            httpCode: 400,
+            exception: {
+              message: "Bad request. Required parameters are 'email' and 'password'"
+            }
+          }).send();
+        }
 
-      const user = await this.usersRepository.login(req.body.email, req.body.password)
-        .catch(ex => {
+        const user = await this.usersRepository.login(req.body.email, req.body.password);
+
+        if (user) {
           // Return a new token
           return new ApiResponse({
             response: res,
-            httpCode: 401,
-            exception: ex
+            httpCode: 200,
+            data: sign(user.toJSON(), environment.jwtSecret)
           }).send();
-        });
+        }
 
-      if (user) {
+        // Return error
+        return new ApiResponse({
+          response: res,
+          httpCode: 401,
+          exception: {
+            message: "Bad login attempt",
+            code: "auth/bad-login"
+          }
+        }).send();
+      } catch (ex) {
         // Return a new token
         return new ApiResponse({
           response: res,
-          httpCode: 200,
-          data: sign(user.toJSON(), environment.jwtSecret)
+          httpCode: 401,
+          exception: ex
         }).send();
       }
-
-      // Return error
-      return new ApiResponse({
-        response: res,
-        httpCode: 401,
-        exception: {
-          message: "Bad login attempt",
-          code: "auth/bad-login"
-        }
-      }).send();
     });
     return this;
   }

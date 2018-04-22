@@ -9,4 +9,6 @@ class ServerDefaults {
 ServerDefaults.jwtTokenHeaderName = "token";
 /** The request.body.popertyName used to populate the decoded JWT token in baseController.useAuth() */
 ServerDefaults.authUserBodyPropertyName = "__user";
+/** The application base url */
+ServerDefaults.apiBaseUrl = "/api";
 exports.ServerDefaults = ServerDefaults;

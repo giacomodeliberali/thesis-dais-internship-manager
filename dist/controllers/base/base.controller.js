@@ -215,7 +215,7 @@ let BaseController = class BaseController {
      * Register this controller routes to the global express application
      */
     register() {
-        this.app.use(`/${this.routeName}`, this.router);
+        this.app.use(`${ServerDefaults_1.ServerDefaults.apiBaseUrl}/${this.routeName}`, this.router);
         return this;
     }
 };

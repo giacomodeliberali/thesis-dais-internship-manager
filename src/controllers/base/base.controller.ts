@@ -1,6 +1,6 @@
 import { Request, Response, Router, RequestHandler } from "express";
 import { BaseRepository } from '../../repositories';
-import { IBaseEntity, ApiResponse, IRole } from "gdl-thesis-core/dist";
+import { IBaseEntity, ApiResponse, IRole, Defaults } from "gdl-thesis-core/dist";
 import { inject, injectable, unmanaged } from "inversify";
 import { types } from "../../utils/di-types";
 import { verify, sign, decode } from 'jsonwebtoken';
@@ -211,7 +211,7 @@ export class BaseController<T extends IBaseEntity> {
      * Register this controller routes to the global express application
      */
     public register() {
-        this.app.use(`/${this.routeName}`, this.router);
+        this.app.use(`${ServerDefaults.apiBaseUrl}/${this.routeName}`, this.router);
         return this;
     }
 }
