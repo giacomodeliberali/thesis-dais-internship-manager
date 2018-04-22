@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BaseEntity | Thesis</title>
+	<title>AuthGuardService | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,127 +56,84 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="baseentity.html">BaseEntity</a>
+					<a href="authguardservice.html">AuthGuardService</a>
 				</li>
 			</ul>
-			<h1>Class BaseEntity&lt;T&gt;</h1>
+			<h1>Class AuthGuardService</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A database record entry</p>
-					</div>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="constructor.html" class="tsd-signature-type">Constructor</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">BaseEntity</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="role.html" class="tsd-signature-type">Role</a>
-									</li>
-									<li>
-										<a href="company.html" class="tsd-signature-type">Company</a>
-									</li>
-									<li>
-										<a href="user.html" class="tsd-signature-type">User</a>
-									</li>
-									<li>
-										<a href="internship.html" class="tsd-signature-type">Internship</a>
-									</li>
-									<li>
-										<a href="internshipproposal.html" class="tsd-signature-type">InternshipProposal</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+						<span class="target">AuthGuardService</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">CanActivate</span></li>
+					<li><span class="tsd-signature-type">CanActivateChild</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="baseentity.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="authguardservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="baseentity.html#_id" class="tsd-kind-icon">_id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="baseentity.html#_rowversion" class="tsd-kind-icon">_row<wbr>Version</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="baseentity.html#code" class="tsd-kind-icon">code</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Accessors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="baseentity.html#rowversion" class="tsd-kind-icon">row<wbr>Version</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="authguardservice.html#auth" class="tsd-kind-icon">auth</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="authguardservice.html#router" class="tsd-kind-icon">router</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="baseentity.html#get" class="tsd-kind-icon">get</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authguardservice.html#canactivate" class="tsd-kind-icon">can<wbr>Activate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authguardservice.html#canactivatechild" class="tsd-kind-icon">can<wbr>Activate<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="authguardservice.html#getfullpath" class="tsd-kind-icon">get<wbr>Full<wbr>Path</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Base<wbr>Entity<span class="tsd-signature-symbol">(</span>item<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="baseentity.html" class="tsd-signature-type">BaseEntity</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Auth<wbr>Guard<wbr>Service<span class="tsd-signature-symbol">(</span>auth<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authguardservice.html" class="tsd-signature-type">AuthGuardService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="constructor.html">Constructor</a>.<a href="constructor.html#constructor-1">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/constructor.model.ts#L1">app/models/entities/base/constructor.model.ts:1</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L19">app/services/auth-guard.service.ts:19</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a generic type T instance object</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> item: <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The item to assign to this instance</p>
-										</div>
-									</div>
+									<h5>auth: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="baseentity.html" class="tsd-signature-type">BaseEntity</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="authguardservice.html" class="tsd-signature-type">AuthGuardService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -184,97 +141,94 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="_id" class="tsd-anchor"></a>
-					<h3>_id</h3>
-					<div class="tsd-signature tsd-kind-icon">_id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="auth" class="tsd-anchor"></a>
+					<h3>auth</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/base-entity.model.ts#L9">app/models/entities/base/base-entity.model.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L22">app/services/auth-guard.service.ts:22</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The record identifier</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_rowversion" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _row<wbr>Version</h3>
-					<div class="tsd-signature tsd-kind-icon">_row<wbr>Version<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/base-entity.model.ts#L20">app/models/entities/base/base-entity.model.ts:20</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The record row version (for private set)</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="code" class="tsd-anchor"></a>
-					<h3>code</h3>
-					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="router" class="tsd-anchor"></a>
+					<h3>router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/base-entity.model.ts#L12">app/models/entities/base/base-entity.model.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L23">app/services/auth-guard.service.ts:23</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The record human friendly code</p>
-						</div>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="rowversion" class="tsd-anchor"></a>
-					<h3>row<wbr>Version</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> rowVersion<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/base-entity.model.ts#L15">app/models/entities/base/base-entity.model.ts:15</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>The record row version</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="get" class="tsd-anchor"></a>
-					<h3>get</h3>
+					<a name="canactivate" class="tsd-anchor"></a>
+					<h3>can<wbr>Activate</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">can<wbr>Activate<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ee8a3e2/src/app/models/entities/base/base-entity.model.ts#L25">app/models/entities/base/base-entity.model.ts:25</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L26">app/services/auth-guard.service.ts:26</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Updates this instance rowVersion with the current timestamp and return the instance</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="canactivatechild" class="tsd-anchor"></a>
+					<h3>can<wbr>Activate<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">can<wbr>Activate<wbr>Child<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L47">app/services/auth-guard.service.ts:47</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getfullpath" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Full<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Full<wbr>Path<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a8564e4/src/app/services/auth-guard.service.ts#L11">app/services/auth-guard.service.ts:11</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -292,26 +246,26 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-has-type-parameter">
-						<a href="baseentity.html" class="tsd-kind-icon">Base<wbr>Entity</a>
+					<li class="current tsd-kind-class">
+						<a href="authguardservice.html" class="tsd-kind-icon">Auth<wbr>Guard<wbr>Service</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="baseentity.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="authguardservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="baseentity.html#_id" class="tsd-kind-icon">_id</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="baseentity.html#_rowversion" class="tsd-kind-icon">_row<wbr>Version</a>
+								<a href="authguardservice.html#auth" class="tsd-kind-icon">auth</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="baseentity.html#code" class="tsd-kind-icon">code</a>
-							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-								<a href="baseentity.html#rowversion" class="tsd-kind-icon">row<wbr>Version</a>
+								<a href="authguardservice.html#router" class="tsd-kind-icon">router</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="baseentity.html#get" class="tsd-kind-icon">get</a>
+								<a href="authguardservice.html#canactivate" class="tsd-kind-icon">can<wbr>Activate</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="authguardservice.html#canactivatechild" class="tsd-kind-icon">can<wbr>Activate<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="authguardservice.html#getfullpath" class="tsd-kind-icon">get<wbr>Full<wbr>Path</a>
 							</li>
 						</ul>
 					</li>

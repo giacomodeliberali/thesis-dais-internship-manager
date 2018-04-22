@@ -23,7 +23,7 @@ gulp.task("typedoc", function () {
         .src(["src/**/*.ts"])
         .pipe(typedoc({
             module: "commonjs",
-            target: "es5",
+            target: "es",
             out: "docs/dev-docs/",
             mode: "file",
             name: "Thesis",
@@ -31,8 +31,9 @@ gulp.task("typedoc", function () {
                 "lib.es2016.d.ts",
                 "lib.dom.d.ts"
             ],
-            readme: "./redme.md",
-            experimentalDecorators: true
+            readme: "./readme.md",
+            experimentalDecorators: true,
+            ignoreCompilerErrors: true
         }));
 });
 

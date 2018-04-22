@@ -1,0 +1,20 @@
+{
+    "Dictionary": {
+        "Login": "Login"
+    },
+    "Pages": {
+        "Login": {
+            "Title": "Membro Ca' Foscari",
+            "SubTitle": "Utilizza il tuo account universitario per accedere ",
+            "CompanyTitle": "Sei un'azienda?",
+            "GotoCompanyLogin": "Oppure <a href='/login/company'>login come azienda</a>",
+            "Else": "Oppure",
+            "LoginAsCompany": "login come azienda"
+        },
+        "CompanyLogin": {
+            "Title": "Azienda",
+            "UniveTitle": "Sei un membro Ca' Foscari?",
+            "LoginAsUnive": "login come membro Ca' Foscari"
+        }
+    }
+}
