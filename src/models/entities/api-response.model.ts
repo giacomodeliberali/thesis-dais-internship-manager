@@ -1,5 +1,6 @@
 import { Constructor } from './base';
 import { Response } from 'express';
+import { ApiResponseDto } from '../interfaces';
 
 /**
  * A generic rest API response. Used in Express controllers
@@ -24,7 +25,7 @@ export class ApiResponse<T = any> extends Constructor<ApiResponse> {
     /**
      * Extract the information in this response
      */
-    private extract() {
+    private extract(): ApiResponseDto<T> {
         const content = Object.assign({}, this);
 
         // Delete the response stream
@@ -52,8 +53,8 @@ export class ApiResponse<T = any> extends Constructor<ApiResponse> {
         }
 
         // Stringify the exception
-/*         if (content.exception && typeof content.exception == "object")
-            content.exception = JSON.stringify(content.exception, replaceErrors); */
+        /*         if (content.exception && typeof content.exception == "object")
+                    content.exception = JSON.stringify(content.exception, replaceErrors); */
 
         // Populate the flag
         content.isOk = content.httpCode >= 200 && content.httpCode < 300;
