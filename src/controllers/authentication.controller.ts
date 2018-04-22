@@ -222,7 +222,13 @@ export class AuthenticationController {
             }
 
             // Pick email
-            const email: string = profile.emails[0].value;
+            let email: string;
+            try {
+              email = profile.emails[0].value;
+            } catch (ex) {
+              throw new Error("The Google profile object does not contain a valid email address");
+            }
+            const photo: string = profile.photos && profile.photos[0] ? profile.photos[0].value : null;
 
             // Find a role corresponding with its email:
             // If email ends with @stud.unive.it => Search for 'Student'
@@ -252,6 +258,7 @@ export class AuthenticationController {
               googleId: profile.id,
               name: profile.displayName,
               registrationDate: new Date(),
+              image: photo,
               role: role._id as any // To assign the reference
             } as IUser);
 
