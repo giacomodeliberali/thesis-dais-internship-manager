@@ -5,5 +5,8 @@
 
 export const environment = {
   production: false,
-  servicesBaseUrl: "http://localhost:3000"
+  servicesBaseUrl: "http://localhost:3000",
+  google: {
+    clientId: "220120198496-hkvm483iubjh5fnbrtu6kspv3kfjgat2.apps.googleusercontent.com"
+  }
 };

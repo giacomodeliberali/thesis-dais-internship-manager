@@ -1,59 +1,42 @@
 import { Routes } from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { NoAuthLayoutComponent } from './layouts/no-auth/no-auth-layout.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { RoleType } from 'gdl-thesis-core/dist';
+import { generateAuthRoute } from './helpers/generate.auth-route.helper';
 
 export const AppRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard/overview',
-        pathMatch: 'full',
-    },
-    {
-        path: '',
-        component: AdminLayoutComponent,
-        children: [{
-            path: 'dashboard',
-            loadChildren: './dashboard/dashboard.module#DashboardModule'
-        },
-        {
-            path: 'components',
-            loadChildren: './components/components.module#ComponentsModule'
-        },
-        {
-            path: 'forms',
-            loadChildren: './forms/forms.module#Forms'
-        },
-        {
-            path: 'tables',
-            loadChildren: './tables/tables.module#TablesModule'
-        },
-        {
-            path: 'charts',
-            loadChildren: './charts/charts.module#ChartsModule'
-        },
-        {
-            path: 'calendar',
-            loadChildren: './calendar/calendar.module#CalendarModule'
-        },
-        {
-            path: '',
-            loadChildren: './userpage/user.module#UserModule'
-        },
-        {
-            path: '',
-            loadChildren: './timeline/timeline.module#TimelineModule'
-        }
+        component: NoAuthLayoutComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: './no-auth/no-auth.module#NoAuthModule'
+            }
         ]
     },
     {
-        path: '',
+        path: 'auth',
+        canActivate: [
+            AuthGuardService
+        ],
         component: AuthLayoutComponent,
         children: [
-            {
-                path: 'pages',
-                loadChildren: './pages/pages.module#PagesModule'
-            }
+            /*             {
+                            path: 'dashboard',
+                            canActivate: [
+                                AuthGuardService
+                            ],
+                            data: {
+                                requiredRoles: [
+                                    RoleType.Student
+                                ]
+                            },
+                            loadChildren: './auth/dashboard/dashboard.module#DashboardModule'
+                        } */
+            generateAuthRoute('dashboard', './auth/dashboard/dashboard.module#DashboardModule', [])
         ]
     }
 ];

@@ -1,0 +1,76 @@
+<div class="logo">
+    <a href="https://www.unive.it" class="simple-text logo-mini">
+        <div class="logo-img">
+            <img src="http://venus.unive.it/r.casarin/logoVE2.PNG" />
+        </div>
+    </a>
+
+    <a href="http://www.unive.it" class="simple-text logo-normal">
+        Ca' Foscari
+    </a>
+</div>
+
+
+<div class="sidebar-wrapper">
+
+    <div class="user">
+        <div class="photo">
+            <img src="{{authService.currentUser.image || 'assets/img/faces/face-2.jpg'}}" />
+        </div>
+        <div class="info">
+            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <span>
+                    {{authService.currentUser.name}}
+                    <b class="caret"></b>
+                </span>
+            </a>
+            <div class="clearfix"></div>
+
+            <div class="collapse" id="collapseExample">
+                <ul class="nav">
+                    <li>
+                        <a href="#edit">
+                            <span class="sidebar-mini">Ep</span>
+                            <span class="sidebar-normal">Edit Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a (click)="logout()">
+                            <span class="sidebar-mini">EX</span>
+                            <span class="sidebar-normal">Esci</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuitem of menuItems">
+            <!--If is a single link-->
+            <a [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link' && canExecute(menuitem.requiredRoles)">
+                <i class="{{menuitem.icontype}}"></i>
+                <p>{{menuitem.title}}</p>
+            </a>
+            <!--If it have a submenu-->
+            <a data-toggle="collapse" href="#{{menuitem.title}}" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
+                <i class="{{menuitem.icontype}}"></i>
+                <p>{{menuitem.title}}
+                    <b class="caret"></b>
+                </p>
+            </a>
+
+            <!--Display the submenu items-->
+            <div id="{{menuitem.title}}" class="collapse" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
+                <ul class="nav">
+                    <li routerLinkActive="active" *ngFor="let childitem of menuitem.children">
+                        <a [routerLink]="[menuitem.path, childitem.path]" *ngIf="canExecute(childitem.requiredRoles)">
+                            <span class="sidebar-mini">{{childitem.ab}}</span>
+                            <span class="sidebar-normal">{{childitem.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+</div>
