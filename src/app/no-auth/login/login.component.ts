@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -66,9 +67,14 @@ export class LoginComponent implements OnInit {
     }
 
     async login() {
-        const authResponse = await this.authService.googleLogin();
-        console.log(authResponse);
-        this.router.navigate(['/auth/dashboard'])
+        try {
+            const authResponse = await this.authService.googleLogin();
+            console.log(authResponse);
+            this.router.navigate(['/auth/dashboard'])
+        } catch (ex) {
+            console.error("Login error", ex);
+            Swal(JSON.stringify(ex.error || ex))
+        }
     }
 
 
