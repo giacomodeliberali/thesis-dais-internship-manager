@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     private sidebarVisible: boolean;
     private nativeElement: Node;
 
+    public isLoading = false;
+
     constructor(
         private element: ElementRef,
         private httpClient: HttpClient,
@@ -68,12 +70,15 @@ export class LoginComponent implements OnInit {
 
     async login() {
         try {
+            this.isLoading = true;
             const authResponse = await this.authService.googleLogin();
             console.log(authResponse);
             this.router.navigate(['/auth/dashboard'])
         } catch (ex) {
             console.error("Login error", ex);
             Swal(JSON.stringify(ex.error || ex))
+        } finally {
+            this.isLoading = false;
         }
     }
 
