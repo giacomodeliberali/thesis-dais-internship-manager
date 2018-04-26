@@ -5,6 +5,9 @@ import { LockComponent } from './lock/lock.component';
 import { LoginComponent } from './login/login.component';
 import { CompanyLoginComponent } from './company-login/company-login.component';
 
+/**
+ * The routes that a not authenticated user can reach
+ */
 export const NoAuthRoutes: Routes = [
     {
         path: '',

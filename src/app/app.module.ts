@@ -23,20 +23,12 @@ import { SidebarModule } from './auth/shared/sidebar/sidebar.module';
 import { TranslateService, MissingTranslationHandler, MissingTranslationHandlerParams, TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { createTranslateLoader } from './helpers/translateLoader.factory';
+import { MyMissingTranslationHandler } from './services/my-missing-translation-handler.service';
 
-export class MyMissingTranslationHandler implements MissingTranslationHandler {
-
-    handle(params: MissingTranslationHandlerParams) {
-        console.info(`Missing translation for '${params.key}'`)
-        return `[${params.key}]`;
-    }
-}
-
-export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/globalization/', '.json');
-}
-
-
+/**
+ * The app bootstrap module
+ */
 @NgModule({
     imports: [
         BrowserModule,
@@ -74,7 +66,6 @@ export function createTranslateLoader(http: HttpClient) {
         TranslateService
     ]
 })
-
 export class AppModule extends BaseModule {
     constructor(injector: Injector) {
         super(injector);

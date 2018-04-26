@@ -2,23 +2,40 @@ import { environment } from "environments/environment";
 import { Injectable } from "@angular/core";
 import { User, ApiResponse } from 'gdl-thesis-core/dist';
 import { HttpClient } from "@angular/common/http";
+import { AuthResponse } from "../models/auth-response.interface";
+
+/** The Google API Javascript SDK */
 declare var gapi: any;
 
+/**
+ * The authentication service
+ */
 @Injectable()
 export class AuthService {
 
+    /** The current logged in [[User]] */
     public currentUser: User;
+
+    /** The current logged in user token */
     public token: string;
 
+    /** The Google API configuration */
     private oauth2: any;
 
 
+    /**
+     * Inject deps and retrive last saved token and [[User]]
+     * @param httpClient The fetch client
+     */
     constructor(private httpClient: HttpClient) {
         const cachedResponse = this.getAuthResponse();
         this.token = cachedResponse.token;
         this.currentUser = cachedResponse.user;
     }
 
+    /**
+     * Initialize the Google API SKD
+     */
     private initialize() {
         if (this.oauth2)
             return Promise.resolve(this.oauth2);
@@ -40,6 +57,9 @@ export class AuthService {
         });
     }
 
+    /**
+     * Login in the user with Google popup
+     */
     public googleLogin(): Promise<AuthResponse> {
         return this.initialize().then(async googleAuth => {
             // res => https://developers.google.com/identity/sign-in/web/reference#googleauthissignedinget            
@@ -79,6 +99,9 @@ export class AuthService {
         }) as Promise<AuthResponse>;
     }
 
+    /**
+     * Log out the current user from Google
+     */
     async googleLogout() {
         try {
             const googleAuth = await this.initialize();
@@ -91,11 +114,18 @@ export class AuthService {
         }
     }
 
+    /**
+     * Cache an [[AuthResponse]] in the local storage
+     * @param res The auth response
+     */
     private setAuthResponse(res: AuthResponse) {
         localStorage.setItem("currentUser", JSON.stringify(res.user));
         localStorage.setItem("token", res.token);
     }
 
+    /**
+     * Retrive the [[AuthResponse]] from the local storage
+     */
     private getAuthResponse(): AuthResponse {
         const strinfigiedUser = localStorage.getItem("currentUser");
         return {
@@ -104,13 +134,11 @@ export class AuthService {
         };
     }
 
+    /**
+     * Clear the local storage auth response
+     */
     private clearAuthResponse() {
         localStorage.removeItem("currentUser");
         localStorage.removeItem("token");
     }
-}
-
-interface AuthResponse {
-    user: User,
-    token: string;
 }

@@ -4,6 +4,9 @@ import { AuthService } from '../services/auth.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
 
+/**
+ * A shared module across app sections
+ */
 @NgModule({
     imports: [
         CommonModule,

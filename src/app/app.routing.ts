@@ -6,6 +6,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { RoleType } from 'gdl-thesis-core/dist';
 import { generateAuthRoute } from './helpers/generate.auth-route.helper';
 
+/**
+ * The application routes
+ */
 export const AppRoutes: Routes = [
     {
         path: '',

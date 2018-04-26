@@ -13,6 +13,9 @@ import { CompanyLoginComponent } from './company-login/company-login.component';
 import { AuthService } from '../services/auth.service';
 import { SharedModule } from '../shared/shared.module';
 
+/**
+ * The module loaded when the user is not authenticated
+ */
 @NgModule({
     imports: [
         SharedModule.forRoot(),
