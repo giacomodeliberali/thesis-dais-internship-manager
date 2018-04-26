@@ -12,11 +12,10 @@ Create an application to manage university student internships.
 - Student
 - Company
 - Professor
-- Admin
 
 **Main process**
 
-A *company* insert a internship into the platform, which must be approved by an *admin*. Once approved the internship will be published and visible by *students*.
+A *company* insert a internship into the platform, which must be approved by an *professor*. Once approved the internship will be published and visible by *students*.
 
 A *student* navigates and select a published internship. Once selected, the *student* will start a request for a internship proposal.
 
