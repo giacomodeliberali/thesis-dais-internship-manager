@@ -1,4 +1,7 @@
 {
+    "Global": {
+        "InternshipsManager": "Internship Manager"
+    },
     "Dictionary": {
         "Login": "Login"
     },

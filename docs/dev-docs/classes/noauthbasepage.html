@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SidebarComponent | Thesis</title>
+	<title>NoAuthBasePage | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="sidebarcomponent.html">SidebarComponent</a>
+					<a href="noauthbasepage.html">NoAuthBasePage</a>
 				</li>
 			</ul>
-			<h1>Class SidebarComponent</h1>
+			<h1>Class NoAuthBasePage</h1>
 		</div>
 	</div>
 </header>
@@ -70,14 +70,18 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SidebarComponent</span>
+						<span class="target">NoAuthBasePage</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="indexcomponent.html" class="tsd-signature-type">IndexComponent</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel">
 				<h3>Implements</h3>
 				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">AfterViewInit</span></li>
 					<li><span class="tsd-signature-type">OnInit</span></li>
 				</ul>
 			</section>
@@ -88,25 +92,25 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="sidebarcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="noauthbasepage.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sidebarcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sidebarcomponent.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="sidebarcomponent.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="noauthbasepage.html#element" class="tsd-kind-icon">element</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="noauthbasepage.html#nativeelement" class="tsd-kind-icon">native<wbr>Element</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="noauthbasepage.html#sidebarvisible" class="tsd-kind-icon">sidebar<wbr>Visible</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="noauthbasepage.html#today" class="tsd-kind-icon">today</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="noauthbasepage.html#togglebutton" class="tsd-kind-icon">toggle<wbr>Button</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#canexecute" class="tsd-kind-icon">can<wbr>Execute</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#isnotmobilemenu" class="tsd-kind-icon">is<wbr>Not<wbr>Mobile<wbr>Menu</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#logout" class="tsd-kind-icon">logout</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="noauthbasepage.html#checkfullpagebackgroundimage" class="tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="noauthbasepage.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="noauthbasepage.html#sidebartoggle" class="tsd-kind-icon">sidebar<wbr>Toggle</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,58 +122,75 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sidebar<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sidebarcomponent.html" class="tsd-signature-type">SidebarComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>NoAuth<wbr>Base<wbr>Page<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="noauthbasepage.html" class="tsd-signature-type">NoAuthBasePage</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L69">app/auth/shared/sidebar/sidebar.component.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L13">app/no-auth/no-auth-base-page.model.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
-								</li>
-								<li>
-									<h5>router: <span class="tsd-signature-type">Router</span></h5>
+									<h5>element: <span class="tsd-signature-type">ElementRef</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="sidebarcomponent.html" class="tsd-signature-type">SidebarComponent</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="noauthbasepage.html" class="tsd-signature-type">NoAuthBasePage</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="authservice" class="tsd-anchor"></a>
-					<h3>auth<wbr>Service</h3>
-					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="element" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> element</h3>
+					<div class="tsd-signature tsd-kind-icon">element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ElementRef</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L72">app/auth/shared/sidebar/sidebar.component.ts:72</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="menuitems" class="tsd-anchor"></a>
-					<h3>menu<wbr>Items</h3>
-					<div class="tsd-signature tsd-kind-icon">menu<wbr>Items<span class="tsd-signature-symbol">:</span> <a href="../interfaces/routeinfo.html" class="tsd-signature-type">RouteInfo</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;ROUTES</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L69">app/auth/shared/sidebar/sidebar.component.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L15">app/no-auth/no-auth-base-page.model.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="router" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
-					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<a name="nativeelement" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> native<wbr>Element</h3>
+					<div class="tsd-signature tsd-kind-icon">native<wbr>Element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Node</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L73">app/auth/shared/sidebar/sidebar.component.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L11">app/no-auth/no-auth-base-page.model.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="sidebarvisible" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> sidebar<wbr>Visible</h3>
+					<div class="tsd-signature tsd-kind-icon">sidebar<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L10">app/no-auth/no-auth-base-page.model.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="today" class="tsd-anchor"></a>
+					<h3>today</h3>
+					<div class="tsd-signature tsd-kind-icon">today<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L13">app/no-auth/no-auth-base-page.model.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="togglebutton" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> toggle<wbr>Button</h3>
+					<div class="tsd-signature tsd-kind-icon">toggle<wbr>Button<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L9">app/no-auth/no-auth-base-page.model.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,73 +198,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="canexecute" class="tsd-anchor"></a>
-					<h3>can<wbr>Execute</h3>
+					<a name="checkfullpagebackgroundimage" class="tsd-anchor"></a>
+					<h3>check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">can<wbr>Execute<span class="tsd-signature-symbol">(</span>requiredRoles<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RoleType</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L77">app/auth/shared/sidebar/sidebar.component.ts:77</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>requiredRoles: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">RoleType</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="isnotmobilemenu" class="tsd-anchor"></a>
-					<h3>is<wbr>Not<wbr>Mobile<wbr>Menu</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Not<wbr>Mobile<wbr>Menu<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L86">app/auth/shared/sidebar/sidebar.component.ts:86</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="logout" class="tsd-anchor"></a>
-					<h3>logout</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L81">app/auth/shared/sidebar/sidebar.component.ts:81</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="ngafterviewinit" class="tsd-anchor"></a>
-					<h3>ng<wbr>After<wbr>View<wbr>Init</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L105">app/auth/shared/sidebar/sidebar.component.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L19">app/no-auth/no-auth-base-page.model.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -260,7 +224,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/auth/shared/sidebar/sidebar.component.ts#L93">app/auth/shared/sidebar/sidebar.component.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L29">app/no-auth/no-auth-base-page.model.ts:29</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sidebartoggle" class="tsd-anchor"></a>
+					<h3>sidebar<wbr>Toggle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">sidebar<wbr>Toggle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/9ccb2ab/src/app/no-auth/no-auth-base-page.model.ts#L40">app/no-auth/no-auth-base-page.model.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -282,34 +263,34 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="sidebarcomponent.html" class="tsd-kind-icon">Sidebar<wbr>Component</a>
+						<a href="noauthbasepage.html" class="tsd-kind-icon">No<wbr>Auth<wbr>Base<wbr>Page</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a>
+								<a href="noauthbasepage.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="sidebarcomponent.html#router" class="tsd-kind-icon">router</a>
+								<a href="noauthbasepage.html#element" class="tsd-kind-icon">element</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="noauthbasepage.html#nativeelement" class="tsd-kind-icon">native<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="noauthbasepage.html#sidebarvisible" class="tsd-kind-icon">sidebar<wbr>Visible</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="noauthbasepage.html#today" class="tsd-kind-icon">today</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="noauthbasepage.html#togglebutton" class="tsd-kind-icon">toggle<wbr>Button</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#canexecute" class="tsd-kind-icon">can<wbr>Execute</a>
+								<a href="noauthbasepage.html#checkfullpagebackgroundimage" class="tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#isnotmobilemenu" class="tsd-kind-icon">is<wbr>Not<wbr>Mobile<wbr>Menu</a>
+								<a href="noauthbasepage.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#logout" class="tsd-kind-icon">logout</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="sidebarcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+								<a href="noauthbasepage.html#sidebartoggle" class="tsd-kind-icon">sidebar<wbr>Toggle</a>
 							</li>
 						</ul>
 					</li>
