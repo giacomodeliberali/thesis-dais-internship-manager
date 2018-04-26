@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CompanyLoginComponent } from './company-login/company-login.component';
 import { AuthService } from '../services/auth.service';
 import { SharedModule } from '../shared/shared.module';
+import { IndexComponent } from './index/index.component';
 
 /**
  * The module loaded when the user is not authenticated
@@ -28,7 +29,8 @@ import { SharedModule } from '../shared/shared.module';
         LoginComponent,
         CompanyLoginComponent,
         RegisterComponent,
-        LockComponent
+        LockComponent,
+        IndexComponent
     ]
 })
 

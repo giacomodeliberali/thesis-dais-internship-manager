@@ -62,7 +62,5 @@ export class FixedPluginComponent implements OnInit{
                 $off_canvas_sidebar.attr('data-active-color',new_color);
             }
         });
-
-        $(".badge.filter.badge-white").click();
     }
 }
