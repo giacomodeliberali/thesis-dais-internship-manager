@@ -5,7 +5,7 @@ var typedoc = require("gulp-typedoc");
 var gulpSequence = require('gulp-sequence');
 
 gulp.task('build-docs', function (cb) {
-    return exec('ng build --prod --output-path docs/app --base-href /thesis-client/app/', function (err, stdout, stderr) {
+    return exec('ng build --prod --output-path docs/app --base-href /dais-internship-manager/app/', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);

@@ -1,11 +1,11 @@
 {
-  "name": "gdl-thesis-client",
+  "name": "dais-internship-manager",
   "version": "1.0.0",
   "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "description": "The client side application of the thesis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/giacomodeliberali/thesis-client.git"
+    "url": "https://github.com/giacomodeliberali/dais-internship-manager.git"
   },
   "scripts": {
     "ng": "ng",
