@@ -4,26 +4,13 @@ import { Router, CanActivate, ActivatedRouteSnapshot, CanActivateChild } from '@
 import { AuthService } from './auth.service';
 import { RoleType } from 'gdl-thesis-core/dist';
 import { canExec } from '../helpers/can-exec.helper';
+import { getFullPath } from '../helpers/get-full-path.helper';
 
 /**
  * The Auth guard service. Used to determine if the user can access the desierd routes.
  */
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild {
-
-  /**
-   * Given a route, return it path from the top level parent (eg. auth/dashboard/stats)
-   * @param route The route
-   */
-  public static getFullPath(route: ActivatedRouteSnapshot) {
-    let path = [];
-    let current = route;
-    while (current) {
-      path.push(current.url);
-      current = current.parent;
-    }
-    return path.reverse().join('/');
-  };
 
   /**
    * Inject deps
@@ -49,15 +36,20 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     // Pick route required roles from it data property
     const requiredRoles: Array<RoleType> = route.data && route.data.requiredRoles ? route.data.requiredRoles : [];
 
-    // Check roles
-    const canActivate = canExec(this.auth.currentUser.role.type, requiredRoles);
+    let canActivate: boolean = false;
+    try {
+      // Check roles
+      canActivate = canExec(this.auth.currentUser.role.type, requiredRoles);
 
-    // Log
-    if (canActivate)
-      console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' can activate route '${AuthGuardService.getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
-    else
-      console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' cannot activate route '${AuthGuardService.getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
-
+      // Log
+      if (canActivate)
+        console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' can activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
+      else
+        console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' cannot activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
+    } catch (ex) {
+      console.log(`Exception executing 'canActivate' on route ${getFullPath(route)}`, ex);
+      canActivate = false;
+    }
     return canActivate;
   }
 

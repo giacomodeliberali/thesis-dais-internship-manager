@@ -5,6 +5,7 @@ import { NoAuthLayoutComponent } from './layouts/no-auth/no-auth-layout.componen
 import { AuthGuardService } from './services/auth-guard.service';
 import { RoleType } from 'gdl-thesis-core/dist';
 import { generateAuthRoute } from './helpers/generate.auth-route.helper';
+import { NoAuthGuardService } from './services/no-auth-guard.service';
 
 /**
  * The application routes
@@ -13,6 +14,12 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: NoAuthLayoutComponent,
+        canActivate: [
+            NoAuthGuardService
+        ],
+        canActivateChild: [
+            NoAuthGuardService
+        ],
         children: [
             {
                 path: '',

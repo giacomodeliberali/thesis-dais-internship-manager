@@ -25,6 +25,7 @@ import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from './helpers/translateLoader.factory';
 import { MyMissingTranslationHandler } from './services/my-missing-translation-handler.service';
+import { NoAuthGuardService } from './services/no-auth-guard.service';
 
 /**
  * The app bootstrap module
@@ -63,6 +64,7 @@ import { MyMissingTranslationHandler } from './services/my-missing-translation-h
     providers: [
         AuthService,
         AuthGuardService,
+        NoAuthGuardService,
         TranslateService
     ]
 })
