@@ -1,10 +1,10 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
-import { NoAuthBasePage } from '../no-auth-base-page.model';
+import { FullScreenPage } from '../../models/full-screen-page.model';
 
 declare var $: any;
 
@@ -14,7 +14,7 @@ declare var $: any;
     templateUrl: './login.component.html'
 })
 
-export class LoginComponent extends NoAuthBasePage {
+export class LoginComponent extends FullScreenPage {
 
     public isLoading: boolean = false;
 

@@ -41,5 +41,9 @@ export const AppRoutes: Routes = [
                         } */
             generateAuthRoute('dashboard', './auth/dashboard/dashboard.module#DashboardModule', [])
         ]
+    },
+    {
+        path: '**', 
+        redirectTo: '/not-found'
     }
 ];

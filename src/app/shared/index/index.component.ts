@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { NoAuthBasePage } from '../no-auth-base-page.model';
+import { FullScreenPage } from '../../models/full-screen-page.model';
 
 declare var $: any;
 
@@ -11,7 +11,7 @@ declare var $: any;
     templateUrl: './index.component.html'
 })
 
-export class IndexComponent extends NoAuthBasePage {
+export class IndexComponent extends FullScreenPage {
 
     constructor(element: ElementRef) {
         super(element);

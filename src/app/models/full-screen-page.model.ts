@@ -4,7 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 
 declare var $: any;
 
-export class NoAuthBasePage implements OnInit {
+export class FullScreenPage implements OnInit {
 
     private toggleButton;
     private sidebarVisible: boolean;
@@ -32,10 +32,11 @@ export class NoAuthBasePage implements OnInit {
         var navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
 
-        setTimeout(function () {
+        setTimeout(() => {
             // after 1000 ms we add the class animated to the login/register card
             $('.card').removeClass('card-hidden');
-        }, 700)
+        }, 700);
+
     }
     sidebarToggle() {
         var toggleButton = this.toggleButton;

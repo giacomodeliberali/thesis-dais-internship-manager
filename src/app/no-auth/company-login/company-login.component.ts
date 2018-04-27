@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
-import { NoAuthBasePage } from '../no-auth-base-page.model';
+import { FullScreenPage } from '../../models/full-screen-page.model';
 
 declare var $: any;
 
@@ -12,7 +12,7 @@ declare var $: any;
     selector: 'company-login-cmp',
     templateUrl: './company-login.component.html'
 })
-export class CompanyLoginComponent extends NoAuthBasePage {
+export class CompanyLoginComponent extends FullScreenPage {
 
 
     constructor(element: ElementRef) {

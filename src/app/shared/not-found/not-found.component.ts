@@ -3,14 +3,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FullScreenPage } from '../../models/full-screen-page.model';
 
+declare var $: any;
+
 @Component({
     moduleId: module.id,
-    selector: 'register-cmp',
-    templateUrl: './register.component.html'
+    selector: 'not-found-cmp',
+    templateUrl: './not-found.component.html'
 })
 
-export class RegisterComponent extends FullScreenPage {
-
+export class NotFoundComponent extends FullScreenPage {
     constructor(element: ElementRef) {
         super(element);
     }

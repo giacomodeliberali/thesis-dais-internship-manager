@@ -1,0 +1,31 @@
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/']" translate>Dictionary.Back</a>
+        </div>
+    </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+    <div class="full-page lock-page" data-color="" data-image="assets/img/background/campus.jpg">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+        <div class="content">
+            <form method="#" action="#">
+                <div class="card card-lock">
+                    <div class="author">
+                        <img class="avatar" src="assets/img/background/campus.jpg" alt="...">
+                    </div>
+                    <h4 translate>Pages.NotFound.Title</h4>
+                    <button type="button" class="btn btn-wd" [routerLink]="['/']" translate>Dictionary.Back</button>
+                </div>
+            </form>
+        </div>
+        <footer class="footer footer-transparent">
+            <div class="container">
+                <div class="copyright">
+                    &copy; {{today | date: 'yyyy'}} -
+                    <a href="http://www.giacomodeliberali.com">Giacomo De Liberali</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
