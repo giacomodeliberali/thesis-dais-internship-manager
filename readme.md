@@ -1,6 +1,10 @@
 # Thesis
 Author: *Giacomo De Liberali, 857174@stud.unive.it*
 
+Application url: [https://giacomodeliberali.github.io/dais-internship-manager](https://giacomodeliberali.github.io/dais-internship-manager)
+
+Reference API url: [https://giacomodeliberali.github.io/dais-internship-manager/dev-docs](https://giacomodeliberali.github.io/dais-internship-manager/dev-docs/)
+
 ## Project
 
 Create an application to manage university student internships.
