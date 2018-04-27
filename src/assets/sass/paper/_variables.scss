@@ -265,8 +265,9 @@ $select-coordinates:         50% -40px !default;
 
 $padding-zero:                   0px !default;
 
-$sidebar-width:               calc(100% - 260px) !default;
-$sidebar-mini-width:          calc(100% - 80px) !default;
+$sidebar-width:               350px !default;
+$mobile-sidebar-width:        300px !default;
+$collapsed-sidebar-width:     80px !default;
 
 $medium-dark-gray:           #AAAAAA !default;
 

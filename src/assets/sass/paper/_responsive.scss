@@ -211,7 +211,7 @@
         display: block;
         top: 0px;
         height: 100%;
-        width: 230px;
+        width: $mobile-sidebar-width;
         right: 0;
         left: auto;
         z-index: 9999;
@@ -223,11 +223,11 @@
         padding-right: 0px;
         padding-left: 0;
 
-        @include transform-translate-x(230px);
+        @include transform-translate-x($mobile-sidebar-width);
         @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
 
         .sidebar-wrapper {
-            width: 230px;
+            width: $mobile-sidebar-width;
             box-shadow: inset 1px 0px 0px 0px $medium-gray;
 
 
@@ -403,15 +403,15 @@
         .main-panel,
         .wrapper-full-page{
             left: 0;
-            @include transform-translate-x(-230px);
+            @include transform-translate-x(-$mobile-sidebar-width);
         }
 
         .navbar-fixed > div{
-            @include transform-translate-x(-230px);
+            @include transform-translate-x(-$mobile-sidebar-width);
         }
 
         .navbar .container{
-            @include transform-translate-x(-230px);
+            @include transform-translate-x(-$mobile-sidebar-width);
         }
 
         .sidebar{
@@ -511,7 +511,7 @@
         opacity: 0;
         top: 0;
         left: auto;
-        right: 230px;
+        right: $mobile-sidebar-width;
         content: "";
         z-index: 9999;
         overflow-x: hidden;
