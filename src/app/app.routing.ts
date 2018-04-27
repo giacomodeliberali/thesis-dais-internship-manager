@@ -27,23 +27,14 @@ export const AppRoutes: Routes = [
         ],
         component: AuthLayoutComponent,
         children: [
-            /*             {
-                            path: 'dashboard',
-                            canActivate: [
-                                AuthGuardService
-                            ],
-                            data: {
-                                requiredRoles: [
-                                    RoleType.Student
-                                ]
-                            },
-                            loadChildren: './auth/dashboard/dashboard.module#DashboardModule'
-                        } */
-            generateAuthRoute('dashboard', './auth/dashboard/dashboard.module#DashboardModule', [])
+            {
+                path: '',
+                loadChildren: './auth/auth.module#AuthModule'
+            }
         ]
     },
     {
-        path: '**', 
+        path: '**',
         redirectTo: '/not-found'
     }
 ];
