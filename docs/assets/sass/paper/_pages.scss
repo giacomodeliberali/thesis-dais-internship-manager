@@ -35,7 +35,7 @@
     }
 
     > .content{
-        min-height: calc(100vh - 70px);
+        //min-height: calc(100vh - 70px);
     }
 
     .full-page-background{
@@ -72,6 +72,13 @@
         background-color: rgba($filter-red, 0.7);
     }
 
+    .footer{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+    }
+
     .footer nav > ul a:not(.btn),
     .footer .copyright,
     .footer .copyright a{
@@ -84,22 +91,15 @@
 .login-page,
 .lock-page{
     > .content{
-        padding-top: 20vh;
+        //padding-top: 20vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        min-width: 400px;
     }
 }
 
-.lock-page{
-    .card-lock{
-        text-align: center;
-        width: 300px;
-        margin: 30px auto 0;
-        padding: 30px;
-        position: absolute;
-        left: 50%;
-        margin-left: -150px;
-        display: block;
-    }
-}
 .register-page{
 
     .header-text{

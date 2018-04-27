@@ -3,7 +3,8 @@
         "InternshipsManager": "Internship Manager"
     },
     "Dictionary": {
-        "Login": "Login"
+        "Login": "Login",
+        "Back": "Back"
     },
     "Pages": {
         "Login": {
@@ -18,6 +19,9 @@
             "Title": "Company",
             "UniveTitle": "Not a company?",
             "LoginAsUnive": "login as Ca' Foscari's member"
+        },
+        "NotFound": {
+            "Title": "404 - Page not found"
         }
     }
 }
