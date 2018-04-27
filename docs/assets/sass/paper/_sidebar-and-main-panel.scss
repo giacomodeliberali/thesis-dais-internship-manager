@@ -1,5 +1,5 @@
 .sidebar{
-    width: 260px;
+    width: $sidebar-width;
     display: block;
     position: fixed;
     top: 0;
@@ -86,7 +86,7 @@
         height: calc(100% - 75px);
         z-index: 4;
         box-shadow: inset -1px 0px 0px 0px $medium-gray;
-        width: 260px;
+        width: $sidebar-width;
 
         .dropdown.open .dropdown-backdrop{
             display: none !important;
@@ -344,7 +344,7 @@
     position: relative;
     z-index: 2;
     float: right;
-    width: $sidebar-width;
+    width: calc(100% - #{$sidebar-width});
     min-height: 100%;
 
     .main-content{
@@ -408,7 +408,7 @@
         }
 
         .main-panel{
-            width: $sidebar-mini-width;
+            width: calc(100% - #{$collapsed-sidebar-width});
         }
 
         .sidebar{
@@ -439,7 +439,7 @@
         }
 
         .sidebar:hover{
-            width: 260px;
+            width: $sidebar-width;
 
             .logo{
                 a.logo-normal{
@@ -449,7 +449,7 @@
             }
 
             .sidebar-wrapper{
-                width: 260px;
+                width: $sidebar-width;
 
                 > .nav li > a p,
                 > .nav [data-toggle="collapse"] ~ div > ul > li > a .sidebar-normal,
