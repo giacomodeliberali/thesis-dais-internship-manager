@@ -5,7 +5,7 @@ var typedoc = require("gulp-typedoc");
 var gulpSequence = require('gulp-sequence');
 
 gulp.task('build-docs', function (cb) {
-    return exec('ng build --prod --output-path docs/app --base-href /dais-internship-manager/app/', function (err, stdout, stderr) {
+    return exec('ng build --prod --output-path docs --base-href /dais-internship-manager/', function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
@@ -13,9 +13,9 @@ gulp.task('build-docs', function (cb) {
 });
 
 gulp.task('copy-index', function () {
-    return gulp.src('docs/app/index.html')
+    return gulp.src('docs/index.html')
         .pipe(rename('404.html'))
-        .pipe(gulp.dest('docs/app'));
+        .pipe(gulp.dest('docs'));
 });
 
 gulp.task("typedoc", function () {
