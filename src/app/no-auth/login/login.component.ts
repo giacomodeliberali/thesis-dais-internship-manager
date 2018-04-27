@@ -4,6 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+import { NoAuthBasePage } from '../no-auth-base-page.model';
 
 declare var $: any;
 
@@ -13,59 +14,16 @@ declare var $: any;
     templateUrl: './login.component.html'
 })
 
-export class LoginComponent implements OnInit {
-    test: Date = new Date();
-    private toggleButton;
-    private sidebarVisible: boolean;
-    private nativeElement: Node;
+export class LoginComponent extends NoAuthBasePage {
 
-    public isLoading = false;
+    public isLoading: boolean = false;
 
     constructor(
-        private element: ElementRef,
-        private httpClient: HttpClient,
+        element: ElementRef,
         private authService: AuthService,
         private router: Router) {
 
-        this.nativeElement = element.nativeElement;
-        this.sidebarVisible = false;
-    }
-    checkFullPageBackgroundImage() {
-        var $page = $('.full-page');
-        var image_src = $page.data('image');
-
-        if (image_src !== undefined) {
-            var image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>'
-            $page.append(image_container);
-        }
-    };
-
-    ngOnInit() {
-        this.checkFullPageBackgroundImage();
-
-        var navbar: HTMLElement = this.element.nativeElement;
-        this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
-
-        setTimeout(function () {
-            // after 1000 ms we add the class animated to the login/register card
-            $('.card').removeClass('card-hidden');
-        }, 700)
-    }
-    sidebarToggle() {
-        var toggleButton = this.toggleButton;
-        var body = document.getElementsByTagName('body')[0];
-        var sidebar = document.getElementsByClassName('navbar-collapse')[0];
-        if (this.sidebarVisible == false) {
-            setTimeout(function () {
-                toggleButton.classList.add('toggled');
-            }, 500);
-            body.classList.add('nav-open');
-            this.sidebarVisible = true;
-        } else {
-            this.toggleButton.classList.remove('toggled');
-            this.sidebarVisible = false;
-            body.classList.remove('nav-open');
-        }
+        super(element);
     }
 
     async login() {
@@ -76,7 +34,22 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/auth/dashboard'])
         } catch (ex) {
             console.error("Login error", ex);
-            Swal(JSON.stringify(ex.error || ex))
+            if (ex.error == "popup_blocked_by_browser")
+                return Swal(
+                    'Popup bloccato',
+                    'Il tuo browser ha impedito al sistema di aprire il popup di login. Ti preghiamo di riprovare nuovamento il login!',
+                    'warning');
+
+            if (ex.error == "popup_closed_by_user")
+                return Swal(
+                    'Login annullato',
+                    'Hai annullato il login',
+                    'warning');
+
+            Swal(
+                'Login non riuscito',
+                ex.error.exception.message,
+                'error');
         } finally {
             this.isLoading = false;
         }

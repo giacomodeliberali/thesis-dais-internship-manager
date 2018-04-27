@@ -43,7 +43,6 @@
       "../node_modules/bootstrap-switch/dist/js/bootstrap-switch.js",
       "../node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.js",
       "../node_modules/jasny-bootstrap/dist/js/jasny-bootstrap.min.js",
-      "../src/assets/js/sweetalert2.js",
       "../src/assets/js/jquery.validate.min.js"
     ],
     "environmentSource": "environments/environment.ts",
