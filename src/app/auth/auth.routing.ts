@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 
-import { generateAuthRoute } from '../helpers/generate.auth-route.helper';
+import { generateAuthRouteModule } from '../helpers/generate.auth-route.helper';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 /**
  * The routes that an authenticated user can reach
@@ -9,12 +10,28 @@ export const AuthRoutes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'dashboard'
+        redirectTo: 'internships'
     },
     {
         path: '',
         children: [
-            generateAuthRoute('dashboard', './auth/dashboard/dashboard.module#DashboardModule', []),
+            generateAuthRouteModule('internships', './internships/internships.module#InternshipsModule', []),
+        ]
+    },
+    {
+        path: '',
+        children: [
+            generateAuthRouteModule('user', './user/user.module#UserModule', []),
         ]
     }
 ];
+
+
+/**
+ * 
+
+    logout() {
+        this.authService.googleLogout();
+        this.router.navigate(['/']);
+    }
+ */

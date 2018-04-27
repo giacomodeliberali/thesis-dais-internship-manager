@@ -26,33 +26,33 @@ export interface ChildrenItems {
 // Menu Items
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/auth/dashboard',
-        title: 'Dashboard',
+        path: '/auth/internships',
+        title: 'Pages.Internships.Title',
         type: 'sub',
         icontype: 'ti-panel',
         children: [
             {
                 path: 'overview',
-                title: 'Overview',
+                title: 'Pages.Internships.Overview.Title',
                 ab: 'O'
             },
             {
                 path: 'stats',
-                title: 'Stats',
+                title: 'Dictionary.Stats',
                 ab: 'S'
             }
         ]
     },
     {
         path: '/charts',
-        title: 'Charts',
+        title: 'Dictionary.Charts',
         type: 'link',
         icontype: 'ti-gift'
 
     },
     {
         path: '/calendar',
-        title: 'Calendar',
+        title: 'Dictionary.Calendar',
         type: 'link',
         icontype: 'ti-calendar'
     }
@@ -69,18 +69,13 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     public menuItems: RouteInfo[] = ROUTES;
 
     constructor(
-        public authService: AuthService,
-        private router: Router) {
-        console.log(authService.currentUser);
+        public authService: AuthService) {
     }
 
     canExecute(requiredRoles: Array<RoleType>) {
-        return canExec(this.authService.currentUser.role.type, requiredRoles);
-    }
-
-    logout() {
-        this.authService.googleLogout();
-        this.router.navigate(['/']);
+        if (this.authService.currentUser)
+            return canExec(this.authService.currentUser.role.type, requiredRoles);
+        return false
     }
 
     isNotMobileMenu() {
@@ -101,12 +96,16 @@ export class SidebarComponent implements AfterViewInit, OnInit {
             $('html').addClass('perfect-scrollbar-off');
         }
     }
-    
+
     ngAfterViewInit() {
         const $sidebarParent = $('.sidebar .nav > li.active .collapse li.active > a').parent().parent().parent();
 
         const collapseId = $sidebarParent.siblings('a').attr("href");
 
         $(collapseId).collapse("show");
+    }
+
+    public getTemplateString(str: string): string {
+        return str.replace(/./g, '-');
     }
 }

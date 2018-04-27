@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 
 import { OverviewComponent } from './overview/overview.component';
 import { StatsComponent } from './stats/stats.component';
+import { generateAuthRoute } from '../../helpers/generate.auth-route.helper';
 
-export const DashboardRoutes: Routes = [
+export const InternshipsRoutes: Routes = [
     {
         path: '',
         pathMatch: 'full',
@@ -12,15 +13,8 @@ export const DashboardRoutes: Routes = [
     {
         path: '',
         children: [
-            {
-                path: 'overview',
-                component: OverviewComponent
-            },
-            {
-                path: 'stats',
-                component: StatsComponent
-
-            }
+            generateAuthRoute('overview', OverviewComponent),
+            generateAuthRoute('stats', StatsComponent)
         ]
     }
 ];

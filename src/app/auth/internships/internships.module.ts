@@ -5,15 +5,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { OverviewComponent } from './overview/overview.component';
 import { StatsComponent } from './stats/stats.component';
-import { DashboardRoutes } from './dashboard.routing';
+import { InternshipsRoutes } from './internships.routing';
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(DashboardRoutes),
+        RouterModule.forChild(InternshipsRoutes),
         FormsModule
     ],
-    declarations: [OverviewComponent, StatsComponent]
+    declarations: [
+        OverviewComponent,
+        StatsComponent
+    ]
 })
-
-export class DashboardModule {}
+export class InternshipsModule { }

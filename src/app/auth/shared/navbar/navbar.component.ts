@@ -1,7 +1,11 @@
 import { Component, OnInit, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { ROUTES } from '../sidebar/sidebar.component';
+import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
+import { TranslateService } from '@ngx-translate/core';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 var misc: any = {
     navbar_menu_visible: 0,
@@ -17,23 +21,31 @@ declare var $: any;
 })
 
 export class NavbarComponent implements OnInit {
-    private listTitles: any[];
-    location: Location;
+
     private nativeElement: Node;
     private toggleButton;
     private sidebarVisible: boolean;
 
+    public title: Observable<string>;
+
     @ViewChild("navbar-cmp") button;
 
-    constructor(location: Location, private renderer: Renderer, private element: ElementRef) {
-        this.location = location;
+    constructor(
+        private location: Location,
+        private renderer: Renderer,
+        private element: ElementRef,
+        private translateService: TranslateService,
+        private router: Router) {
+
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+
+        this.router.events.subscribe(e => {
+            this.getTitle();
+        });
     }
 
     ngOnInit() {
-        this.listTitles = ROUTES.filter(listTitle => listTitle);
-
         var navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
         if ($('body').hasClass('sidebar-mini')) {
@@ -99,28 +111,24 @@ export class NavbarComponent implements OnInit {
     }
 
     getTitle() {
-        var titlee = this.location.prepareExternalUrl(this.location.path());
-        if (titlee.charAt(0) === '#') {
-            titlee = titlee.slice(2);
-        }
-        for (var item = 0; item < this.listTitles.length; item++) {
-            var parent = this.listTitles[item];
-            if (parent.path === titlee) {
-                return parent.title;
-            } else if (parent.children) {
-                var children_from_url = titlee.split("/")[2];
-                for (var current = 0; current < parent.children.length; current++) {
-                    if (parent.children[current].path === children_from_url) {
-                        return parent.children[current].title;
+        let currentRouteTitle: string = 'Pages.User.ViewProfile';
+
+        ROUTES.forEach(r => {
+            if (r.path == this.location.path()) {
+                currentRouteTitle = r.title;
+                return true;
+            }
+
+
+            if (r.children) {
+                for (let index in r.children) {
+                    if (`${r.path}/${r.children[index].path}` == this.location.path()) {
+                        currentRouteTitle = r.children[index].title;
+                        return true;
                     }
                 }
             }
-        }
-        return 'Dashboard';
-    }
-
-    getPath() {
-        // console.log(this.location);
-        return this.location.prepareExternalUrl(this.location.path());
+        });
+        this.title = this.translateService.get(currentRouteTitle);
     }
 }

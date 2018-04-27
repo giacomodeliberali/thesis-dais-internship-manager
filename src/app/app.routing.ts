@@ -4,7 +4,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { NoAuthLayoutComponent } from './layouts/no-auth/no-auth-layout.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { RoleType } from 'gdl-thesis-core/dist';
-import { generateAuthRoute } from './helpers/generate.auth-route.helper';
+import { generateAuthRouteModule } from './helpers/generate.auth-route.helper';
 import { NoAuthGuardService } from './services/no-auth-guard.service';
 
 /**

@@ -4,7 +4,9 @@
     },
     "Dictionary": {
         "Login": "Login",
-        "Back": "Back"
+        "Back": "Back",
+        "Profile": "Profile",
+        "Logout": "Logout"
     },
     "Pages": {
         "Login": {

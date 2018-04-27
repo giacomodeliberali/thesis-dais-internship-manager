@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
 import { SharedModule } from '../shared/shared.module';
 import { AuthRoutes } from './auth.routing';
 
@@ -23,5 +22,4 @@ import { AuthRoutes } from './auth.routing';
 
     ]
 })
-
 export class AuthModule { }

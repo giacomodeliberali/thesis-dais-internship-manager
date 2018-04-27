@@ -4,7 +4,11 @@
     },
     "Dictionary": {
         "Login": "Login",
-        "Back": "Indietro"
+        "Back": "Indietro",
+        "Profile": "Profilo",
+        "Logout": "Logout",
+        "Dashboard": "Dashboard",
+        "User": "Utente"
     },
     "Pages": {
         "Login": {
@@ -22,6 +26,15 @@
         },
         "NotFound": {
             "Title": "404 - Pagina non trovata"
+        },
+        "Internships": {
+            "Title": "Tirocini",
+            "Overview": {
+                "Title": "Dashboard"
+            }
+        },
+        "User": {
+            "ViewProfile": "Visualizza profilo"
         }
     }
 }

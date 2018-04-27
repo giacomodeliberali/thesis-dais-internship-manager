@@ -1,11 +1,11 @@
 <div class="logo">
-    <a href="https://www.unive.it" class="simple-text logo-mini">
+    <a class="simple-text logo-mini">
         <div class="logo-img">
             <img src="http://venus.unive.it/r.casarin/logoVE2.PNG" />
         </div>
     </a>
 
-    <a href="http://www.unive.it" class="simple-text logo-normal">
+    <a class="simple-text logo-normal">
         <small translate>Global.InternshipsManager</small>
     </a>
 </div>
@@ -15,10 +15,10 @@
 
     <div class="user">
         <div class="photo">
-            <img src="{{authService.currentUser.image || 'assets/img/faces/face-2.jpg'}}" />
+            <img src="{{authService.currentUser.image || 'assets/img/default-profile-image.png'}}" />
         </div>
         <div class="info">
-            <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+            <a data-toggle="collapse" href="#user" class="collapsed">
                 <span>
                     {{authService.currentUser.name}}
                     <b class="caret"></b>
@@ -26,18 +26,18 @@
             </a>
             <div class="clearfix"></div>
 
-            <div class="collapse" id="collapseExample">
+            <div class="collapse" id="user">
                 <ul class="nav">
-                    <li>
-                        <a href="#edit">
-                            <span class="sidebar-mini">Ep</span>
-                            <span class="sidebar-normal">Edit Profile</span>
+                    <li routerLinkActive="active">
+                        <a [routerLink]="'/auth/user/view'">
+                            <span class="sidebar-mini">P</span>
+                            <span class="sidebar-normal" translate>Dictionary.Profile</span>
                         </a>
                     </li>
-                    <li>
-                        <a (click)="logout()">
-                            <span class="sidebar-mini">EX</span>
-                            <span class="sidebar-normal">Esci</span>
+                    <li routerLinkActive="active">
+                        <a [routerLink]="'/auth/user/logout'">
+                            <span class="sidebar-mini">X</span>
+                            <span class="sidebar-normal" translate>Dictionary.Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -49,23 +49,23 @@
             <!--If is a single link-->
             <a [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link' && canExecute(menuitem.requiredRoles)">
                 <i class="{{menuitem.icontype}}"></i>
-                <p>{{menuitem.title}}</p>
+                <p>{{menuitem.title | translate}}</p>
             </a>
             <!--If it have a submenu-->
-            <a data-toggle="collapse" href="#{{menuitem.title}}" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
+            <a data-toggle="collapse" href="#{{getTemplateString(menuitem.title)}}" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
                 <i class="{{menuitem.icontype}}"></i>
-                <p>{{menuitem.title}}
+                <p>{{menuitem.title | translate}}
                     <b class="caret"></b>
                 </p>
             </a>
 
             <!--Display the submenu items-->
-            <div id="{{menuitem.title}}" class="collapse" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
+            <div id="{{getTemplateString(menuitem.title)}}" class="collapse" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
                 <ul class="nav">
                     <li routerLinkActive="active" *ngFor="let childitem of menuitem.children">
                         <a [routerLink]="[menuitem.path, childitem.path]" *ngIf="canExecute(childitem.requiredRoles)">
                             <span class="sidebar-mini">{{childitem.ab}}</span>
-                            <span class="sidebar-normal">{{childitem.title}}</span>
+                            <span class="sidebar-normal">{{childitem.title | translate}}</span>
                         </a>
                     </li>
                 </ul>
