@@ -4,7 +4,9 @@
 
 <head>
     <script>
-        window.location.replace("/dais-internship-manager/app");
+        var locationUrl = location.href;
+        var angularRoutePath = locationUrl.split('dais-internship-manager')[1];
+        window.location.href = "/dais-internship-manager" + angularRoutePath;
     </script>
 </head>
 
