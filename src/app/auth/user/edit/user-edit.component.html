@@ -3,8 +3,46 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="card card-calendar">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{user.name}}
+                        </h4>
+                    </div>
                     <div class="card-content">
-                        User edit
+                        <div class="form-group">
+                            <label translate>Dictionary.Email</label>
+                            <p class="form-control-static">{{user.email}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.RegistrationDate</label>
+                            <p class="form-control-static">{{user.registrationDate | date}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Role</label>
+                            <p class="form-control-static">{{('Roles.' + user.role.name) | translate}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Phones</label>
+                            <div *ngIf="phones.length > 0">
+                                <div class="form-group" *ngFor="let phone of phones; let i = index; let last = last">
+                                    <div class="row">
+                                        <div class="{{last ? 'col-xs-10' : 'col-xs-12'}}" style="max-width: 300px">
+                                            <input type="text" placeholder="{{'Dictionary.Phone' | translate}}" class="form-control" [(ngModel)]="phones[i].value">
+                                        </div>
+                                        <div class="col-xs-2" *ngIf="last">
+                                            <button type="button" class="btn btn-icon btn-simple" (click)="addPhone()">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/user'" translate>Dictionary.Cancel</button>
+                            <button type="button" class="btn btn-success" (click)="save()" translate>Dictionary.Save</button>
+                        </div>
                     </div>
                 </div>
             </div>

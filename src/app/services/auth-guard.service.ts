@@ -48,7 +48,6 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
         console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' cannot activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
     } catch (ex) {
       console.log(`Exception executing 'canActivate' on route ${getFullPath(route)}`, ex);
-      canActivate = false;
     }
     return canActivate;
   }

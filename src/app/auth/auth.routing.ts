@@ -25,13 +25,3 @@ export const AuthRoutes: Routes = [
         ]
     }
 ];
-
-
-/**
- * 
-
-    logout() {
-        this.authService.googleLogout();
-        this.router.navigate(['/']);
-    }
- */

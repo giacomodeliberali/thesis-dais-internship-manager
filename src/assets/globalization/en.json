@@ -6,7 +6,23 @@
         "Login": "Login",
         "Back": "Back",
         "Profile": "Profile",
-        "Logout": "Logout"
+        "Logout": "Logout",
+        "Dashboard": "Dashboard",
+        "User": "User",
+        "Edit": "Edit",
+        "Add": "Add",
+        "Phone": "Phone",
+        "None": "None",
+        "Italian": "Italian",
+        "English": "English",
+        "Language": "Language",
+        "Email": "Email",
+        "RegistrationDate": "Registration date",
+        "Role": "Role",
+        "Phones": "Phones",
+        "Save": "Save",
+        "Cancel": "Cancel",
+        "ChangeAppLanguage": "Change app language"
     },
     "Pages": {
         "Login": {
@@ -24,6 +40,29 @@
         },
         "NotFound": {
             "Title": "404 - Page not found"
+        },
+        "Internships": {
+            "Title": "Internships",
+            "Overview": {
+                "Title": "Dashboard"
+            }
+        },
+        "User": {
+            "ViewProfile": "View profile"
         }
+    },
+    "Alerts": {
+        "Save": {
+            "Success": {
+                "Message": "Save done"
+            },
+            "Error": {
+                "Message": "Cannot save"
+            }
+        }
+    },
+    "Roles": {
+        "Student": "Student",
+        "Professor": "Professor"
     }
 }

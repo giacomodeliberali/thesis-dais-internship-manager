@@ -1,8 +1,7 @@
 import { environment } from "environments/environment";
 import { Injectable } from "@angular/core";
-import { User, ApiResponse } from 'gdl-thesis-core/dist';
+import { User, ApiResponseDto, AuthResponse } from 'gdl-thesis-core/dist';
 import { HttpClient } from "@angular/common/http";
-import { AuthResponse } from "../models/auth-response.interface";
 
 /** The Google API Javascript SDK */
 declare var gapi: any;
@@ -30,7 +29,18 @@ export class AuthService {
     constructor(private httpClient: HttpClient) {
         const cachedResponse = this.getAuthResponse();
         this.token = cachedResponse.token;
-        this.currentUser = cachedResponse.user;
+        this.currentUser = cachedResponse.user ? new User(cachedResponse.user) : null;
+    }
+
+    public updateUser(user: User) {
+        if (this.currentUser && this.token) {
+            this.currentUser = new User(user);
+            this.setAuthResponse({
+                token: this.token,
+                user: this.currentUser,
+                isNew: false
+            });
+        }
     }
 
     /**
@@ -81,12 +91,12 @@ export class AuthService {
                 const accessToken = googleUser.getAuthResponse().access_token;
 
 
-                const apiResponse: ApiResponse<AuthResponse> = await this.httpClient.post(`${environment.servicesBaseUrl}/auth/google`, {
+                const apiResponse: ApiResponseDto<AuthResponse> = await this.httpClient.post(`${environment.servicesBaseUrl}/auth/google`, {
                     access_token: accessToken
                 }).toPromise() as any;
 
 
-                this.currentUser = apiResponse.data.user;
+                this.currentUser = new User(apiResponse.data.user);
                 localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
                 localStorage.setItem("token", apiResponse.data.token);
 
@@ -132,7 +142,8 @@ export class AuthService {
         const strinfigiedUser = localStorage.getItem("currentUser");
         return {
             user: strinfigiedUser ? JSON.parse(strinfigiedUser) : null,
-            token: localStorage.getItem("token")
+            token: localStorage.getItem("token"),
+            isNew: false
         };
     }
 

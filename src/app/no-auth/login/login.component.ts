@@ -30,8 +30,10 @@ export class LoginComponent extends FullScreenPage {
         try {
             this.isLoading = true;
             const authResponse = await this.authService.googleLogin();
-            console.log(authResponse);
-            this.router.navigate(['/auth/dashboard'])
+            if (authResponse.isNew)
+                this.router.navigate(['/auth/user/edit'])
+            else
+                this.router.navigate(['/auth'])
         } catch (ex) {
             console.error("Login error", ex);
             if (ex.error == "popup_blocked_by_browser")

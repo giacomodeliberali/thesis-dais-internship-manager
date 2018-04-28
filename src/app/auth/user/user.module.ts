@@ -23,4 +23,6 @@ import { UserEditComponent } from './edit/user-edit.component';
     ]
 })
 
-export class UserModule { }
+export class UserModule { 
+    
+}

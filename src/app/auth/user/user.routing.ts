@@ -11,9 +11,8 @@ export const UserRoutes: Routes = [{
     children: [
         {
             path: '',
-            redirectTo: 'view'
+            component: UserViewComponent
         },
-        generateAuthRoute('view', UserViewComponent),
         generateAuthRoute('edit', UserEditComponent),
         generateAuthRoute('logout', UserLogoutComponent)
     ]

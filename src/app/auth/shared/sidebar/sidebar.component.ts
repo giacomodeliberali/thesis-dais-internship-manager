@@ -42,8 +42,8 @@ export const ROUTES: RouteInfo[] = [
                 ab: 'S'
             }
         ]
-    },
-    {
+    }
+/*     {
         path: '/charts',
         title: 'Dictionary.Charts',
         type: 'link',
@@ -55,7 +55,7 @@ export const ROUTES: RouteInfo[] = [
         title: 'Dictionary.Calendar',
         type: 'link',
         icontype: 'ti-calendar'
-    }
+    } */
 ];
 
 @Component({

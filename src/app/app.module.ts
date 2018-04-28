@@ -26,6 +26,13 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from './helpers/translateLoader.factory';
 import { MyMissingTranslationHandler } from './services/my-missing-translation-handler.service';
 import { NoAuthGuardService } from './services/no-auth-guard.service';
+import { UserService } from './services/user.service';
+import { BaseService } from './services/base.service';
+import { NotificationHelper } from './helpers/notification.helper';
+
+export function createNotificationHelper(translateService: TranslateService) {
+    return new NotificationHelper(translateService);
+}
 
 /**
  * The app bootstrap module
@@ -36,24 +43,11 @@ import { NoAuthGuardService } from './services/no-auth-guard.service';
         FormsModule,
         RouterModule.forRoot(AppRoutes),
         HttpModule,
+        SharedModule.forRoot(),
         SidebarModule,
         NavbarModule,
         FooterModule,
         FixedPluginModule,
-        SharedModule.forRoot(),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: createTranslateLoader,
-                deps: [
-                    HttpClient
-                ]
-            },
-            missingTranslationHandler: {
-                provide: MissingTranslationHandler,
-                useClass: MyMissingTranslationHandler
-            }
-        })
     ],
     declarations: [
         AppComponent,
@@ -65,11 +59,22 @@ import { NoAuthGuardService } from './services/no-auth-guard.service';
         AuthService,
         AuthGuardService,
         NoAuthGuardService,
-        TranslateService
+        BaseService,
+        UserService,
+        {
+            provide: NotificationHelper,
+            useFactory: createNotificationHelper,
+            deps: [
+                TranslateService
+            ]
+        }
     ]
 })
 export class AppModule extends BaseModule {
-    constructor(injector: Injector) {
+    constructor(
+        injector: Injector, 
+        notificationHelper: NotificationHelper) {
+
         super(injector);
     }
 }
