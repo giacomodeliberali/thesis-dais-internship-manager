@@ -1,6 +1,4 @@
 export * from './base';
-export * from './api-response.model';
-export * from './repository-response.model';
 export * from './address.model';
 export * from './company.model';
 export * from './internship-proposal.model';

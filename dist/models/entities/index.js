@@ -4,8 +4,6 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./base"));
-__export(require("./api-response.model"));
-__export(require("./repository-response.model"));
 __export(require("./address.model"));
 __export(require("./company.model"));
 __export(require("./internship-proposal.model"));
