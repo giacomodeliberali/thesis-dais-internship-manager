@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AuthGuardService | Thesis</title>
+	<title>UserEditComponent | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,36 +56,22 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="authguardservice.html">AuthGuardService</a>
+					<a href="usereditcomponent.html">UserEditComponent</a>
 				</li>
 			</ul>
-			<h1>Class AuthGuardService</h1>
+			<h1>Class UserEditComponent</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The Auth guard service. Used to determine if the user can access the desierd routes.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AuthGuardService</span>
+						<span class="target">UserEditComponent</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">CanActivate</span></li>
-					<li><span class="tsd-signature-type">CanActivateChild</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -95,21 +81,24 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="authguardservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="usereditcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="authguardservice.html#auth" class="tsd-kind-icon">auth</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="authguardservice.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="usereditcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="usereditcomponent.html#phones" class="tsd-kind-icon">phones</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="usereditcomponent.html#router" class="tsd-kind-icon">router</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="usereditcomponent.html#user" class="tsd-kind-icon">user</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="usereditcomponent.html#userservice" class="tsd-kind-icon">user<wbr>Service</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authguardservice.html#canactivate" class="tsd-kind-icon">can<wbr>Activate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authguardservice.html#canactivatechild" class="tsd-kind-icon">can<wbr>Activate<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="usereditcomponent.html#addphone" class="tsd-kind-icon">add<wbr>Phone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="usereditcomponent.html#save" class="tsd-kind-icon">save</a></li>
 							</ul>
 						</section>
 					</div>
@@ -121,13 +110,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Auth<wbr>Guard<wbr>Service<span class="tsd-signature-symbol">(</span>auth<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authguardservice.html" class="tsd-signature-type">AuthGuardService</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>User<wbr>Edit<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, userService<span class="tsd-signature-symbol">: </span><a href="userservice.html" class="tsd-signature-type">UserService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="usereditcomponent.html" class="tsd-signature-type">UserEditComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/auth-guard.service.ts#L13">app/services/auth-guard.service.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L20">app/auth/user/edit/user-edit.component.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -138,23 +127,16 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>auth: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The <a href="authservice.html">AuthService</a></p>
-										</div>
-									</div>
+									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>userService: <a href="userservice.html" class="tsd-signature-type">UserService</a></h5>
 								</li>
 								<li>
 									<h5>router: <span class="tsd-signature-type">Router</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The Router</p>
-										</div>
-									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="authguardservice.html" class="tsd-signature-type">AuthGuardService</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="usereditcomponent.html" class="tsd-signature-type">UserEditComponent</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -162,97 +144,109 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="auth" class="tsd-anchor"></a>
-					<h3>auth</h3>
-					<div class="tsd-signature tsd-kind-icon">auth<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
+					<a name="authservice" class="tsd-anchor"></a>
+					<h3>auth<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/auth-guard.service.ts#L21">app/services/auth-guard.service.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L26">app/auth/user/edit/user-edit.component.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="phones" class="tsd-anchor"></a>
+					<h3>phones</h3>
+					<div class="tsd-signature tsd-kind-icon">phones<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L20">app/auth/user/edit/user-edit.component.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The <a href="authservice.html">AuthService</a></p>
+							<p>An array of phones to overcome =&gt; <a href="https://github.com/angular/angular.js/issues/13327">https://github.com/angular/angular.js/issues/13327</a></p>
 						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="router" class="tsd-anchor"></a>
-					<h3>router</h3>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/auth-guard.service.ts#L22">app/services/auth-guard.service.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L28">app/auth/user/edit/user-edit.component.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="user" class="tsd-anchor"></a>
+					<h3>user</h3>
+					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">User</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L17">app/auth/user/edit/user-edit.component.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The Router</p>
+							<p>A copy of the user current in edit</p>
 						</div>
 					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="userservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> user<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="userservice.html" class="tsd-signature-type">UserService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L27">app/auth/user/edit/user-edit.component.ts:27</a></li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="canactivate" class="tsd-anchor"></a>
-					<h3>can<wbr>Activate</h3>
+					<a name="addphone" class="tsd-anchor"></a>
+					<h3>add<wbr>Phone</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">can<wbr>Activate<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Phone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/auth-guard.service.ts#L29">app/services/auth-guard.service.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L40">app/auth/user/edit/user-edit.component.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return true if the current user can navigate the given route, false otherwise.</p>
+									<p>Add a new phone at the end</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The route the user is navigating to</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="canactivatechild" class="tsd-anchor"></a>
-					<h3>can<wbr>Activate<wbr>Child</h3>
+					<a name="save" class="tsd-anchor"></a>
+					<h3>save</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">can<wbr>Activate<wbr>Child<span class="tsd-signature-symbol">(</span>route<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRouteSnapshot</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/auth-guard.service.ts#L59">app/services/auth-guard.service.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/edit/user-edit.component.ts#L47">app/auth/user/edit/user-edit.component.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return true if the current user can navigate the children of the route, false otherwise.</p>
+									<p>Save the user and redirect back</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>route: <span class="tsd-signature-type">ActivatedRouteSnapshot</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The route the user is navigating to</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -271,22 +265,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="authguardservice.html" class="tsd-kind-icon">Auth<wbr>Guard<wbr>Service</a>
+						<a href="usereditcomponent.html" class="tsd-kind-icon">User<wbr>Edit<wbr>Component</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="authguardservice.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="usereditcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="authguardservice.html#auth" class="tsd-kind-icon">auth</a>
+								<a href="usereditcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="authguardservice.html#router" class="tsd-kind-icon">router</a>
+								<a href="usereditcomponent.html#phones" class="tsd-kind-icon">phones</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="usereditcomponent.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="usereditcomponent.html#user" class="tsd-kind-icon">user</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="usereditcomponent.html#userservice" class="tsd-kind-icon">user<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authguardservice.html#canactivate" class="tsd-kind-icon">can<wbr>Activate</a>
+								<a href="usereditcomponent.html#addphone" class="tsd-kind-icon">add<wbr>Phone</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authguardservice.html#canactivatechild" class="tsd-kind-icon">can<wbr>Activate<wbr>Child</a>
+								<a href="usereditcomponent.html#save" class="tsd-kind-icon">save</a>
 							</li>
 						</ul>
 					</li>

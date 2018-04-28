@@ -4,7 +4,25 @@
     },
     "Dictionary": {
         "Login": "Login",
-        "Back": "Indietro"
+        "Back": "Indietro",
+        "Profile": "Profilo",
+        "Logout": "Logout",
+        "Dashboard": "Dashboard",
+        "User": "Utente",
+        "Edit": "Modifica",
+        "Add": "Aggiungi",
+        "Phone": "Telefono",
+        "None": "Nessuno",
+        "Italian": "Italiano",
+        "English": "Inglese",
+        "Language": "Lingua",
+        "Email": "Email",
+        "RegistrationDate": "Data registrazione",
+        "Role": "Ruolo",
+        "Phones": "Recapiti telefonici",
+        "Save": "Salva",
+        "Cancel": "Annulla",
+        "ChangeAppLanguage": "Cambia la lingua dell'applicazione"
     },
     "Pages": {
         "Login": {
@@ -22,6 +40,29 @@
         },
         "NotFound": {
             "Title": "404 - Pagina non trovata"
+        },
+        "Internships": {
+            "Title": "Tirocini",
+            "Overview": {
+                "Title": "Dashboard"
+            }
+        },
+        "User": {
+            "ViewProfile": "Visualizza profilo"
         }
+    },
+    "Alerts": {
+        "Save": {
+            "Success": {
+                "Message": "Salvataggio avvenuto"
+            },
+            "Error": {
+                "Message": "Non è stato possibile completare l'operazione"
+            }
+        }
+    },
+    "Roles": {
+        "Student": "Studente",
+        "Professor": "Professore"
     }
 }

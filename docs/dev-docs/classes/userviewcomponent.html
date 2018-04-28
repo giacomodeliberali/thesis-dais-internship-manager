@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MyMissingTranslationHandler | Thesis</title>
+	<title>UserViewComponent | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="mymissingtranslationhandler.html">MyMissingTranslationHandler</a>
+					<a href="userviewcomponent.html">UserViewComponent</a>
 				</li>
 			</ul>
-			<h1>Class MyMissingTranslationHandler</h1>
+			<h1>Class UserViewComponent</h1>
 		</div>
 	</div>
 </header>
@@ -70,14 +70,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MyMissingTranslationHandler</span>
+						<span class="target">UserViewComponent</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">MissingTranslationHandler</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -85,36 +79,124 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="userviewcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="userviewcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="userviewcomponent.html#currentlanguage" class="tsd-kind-icon">current<wbr>Language</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="userviewcomponent.html#translateservice" class="tsd-kind-icon">translate<wbr>Service</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="mymissingtranslationhandler.html#handle" class="tsd-kind-icon">handle</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="userviewcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="userviewcomponent.html#onchangelanguage" class="tsd-kind-icon">on<wbr>Change<wbr>Language</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="handle" class="tsd-anchor"></a>
-					<h3>handle</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">handle<span class="tsd-signature-symbol">(</span>params<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">MissingTranslationHandlerParams</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>User<wbr>View<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, translateService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TranslateService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="userviewcomponent.html" class="tsd-signature-type">UserViewComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/services/my-missing-translation-handler.service.ts#L5">app/services/my-missing-translation-handler.service.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L15">app/auth/user/view/user-view.component.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>params: <span class="tsd-signature-type">MissingTranslationHandlerParams</span></h5>
+									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>translateService: <span class="tsd-signature-type">TranslateService</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="userviewcomponent.html" class="tsd-signature-type">UserViewComponent</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authservice" class="tsd-anchor"></a>
+					<h3>auth<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L18">app/auth/user/view/user-view.component.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="currentlanguage" class="tsd-anchor"></a>
+					<h3>current<wbr>Language</h3>
+					<div class="tsd-signature tsd-kind-icon">current<wbr>Language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L15">app/auth/user/view/user-view.component.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="translateservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> translate<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">translate<wbr>Service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TranslateService</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L19">app/auth/user/view/user-view.component.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ngoninit" class="tsd-anchor"></a>
+					<h3>ng<wbr>OnInit</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnInit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L30">app/auth/user/view/user-view.component.ts:30</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="onchangelanguage" class="tsd-anchor"></a>
+					<h3>on<wbr>Change<wbr>Language</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Change<wbr>Language<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/3dc8397/src/app/auth/user/view/user-view.component.ts#L24">app/auth/user/view/user-view.component.ts:24</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -133,10 +215,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="mymissingtranslationhandler.html" class="tsd-kind-icon">My<wbr>Missing<wbr>Translation<wbr>Handler</a>
+						<a href="userviewcomponent.html" class="tsd-kind-icon">User<wbr>View<wbr>Component</a>
 						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="userviewcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="userviewcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="userviewcomponent.html#currentlanguage" class="tsd-kind-icon">current<wbr>Language</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="userviewcomponent.html#translateservice" class="tsd-kind-icon">translate<wbr>Service</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="mymissingtranslationhandler.html#handle" class="tsd-kind-icon">handle</a>
+								<a href="userviewcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="userviewcomponent.html#onchangelanguage" class="tsd-kind-icon">on<wbr>Change<wbr>Language</a>
 							</li>
 						</ul>
 					</li>
