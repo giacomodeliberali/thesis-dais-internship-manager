@@ -1,6 +1,7 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { IRole, Defaults } from "gdl-thesis-core/dist";
 import { normalizeToJson, normalizeSchema } from "./base";
+import { IRole } from "../models/interfaces";
+import { Defaults } from "gdl-thesis-core/dist";
 
 /** The [[Role]] mongoose schema */
 export const RoleSchema: Schema = new Schema({
@@ -15,4 +16,4 @@ export const RoleSchema: Schema = new Schema({
 normalizeSchema(RoleSchema);
 
 /** The [[RoleModel]] mongoose schema model  */
-export const RoleModel = model<IRole>("Role", RoleSchema, "roles");
+export const RoleModel = model<IRole>("Role", RoleSchema, Defaults.collectionsName.roles);

@@ -1,9 +1,10 @@
 import { BaseRepository } from "./base";
-import { Defaults, ICompany, Company } from "gdl-thesis-core/dist";
+import { Defaults, Company } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { CompanyModel } from "../schemas/company.schema";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
+import { ICompany } from "../models/interfaces";
 
 /**
  * The [[Company]] repository

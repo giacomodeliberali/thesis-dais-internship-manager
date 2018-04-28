@@ -1,6 +1,5 @@
 import { Request, Response, Router, RequestHandler } from "express";
 import { BaseRepository } from '../../repositories';
-import { IBaseEntity, ApiResponse, IRole, Defaults } from "gdl-thesis-core/dist";
 import { inject, injectable, unmanaged } from "inversify";
 import { types } from "../../utils/di-types";
 import { verify, sign, decode } from 'jsonwebtoken';
@@ -9,6 +8,8 @@ import { RequestParamHandler } from "express-serve-static-core";
 import { ServerDefaults } from "../../ServerDefaults";
 import { adminScope } from "../../utils/auth/scopes";
 import { CurdOptions } from "../../models/interfaces/crud-options.interface";
+import { IBaseEntity } from "../../models/interfaces";
+import { ApiResponse } from "../../models/api-response.model";
 
 /**
  * The base controller with CRUD and authentication
@@ -37,7 +38,12 @@ export class BaseController<T extends IBaseEntity> {
         @unmanaged() private app: any) {
     }
 
-    private useMiddleware(middleware: Array<RequestHandler>) {
+
+    /**
+     * Allow to use middleware for all methods
+     * @param middleware The middleware to use for all methods
+     */
+    public useMiddleware(...middleware: Array<RequestHandler>) {
         if (middleware && middleware.length) {
             this.router.use(middleware);
         }
@@ -53,8 +59,8 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useCrud(options?: CurdOptions) {
         return this
-            .useMiddleware(options ? options.middleware : null)
-            .useCreate(options && options.createUpdate ? options.createUpdate.middleware : null)
+            .useCreate(options && options.create ? options.create.middleware : null)
+            .useUpdate(options && options.update ? options.update.middleware : null)
             .useRead(options && options.read ? options.read.middleware : null)
             .useDelete(options && options.delete ? options.delete.middleware : null);
     }
@@ -65,10 +71,9 @@ export class BaseController<T extends IBaseEntity> {
      * A user scope can be specified using a scope middleware.
      */
     public useCreate(middleware?: Array<RequestHandler>) {
-        this.useMiddleware(middleware);
-        this.router.post('/', async (req, res) => {
+        this.router.post('/', middleware || [], async (req: Request, res: Response) => {
             console.log(`POST [${this.routeName}]`);
-            this.baseRepository.update(req.body)
+            this.baseRepository.create(req.body)
                 .then(result => {
                     return new ApiResponse({
                         data: result,
@@ -88,13 +93,38 @@ export class BaseController<T extends IBaseEntity> {
     }
 
     /**
+     * Attach to the current route the update operation
+     * 
+     * A user scope can be specified using a scope middleware.
+     */
+    public useUpdate(middleware?: Array<RequestHandler>) {
+        this.router.put('/', middleware || [], async (req: Request, res: Response) => {
+            console.log(`PUT [${this.routeName}]`);
+            this.baseRepository.update(req.body)
+                .then(result => {
+                    return new ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                }).catch(ex => {
+                    return new ApiResponse({
+                        data: null,
+                        httpCode: 500,
+                        response: res,
+                        exception: ex
+                    }).send();
+                });
+        });
+        return this;
+    }
+    /**
      * Attach to the current route the read all and ready by id operation
      * 
      * A user scope can be specified using a scope middleware.
      */
     public useRead(middleware?: Array<RequestHandler>) {
-        this.useMiddleware(middleware);
-        this.router.get('/', (req, res) => {
+        this.router.get('/', middleware || [], async (req: Request, res: Response) => {
             console.log(`GET [${this.routeName}/]`);
             return this.baseRepository.find()
                 .then(value => {
@@ -113,7 +143,7 @@ export class BaseController<T extends IBaseEntity> {
                 });
         });
 
-        this.router.get('/:id', (req, res) => {
+        this.router.get('/:id', middleware || [], async (req: Request, res: Response) => {
             console.log(`GET [${this.routeName}/${req.params.id}]`);
             this.baseRepository.get(req.params.id)
                 .then(result => {
@@ -140,8 +170,7 @@ export class BaseController<T extends IBaseEntity> {
      * A user scope can be specified using a scope middleware.
      */
     public useDelete(middleware?: Array<RequestHandler>) {
-        this.useMiddleware(middleware);
-        this.router.delete('/:id', async (req, res) => {
+        this.router.delete('/:id', middleware || [], async (req: Request, res: Response) => {
             console.log(`DELETE [${this.routeName}/${req.params.id}]`);
             this.baseRepository.delete(req.params.id)
                 .then(result => {
@@ -186,14 +215,20 @@ export class BaseController<T extends IBaseEntity> {
                     return new ApiResponse({
                         response: res,
                         httpCode: 401,
-                        exception: "Invalid token. Unauthorized"
+                        exception: {
+                            message: "Invalid token. Unauthorized",
+                            code: "auth/user-unauthorized"
+                        }
                     }).send();
                 } else {
                     // Token not found, throw an auth error
                     return new ApiResponse({
                         response: res,
                         httpCode: 401,
-                        exception: "Unauthorized"
+                        exception: {
+                            message: "Missing token. Unauthorized",
+                            code: "auth/user-unauthorized"
+                        }
                     }).send();
                 }
             } catch (ex) {

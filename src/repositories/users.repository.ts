@@ -1,9 +1,10 @@
 import { BaseRepository } from "./base";
-import { Defaults, IUser, User, RoleType } from "gdl-thesis-core/dist";
+import { Defaults, User, RoleType } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
 import { UserModel } from "../schemas/user.schema";
+import { IUser } from "../models/interfaces";
 const bcrypt = require('bcrypt');
 
 /**
@@ -98,6 +99,23 @@ export class UsersRepository extends BaseRepository<IUser, User> {
                 error: ex
             });
         }
+    }
+
+    /**
+     * Update the own user profile
+     * @param user The user to update
+     */
+    public async updateOwn(user: User): Promise<IUser> {
+        return this.model.find({ _id: user.id })
+            .update({
+                $set: {
+                    phone: user.phone
+                }
+            }).then(u => {
+                return this.findOne({ _id: user.id });
+            }).catch(ex => {
+                return Promise.reject(ex);
+            });
     }
 
 }

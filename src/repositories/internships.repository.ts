@@ -1,9 +1,10 @@
 import { BaseRepository } from "./base";
-import { Defaults, IInternship, Internship } from "gdl-thesis-core/dist";
+import { Defaults, Internship } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { InternshipModel } from "../schemas/internship.schema";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
+import { IInternship } from "../models/interfaces";
 
 /**
  * The [[Internship]] repository

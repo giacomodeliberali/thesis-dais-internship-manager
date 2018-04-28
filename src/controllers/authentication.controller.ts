@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import { types } from "../utils/di-types";
 import { verify, sign, decode } from "jsonwebtoken";
 import { environment } from "../environment";
-import { ApiResponse, User, IRole, IUser } from "gdl-thesis-core/dist";
+import { User } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../ServerDefaults";
 import { UsersRepository, RolesRepository } from "../repositories";
 import * as passport from 'passport';
@@ -11,6 +11,8 @@ import { use as passportUse } from 'passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
 import { RoleType } from "gdl-thesis-core/dist";
+import { ApiResponse } from "../models/api-response.model";
+import { IRole, IUser } from "../models/interfaces";
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
 /**
  * The Auth controller
@@ -55,7 +57,7 @@ export class AuthenticationController {
    */
   private useTokenDecode() {
     this.router.get('/token/decode', async (req, res, next) => {
-      const token = req.headers['token'] as string;
+      const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
       if (token) {
         try {
           const isValid = verify(token, environment.jwtSecret);
@@ -211,14 +213,23 @@ export class AuthenticationController {
         clientID: environment.googleOAuth.clientId,
         clientSecret: environment.googleOAuth.clientSecret
       },
-        async (accessToken: string, refreshToken: string, profile: any, next: (error: any, user?: User) => void) => {
+        async (accessToken: string, refreshToken: string, profile: any, next: (error: any, userData?: { user: User, isNew: boolean }) => void) => {
           // Login was successful
           try {
+            let userData: {
+              user: User,
+              isNew: boolean
+            } = null;
+
             // Check if user exist
-            const existingUser = await this.usersRepository.findOne({ "googleId": profile.id });
+            const existingUser = await this.usersRepository.findOne({ googleId: profile.id });
             if (existingUser) {
               // User exists, return it
-              return next(null, existingUser.toJSON());
+              userData = {
+                user: existingUser.toJSON(),
+                isNew: false
+              };
+              return next(null, userData);
             }
 
             // Pick email
@@ -266,7 +277,11 @@ export class AuthenticationController {
               return next({ message: "Unknown error occur while creating the new user." });
 
             // Return the new user
-            next(null, newUser.toJSON());
+            userData = {
+              user: newUser.toJSON(),
+              isNew: true
+            };
+            next(null, userData);
           } catch (error) {
             // Return the error
             next(error);
@@ -276,7 +291,7 @@ export class AuthenticationController {
 
 
     this.router.post('/google', async (req, res, next) => {
-      passport.authenticate('google-plus-token', function (error, user) {
+      passport.authenticate('google-plus-token', function (error, userData: { user: User, isNew: boolean }) {
         if (error)
           return new ApiResponse({
             response: res,
@@ -284,7 +299,7 @@ export class AuthenticationController {
             exception: error
           }).send();
 
-        if (!user)
+        if (!userData)
           return new ApiResponse({
             response: res,
             httpCode: 400,
@@ -297,8 +312,9 @@ export class AuthenticationController {
           response: res,
           httpCode: 200,
           data: {
-            user: user,
-            token: sign(user, environment.jwtSecret)
+            user: userData.user,
+            isNew: userData.isNew,
+            token: sign(userData.user, environment.jwtSecret)
           }
         }).send();
       })(req, res);

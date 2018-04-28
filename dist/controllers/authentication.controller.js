@@ -25,12 +25,13 @@ const inversify_1 = require("inversify");
 const di_types_1 = require("../utils/di-types");
 const jsonwebtoken_1 = require("jsonwebtoken");
 const environment_1 = require("../environment");
-const dist_1 = require("gdl-thesis-core/dist");
+const ServerDefaults_1 = require("../ServerDefaults");
 const repositories_1 = require("../repositories");
 const passport = require("passport");
 const passport_1 = require("passport");
 const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
-const dist_2 = require("gdl-thesis-core/dist");
+const dist_1 = require("gdl-thesis-core/dist");
+const api_response_model_1 = require("../models/api-response.model");
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
 /**
  * The Auth controller
@@ -66,18 +67,18 @@ let AuthenticationController = class AuthenticationController {
      */
     useTokenDecode() {
         this.router.get('/token/decode', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            const token = req.headers['token'];
+            const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
             if (token) {
                 try {
                     const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret);
                     if (isValid)
-                        return new dist_1.ApiResponse({
+                        return new api_response_model_1.ApiResponse({
                             response: res,
                             httpCode: 200,
                             data: jsonwebtoken_1.decode(token)
                         }).send();
                     else
-                        return new dist_1.ApiResponse({
+                        return new api_response_model_1.ApiResponse({
                             response: res,
                             httpCode: 200,
                             data: {
@@ -86,7 +87,7 @@ let AuthenticationController = class AuthenticationController {
                         }).send();
                 }
                 catch (ex) {
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 500,
                         exception: ex
@@ -94,7 +95,7 @@ let AuthenticationController = class AuthenticationController {
                 }
             }
             else {
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 400,
                     exception: "Bad request"
@@ -111,7 +112,7 @@ let AuthenticationController = class AuthenticationController {
             try {
                 // Check if has body
                 if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 400,
                         exception: {
@@ -122,14 +123,14 @@ let AuthenticationController = class AuthenticationController {
                 const user = yield this.usersRepository.login(req.body.email, req.body.password);
                 if (user) {
                     // Return a new token
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 200,
                         data: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
                     }).send();
                 }
                 // Return error
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 401,
                     exception: {
@@ -140,7 +141,7 @@ let AuthenticationController = class AuthenticationController {
             }
             catch (ex) {
                 // Return a new token
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 401,
                     exception: ex
@@ -157,7 +158,7 @@ let AuthenticationController = class AuthenticationController {
             try {
                 // Check if has body
                 if (!req.body || (req.body && (!req.body.password || !req.body.email))) {
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 400,
                         exception: {
@@ -168,13 +169,13 @@ let AuthenticationController = class AuthenticationController {
                 // Set the authType to local
                 req.body.authType = auth_type_enum_1.AuthType.Local;
                 // Find 'Company' role
-                const role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Company, "Company");
+                const role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Company, "Company");
                 req.body.role = role.id;
                 // Register the user
                 const user = yield this.usersRepository.register(req.body);
                 if (user) {
                     // Return a new token
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 200,
                         data: {
@@ -184,7 +185,7 @@ let AuthenticationController = class AuthenticationController {
                     }).send();
                 }
                 // Return a new token
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 500,
                     exception: {
@@ -194,7 +195,7 @@ let AuthenticationController = class AuthenticationController {
             }
             catch (ex) {
                 // Return a new token
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 500,
                     exception: ex
@@ -212,11 +213,16 @@ let AuthenticationController = class AuthenticationController {
         }, (accessToken, refreshToken, profile, next) => __awaiter(this, void 0, void 0, function* () {
             // Login was successful
             try {
+                let userData = null;
                 // Check if user exist
-                const existingUser = yield this.usersRepository.findOne({ "googleId": profile.id });
+                const existingUser = yield this.usersRepository.findOne({ googleId: profile.id });
                 if (existingUser) {
                     // User exists, return it
-                    return next(null, existingUser.toJSON());
+                    userData = {
+                        user: existingUser.toJSON(),
+                        isNew: false
+                    };
+                    return next(null, userData);
                 }
                 // Pick email
                 let email;
@@ -234,13 +240,13 @@ let AuthenticationController = class AuthenticationController {
                 let role = null;
                 if (email.endsWith("@stud.unive.it")) {
                     // Student
-                    role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Student, "Student");
+                    role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Student, "Student");
                     if (!role)
                         return next({ message: "Cannot get or create a valid role entry for 'Student'" });
                 }
                 else if (email.endsWith("@unive.it")) {
                     // Professor
-                    role = yield this.rolesRepository.getOrCreateOne(dist_2.RoleType.Professor, "Professor");
+                    role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Professor, "Professor");
                     if (!role)
                         return next({ message: "Cannot get or create a valid role entry for 'Professor'" });
                 }
@@ -260,7 +266,11 @@ let AuthenticationController = class AuthenticationController {
                 if (!newUser)
                     return next({ message: "Unknown error occur while creating the new user." });
                 // Return the new user
-                next(null, newUser.toJSON());
+                userData = {
+                    user: newUser.toJSON(),
+                    isNew: true
+                };
+                next(null, userData);
             }
             catch (error) {
                 // Return the error
@@ -268,27 +278,28 @@ let AuthenticationController = class AuthenticationController {
             }
         })));
         this.router.post('/google', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-            passport.authenticate('google-plus-token', function (error, user) {
+            passport.authenticate('google-plus-token', function (error, userData) {
                 if (error)
-                    return new dist_1.ApiResponse({
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 401,
                         exception: error
                     }).send();
-                if (!user)
-                    return new dist_1.ApiResponse({
+                if (!userData)
+                    return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 400,
                         exception: {
                             message: "Invalid parameter 'access_token'"
                         }
                     }).send();
-                return new dist_1.ApiResponse({
+                return new api_response_model_1.ApiResponse({
                     response: res,
                     httpCode: 200,
                     data: {
-                        user: user,
-                        token: jsonwebtoken_1.sign(user, environment_1.environment.jwtSecret)
+                        user: userData.user,
+                        isNew: userData.isNew,
+                        token: jsonwebtoken_1.sign(userData.user, environment_1.environment.jwtSecret)
                     }
                 }).send();
             })(req, res);
@@ -303,7 +314,7 @@ let AuthenticationController = class AuthenticationController {
     handleMissingRoutes() {
         // Add 404 handler
         this.app.all('*', (req, res) => {
-            return new dist_1.ApiResponse({
+            return new api_response_model_1.ApiResponse({
                 data: null,
                 exception: {
                     message: "Route not found"

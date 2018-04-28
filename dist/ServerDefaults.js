@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class ServerDefaults {
 }
 /** The JWT header token name */
-ServerDefaults.jwtTokenHeaderName = "token";
+ServerDefaults.jwtTokenHeaderName = "authentication";
 /** The request.body.popertyName used to populate the decoded JWT token in baseController.useAuth() */
 ServerDefaults.authUserBodyPropertyName = "__user";
 /** The api base url */

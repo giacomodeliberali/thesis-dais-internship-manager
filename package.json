@@ -29,7 +29,7 @@
     "cors": "^2.8.4",
     "express": "^4.15.5",
     "express-session": "^1.15.6",
-    "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git",
+    "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git#master",
     "inversify": "^4.11.1",
     "jsonwebtoken": "^8.2.1",
     "mongodb": "^3.0.5",

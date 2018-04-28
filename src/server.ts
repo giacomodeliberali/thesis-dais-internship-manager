@@ -10,7 +10,6 @@ import * as cors from 'cors';
 import { UsersController } from "./controllers/users.controller";
 import { UsersRepository, BaseRepository, CompaniesRepository, InternshipsRepository, InternshipsProposalsRepository } from "./repositories";
 import { Db, MongoClient, ObjectID } from "mongodb";
-import { ApiResponse, IUser, IRole, ICompany, IInternship, IInternshipProposal } from "gdl-thesis-core/dist";
 import { container } from "./utils/di-container";
 
 
@@ -32,6 +31,8 @@ import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
 import { AuthenticationController } from "./controllers/authentication.controller";
 import { adminScope, companyScope, studentScope, professorScope } from "./utils/auth/scopes";
 import { CurdOptions } from "./models/interfaces/crud-options.interface";
+import { IUser, IRole, ICompany, IInternship, IInternshipProposal } from "./models/interfaces";
+import { ApiResponse } from "./models/api-response.model";
 
 /**
  * Create Express server.
@@ -100,9 +101,14 @@ mongoose.connect(environment.connectionString).then(client => {
   const usersController = container
     .resolve(UsersController)
     .useAuth()
-    .useCrud({
-      middleware: [adminScope]
-    })
+
+    .useUpdateOwn()
+    .useGetByRoles([adminScope])
+
+    .useCreate()
+    .useRead([adminScope])
+    .useDelete([adminScope])
+    
     .register();
 
   const rolesController = container

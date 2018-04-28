@@ -1,9 +1,10 @@
 import { BaseRepository } from "./base";
-import { Defaults, IRole, RoleType, Role } from "gdl-thesis-core/dist";
+import { Defaults, RoleType, Role } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { RoleModel } from "../schemas/role.schema";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
+import { IRole } from "../models/interfaces";
 
 /**
  * The [[Role]] repository

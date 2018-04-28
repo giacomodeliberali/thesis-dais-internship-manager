@@ -1,7 +1,8 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { Defaults, IInternship } from "gdl-thesis-core/dist";
+import { Defaults } from "gdl-thesis-core/dist";
 import { normalizeToJson, normalizeSchema } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
+import { IInternship } from "../models/interfaces";
 
 /** The [[Internship]] mongoose schema */
 export const InternshipSchema: Schema = new Schema({

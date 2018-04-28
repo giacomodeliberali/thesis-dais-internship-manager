@@ -1,5 +1,5 @@
-import { IBaseEntity } from 'gdl-thesis-core/dist';
 import { Schema } from 'mongoose';
+import { IBaseEntity } from '../../models/interfaces';
 /**
  * Ensure returned object has property id instead of _id and __v
  * @param doc The original document

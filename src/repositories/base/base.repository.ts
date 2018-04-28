@@ -1,7 +1,8 @@
-import { IBaseEntity, RepositoryResponse, Query, Defaults, BaseEntity } from "gdl-thesis-core/dist";
+import { Defaults, BaseEntity } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType } from "mongoose";
+import { IBaseEntity, RepositoryQuery } from "../../models/interfaces";
 
 @injectable()
 export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = any, Dto extends BaseEntity<Dto> = any> {
@@ -41,7 +42,7 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
      * Creates a new item
      * @param item The item to create
      */
-    private async create(item: Dto): Promise<MongooseDocumentOfDto> {
+    async create(item: Dto): Promise<MongooseDocumentOfDto> {
         return this.model.create(item).then(result => {
             if (result && result._id)
                 return this.model.findById(result._id);
@@ -86,7 +87,7 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
      * Return all elements matching the specified query
      * @param query The query. If not specified return the collection elements
      */
-    async find(query?: Query<Dto>): Promise<MongooseDocumentOfDto[]> {
+    async find(query?: RepositoryQuery<Dto>): Promise<MongooseDocumentOfDto[]> {
         return this.model.find(query || {});
     }
 
@@ -94,7 +95,7 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
      * Return a the first element matching the specified query
      * @param query The query. If not specified return the first collection element
      */
-    async findOne(query?: Query<Dto>): Promise<MongooseDocumentOfDto> {
+    async findOne(query?: RepositoryQuery<Dto>): Promise<MongooseDocumentOfDto> {
         return this.model.findOne(query);
     }
 }

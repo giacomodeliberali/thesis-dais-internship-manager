@@ -1,10 +1,11 @@
 import { Document, Schema, Model, model, SchemaType } from "mongoose";
-import { IUser, Defaults } from "gdl-thesis-core/dist";
 import { normalizeToJson, normalizeSchema, normalizeToObject } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 import { RoleModel } from "./role.schema";
 import { ObjectID } from "bson";
 import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
+import { IUser } from "../models/interfaces";
+import { Defaults } from "gdl-thesis-core/dist";
 const bcrypt = require('bcrypt');
 
 /** The [[User]] mongoose schema */

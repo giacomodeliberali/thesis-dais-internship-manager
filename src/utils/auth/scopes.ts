@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
-import { ApiResponse, User, RoleType } from "gdl-thesis-core/dist";
+import { User, RoleType } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../../ServerDefaults";
+import { ApiResponse } from "../../models/api-response.model";
 
 /**
  * Check if the current request has a body property with the decoded JWT information.

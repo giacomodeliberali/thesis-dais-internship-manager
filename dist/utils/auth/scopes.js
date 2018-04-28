@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const dist_1 = require("gdl-thesis-core/dist");
 const ServerDefaults_1 = require("../../ServerDefaults");
+const api_response_model_1 = require("../../models/api-response.model");
 /**
  * Check if the current request has a body property with the decoded JWT information.
  * If this value exists and its 'role' property has value it gets returned, otherwise
@@ -15,7 +16,7 @@ function checkBodyUser(request, response) {
     const user = request.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName];
     if (user) {
         if (!user.role)
-            return new dist_1.ApiResponse({
+            return new api_response_model_1.ApiResponse({
                 response: response,
                 httpCode: 500,
                 exception: {
@@ -26,7 +27,7 @@ function checkBodyUser(request, response) {
         return user;
     }
     else {
-        return new dist_1.ApiResponse({
+        return new api_response_model_1.ApiResponse({
             response: response,
             httpCode: 500,
             exception: {
@@ -53,7 +54,7 @@ function adminScope(request, response, next) {
         }
     }
     // Return Unauthorized
-    return new dist_1.ApiResponse({
+    return new api_response_model_1.ApiResponse({
         response: response,
         httpCode: 401,
         exception: {
@@ -80,7 +81,7 @@ function companyScope(request, response, next) {
         }
     }
     // Return Unauthorized
-    return new dist_1.ApiResponse({
+    return new api_response_model_1.ApiResponse({
         response: response,
         httpCode: 401,
         exception: {
@@ -107,7 +108,7 @@ function studentScope(request, response, next) {
         }
     }
     // Return Unauthorized
-    return new dist_1.ApiResponse({
+    return new api_response_model_1.ApiResponse({
         response: response,
         httpCode: 401,
         exception: {
@@ -134,7 +135,7 @@ function professorScope(request, response, next) {
         }
     }
     // Return Unauthorized
-    return new dist_1.ApiResponse({
+    return new api_response_model_1.ApiResponse({
         response: response,
         httpCode: 401,
         exception: {

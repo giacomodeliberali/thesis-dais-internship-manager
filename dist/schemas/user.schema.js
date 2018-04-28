@@ -9,10 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const dist_1 = require("gdl-thesis-core/dist");
 const base_1 = require("./base");
 const autopopulate = require("mongoose-autopopulate");
 const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
+const dist_1 = require("gdl-thesis-core/dist");
 const bcrypt = require('bcrypt');
 /** The [[User]] mongoose schema */
 exports.UserSchema = new mongoose_1.Schema({

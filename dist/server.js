@@ -9,7 +9,6 @@ const cors = require("cors");
  */
 const users_controller_1 = require("./controllers/users.controller");
 const repositories_1 = require("./repositories");
-const dist_1 = require("gdl-thesis-core/dist");
 const di_container_1 = require("./utils/di-container");
 const mongoose = require("mongoose");
 // Schemas
@@ -27,6 +26,7 @@ const internship_schema_1 = require("./schemas/internship.schema");
 const internship_proposal_schema_1 = require("./schemas/internship-proposal.schema");
 const authentication_controller_1 = require("./controllers/authentication.controller");
 const scopes_1 = require("./utils/auth/scopes");
+const api_response_model_1 = require("./models/api-response.model");
 /**
  * Create Express server.
  */
@@ -45,7 +45,7 @@ app.set('json spaces', 2);
 // Add error handling middleware
 app.use((err, req, res, next) => {
     if (req.xhr) {
-        return new dist_1.ApiResponse({
+        return new api_response_model_1.ApiResponse({
             data: null,
             exception: err,
             httpCode: 500,
@@ -83,9 +83,11 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     const usersController = di_container_1.container
         .resolve(users_controller_1.UsersController)
         .useAuth()
-        .useCrud({
-        middleware: [scopes_1.adminScope]
-    })
+        .useUpdateOwn()
+        .useGetByRoles([scopes_1.adminScope])
+        .useCreate()
+        .useRead([scopes_1.adminScope])
+        .useDelete([scopes_1.adminScope])
         .register();
     const rolesController = di_container_1.container
         .resolve(roles_controller_1.RolesController)

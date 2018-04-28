@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { IInternshipProposal } from "gdl-thesis-core/dist";
 import { BaseController } from "./base/base.controller";
 import { inject, injectable } from "inversify";
 import { InternshipsProposalsRepository } from "../repositories";
 import { types } from "../utils/di-types";
+import { IInternshipProposal } from "../models/interfaces";
 
 /**
  * The [[InternshipProposal]] controller
