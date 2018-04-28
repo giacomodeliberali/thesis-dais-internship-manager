@@ -48,7 +48,7 @@ export class LoginComponent extends FullScreenPage {
 
             Swal(
                 'Login non riuscito',
-                ex.error.exception.message,
+                ex && ex.error && ex.error.exception ? ex.error.exception.message : ex.error,
                 'error');
         } finally {
             this.isLoading = false;

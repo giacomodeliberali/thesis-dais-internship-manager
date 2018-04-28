@@ -49,6 +49,8 @@ export class AuthService {
                     }).then(async (googleAuth) => {
                         this.oauth2 = googleAuth;
                         resolve(this.oauth2);
+                    }).catch(ex => {
+                        reject(ex);
                     });
                 });
             } catch (ex) {
