@@ -95,6 +95,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#app" class="tsd-kind-icon">app</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#rolesrepository" class="tsd-kind-icon">roles<wbr>Repository</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#router" class="tsd-kind-icon">router</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#usersrepository" class="tsd-kind-icon">users<wbr>Repository</a></li>
 							</ul>
@@ -104,10 +105,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authenticationcontroller.html#handlemissingroutes" class="tsd-kind-icon">handle<wbr>Missing<wbr>Routes</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authenticationcontroller.html#register" class="tsd-kind-icon">register</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authenticationcontroller.html#useallcustom" class="tsd-kind-icon">use<wbr>All<wbr>Custom</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#usedecode" class="tsd-kind-icon">use<wbr>Decode</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#usegoogleoauth" class="tsd-kind-icon">use<wbr>GoogleOAuth</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#uselogin" class="tsd-kind-icon">use<wbr>Login</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="authenticationcontroller.html#useregister" class="tsd-kind-icon">use<wbr>Register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#useregister" class="tsd-kind-icon">use<wbr>Register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="authenticationcontroller.html#usetokendecode" class="tsd-kind-icon">use<wbr>Token<wbr>Decode</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,13 +120,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Authentication<wbr>Controller<span class="tsd-signature-symbol">(</span>usersRepository<span class="tsd-signature-symbol">: </span><a href="usersrepository.html" class="tsd-signature-type">UsersRepository</a>, app<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authenticationcontroller.html" class="tsd-signature-type">AuthenticationController</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Authentication<wbr>Controller<span class="tsd-signature-symbol">(</span>usersRepository<span class="tsd-signature-symbol">: </span><a href="usersrepository.html" class="tsd-signature-type">UsersRepository</a>, rolesRepository<span class="tsd-signature-symbol">: </span><a href="rolesrepository.html" class="tsd-signature-type">RolesRepository</a>, app<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authenticationcontroller.html" class="tsd-signature-type">AuthenticationController</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L17">controllers/authentication.controller.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L24">controllers/authentication.controller.ts:24</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -137,6 +138,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>usersRepository: <a href="usersrepository.html" class="tsd-signature-type">UsersRepository</a></h5>
+								</li>
+								<li>
+									<h5>rolesRepository: <a href="rolesrepository.html" class="tsd-signature-type">RolesRepository</a></h5>
 								</li>
 								<li>
 									<h5>app: <span class="tsd-signature-type">any</span></h5>
@@ -160,7 +164,7 @@
 					<div class="tsd-signature tsd-kind-icon">app<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L25">controllers/authentication.controller.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L33">controllers/authentication.controller.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -170,12 +174,22 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="rolesrepository" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> roles<wbr>Repository</h3>
+					<div class="tsd-signature tsd-kind-icon">roles<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="rolesrepository.html" class="tsd-signature-type">RolesRepository</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L32">controllers/authentication.controller.ts:32</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="router" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol"> =&nbsp;Router()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L17">controllers/authentication.controller.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L24">controllers/authentication.controller.ts:24</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +204,7 @@
 					<div class="tsd-signature tsd-kind-icon">users<wbr>Repository<span class="tsd-signature-symbol">:</span> <a href="usersrepository.html" class="tsd-signature-type">UsersRepository</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L24">controllers/authentication.controller.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L31">controllers/authentication.controller.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -207,7 +221,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L191">controllers/authentication.controller.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L331">controllers/authentication.controller.ts:331</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,13 +238,13 @@
 					<a name="register" class="tsd-anchor"></a>
 					<h3>register</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span>useAllCustom<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L33">controllers/authentication.controller.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L41">controllers/authentication.controller.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,57 +252,26 @@
 									<p>Register this controller routes</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> useAllCustom: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Indicates if the custom routes should be registred automatically [default true]</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="useallcustom" class="tsd-anchor"></a>
-					<h3>use<wbr>All<wbr>Custom</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>All<wbr>Custom<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L43">controllers/authentication.controller.ts:43</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Use custom routes</p>
-								</div>
-							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="usedecode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> use<wbr>Decode</h3>
+					<a name="usegoogleoauth" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> use<wbr>GoogleOAuth</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">use<wbr>Decode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+						<li class="tsd-signature tsd-kind-icon">use<wbr>GoogleOAuth<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L53">controllers/authentication.controller.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L209">controllers/authentication.controller.ts:209</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Decodes the information about the given token</p>
+									<p>Use Google OAuth as auth provider</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -305,7 +288,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L97">controllers/authentication.controller.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L102">controllers/authentication.controller.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -317,22 +300,44 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="useregister" class="tsd-anchor"></a>
-					<h3>use<wbr>Register</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> use<wbr>Register</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon">use<wbr>Register<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/4540714/src/controllers/authentication.controller.ts#L137">controllers/authentication.controller.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L152">controllers/authentication.controller.ts:152</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Register a new user and generate its token</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="usetokendecode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> use<wbr>Token<wbr>Decode</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>Token<wbr>Decode<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-server/blob/e74578e/src/controllers/authentication.controller.ts#L58">controllers/authentication.controller.ts:58</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decodes the information about the given token</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
@@ -363,6 +368,9 @@
 								<a href="authenticationcontroller.html#app" class="tsd-kind-icon">app</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="authenticationcontroller.html#rolesrepository" class="tsd-kind-icon">roles<wbr>Repository</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="authenticationcontroller.html#router" class="tsd-kind-icon">router</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -374,127 +382,22 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="authenticationcontroller.html#register" class="tsd-kind-icon">register</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="authenticationcontroller.html#useallcustom" class="tsd-kind-icon">use<wbr>All<wbr>Custom</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="authenticationcontroller.html#usedecode" class="tsd-kind-icon">use<wbr>Decode</a>
+								<a href="authenticationcontroller.html#usegoogleoauth" class="tsd-kind-icon">use<wbr>GoogleOAuth</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="authenticationcontroller.html#uselogin" class="tsd-kind-icon">use<wbr>Login</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="authenticationcontroller.html#useregister" class="tsd-kind-icon">use<wbr>Register</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="authenticationcontroller.html#usetokendecode" class="tsd-kind-icon">use<wbr>Token<wbr>Decode</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="basecontroller.html" class="tsd-kind-icon">Base<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class tsd-has-type-parameter">
-						<a href="baserepository.html" class="tsd-kind-icon">Base<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="companiescontroller.html" class="tsd-kind-icon">Companies<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="companiesrepository.html" class="tsd-kind-icon">Companies<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="internshipproposalscontroller.html" class="tsd-kind-icon">Internship<wbr>Proposals<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="internshipscontroller.html" class="tsd-kind-icon">Internships<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="internshipsproposalsrepository.html" class="tsd-kind-icon">Internships<wbr>Proposals<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="internshipsrepository.html" class="tsd-kind-icon">Internships<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="rolescontroller.html" class="tsd-kind-icon">Roles<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="rolesrepository.html" class="tsd-kind-icon">Roles<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="serverdefaults.html" class="tsd-kind-icon">Server<wbr>Defaults</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="userscontroller.html" class="tsd-kind-icon">Users<wbr>Controller</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="usersrepository.html" class="tsd-kind-icon">Users<wbr>Repository</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/curdoptions.html" class="tsd-kind-icon">Curd<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#companymodel" class="tsd-kind-icon">Company<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#companyschema" class="tsd-kind-icon">Company<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#internshipmodel" class="tsd-kind-icon">Internship<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#internshipproposalmodel" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#internshipproposalschema" class="tsd-kind-icon">Internship<wbr>Proposal<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#internshipschema" class="tsd-kind-icon">Internship<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#rolemodel" class="tsd-kind-icon">Role<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#roleschema" class="tsd-kind-icon">Role<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#usermodel" class="tsd-kind-icon">User<wbr>Model</a>
-					</li>
-					<li class=" tsd-kind-variable">
-						<a href="../globals.html#userschema" class="tsd-kind-icon">User<wbr>Schema</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#app" class="tsd-kind-icon">app</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#bcrypt" class="tsd-kind-icon">bcrypt</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#container" class="tsd-kind-icon">container</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#adminscope" class="tsd-kind-icon">admin<wbr>Scope</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="../globals.html#checkbodyuser" class="tsd-kind-icon">check<wbr>Body<wbr>User</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#companyscope" class="tsd-kind-icon">company<wbr>Scope</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#normalize" class="tsd-kind-icon">normalize</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#studentscope" class="tsd-kind-icon">student<wbr>Scope</a>
-					</li>
-					<li class=" tsd-kind-function">
-						<a href="../globals.html#tutorscope" class="tsd-kind-icon">tutor<wbr>Scope</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="../globals.html#environment" class="tsd-kind-icon">environment</a>
-					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="../globals.html#types" class="tsd-kind-icon">types</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
