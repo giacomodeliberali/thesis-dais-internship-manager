@@ -118,6 +118,7 @@ mongoose.connect(environment.connectionString).then(client => {
   const companiesController = container
     .resolve(CompaniesController)
     .useAuth()
+    .useGetByOwnerId()
     .useCrud(crudOptions)
     .register();
 
