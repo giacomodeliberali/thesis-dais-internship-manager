@@ -101,14 +101,12 @@ mongoose.connect(environment.connectionString).then(client => {
   const usersController = container
     .resolve(UsersController)
     .useAuth()
-
     .useUpdateOwn()
     .useGetByRoles([adminScope])
-
     .useCreate()
+    .useUpdate([adminScope])
     .useRead([adminScope])
     .useDelete([adminScope])
-    
     .register();
 
   const rolesController = container

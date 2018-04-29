@@ -86,6 +86,7 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
         .useUpdateOwn()
         .useGetByRoles([scopes_1.adminScope])
         .useCreate()
+        .useUpdate([scopes_1.adminScope])
         .useRead([scopes_1.adminScope])
         .useDelete([scopes_1.adminScope])
         .register();
