@@ -22,7 +22,14 @@
         "Phones": "Recapiti telefonici",
         "Save": "Salva",
         "Cancel": "Annulla",
-        "ChangeAppLanguage": "Cambia la lingua dell'applicazione"
+        "ChangeAppLanguage": "Cambia la lingua dell'applicazione",
+        "Loading": "Caricamento",
+        "NoResults": "Nessun risultato",
+        "Company": "Azienda",
+        "StartDate": "Data inizio",
+        "EndDate": "Data fine",
+        "TotalHours": "Ore complessive",
+        "Title": "Titolo"
     },
     "Pages": {
         "Login": {
@@ -39,13 +46,12 @@
             "LoginAsUnive": "login come membro Ca' Foscari"
         },
         "NotFound": {
-            "Title": "404 - Pagina non trovata"
+            "Title": "404 - Pagina non trovata. Devi forse effettuare il login?"
         },
         "Internships": {
             "Title": "Tirocini",
-            "Overview": {
-                "Title": "Dashboard"
-            }
+            "ViewOffers": "Visualizza offerte",
+            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende"
         },
         "User": {
             "ViewProfile": "Visualizza profilo"
@@ -63,6 +69,7 @@
     },
     "Roles": {
         "Student": "Studente",
-        "Professor": "Professore"
+        "Professor": "Professore",
+        "Admin": "Admin"
     }
 }
