@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InternshipsRoutes } from './internships.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { InternshipsViewComponent } from './view/internships-view.component';
+import { InternshipAddComponent } from './add/internship-add.component';
 
 @NgModule({
     imports: [
@@ -14,7 +15,8 @@ import { InternshipsViewComponent } from './view/internships-view.component';
         FormsModule
     ],
     declarations: [
-        InternshipsViewComponent
+        InternshipsViewComponent,
+        InternshipAddComponent
     ]
 })
 export class InternshipsModule { }

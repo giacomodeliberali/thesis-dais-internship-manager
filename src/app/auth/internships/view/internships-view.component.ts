@@ -10,11 +10,11 @@ export class InternshipsViewComponent {
 
     tableData1 = {
         headerRow: [
-            'Dictionary.Company',
-            { value: 'Dictionary.StartDate', class: 'text-center' },
-            'Dictionary.EndDate',
-            'Dictionary.TotalHours',
-            'Dictionary.Title'
+            { name: 'Dictionary.Company', value: 'company.name' },
+            { name: 'Dictionary.StartDate', value: 'startDate', class: 'text-center' },
+            { name: 'Dictionary.EndDate', value: 'endDate', class: 'text-center' },
+            { name: 'Dictionary.TotalHours', value: 'totalHours' },
+            { name: 'Dictionary.Title', value: 'title' }
         ] as Array<any>,
         dataRows: []
     };
@@ -38,5 +38,25 @@ export class InternshipsViewComponent {
         // Init Tooltips
         $('[rel="tooltip"]').tooltip();
     }
+
+    /**
+     * Access the object by path. eg val(obj,'uno.due.tre') return obj.uno.due.tre
+     * @param obj The object
+     * @param path The path
+     */
+    public val(obj: any, path: string) {
+
+        const paths = path.split('.');
+        let current = obj;
+
+        for (let i = 0; i < paths.length; ++i) {
+            if (current[paths[i]] === undefined) {
+                return undefined;
+            } else {
+                current = current[paths[i]];
+            }
+        }
+        return current;
+    };
 
 }

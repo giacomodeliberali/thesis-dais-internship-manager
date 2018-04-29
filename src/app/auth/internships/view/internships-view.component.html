@@ -12,7 +12,7 @@
                             <thead>
                                 <tr>
                                     <th *ngFor="let col of tableData1.headerRow; let colIndex = index" class="{{col.class || ''}}">
-                                        {{(col.value || col) | translate}}
+                                        {{(col.name) | translate}}
                                     </th>
                                 </tr>
                             </thead>
@@ -30,7 +30,7 @@
                                 </tr>
                                 <tr *ngFor="let row of tableData1.dataRows">
                                     <td *ngFor="let col of tableData1.headerRow; let colIndex = index">
-                                        {{row[colIndex]}}
+                                        {{val(row,col.value)}}
                                     </td>
                                 </tr>
                             </tbody>

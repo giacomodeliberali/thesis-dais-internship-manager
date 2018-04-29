@@ -30,6 +30,7 @@ import { UsersService } from './services/user.service';
 import { BaseService } from './services/base.service';
 import { NotificationHelper } from './helpers/notification.helper';
 import { InternshipsService } from './services/internships.service';
+import { CompaniesService } from './services/companies.service';
 
 export function createNotificationHelper(translateService: TranslateService) {
     return new NotificationHelper(translateService);
@@ -63,6 +64,7 @@ export function createNotificationHelper(translateService: TranslateService) {
         BaseService,
         UsersService,
         InternshipsService,
+        CompaniesService,
         {
             provide: NotificationHelper,
             useFactory: createNotificationHelper,
@@ -74,7 +76,7 @@ export function createNotificationHelper(translateService: TranslateService) {
 })
 export class AppModule extends BaseModule {
     constructor(
-        injector: Injector, 
+        injector: Injector,
         notificationHelper: NotificationHelper) {
 
         super(injector);

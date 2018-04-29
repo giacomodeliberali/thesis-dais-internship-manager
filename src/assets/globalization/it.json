@@ -29,7 +29,10 @@
         "StartDate": "Data inizio",
         "EndDate": "Data fine",
         "TotalHours": "Ore complessive",
-        "Title": "Titolo"
+        "Title": "Titolo",
+        "Address": "Indirizzo",
+        "Description": "Descrizione",
+        "StudentsNumber": "Numero studenti"
     },
     "Pages": {
         "Login": {
