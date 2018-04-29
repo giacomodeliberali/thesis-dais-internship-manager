@@ -4,16 +4,22 @@ import { UserViewComponent } from './view/user-view.component';
 import { generateAuthRoute } from '../../helpers/generate.auth-route.helper';
 import { UserEditComponent } from './edit/user-edit.component';
 import { RoleType } from 'gdl-thesis-core/dist';
+import { AuthGuardService } from '../../services/auth-guard.service';
 
 
-export const UserRoutes: Routes = [{
-    path: '',
-    children: [
-        {
-            path: '',
-            component: UserViewComponent
-        },
-        generateAuthRoute('edit', UserEditComponent),
-        generateAuthRoute('logout', UserLogoutComponent)
-    ]
-}];
+export const UserRoutes: Routes = [
+    {
+        path: '',
+        children: [
+            {
+                path: '',
+                canActivate: [
+                    AuthGuardService
+                ],
+                component: UserViewComponent
+            },
+            generateAuthRoute('edit', UserEditComponent),
+            generateAuthRoute('logout', UserLogoutComponent)
+        ]
+    }
+];

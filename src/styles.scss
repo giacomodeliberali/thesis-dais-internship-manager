@@ -1,10 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-@import "./assets/sass/paper-dashboard.scss";
 
+@import "./assets/sass/paper-dashboard.scss";
 a {
     cursor: pointer;
 }
 
 .swal2-container {
     pointer-events: all !important;
-  }
+} // TABLES
+@media (min-width: 992px) {
+    .table-responsive {
+        overflow: auto !important;
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+}

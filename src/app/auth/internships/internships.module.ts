@@ -3,19 +3,18 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { OverviewComponent } from './overview/overview.component';
-import { StatsComponent } from './stats/stats.component';
 import { InternshipsRoutes } from './internships.routing';
+import { SharedModule } from '../../shared/shared.module';
+import { InternshipsViewComponent } from './view/internships-view.component';
 
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule.forRoot(),
         RouterModule.forChild(InternshipsRoutes),
         FormsModule
     ],
     declarations: [
-        OverviewComponent,
-        StatsComponent
+        InternshipsViewComponent
     ]
 })
 export class InternshipsModule { }

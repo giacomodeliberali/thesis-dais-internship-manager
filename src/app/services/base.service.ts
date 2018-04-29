@@ -29,7 +29,7 @@ export class BaseService {
         }).toPromise();
     }
 
-    protected get(path: string, body: any) {
+    protected get(path: string) {
         return this.httpClient.get(`${environment.apiServicesBaseUrl}/${path}`, {
             headers: {
                 "Authentication": this.authService.token

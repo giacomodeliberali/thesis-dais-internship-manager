@@ -26,9 +26,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from './helpers/translateLoader.factory';
 import { MyMissingTranslationHandler } from './services/my-missing-translation-handler.service';
 import { NoAuthGuardService } from './services/no-auth-guard.service';
-import { UserService } from './services/user.service';
+import { UsersService } from './services/user.service';
 import { BaseService } from './services/base.service';
 import { NotificationHelper } from './helpers/notification.helper';
+import { InternshipsService } from './services/internships.service';
 
 export function createNotificationHelper(translateService: TranslateService) {
     return new NotificationHelper(translateService);
@@ -60,7 +61,8 @@ export function createNotificationHelper(translateService: TranslateService) {
         AuthGuardService,
         NoAuthGuardService,
         BaseService,
-        UserService,
+        UsersService,
+        InternshipsService,
         {
             provide: NotificationHelper,
             useFactory: createNotificationHelper,

@@ -111,7 +111,7 @@ export class NavbarComponent implements OnInit {
     }
 
     getTitle() {
-        let currentRouteTitle: string = 'Pages.User.ViewProfile';
+        let currentRouteTitle = 'Pages.User.ViewProfile';
 
         ROUTES.forEach(r => {
             if (r.path == this.location.path()) {
@@ -122,7 +122,7 @@ export class NavbarComponent implements OnInit {
 
             if (r.children) {
                 for (let index in r.children) {
-                    if (`${r.path}/${r.children[index].path}` == this.location.path()) {
+                    if (`${r.path}${r.children[index].path}` == this.location.path()) {
                         currentRouteTitle = r.children[index].title;
                         return true;
                     }

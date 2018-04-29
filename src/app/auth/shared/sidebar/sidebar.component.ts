@@ -26,36 +26,39 @@ export interface ChildrenItems {
 // Menu Items
 export const ROUTES: RouteInfo[] = [
     {
-        path: '/auth/internships',
+        path: '/auth/internships/',
         title: 'Pages.Internships.Title',
         type: 'sub',
         icontype: 'ti-panel',
         children: [
             {
-                path: 'overview',
-                title: 'Pages.Internships.Overview.Title',
-                ab: 'O'
+                path: 'list',
+                title: 'Pages.Internships.ViewOffers',
+                ab: 'L'
             },
             {
-                path: 'stats',
-                title: 'Dictionary.Stats',
-                ab: 'S'
+                path: 'add',
+                title: 'Dictionary.Add',
+                ab: 'A',
+                requiredRoles: [
+                    RoleType.Company
+                ]
             }
         ]
     }
-/*     {
-        path: '/charts',
-        title: 'Dictionary.Charts',
-        type: 'link',
-        icontype: 'ti-gift'
-
-    },
-    {
-        path: '/calendar',
-        title: 'Dictionary.Calendar',
-        type: 'link',
-        icontype: 'ti-calendar'
-    } */
+    /*     {
+            path: '/charts',
+            title: 'Dictionary.Charts',
+            type: 'link',
+            icontype: 'ti-gift'
+    
+        },
+        {
+            path: '/calendar',
+            title: 'Dictionary.Calendar',
+            type: 'link',
+            icontype: 'ti-calendar'
+        } */
 ];
 
 @Component({
@@ -106,6 +109,6 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     }
 
     public getTemplateString(str: string): string {
-        return str.replace(/./g, '-');
+        return str.replace(/./g, 'a');
     }
 }

@@ -63,7 +63,7 @@
             <div id="{{getTemplateString(menuitem.title)}}" class="collapse" *ngIf="menuitem.type === 'sub' && canExecute(menuitem.requiredRoles)">
                 <ul class="nav">
                     <li routerLinkActive="active" *ngFor="let childitem of menuitem.children">
-                        <a [routerLink]="[menuitem.path, childitem.path]" *ngIf="canExecute(childitem.requiredRoles)">
+                        <a [routerLink]="menuitem.path + childitem.path" *ngIf="canExecute(childitem.requiredRoles)">
                             <span class="sidebar-mini">{{childitem.ab}}</span>
                             <span class="sidebar-normal">{{childitem.title | translate}}</span>
                         </a>

@@ -49,6 +49,13 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     } catch (ex) {
       console.log(`Exception executing 'canActivate' on route ${getFullPath(route)}`, ex);
     }
+
+    if (!canActivate) {
+      console.log("Redirect to '/not-found'");
+      this.router.navigate(['/not-found']);
+      return false;
+    }
+
     return canActivate;
   }
 

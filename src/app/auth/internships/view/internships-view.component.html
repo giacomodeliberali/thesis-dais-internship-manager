@@ -1,0 +1,43 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>Pages.Internships.Title</h4>
+                        <p class="category" translate>Pages.Internships.SubTitle</p>
+                    </div>
+                    <div class="card-content table-responsive table-full-width">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th *ngFor="let col of tableData1.headerRow; let colIndex = index" class="{{col.class || ''}}">
+                                        {{(col.value || col) | translate}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="isLoading">
+                                    <td [attr.colspan]="tableData1.headerRow.length" class="text-center">
+                                        <span translate>Dictionary.Loading</span>
+                                        <i class="fas fa-spin fa-spinner"></i>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="tableData1.dataRows.length == 0 && !isLoading">
+                                    <td [attr.colspan]="tableData1.headerRow.length" class="text-center">
+                                        <span translate>Dictionary.NoResults</span>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let row of tableData1.dataRows">
+                                    <td *ngFor="let col of tableData1.headerRow; let colIndex = index">
+                                        {{row[colIndex]}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

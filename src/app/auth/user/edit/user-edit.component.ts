@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { User } from 'gdl-thesis-core/dist';
-import { UserService } from '../../../services/user.service';
+import { UsersService } from '../../../services/user.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 
 
@@ -24,7 +24,7 @@ export class UserEditComponent {
 	 */
 	constructor(
 		public authService: AuthService,
-		private userService: UserService,
+		private userService: UsersService,
 		private router: Router) {
 
 		this.user = this.authService.currentUser.clone();
