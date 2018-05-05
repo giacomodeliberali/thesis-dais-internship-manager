@@ -25,6 +25,7 @@ const dist_1 = require("gdl-thesis-core/dist");
 const inversify_1 = require("inversify");
 const mongoose_1 = require("mongoose");
 const di_types_1 = require("../utils/di-types");
+const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
 const bcrypt = require('bcrypt');
 /**
  * The [[user]] repository
@@ -69,8 +70,8 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
      */
     login(email, password) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model
-                .findOne({ email: email })
+            return this
+                .findOne({ email: email, authType: auth_type_enum_1.AuthType.Local })
                 .then(user => {
                 if (user && user.isValidPassword(password))
                     return Promise.resolve(user);
@@ -96,7 +97,7 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
                     return Promise.resolve(null);
                 if (!user.password || !user.email)
                     return Promise.resolve(null);
-                const exist = yield this.model.findOne({ email: user.email });
+                const exist = yield this.findOne({ email: user.email, authType: auth_type_enum_1.AuthType.Local });
                 if (exist) {
                     return Promise.reject({
                         message: "Email already taken",

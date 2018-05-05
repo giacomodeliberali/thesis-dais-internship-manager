@@ -5,6 +5,7 @@ import { Model } from "mongoose";
 import { types } from "../utils/di-types";
 import { UserModel } from "../schemas/user.schema";
 import { IUser } from "../models/interfaces";
+import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
 const bcrypt = require('bcrypt');
 
 /**
@@ -52,8 +53,8 @@ export class UsersRepository extends BaseRepository<IUser, User> {
      * @param password The user password
      */
     public async login(email: string, password: string): Promise<IUser> {
-        return this.model
-            .findOne({ email: email })
+        return this
+            .findOne({ email: email, authType: AuthType.Local })
             .then(user => {
                 if (user && (user as any).isValidPassword(password))
                     return Promise.resolve(user);
@@ -81,7 +82,7 @@ export class UsersRepository extends BaseRepository<IUser, User> {
             if (!user.password || !user.email)
                 return Promise.resolve(null);
 
-            const exist = await this.model.findOne({ email: user.email });
+            const exist = await this.findOne({ email: user.email, authType: AuthType.Local });
             if (exist) {
                 return Promise.reject({
                     message: "Email already taken",

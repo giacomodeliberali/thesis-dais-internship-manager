@@ -120,7 +120,11 @@ export class AuthenticationController {
           return new ApiResponse({
             response: res,
             httpCode: 200,
-            data: sign(user.toJSON(), environment.jwtSecret)
+            data: {
+              user: user.toJSON(),
+              token: sign(user.toJSON(), environment.jwtSecret),
+              isNew: false
+            }
           }).send();
         }
 

@@ -126,7 +126,11 @@ let AuthenticationController = class AuthenticationController {
                     return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 200,
-                        data: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
+                        data: {
+                            user: user.toJSON(),
+                            token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret),
+                            isNew: false
+                        }
                     }).send();
                 }
                 // Return error

@@ -23,4 +23,18 @@ export class InternshipsRepository extends BaseRepository<IInternship, Internshi
         super(internshipsModel, Defaults.collectionsName.internships);
     }
 
+    /**
+     * Return the list of all internships inserted by companies
+     * in which owners contain the given ownerId
+     * @param id The company owner id
+      */
+    async getByCompanyOwnerId(id: string) {
+        return this.model.find().populate({
+            path: 'company',
+            match: {
+                owners: id
+            }
+        });
+    }
+
 }

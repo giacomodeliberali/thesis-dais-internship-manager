@@ -105,6 +105,7 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
         .resolve(internships_controller_1.InternshipsController)
         .useAuth()
         .useCrud(crudOptions)
+        .useGetByCompanyOwnerId()
         .register();
     const internshipProposalsController = di_container_1.container
         .resolve(internship_proposals_controller_1.InternshipProposalsController)
