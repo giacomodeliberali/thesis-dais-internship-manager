@@ -13,9 +13,9 @@ declare var $;
 })
 export class DatepickerDirective {
 
-  @Input() date: string | Date;
+  @Input() date: Date;
   @Input() startDate: Date = null;
-  @Output() dateChange: EventEmitter<string | Date> = new EventEmitter<string | Date>();
+  @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
 
   constructor(
     private el: ElementRef,

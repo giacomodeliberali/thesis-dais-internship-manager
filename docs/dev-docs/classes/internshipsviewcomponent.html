@@ -95,12 +95,13 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="internshipsviewcomponent.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="internshipsviewcomponent.html#val" class="tsd-kind-icon">val</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="internshipsviewcomponent.html#tabledata1" class="tsd-kind-icon">table<wbr>Data1</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class"><a href="internshipsviewcomponent.html#internshiptable" class="tsd-kind-icon">internship<wbr>Table</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,7 +119,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L22">app/auth/internships/view/internships-view.component.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L23">app/auth/internships/view/internships-view.component.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -140,7 +141,7 @@
 					<div class="tsd-signature tsd-kind-icon">internships<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="internshipsservice.html" class="tsd-signature-type">InternshipsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L24">app/auth/internships/view/internships-view.component.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L25">app/auth/internships/view/internships-view.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -150,7 +151,7 @@
 					<div class="tsd-signature tsd-kind-icon">is<wbr>Loading<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L22">app/auth/internships/view/internships-view.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L23">app/auth/internships/view/internships-view.component.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,10 +168,47 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L37">app/auth/internships/view/internships-view.component.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L38">app/auth/internships/view/internships-view.component.ts:38</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="val" class="tsd-anchor"></a>
+					<h3>val</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">val<span class="tsd-signature-symbol">(</span>obj<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L48">app/auth/internships/view/internships-view.component.ts:48</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Access the object by path. eg val(obj,&#39;uno.due.tre&#39;) return obj.uno.due.tre</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>obj: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object</p>
+									</div>
+								</li>
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The path</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -178,31 +216,31 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Object literals</h2>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class">
-					<a name="tabledata1" class="tsd-anchor"></a>
-					<h3>table<wbr>Data1</h3>
-					<div class="tsd-signature tsd-kind-icon">table<wbr>Data1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="internshiptable" class="tsd-anchor"></a>
+					<h3>internship<wbr>Table</h3>
+					<div class="tsd-signature tsd-kind-icon">internship<wbr>Table<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L11">app/auth/internships/view/internships-view.component.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L12">app/auth/internships/view/internships-view.component.ts:12</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="tabledata1.datarows" class="tsd-anchor"></a>
+						<a name="internshiptable.datarows" class="tsd-anchor"></a>
 						<h3>data<wbr>Rows</h3>
 						<div class="tsd-signature tsd-kind-icon">data<wbr>Rows<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L19">app/auth/internships/view/internships-view.component.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L20">app/auth/internships/view/internships-view.component.ts:20</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="tabledata1.headerrow" class="tsd-anchor"></a>
+						<a name="internshiptable.headerrow" class="tsd-anchor"></a>
 						<h3>header<wbr>Row</h3>
-						<div class="tsd-signature tsd-kind-icon">header<wbr>Row<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;Dictionary.Company&#x27;,{ value: &#x27;Dictionary.StartDate&#x27;, class: &#x27;text-center&#x27; },&#x27;Dictionary.EndDate&#x27;,&#x27;Dictionary.TotalHours&#x27;,&#x27;Dictionary.Title&#x27;] as Array&lt;any&gt;</span></div>
+						<div class="tsd-signature tsd-kind-icon">header<wbr>Row<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ name: &#x27;Dictionary.Company&#x27;, value: &#x27;company.name&#x27; },{ name: &#x27;Dictionary.StartDate&#x27;, value: &#x27;startDate&#x27;, class: &#x27;text-center&#x27;, pipe: DatePipe },{ name: &#x27;Dictionary.EndDate&#x27;, value: &#x27;endDate&#x27;, class: &#x27;text-center&#x27;, pipe: DatePipe },{ name: &#x27;Dictionary.TotalHours&#x27;, value: &#x27;totalHours&#x27; },{ name: &#x27;Dictionary.Title&#x27;, value: &#x27;title&#x27; }] as Array&lt;any&gt;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/a038922/src/app/auth/internships/view/internships-view.component.ts#L12">app/auth/internships/view/internships-view.component.ts:12</a></li>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/auth/internships/view/internships-view.component.ts#L13">app/auth/internships/view/internships-view.component.ts:13</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -236,8 +274,11 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="internshipsviewcomponent.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="internshipsviewcomponent.html#val" class="tsd-kind-icon">val</a>
+							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class">
-								<a href="internshipsviewcomponent.html#tabledata1" class="tsd-kind-icon">table<wbr>Data1</a>
+								<a href="internshipsviewcomponent.html#internshiptable" class="tsd-kind-icon">internship<wbr>Table</a>
 							</li>
 						</ul>
 					</li>

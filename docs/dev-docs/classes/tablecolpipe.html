@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NotificationHelper | Thesis</title>
+	<title>TableColPipe | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="notificationhelper.html">NotificationHelper</a>
+					<a href="tablecolpipe.html">TableColPipe</a>
 				</li>
 			</ul>
-			<h1>Class NotificationHelper</h1>
+			<h1>Class TableColPipe</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The notification helper</p>
+						<p>A table column pipe for formatting different values</p>
 					</div>
 				</div>
 			</section>
@@ -77,8 +77,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">NotificationHelper</span>
+						<span class="target">TableColPipe</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">PipeTransform</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -88,19 +94,19 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="notificationhelper.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="tablecolpipe.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static"><a href="notificationhelper.html#translateservice" class="tsd-kind-icon">translate<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="tablecolpipe.html#injector" class="tsd-kind-icon">injector</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="notificationhelper.html#shownotification" class="tsd-kind-icon">show<wbr>Notification</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tablecolpipe.html#transform" class="tsd-kind-icon">transform</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,91 +118,64 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Notification<wbr>Helper<span class="tsd-signature-symbol">(</span>translateService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TranslateService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="notificationhelper.html" class="tsd-signature-type">NotificationHelper</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Table<wbr>Col<wbr>Pipe<span class="tsd-signature-symbol">(</span>injector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Injector</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tablecolpipe.html" class="tsd-signature-type">TableColPipe</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/helpers/notification.helper.ts#L13">app/helpers/notification.helper.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/pipes/table-col.pipe.ts#L7">app/pipes/table-col.pipe.ts:7</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Inject deps</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>translateService: <span class="tsd-signature-type">TranslateService</span></h5>
+									<h5>injector: <span class="tsd-signature-type">Injector</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="notificationhelper.html" class="tsd-signature-type">NotificationHelper</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="tablecolpipe.html" class="tsd-signature-type">TableColPipe</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
-					<a name="translateservice" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagPrivate">Private</span> translate<wbr>Service</h3>
-					<div class="tsd-signature tsd-kind-icon">translate<wbr>Service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TranslateService</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="injector" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> injector</h3>
+					<div class="tsd-signature tsd-kind-icon">injector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Injector</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/helpers/notification.helper.ts#L13">app/helpers/notification.helper.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/pipes/table-col.pipe.ts#L9">app/pipes/table-col.pipe.ts:9</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The translate service initialized at app startup (app.component)</p>
-						</div>
-					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="shownotification" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> show<wbr>Notification</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">show<wbr>Notification<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, icon<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"info"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"success"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"warning"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"danger"</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="transform" class="tsd-anchor"></a>
+					<h3>transform</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">transform<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, pipe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PipeTransform</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/helpers/notification.helper.ts#L28">app/helpers/notification.helper.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/d6208ad/src/app/pipes/table-col.pipe.ts#L13">app/pipes/table-col.pipe.ts:13</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Show a new notification</p>
-								</div>
-							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The message</p>
-									</div>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 								<li>
-									<h5>icon: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The icon</p>
-									</div>
-								</li>
-								<li>
-									<h5>type: <span class="tsd-signature-type">"info"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"success"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"warning"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"danger"</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The type</p>
-									</div>
+									<h5>pipe: <span class="tsd-signature-type">PipeTransform</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -215,16 +194,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="notificationhelper.html" class="tsd-kind-icon">Notification<wbr>Helper</a>
+						<a href="tablecolpipe.html" class="tsd-kind-icon">Table<wbr>Col<wbr>Pipe</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="notificationhelper.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="tablecolpipe.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-static">
-								<a href="notificationhelper.html#translateservice" class="tsd-kind-icon">translate<wbr>Service</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="tablecolpipe.html#injector" class="tsd-kind-icon">injector</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="notificationhelper.html#shownotification" class="tsd-kind-icon">show<wbr>Notification</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="tablecolpipe.html#transform" class="tsd-kind-icon">transform</a>
 							</li>
 						</ul>
 					</li>
