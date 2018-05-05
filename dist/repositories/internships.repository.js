@@ -38,6 +38,11 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
         super(internshipsModel, dist_1.Defaults.collectionsName.internships);
         this.internshipsModel = internshipsModel;
     }
+    /**
+     * Return the list of all internships inserted by companies
+     * in which owners contain the given ownerId
+     * @param id The company owner id
+      */
     getByCompanyOwnerId(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.find().populate({

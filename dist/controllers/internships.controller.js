@@ -38,11 +38,14 @@ let InternshipsController = class InternshipsController extends base_controller_
         super(internshipsRepository, app);
         this.internshipsRepository = internshipsRepository;
     }
+    /**
+       * Return the list of all internships inserted by companies
+       * in which owners contain the given ownerId
+     */
     useGetByCompanyOwnerId() {
         this.router.get('/getByCompanyOwnerId/:ownerId', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const ownerId = req.params.ownerId;
             if (ownerId) {
-                // The user to update is the same as token
                 return this.internshipsRepository.getByCompanyOwnerId(ownerId)
                     .then(result => {
                     return new api_response_model_1.ApiResponse({
