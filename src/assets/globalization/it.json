@@ -32,7 +32,16 @@
         "Title": "Titolo",
         "Address": "Indirizzo",
         "Description": "Descrizione",
-        "StudentsNumber": "Numero studenti"
+        "StudentsNumber": "Numero studenti",
+        "Details": "Dettagli",
+        "OwnInternships": "I miei internships",
+        "Street": "Via",
+        "Number": "Numero",
+        "Floor": "Piano",
+        "City": "Città",
+        "State": "Provincia",
+        "Country": "Nazione",
+        "Zip": "CAP"
     },
     "Pages": {
         "Login": {
@@ -54,10 +63,18 @@
         "Internships": {
             "Title": "Tirocini",
             "ViewOffers": "Visualizza offerte",
-            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende"
+            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende",
+            "OwnInternships": "I miei internships"
         },
         "User": {
             "ViewProfile": "Visualizza profilo"
+        },
+        "AddInternship": {
+            "Title": "Aggiungi internship"
+        },
+        "Company": {
+            "Title": "Azienda",
+            "SubTitle": "Visualizza le offerte di stage che hai inserito"
         }
     },
     "Alerts": {

@@ -1,5 +1,5 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders, LOCALE_ID } from '@angular/core';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
@@ -9,6 +9,11 @@ import { SharedRoutes } from './shared.routing';
 import { IndexComponent } from './index/index.component';
 import { createTranslateLoader } from '../helpers/translateLoader.factory';
 import { MyMissingTranslationHandler } from '../services/my-missing-translation-handler.service';
+import { DatepickerDirective } from '../directives/datepicker.directive';
+import { TableColPipe } from '../pipes/table-col.pipe';
+import localeIt from '@angular/common/locales/it';
+
+registerLocaleData(localeIt);
 
 /**
  * A shared module across app sections
@@ -35,15 +40,25 @@ import { MyMissingTranslationHandler } from '../services/my-missing-translation-
     ],
     declarations: [
         NotFoundComponent,
-        IndexComponent
+        IndexComponent,
+        DatepickerDirective,
+        TableColPipe
     ],
     exports: [
         CommonModule,
         HttpClientModule,
-        TranslateModule
+        TranslateModule,
+        DatepickerDirective,
+        TableColPipe
     ],
     providers: [
-        TranslateService
+        TranslateService,
+        DatePipe,
+        {
+            provide: LOCALE_ID,
+            deps: [TranslateService],      //some service handling global settings
+            useFactory: (tanslateService: TranslateService) => tanslateService.currentLang  //returns locale string
+        }
     ]
 })
 export class SharedModule {

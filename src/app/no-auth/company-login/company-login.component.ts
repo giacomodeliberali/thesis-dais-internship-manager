@@ -14,13 +14,17 @@ declare var $: any;
 })
 export class CompanyLoginComponent extends FullScreenPage {
 
+    public email: string;
+    public password: string;
 
-    constructor(element: ElementRef) {
+
+    constructor(element: ElementRef,
+        private authService: AuthService) {
         super(element);
     }
 
     async login() {
-        /* const googleUser = await this.authService.googleLogin();
-        console.log(googleUser); */
+        const response = await this.authService.login(this.email, this.password);
+        console.log(response);
     }
 }

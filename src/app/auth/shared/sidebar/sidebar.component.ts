@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { RoleType } from 'gdl-thesis-core/dist';
+import { RoleType, Role } from 'gdl-thesis-core/dist';
 import { canExec } from '../../../helpers/can-exec.helper';
 
 declare var $: any;
@@ -29,13 +29,24 @@ export const ROUTES: RouteInfo[] = [
         path: '/auth/internships/',
         title: 'Pages.Internships.Title',
         type: 'sub',
-        icontype: 'ti-panel',
+        icontype: 'fas fa-th-list',
         children: [
             {
                 path: 'list',
                 title: 'Pages.Internships.ViewOffers',
                 ab: 'L'
             },
+        ]
+    },
+    {
+        path: '/auth/internships/',
+        title: 'Pages.Company.Title',
+        type: 'sub',
+        icontype: 'fas fa-briefcase',
+        requiredRoles: [
+            RoleType.Company
+        ],
+        children: [
             {
                 path: 'add',
                 title: 'Dictionary.Add',
@@ -43,6 +54,11 @@ export const ROUTES: RouteInfo[] = [
                 requiredRoles: [
                     RoleType.Company
                 ]
+            },
+            {
+                path: 'company',
+                title: 'Pages.Internships.OwnInternships',
+                ab: 'M'
             }
         ]
     }

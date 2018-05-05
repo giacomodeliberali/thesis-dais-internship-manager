@@ -7,6 +7,8 @@ import { InternshipsRoutes } from './internships.routing';
 import { SharedModule } from '../../shared/shared.module';
 import { InternshipsViewComponent } from './view/internships-view.component';
 import { InternshipAddComponent } from './add/internship-add.component';
+import { InternshipEditComponent } from './edit/internship-edit.component';
+import { InternshipsOwnCompanyComponent } from './own-company/internships-own-company.component';
 
 @NgModule({
     imports: [
@@ -16,7 +18,9 @@ import { InternshipAddComponent } from './add/internship-add.component';
     ],
     declarations: [
         InternshipsViewComponent,
-        InternshipAddComponent
+        InternshipAddComponent,
+        InternshipEditComponent,
+        InternshipsOwnCompanyComponent
     ]
 })
 export class InternshipsModule { }

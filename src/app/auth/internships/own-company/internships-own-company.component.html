@@ -4,13 +4,14 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" translate>Pages.Internships.Title</h4>
-                        <p class="category" translate>Pages.Internships.SubTitle</p>
+                        <h4 class="card-title" translate>Pages.Internships.OwnInternships</h4>
+                        <p class="category" translate>Pages.Company.SubTitle</p>
                     </div>
                     <div class="card-content table-responsive table-full-width">
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
                                         {{(col.name) | translate}}
                                     </th>
@@ -29,7 +30,12 @@
                                     </td>
                                 </tr>
                                 <tr *ngFor="let row of internshipTable.dataRows">
-                                    <td *ngFor="let col of internshipTable.headerRow; let colIndex = index">
+                                    <td>
+                                        <button class="btn btn-icon btn-simple" [routerLink]="'/auth/internships/edit/' + row.id">
+                                            <i class="ti-pencil"></i>
+                                        </button>
+                                    </td>
+                                    <td *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
                                         {{val(row,col.value) | tablecol:col.pipe}}
                                     </td>
                                 </tr>

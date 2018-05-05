@@ -17,7 +17,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" *ngIf="internship">
                     <div class="card-header">
                         <h4 class="card-title" translate>
                             Dictionary.Address
@@ -70,7 +70,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" *ngIf="internship">
                     <div class="card-header">
                         <h4 class="card-title" translate>
                             Dictionary.Details
@@ -90,12 +90,12 @@
                             <div class="col-xs-6">
 
                                 <label translate>Dictionary.StartDate</label>
-                                <input type="text" class="form-control" datepicker [(date)]="internship.startDate" placeholder="{{'Dictionary.StartDate' | translate}}"
+                                <input type="text" class="form-control" datepicker [startDate]="startDate"  [(date)]="internship.startDate" placeholder="{{'Dictionary.StartDate' | translate}}"
                                 />
                             </div>
                             <div class="col-xs-6">
                                 <label translate>Dictionary.EndDate</label>
-                                <input type="text" class="form-control" datepicker [(date)]="internship.endDate" placeholder="{{'Dictionary.EndDate' | translate}}"
+                                <input type="text" class="form-control" datepicker [startDate]="startDate" [(date)]="internship.endDate" placeholder="{{'Dictionary.EndDate' | translate}}"
                                 />
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="text-right">
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/list'" translate>Dictionary.Cancel</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/company'" translate>Dictionary.Cancel</button>
                             <button type="button" class="btn btn-success" (click)="save()" translate>Dictionary.Save</button>
                         </div>
                     </div>

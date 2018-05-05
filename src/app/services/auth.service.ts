@@ -2,6 +2,7 @@ import { environment } from "environments/environment";
 import { Injectable } from "@angular/core";
 import { User, ApiResponseDto, AuthResponse } from 'gdl-thesis-core/dist';
 import { HttpClient } from "@angular/common/http";
+import { BaseService } from "./base.service";
 
 /** The Google API Javascript SDK */
 declare var gapi: any;
@@ -32,6 +33,14 @@ export class AuthService {
         this.currentUser = cachedResponse.user ? new User(cachedResponse.user) : null;
     }
 
+    protected post(path: string, body: any) {
+        return this.httpClient.post(`${environment.servicesBaseUrl}/${path}`, body).toPromise() as Promise<any>;
+    }
+
+    /**
+     * Update the global user instance
+     * @param user The new user
+     */
     public updateUser(user: User) {
         if (this.currentUser && this.token) {
             this.currentUser = new User(user);
@@ -124,6 +133,13 @@ export class AuthService {
         } catch (ex) {
             console.log("Cannot logout from google", ex);
         }
+    }
+
+    public login(email: string, password: string): Promise<ApiResponseDto<AuthResponse>> {
+        return this.post('auth/login', {
+            email: email,
+            password: password
+        });
     }
 
     /**

@@ -2,12 +2,13 @@ import { Component } from '@angular/core';
 import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 declare var $;
 @Component({
-    selector: 'internships-view-cmp',
-    templateUrl: './internships-view.component.html'
+    selector: 'internships-own-company-cmp',
+    templateUrl: './internships-own-company.component.html'
 })
-export class InternshipsViewComponent {
+export class InternshipsOwnCompanyComponent {
 
     internshipTable = {
         headerRow: [
@@ -22,8 +23,11 @@ export class InternshipsViewComponent {
 
     public isLoading = true;
 
-    constructor(private internshipsService: InternshipsService) {
-        this.internshipsService.getAll().then(internsips => {
+    constructor(
+        private internshipsService: InternshipsService,
+        private authService: AuthService) {
+
+        this.internshipsService.getByCompanyOwnerId(this.authService.currentUser.id).then(internsips => {
             if (internsips.isOk)
                 this.internshipTable.dataRows = internsips.data;
 

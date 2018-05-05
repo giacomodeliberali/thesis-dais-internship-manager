@@ -13,10 +13,10 @@ declare var $;
 
 @Component({
 	moduleId: module.id,
-	selector: 'internship-add-cmp',
-	templateUrl: 'internship-add.component.html'
+	selector: 'internship-edit-cmp',
+	templateUrl: 'internship-edit.component.html'
 })
-export class InternshipAddComponent {
+export class InternshipEditComponent {
 
 	/** The internships current in edit */
 	public internship: Internship;
@@ -26,6 +26,8 @@ export class InternshipAddComponent {
 
 	public selectedCompanyId: string;
 
+	public startDate = new Date();
+
 	/**
 	 * Inject deps
 	 */
@@ -33,24 +35,40 @@ export class InternshipAddComponent {
 		public internshipsService: InternshipsService,
 		public authService: AuthService,
 		private companiesService: CompaniesService,
+		private activatedRoute: ActivatedRoute,
 		private router: Router) {
 
-		this.internship = new Internship({
-			address: new Address()
-		});
 
-		this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
-			this.selectedCompanyId = response.data[0].id;
-			this.companies.push(...response.data);
-			this.updateAddress();
-			setTimeout(() => {
-				$(".selectpicker").selectpicker('refresh');
-			});
+		LoadingHelper.isLoading = true;
+
+		const internshipId = this.activatedRoute.snapshot.params['id'];
+
+		Promise.all([
+			this.internshipsService.getById(internshipId)
+				.then(response => {
+					if (response)
+						this.internship = new Internship(response.data);
+				})
+				.catch(ex => {
+					console.error(ex);
+				})
+			,
+			this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
+				this.selectedCompanyId = response.data[0].id;
+				this.companies.push(...response.data);
+				this.updateAddress();
+				setTimeout(() => {
+					$(".selectpicker").selectpicker('refresh');
+				});
+			})
+		]).then(() => {
+			LoadingHelper.isLoading = false;
 		});
 	}
 
 	updateAddress() {
-		this.internship.address = new Address(this.companies.find(c => c.id === this.selectedCompanyId).address).clone();
+		if (this.internship)
+			this.internship.address = new Address(this.companies.find(c => c.id === this.selectedCompanyId).address).clone();
 	}
 
 	/**
