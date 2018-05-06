@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>NotFoundComponent | Thesis</title>
+	<title>ComapnyEditComponent | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="notfoundcomponent.html">NotFoundComponent</a>
+					<a href="comapnyeditcomponent.html">ComapnyEditComponent</a>
 				</li>
 			</ul>
-			<h1>Class NotFoundComponent</h1>
+			<h1>Class ComapnyEditComponent</h1>
 		</div>
 	</div>
 </header>
@@ -70,19 +70,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="fullscreenpage.html" class="tsd-signature-type">FullScreenPage</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">NotFoundComponent</span>
-							</li>
-						</ul>
+						<span class="target">ComapnyEditComponent</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">OnInit</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -92,21 +81,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="notfoundcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="comapnyeditcomponent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="notfoundcomponent.html#today" class="tsd-kind-icon">today</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="comapnyeditcomponent.html#activatedroute" class="tsd-kind-icon">activated<wbr>Route</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comapnyeditcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="comapnyeditcomponent.html#comapny" class="tsd-kind-icon">comapny</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="comapnyeditcomponent.html#companiesservice" class="tsd-kind-icon">companies<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="comapnyeditcomponent.html#router" class="tsd-kind-icon">router</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section tsd-is-inherited">
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="notfoundcomponent.html#checkfullpagebackgroundimage" class="tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="notfoundcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="notfoundcomponent.html#sidebartoggle" class="tsd-kind-icon">sidebar<wbr>Toggle</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="comapnyeditcomponent.html#save" class="tsd-kind-icon">save</a></li>
 							</ul>
 						</section>
 					</div>
@@ -114,97 +105,122 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Not<wbr>Found<wbr>Component<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="notfoundcomponent.html" class="tsd-signature-type">NotFoundComponent</a></li>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Comapny<wbr>Edit<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, companiesService<span class="tsd-signature-symbol">: </span><a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, activatedRoute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRoute</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="comapnyeditcomponent.html" class="tsd-signature-type">ComapnyEditComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/shared/not-found/not-found.component.ts#L14">app/shared/not-found/not-found.component.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L19">app/auth/user/company-edit/company-edit.component.ts:19</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Inject deps</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>element: <span class="tsd-signature-type">ElementRef</span></h5>
+									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>companiesService: <a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
+								</li>
+								<li>
+									<h5>activatedRoute: <span class="tsd-signature-type">ActivatedRoute</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="notfoundcomponent.html" class="tsd-signature-type">NotFoundComponent</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="comapnyeditcomponent.html" class="tsd-signature-type">ComapnyEditComponent</a></h4>
 						</li>
 					</ul>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-					<a name="today" class="tsd-anchor"></a>
-					<h3>today</h3>
-					<div class="tsd-signature tsd-kind-icon">today<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date()</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="activatedroute" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> activated<wbr>Route</h3>
+					<div class="tsd-signature tsd-kind-icon">activated<wbr>Route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActivatedRoute</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#today">today</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/full-screen-page.model.ts#L13">app/models/full-screen-page.model.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L28">app/auth/user/company-edit/company-edit.component.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="authservice" class="tsd-anchor"></a>
+					<h3>auth<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L25">app/auth/user/company-edit/company-edit.component.ts:25</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="comapny" class="tsd-anchor"></a>
+					<h3>comapny</h3>
+					<div class="tsd-signature tsd-kind-icon">comapny<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Company</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L19">app/auth/user/company-edit/company-edit.component.ts:19</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A copy of the comapny current in edit</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="companiesservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> companies<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">companies<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L26">app/auth/user/company-edit/company-edit.component.ts:26</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="router" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L27">app/auth/user/company-edit/company-edit.component.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="checkfullpagebackgroundimage" class="tsd-anchor"></a>
-					<h3>check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="save" class="tsd-anchor"></a>
+					<h3>save</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#checkfullpagebackgroundimage">checkFullPageBackgroundImage</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/full-screen-page.model.ts#L19">app/models/full-screen-page.model.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/auth/user/company-edit/company-edit.component.ts#L41">app/auth/user/company-edit/company-edit.component.ts:41</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="ngoninit" class="tsd-anchor"></a>
-					<h3>ng<wbr>OnInit</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">ng<wbr>OnInit<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#ngoninit">ngOnInit</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/full-screen-page.model.ts#L29">app/models/full-screen-page.model.ts:29</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a name="sidebartoggle" class="tsd-anchor"></a>
-					<h3>sidebar<wbr>Toggle</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">sidebar<wbr>Toggle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#sidebartoggle">sidebarToggle</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/full-screen-page.model.ts#L41">app/models/full-screen-page.model.ts:41</a></li>
-								</ul>
-							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Save the user and redirect back</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -224,22 +240,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="notfoundcomponent.html" class="tsd-kind-icon">Not<wbr>Found<wbr>Component</a>
+						<a href="comapnyeditcomponent.html" class="tsd-kind-icon">Comapny<wbr>Edit<wbr>Component</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-								<a href="notfoundcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+								<a href="comapnyeditcomponent.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
-								<a href="notfoundcomponent.html#today" class="tsd-kind-icon">today</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="comapnyeditcomponent.html#activatedroute" class="tsd-kind-icon">activated<wbr>Route</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="notfoundcomponent.html#checkfullpagebackgroundimage" class="tsd-kind-icon">check<wbr>Full<wbr>Page<wbr>Background<wbr>Image</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comapnyeditcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="notfoundcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="comapnyeditcomponent.html#comapny" class="tsd-kind-icon">comapny</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="notfoundcomponent.html#sidebartoggle" class="tsd-kind-icon">sidebar<wbr>Toggle</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="comapnyeditcomponent.html#companiesservice" class="tsd-kind-icon">companies<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="comapnyeditcomponent.html#router" class="tsd-kind-icon">router</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="comapnyeditcomponent.html#save" class="tsd-kind-icon">save</a>
 							</li>
 						</ul>
 					</li>

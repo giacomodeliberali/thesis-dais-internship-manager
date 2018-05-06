@@ -45,11 +45,11 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="text" placeholder="{{'Dictionary.Name' | translate}}" formControlName="name" class="form-control" [(ngModel)]="user.name">
-                                        <small class="text-danger" *ngIf="myform.controls.name.invalid && myform.controls.name.touched">Full name is mandatory</small>
+                                        <small class="text-danger" *ngIf="myform.controls['name'].invalid && myform.controls['name'].touched">Full name is mandatory</small>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" placeholder="{{'Dictionary.Phone' | translate}}" formControlName="phone" class="form-control" [(ngModel)]="user.phone[0]">
-                                        <small class="text-danger" *ngIf="myform.controls.phone.invalid && myform.controls.phone.touched">Phone is mandatory</small>
+                                        <small class="text-danger" *ngIf="myform.controls['phone'].invalid && myform.controls['phone'].touched">Phone is mandatory</small>
                                     </div>
                                     <div>
                                         <label>
@@ -57,12 +57,13 @@
                                         </label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" placeholder="{{'Dictionary.CompanyName' | translate}}" formControlName="companyName" class="form-control" [(ngModel)]="company.name">
-                                        <small class="text-danger" *ngIf="myform.controls.companyName.invalid && myform.controls.companyName.touched">Company name is mandatory</small>
+                                        <input type="text" placeholder="{{'Dictionary.CompanyName' | translate}}" formControlName="companyName" class="form-control"
+                                            [(ngModel)]="company.name">
+                                        <small class="text-danger" *ngIf="myform.controls['companyName'].invalid && myform.controls['companyName'].touched">Company name is mandatory</small>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" placeholder="{{'Dictionary.VatCode' | translate}}" formControlName="vatCode" class="form-control" [(ngModel)]="company.vatCode">
-                                        <small class="text-danger" *ngIf="myform.controls.vatCode.invalid && myform.controls.vatCode.touched">VAT code is mandatory</small>
+                                        <small class="text-danger" *ngIf="myform.controls['vatCode'].invalid && myform.controls['vatCode'].touched">VAT code is mandatory</small>
                                     </div>
                                     <div>
                                         <label>
@@ -71,15 +72,17 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="email" placeholder="{{'Dictionary.Email' | translate}}" class="form-control" formControlName="email" [(ngModel)]="user.email">
-                                        <small class="text-danger" *ngIf="myform.controls.email.invalid && myform.controls.email.touched">Email is required and format should be <i>john@doe.com</i>.</small>
+                                        <small class="text-danger" *ngIf="myform.controls['email'].invalid && myform.controls['email'].touched">Email is required and format should be
+                                            <i>john@doe.com</i>.</small>
                                     </div>
                                     <div class="form-group" formGroupName="passwords">
-                                        <input type="password" placeholder="{{'Dictionary.Password' | translate}}" formControlName="password" class="form-control" [(ngModel)]="user.password">
-                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.password.invalid && myform.controls.passwords.controls.password.touched">Password is too short</small>
+                                        <input type="password" placeholder="{{'Dictionary.Password' | translate}}" formControlName="password" class="form-control"
+                                            [(ngModel)]="user.password">
+                                        <small class="text-danger" *ngIf="myform.get('passwords')['controls'].password.invalid && myform.get('passwords')['controls'].controls.password.touched">Password is too short</small>
                                     </div>
                                     <div class="form-group" formGroupName="passwords">
                                         <input type="password" placeholder="{{'Dictionary.RepeatPassword' | translate}}" formControlName="repeatPassword" class="form-control">
-                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.repeatPassword.touched && myform.controls.passwords.errors?.mismatch">Password is different</small>
+                                        <small class="text-danger" *ngIf="myform.get('passwords')['controls'].controls.repeatPassword.touched && myform.get('passwords')['controls'].errors?.mismatch">Password is different</small>
                                     </div>
                                 </div>
                                 <div class="footer text-center">

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ServiceLocator | Thesis</title>
+	<title>ClientDefaults | Thesis</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="servicelocator.html">ServiceLocator</a>
+					<a href="clientdefaults.html">ClientDefaults</a>
 				</li>
 			</ul>
-			<h1>Class ServiceLocator</h1>
+			<h1>Class ClientDefaults</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ServiceLocator</span>
+						<span class="target">ClientDefaults</span>
 					</li>
 				</ul>
 			</section>
@@ -79,25 +79,50 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="servicelocator.html#injector" class="tsd-kind-icon">injector</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-static"><a href="clientdefaults.html#ckeditorconfig" class="tsd-kind-icon">ck<wbr>Editor<wbr>Config</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="injector" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> injector</h3>
-					<div class="tsd-signature tsd-kind-icon">injector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Injector</span></div>
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
+					<a name="ckeditorconfig" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> ck<wbr>Editor<wbr>Config</h3>
+					<div class="tsd-signature tsd-kind-icon">ck<wbr>Editor<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/services/service-locator.service.ts#L4">app/services/service-locator.service.ts:4</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/client-defaults.model.ts#L4">app/models/client-defaults.model.ts:4</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The CKEditor default config</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="ckeditorconfig.removebuttons" class="tsd-anchor"></a>
+						<h3>remove<wbr>Buttons</h3>
+						<div class="tsd-signature tsd-kind-icon">remove<wbr>Buttons<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;Templates,Save,Source,NewPage,Preview,Print,Find,Replace,SelectAll,Scayt,Form,Checkbox,Radio,TextField,Textarea,Select,Button,ImageButton,HiddenField,Blockquote,CreateDiv,BidiLtr,BidiRtl,Language,Link,Unlink,Anchor,Image,Flash,Table,HorizontalRule,Smiley,PageBreak,Iframe,Font,BGColor,ShowBlocks,About,Styles,Format&quot;</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/client-defaults.model.ts#L21">app/models/client-defaults.model.ts:21</a></li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="ckeditorconfig.toolbargroups" class="tsd-anchor"></a>
+						<h3>toolbar<wbr>Groups</h3>
+						<div class="tsd-signature tsd-kind-icon">toolbar<wbr>Groups<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[{ name: &#x27;document&#x27;, groups: [&#x27;mode&#x27;, &#x27;document&#x27;, &#x27;doctools&#x27;] },{ name: &#x27;clipboard&#x27;, groups: [&#x27;clipboard&#x27;, &#x27;undo&#x27;] },{ name: &#x27;editing&#x27;, groups: [&#x27;find&#x27;, &#x27;selection&#x27;, &#x27;spellchecker&#x27;, &#x27;editing&#x27;] },{ name: &#x27;forms&#x27;, groups: [&#x27;forms&#x27;] },{ name: &#x27;basicstyles&#x27;, groups: [&#x27;basicstyles&#x27;, &#x27;cleanup&#x27;] },{ name: &#x27;paragraph&#x27;, groups: [&#x27;list&#x27;, &#x27;indent&#x27;, &#x27;blocks&#x27;, &#x27;align&#x27;, &#x27;bidi&#x27;, &#x27;paragraph&#x27;] },{ name: &#x27;links&#x27;, groups: [&#x27;links&#x27;] },{ name: &#x27;insert&#x27;, groups: [&#x27;insert&#x27;] },{ name: &#x27;about&#x27;, groups: [&#x27;about&#x27;] },&#x27;/&#x27;,{ name: &#x27;styles&#x27;, groups: [&#x27;styles&#x27;] },{ name: &#x27;colors&#x27;, groups: [&#x27;colors&#x27;] },{ name: &#x27;tools&#x27;, groups: [&#x27;tools&#x27;] },{ name: &#x27;others&#x27;, groups: [&#x27;others&#x27;] }]</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/abd395f/src/app/models/client-defaults.model.ts#L5">app/models/client-defaults.model.ts:5</a></li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 			</section>
 		</div>
@@ -114,10 +139,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="servicelocator.html" class="tsd-kind-icon">Service<wbr>Locator</a>
+						<a href="clientdefaults.html" class="tsd-kind-icon">Client<wbr>Defaults</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="servicelocator.html#injector" class="tsd-kind-icon">injector</a>
+							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-static">
+								<a href="clientdefaults.html#ckeditorconfig" class="tsd-kind-icon">ck<wbr>Editor<wbr>Config</a>
 							</li>
 						</ul>
 					</li>

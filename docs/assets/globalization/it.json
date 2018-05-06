@@ -41,9 +41,33 @@
         "City": "Città",
         "State": "Provincia",
         "Country": "Nazione",
-        "Zip": "CAP"
+        "Zip": "CAP",
+        "Access": "Accedi",
+        "ProposeYourSelf": "Candidati",
+        "AddInternship": "Aggiungi stage",
+        "MyComapanies": "Le mie aziende"
     },
     "Pages": {
+        "Index": {
+            "LookingForLogin": "Cerchi il login?",
+            "Title": "DAIS Internship Manager",
+            "SubTitle": "Una piattaforma per cercare, proporre e gestire gli stage universitari",
+            "Sections": {
+                "0": {
+                    "Title": "Account universitario",
+                    "SubTitle": "Sei uno studente oppure un professore? Accedi direttamente mediante le credenziali dell'ateneo"
+                },
+                "1": {
+                    "Title": "Aziende",
+                    "SubTitle": "Sei un azienda? Crea subito un account e offri uno stage ad uno a più studenti!"
+                },
+                "2": {
+                    "Title": "Semplice",
+                    "SubTitle": "Una volta avviato uno stage, tutti i soggetti - studenti, professori e aziende - potranno monitorare l'avanzamento direttamente accedendo al portale."
+                }
+            },
+            "LoginTitle": "Che aspetti?"
+        },
         "Login": {
             "Title": "Membro Ca' Foscari",
             "SubTitle": "Utilizza il tuo account universitario per accedere ",
@@ -63,18 +87,20 @@
         "Internships": {
             "Title": "Tirocini",
             "ViewOffers": "Visualizza offerte",
-            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende",
-            "OwnInternships": "I miei internships"
+            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende"
         },
         "User": {
             "ViewProfile": "Visualizza profilo"
         },
         "AddInternship": {
-            "Title": "Aggiungi internship"
+            "Title": "Aggiungi stage"
         },
         "Company": {
             "Title": "Azienda",
             "SubTitle": "Visualizza le offerte di stage che hai inserito"
+        },
+        "InternshipDetails": {
+            "Title": "Dettagli tirocinio"
         }
     },
     "Alerts": {
@@ -90,6 +116,7 @@
     "Roles": {
         "Student": "Studente",
         "Professor": "Professore",
-        "Admin": "Admin"
+        "Admin": "Admin",
+        "Company": "Azienda"
     }
 }
