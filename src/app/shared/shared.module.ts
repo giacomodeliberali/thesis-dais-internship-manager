@@ -11,8 +11,8 @@ import { createTranslateLoader } from '../helpers/translateLoader.factory';
 import { MyMissingTranslationHandler } from '../services/my-missing-translation-handler.service';
 import { DatepickerDirective } from '../directives/datepicker.directive';
 import { TableColPipe } from '../pipes/table-col.pipe';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import localeIt from '@angular/common/locales/it';
-
 registerLocaleData(localeIt);
 
 /**

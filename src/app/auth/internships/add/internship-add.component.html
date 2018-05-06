@@ -83,7 +83,7 @@
                         </div>
                         <div class="form-group">
                             <label translate>Dictionary.Description</label>
-                            <textarea class="form-control" placeholder="{{'Dictionary.Description' | translate}}" rows="3" [(ngModel)]="internship.description"></textarea>
+                            <ckeditor [(ngModel)]="internship.description" [config]="config"></ckeditor>
                         </div>
 
                         <div class="row form-group">
@@ -99,22 +99,27 @@
                                 />
                             </div>
                         </div>
-                        <div class="form-group">
-                        </div>
-                        <div class="form-group">
-                            <label translate>Dictionary.TotalHours</label>
-                            <input type="number" class="form-control" placeholder="{{'Dictionary.TotalHours' | translate}}" [(ngModel)]="internship.totalHours"
-                            />
-                        </div>
-                        <div class="form-group">
-                            <label translate>Dictionary.StudentsNumber</label>
-                            <input type="number" class="form-control" placeholder="{{'Dictionary.StudentsNumber' | translate}}" [(ngModel)]="internship.studentsNumber"
-                            />
-                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
 
-                        <div class="text-right">
+                                <label translate>Dictionary.TotalHours</label>
+                                <input type="number" class="form-control" placeholder="{{'Dictionary.TotalHours' | translate}}" [(ngModel)]="internship.totalHours"
+                                />
+                            </div>
+                            <div class="col-sm-6">
+                                <label translate>Dictionary.StudentsNumber</label>
+                                <input type="number" class="form-control" placeholder="{{'Dictionary.StudentsNumber' | translate}}" [(ngModel)]="internship.studentsNumber"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/list'" translate>Dictionary.Cancel</button>
-                            <button type="button" class="btn btn-success" (click)="save()" translate>Dictionary.Save</button>
+                            <button type="button" class="btn btn-success pull-right" (click)="save()" translate>Dictionary.Save</button>
                         </div>
                     </div>
                 </div>

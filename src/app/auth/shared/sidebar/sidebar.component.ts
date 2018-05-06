@@ -49,7 +49,7 @@ export const ROUTES: RouteInfo[] = [
         children: [
             {
                 path: 'add',
-                title: 'Dictionary.Add',
+                title: 'Dictionary.AddInternship',
                 ab: 'A',
                 requiredRoles: [
                     RoleType.Company
@@ -57,7 +57,7 @@ export const ROUTES: RouteInfo[] = [
             },
             {
                 path: 'company',
-                title: 'Pages.Internships.OwnInternships',
+                title: 'Dictionary.OwnInternships',
                 ab: 'M'
             }
         ]

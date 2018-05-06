@@ -9,17 +9,15 @@ import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
 import { LoadingHelper } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
-import { ClientDefaults } from '../../../models/client-defaults.model';
-import { TranslateService } from '@ngx-translate/core';
 
 declare var $;
 
 @Component({
 	moduleId: module.id,
-	selector: 'internship-add-cmp',
-	templateUrl: 'internship-add.component.html'
+	selector: 'internship-details-cmp',
+	templateUrl: 'internship-details.component.html'
 })
-export class InternshipAddComponent {
+export class InternshipDetailsComponent {
 
 	/** The internships current in edit */
 	public internship: Internship;
@@ -29,7 +27,7 @@ export class InternshipAddComponent {
 
 	public selectedCompanyId: string;
 
-	public config: any;
+	public startDate = new Date();
 
 	/**
 	 * Inject deps
@@ -38,32 +36,41 @@ export class InternshipAddComponent {
 		public internshipsService: InternshipsService,
 		public authService: AuthService,
 		private companiesService: CompaniesService,
+		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private location: Location,
-		private translateService: TranslateService) {
+		private location: Location) {
 
-		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
 		LoadingHelper.isLoading = true;
 
-		this.internship = new Internship({
-			address: new Address()
-		});
+		const internshipId = this.activatedRoute.snapshot.params['id'];
 
-		this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
-			this.selectedCompanyId = response.data[0].id;
-			this.companies.push(...response.data);
-			this.updateAddress();
-			setTimeout(() => {
-				$(".selectpicker").selectpicker('refresh');
-			});
-		}).then(() => {
+		Promise.all([
+			this.internshipsService.getById(internshipId)
+				.then(response => {
+					if (response)
+						this.internship = new Internship(response.data);
+				})
+				.catch(ex => {
+					console.error(ex);
+				})
+			,
+			this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
+				this.selectedCompanyId = response.data[0].id;
+				this.companies.push(...response.data);
+				this.updateAddress();
+				setTimeout(() => {
+					$(".selectpicker").selectpicker('refresh');
+				});
+			})
+		]).then(() => {
 			LoadingHelper.isLoading = false;
 		});
 	}
 
 	updateAddress() {
-		this.internship.address = new Address(this.companies.find(c => c.id === this.selectedCompanyId).address).clone();
+		if (this.internship)
+			this.internship.address = new Address(this.companies.find(c => c.id === this.selectedCompanyId).address).clone();
 	}
 
 	/**
@@ -77,10 +84,10 @@ export class InternshipAddComponent {
 		this.internshipsService.update(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.location.back();
+			LoadingHelper.isLoading = false;
 		}).catch(ex => {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);
-		}).then(() => {
 			LoadingHelper.isLoading = false;
 		});
 	}

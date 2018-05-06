@@ -42,7 +42,9 @@
         "State": "Provincia",
         "Country": "Nazione",
         "Zip": "CAP",
-        "Access": "Accedi"
+        "Access": "Accedi",
+        "ProposeYourSelf": "Candidati",
+        "AddInternship": "Aggiungi stage"
     },
     "Pages": {
         "Index": {
@@ -64,7 +66,6 @@
                 }
             },
             "LoginTitle": "Che aspetti?"
-
         },
         "Login": {
             "Title": "Membro Ca' Foscari",
@@ -85,18 +86,20 @@
         "Internships": {
             "Title": "Tirocini",
             "ViewOffers": "Visualizza offerte",
-            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende",
-            "OwnInternships": "I miei internships"
+            "SubTitle": "Visualizza le offerte di stage offerte dalle aziende"
         },
         "User": {
             "ViewProfile": "Visualizza profilo"
         },
         "AddInternship": {
-            "Title": "Aggiungi internship"
+            "Title": "Aggiungi stage"
         },
         "Company": {
             "Title": "Azienda",
             "SubTitle": "Visualizza le offerte di stage che hai inserito"
+        },
+        "InternshipDetails": {
+            "Title": "Dettagli tirocinio"
         }
     },
     "Alerts": {

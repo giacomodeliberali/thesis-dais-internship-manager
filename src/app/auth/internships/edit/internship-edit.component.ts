@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, Defaults } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -8,6 +8,9 @@ import 'moment/locale/it'; */
 import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
 import { LoadingHelper } from '../../../helpers/loading.helper';
+import { Location } from '@angular/common';
+import { ClientDefaults } from '../../../models/client-defaults.model';
+import { TranslateService } from '@ngx-translate/core';
 
 declare var $;
 
@@ -28,6 +31,8 @@ export class InternshipEditComponent {
 
 	public startDate = new Date();
 
+	public config = null;
+
 	/**
 	 * Inject deps
 	 */
@@ -36,7 +41,11 @@ export class InternshipEditComponent {
 		public authService: AuthService,
 		private companiesService: CompaniesService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router) {
+		private router: Router,
+		private location: Location,
+		private translateService: TranslateService) {
+
+		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
 
 		LoadingHelper.isLoading = true;
@@ -81,7 +90,7 @@ export class InternshipEditComponent {
 		this.internship.endDate = new Date(this.internship.endDate);
 		this.internshipsService.update(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
-			this.router.navigate(['/auth/internships/company']);
+			this.location.back();
 			LoadingHelper.isLoading = false;
 		}).catch(ex => {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");

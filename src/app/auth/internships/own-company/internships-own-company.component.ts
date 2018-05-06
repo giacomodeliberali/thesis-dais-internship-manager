@@ -15,8 +15,8 @@ export class InternshipsOwnCompanyComponent {
             { name: 'Dictionary.Company', value: 'company.name' },
             { name: 'Dictionary.StartDate', value: 'startDate', class: 'text-center', pipe: DatePipe },
             { name: 'Dictionary.EndDate', value: 'endDate', class: 'text-center', pipe: DatePipe },
-            { name: 'Dictionary.TotalHours', value: 'totalHours' },
-            { name: 'Dictionary.Title', value: 'title' }
+            { name: 'Dictionary.Title', value: 'title' },
+            { name: 'Dictionary.TotalHours', value: 'totalHours' }
         ] as Array<any>,
         dataRows: []
     };
@@ -30,11 +30,15 @@ export class InternshipsOwnCompanyComponent {
         this.internshipsService.getByCompanyOwnerId(this.authService.currentUser.id).then(internsips => {
             if (internsips.isOk)
                 this.internshipTable.dataRows = internsips.data;
-
-            this.isLoading = false;
         }).catch(ex => {
             NotificationHelper.showNotification('Alerts.GetAllInternships.Error.Title', 'ti-warn', 'info');
+        }).then(() => {
             this.isLoading = false;
+
+            setTimeout(() => {
+                // Init Tooltips
+                $('[rel="tooltip"]').tooltip();
+            });
         });
     }
 
