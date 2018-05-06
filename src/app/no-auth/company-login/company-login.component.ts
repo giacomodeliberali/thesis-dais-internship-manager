@@ -4,6 +4,8 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { FullScreenPage } from '../../models/full-screen-page.model';
+import { LoadingHelper } from '../../helpers/loading.helper';
+import swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -19,12 +21,34 @@ export class CompanyLoginComponent extends FullScreenPage {
 
 
     constructor(element: ElementRef,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private router: Router) {
+
         super(element);
     }
 
     async login() {
-        const response = await this.authService.login(this.email, this.password);
-        console.log(response);
+        try {
+            LoadingHelper.isLoading = true;
+            const authResponse = await this.authService.login(this.email, this.password);
+            if (authResponse.data.isNew)
+                this.router.navigate(['/auth/user/edit'])
+            else
+                this.router.navigate(['/auth'])
+        } catch (ex) {
+            console.error("Login error", ex);
+            if (ex.error == "auth/bad-login")
+                return swal(
+                    'Login non riuscito',
+                    'Le credenziali immesse non sono corrette',
+                    'warning');
+
+            swal(
+                'Login non riuscito',
+                ex && ex.error && ex.error.exception ? ex.error.exception.message : ex.error,
+                'error');
+        } finally {
+            LoadingHelper.isLoading = false;
+        }
     }
 }

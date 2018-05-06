@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
 import { FullScreenPage } from '../../models/full-screen-page.model';
+import { LoadingHelper } from '../../helpers/loading.helper';
 
 declare var $: any;
 
@@ -16,8 +17,6 @@ declare var $: any;
 
 export class LoginComponent extends FullScreenPage {
 
-    public isLoading: boolean = false;
-
     constructor(
         element: ElementRef,
         private authService: AuthService,
@@ -28,7 +27,7 @@ export class LoginComponent extends FullScreenPage {
 
     async login() {
         try {
-            this.isLoading = true;
+            LoadingHelper.isLoading = true;
             const authResponse = await this.authService.googleLogin();
             if (authResponse.isNew)
                 this.router.navigate(['/auth/user/edit'])
@@ -53,7 +52,7 @@ export class LoginComponent extends FullScreenPage {
                 ex && ex.error && ex.error.exception ? ex.error.exception.message : ex.error,
                 'error');
         } finally {
-            this.isLoading = false;
+            LoadingHelper.isLoading = false;
         }
     }
 

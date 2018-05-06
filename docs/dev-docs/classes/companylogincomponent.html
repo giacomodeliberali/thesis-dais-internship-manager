@@ -101,6 +101,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="companylogincomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="companylogincomponent.html#email" class="tsd-kind-icon">email</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="companylogincomponent.html#password" class="tsd-kind-icon">password</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="companylogincomponent.html#router" class="tsd-kind-icon">router</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="companylogincomponent.html#today" class="tsd-kind-icon">today</a></li>
 							</ul>
 						</section>
@@ -122,14 +123,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Company<wbr>Login<wbr>Component<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="companylogincomponent.html" class="tsd-signature-type">CompanyLoginComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Company<wbr>Login<wbr>Component<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ElementRef</span>, authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="companylogincomponent.html" class="tsd-signature-type">CompanyLoginComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/no-auth/company-login/company-login.component.ts#L18">app/no-auth/company-login/company-login.component.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L20">app/no-auth/company-login/company-login.component.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -139,6 +140,9 @@
 								</li>
 								<li>
 									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="companylogincomponent.html" class="tsd-signature-type">CompanyLoginComponent</a></h4>
@@ -154,7 +158,7 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/no-auth/company-login/company-login.component.ts#L22">app/no-auth/company-login/company-login.component.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L24">app/no-auth/company-login/company-login.component.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/no-auth/company-login/company-login.component.ts#L17">app/no-auth/company-login/company-login.component.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L19">app/no-auth/company-login/company-login.component.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +178,17 @@
 					<div class="tsd-signature tsd-kind-icon">password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/no-auth/company-login/company-login.component.ts#L18">app/no-auth/company-login/company-login.component.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L20">app/no-auth/company-login/company-login.component.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="router" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L25">app/no-auth/company-login/company-login.component.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +199,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#today">today</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/models/full-screen-page.model.ts#L13">app/models/full-screen-page.model.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/models/full-screen-page.model.ts#L13">app/models/full-screen-page.model.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,7 +217,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#checkfullpagebackgroundimage">checkFullPageBackgroundImage</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/models/full-screen-page.model.ts#L19">app/models/full-screen-page.model.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/models/full-screen-page.model.ts#L19">app/models/full-screen-page.model.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -214,16 +228,16 @@
 					<a name="login" class="tsd-anchor"></a>
 					<h3>login</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">login<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">login<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SweetAlertResult</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/no-auth/company-login/company-login.component.ts#L26">app/no-auth/company-login/company-login.component.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/no-auth/company-login/company-login.component.ts#L30">app/no-auth/company-login/company-login.component.ts:30</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SweetAlertResult</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -238,7 +252,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#ngoninit">ngOnInit</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/models/full-screen-page.model.ts#L29">app/models/full-screen-page.model.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/models/full-screen-page.model.ts#L29">app/models/full-screen-page.model.ts:29</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -256,7 +270,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="fullscreenpage.html">FullScreenPage</a>.<a href="fullscreenpage.html#sidebartoggle">sidebarToggle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/aff2bfb/src/app/models/full-screen-page.model.ts#L41">app/models/full-screen-page.model.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/df09206/src/app/models/full-screen-page.model.ts#L41">app/models/full-screen-page.model.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -291,6 +305,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="companylogincomponent.html#password" class="tsd-kind-icon">password</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="companylogincomponent.html#router" class="tsd-kind-icon">router</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="companylogincomponent.html#today" class="tsd-kind-icon">today</a>

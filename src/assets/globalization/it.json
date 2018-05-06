@@ -45,7 +45,14 @@
         "Access": "Accedi",
         "ProposeYourSelf": "Candidati",
         "AddInternship": "Aggiungi stage",
-        "MyComapanies": "Le mie aziende"
+        "MyComapanies": "Le mie aziende",
+        "Password": "Password",
+        "VatCode": "Partita IVA",
+        "Name": "Name",
+        "FullName": "Nome e cognome",
+        "CompanyName": "Nome azienda",
+        "RepeatPassword": "Ripeti password",
+        "CreateAccount": "Crea account"
     },
     "Pages": {
         "Index": {
