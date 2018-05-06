@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="card card-calendar">
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
                             {{authService.currentUser.name}}
@@ -25,9 +25,11 @@
                         <div class="form-group">
                             <label translate>Dictionary.Phones</label>
                             <p class="form-control-static" *ngIf="authService.currentUser.phone.length == 0">{{'Dictionary.None' | translate}}</p>
-                            <p class="form-control-static" *ngFor="let phone of authService.currentUser.phone; let i = index">
-                                <a href="tel:{{phone}}">{{phone}}</a>
-                            </p>
+                            <ul class="form-control-static">
+                                <li *ngFor="let phone of authService.currentUser.phone; let i = index">
+                                    <a href="tel:{{phone}}">{{phone}}</a>
+                                </li>
+                            </ul>
                         </div>
 
                         <div class="text-right">
@@ -35,7 +37,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="card card-calendar">
+                <div class="card" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Company]) && ownComapnies">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.Company' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div>
+                            <label translate>Dictionary.MyComapanies</label>
+                            <ul>
+                                <li *ngFor="let cmp of ownComapnies">
+                                    {{cmp.name}} - {{cmp.vatCode}} 
+                                    (<a [routerLink]="'/auth/user/edit/company/' + cmp.id">Modifica</a>)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">
                             {{'Dictionary.Language' | translate}}

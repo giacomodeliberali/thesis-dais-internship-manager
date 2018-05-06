@@ -35,17 +35,21 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="form-group">
-                                        <label>Email address</label>
-                                        <input type="email" placeholder="Enter email" class="form-control input-no-border" [(ngModel)]="email" name="email">
+                                        <label translate>Dictionary.Email</label>
+                                        <input type="email" placeholder="{{'Dictionary.Email' | translate}}" class="form-control input-no-border" [(ngModel)]="email"
+                                            name="email">
                                     </div>
                                     <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" placeholder="Password" class="form-control input-no-border" [(ngModel)]="password" name="password">
+                                        <label translate>Dictionary.Password</label>
+                                        <input type="password" placeholder="{{'Dictionary.Password' | translate}}" class="form-control input-no-border" [(ngModel)]="password"
+                                            name="password">
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
                                     <button type="button" class="btn btn-fill btn-wd " (click)="login()">{{'Dictionary.Login' | translate}}</button>
                                     <div class="forgot">
+                                        <hr> Nuova azienda?
+                                        <a [routerLink]="['/register']">Crea subito un account!</a>
                                         <hr> {{'Pages.Login.Else' | translate}}
                                         <a [routerLink]="['/login']">{{'Pages.CompanyLogin.LoginAsUnive' | translate}}</a>
                                     </div>

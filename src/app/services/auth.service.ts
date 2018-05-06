@@ -104,11 +104,12 @@ export class AuthService {
                     access_token: accessToken
                 }).toPromise() as any;
 
-
-                this.currentUser = new User(apiResponse.data.user);
-                localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-                localStorage.setItem("token", apiResponse.data.token);
-
+                if (apiResponse.isOk) {
+                    this.token = apiResponse.data.token;
+                    this.currentUser = new User(apiResponse.data.user);
+                    localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+                    localStorage.setItem("token", apiResponse.data.token);
+                }
 
                 return apiResponse.data;
             } catch (ex) {
@@ -135,11 +136,34 @@ export class AuthService {
         }
     }
 
-    public login(email: string, password: string): Promise<ApiResponseDto<AuthResponse>> {
-        return this.post('auth/login', {
+    public async login(email: string, password: string): Promise<ApiResponseDto<AuthResponse>> {
+        const apiResponse = await this.post('auth/login', {
             email: email,
             password: password
         });
+
+        if (apiResponse.isOk) {
+            this.token = apiResponse.data.token;
+            this.currentUser = new User(apiResponse.data.user);
+            localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+            localStorage.setItem("token", apiResponse.data.token);
+        }
+
+        return apiResponse;
+    }
+
+    public async register(user: User) {
+
+        const apiResponse = await this.post('auth/register', user.clone()) as ApiResponseDto<AuthResponse>;
+
+        if (apiResponse.isOk) {
+            this.token = apiResponse.data.token;
+            this.currentUser = new User(apiResponse.data.user);
+            localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+            localStorage.setItem("token", apiResponse.data.token);
+        }
+
+        return apiResponse;
     }
 
     /**

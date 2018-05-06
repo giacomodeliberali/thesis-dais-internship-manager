@@ -60,6 +60,10 @@ body.blur .wrapper {
     }
 }
 
-.header-language.active{
+.header-language.active {
     color: $danger-color;
+}
+
+[ng-reflect-router-link] {
+    cursor: pointer;
 }

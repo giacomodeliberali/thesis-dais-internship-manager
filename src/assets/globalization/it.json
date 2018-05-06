@@ -44,7 +44,8 @@
         "Zip": "CAP",
         "Access": "Accedi",
         "ProposeYourSelf": "Candidati",
-        "AddInternship": "Aggiungi stage"
+        "AddInternship": "Aggiungi stage",
+        "MyComapanies": "Le mie aziende"
     },
     "Pages": {
         "Index": {
@@ -115,6 +116,7 @@
     "Roles": {
         "Student": "Studente",
         "Professor": "Professore",
-        "Admin": "Admin"
+        "Admin": "Admin",
+        "Company": "Azienda"
     }
 }

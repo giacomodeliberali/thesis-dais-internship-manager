@@ -49,10 +49,10 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h5 translate>Pages.Index.Sections.0.Title</h5>
-                                <span translate>
+                                <h5 translate [routerLink]="['/login']">Pages.Index.Sections.0.Title</h5>
+                                <div translate>
                                     Pages.Index.Sections.0.SubTitle
-                                </span>
+                                </div>
                             </div>
                         </div>
                         <div class="media">
@@ -62,10 +62,11 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h5 translate>Pages.Index.Sections.1.Title</h5>
-                                <span translate>
+                                <h5 translate [routerLink]="['/login/company']">Pages.Index.Sections.1.Title</h5>
+                                <div translate>
                                     Pages.Index.Sections.1.SubTitle
-                                </span>
+                                </div>
+                                <a [routerLink]="['/register']">Crea subito un nuovo account!</a>
                             </div>
                         </div>
                         <div class="media">
@@ -76,9 +77,9 @@
                             </div>
                             <div class="media-body">
                                 <h5 translate>Pages.Index.Sections.2.Title</h5>
-                                <span translate>
+                                <div translate>
                                     Pages.Index.Sections.2.SubTitle
-                                </span>
+                                </div>
                             </div>
                         </div>
                         <div class="media">

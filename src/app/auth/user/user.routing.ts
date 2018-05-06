@@ -5,6 +5,7 @@ import { generateAuthRoute } from '../../helpers/generate.auth-route.helper';
 import { UserEditComponent } from './edit/user-edit.component';
 import { RoleType } from 'gdl-thesis-core/dist';
 import { AuthGuardService } from '../../services/auth-guard.service';
+import { ComapnyEditComponent } from './company-edit/company-edit.component';
 
 
 export const UserRoutes: Routes = [
@@ -19,7 +20,8 @@ export const UserRoutes: Routes = [
                 component: UserViewComponent
             },
             generateAuthRoute('edit', UserEditComponent),
-            generateAuthRoute('logout', UserLogoutComponent)
+            generateAuthRoute('logout', UserLogoutComponent),
+            generateAuthRoute('edit/company/:id', ComapnyEditComponent, [RoleType.Company])
         ]
     }
 ];

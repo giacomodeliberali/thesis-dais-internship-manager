@@ -28,7 +28,7 @@ export class BaseService {
     protected put(path: string, body: any) {
         return this.httpClient.put(`${environment.apiServicesBaseUrl}/${path}`, body, {
             headers: {
-                "Authentication": this.authService.token
+                "Authentication": this.authService.token || ''
             }
         }).toPromise() as Promise<any>;
     }
@@ -41,7 +41,7 @@ export class BaseService {
     protected post(path: string, body: any) {
         return this.httpClient.post(`${environment.apiServicesBaseUrl}/${path}`, body, {
             headers: {
-                "Authentication": this.authService.token
+                "Authentication": this.authService.token || ''
             }
         }).toPromise() as Promise<any>;
     }
@@ -53,7 +53,19 @@ export class BaseService {
     protected get(path: string) {
         return this.httpClient.get(`${environment.apiServicesBaseUrl}/${path}`, {
             headers: {
-                "Authentication": this.authService.token
+                "Authentication": this.authService.token || ''
+            }
+        }).toPromise() as Promise<any>;
+    }
+
+    /**
+     * Make a DELETE request to the specified path
+     * @param path The path
+     */
+    protected delete(path: string) {
+        return this.httpClient.delete(`${environment.apiServicesBaseUrl}/${path}`, {
+            headers: {
+                "Authentication": this.authService.token || ''
             }
         }).toPromise() as Promise<any>;
     }
