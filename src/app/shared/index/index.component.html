@@ -12,8 +12,15 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a routerLinkActive="active" [routerLink]="['/login']" class="btn">
-                        Cerchi il login?
+                    <a [routerLink]="['/login']" class="btn" translate>
+                        Pages.Index.LookingForLogin
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-simple">
+                        <span (click)="onChangeLanguage('it')" class="header-language" [class.active]="currentLanguage == 'it'">IT</span>
+                        &nbsp;/&nbsp;
+                        <span (click)="onChangeLanguage('en')" class="header-language" [class.active]="currentLanguage == 'en'">EN</span>
                     </a>
                 </li>
             </ul>
@@ -29,8 +36,8 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="header-text">
-                            <h2>DAIS Internship Manager</h2>
-                            <h4>Una piattaforma per cercare, proporre e gestire gli stage universitari</h4>
+                            <h2 translate>Pages.Index.Title</h2>
+                            <h4 translate>Pages.Index.SubTitle</h4>
                             <hr>
                         </div>
                     </div>
@@ -42,8 +49,10 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h5>Account universitario</h5>
-                                Se sei uno studente oppure un professore, accedi mediante le credenziali dell'ateneo
+                                <h5 translate>Pages.Index.Sections.0.Title</h5>
+                                <span translate>
+                                    Pages.Index.Sections.0.SubTitle
+                                </span>
                             </div>
                         </div>
                         <div class="media">
@@ -53,8 +62,10 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h5>Aziende</h5>
-                                Se sei un azienda crea subito un account e offri uno stage ad uno a più studenti dell'ateneo.
+                                <h5 translate>Pages.Index.Sections.1.Title</h5>
+                                <span translate>
+                                    Pages.Index.Sections.1.SubTitle
+                                </span>
                             </div>
                         </div>
                         <div class="media">
@@ -64,8 +75,27 @@
                                 </div>
                             </div>
                             <div class="media-body">
-                                <h5>Flaw</h5>
-                                Una volta avviato uno stage, tutti i soggetti - studenti, professori e aziende - saranno convolti e potranno amministrare l'avanzamento e tutti i dettagli della pratica avviata direttamente accedendo al portale.
+                                <h5 translate>Pages.Index.Sections.2.Title</h5>
+                                <span translate>
+                                    Pages.Index.Sections.2.SubTitle
+                                </span>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <div class="icon icon-success">
+                                    <!-- <i class="fas fa-chevron-right"></i> -->
+                                </div>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="text-center">
+                                    <i class="far fa-hand-point-right" style="vertical-align: middle"></i>
+                                    <div style="display: inline-block">
+                                        <span translate>Pages.Index.LoginTitle</span>
+                                        <a [routerLink]="['/login']">
+                                            <span translate>Dictionary.Access</span>!</a>
+                                    </div>
+                                </h5>
                             </div>
                         </div>
                     </div>
