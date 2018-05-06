@@ -78,11 +78,11 @@
                                     <div class="form-group" formGroupName="passwords">
                                         <input type="password" placeholder="{{'Dictionary.Password' | translate}}" formControlName="password" class="form-control"
                                             [(ngModel)]="user.password">
-                                        <small class="text-danger" *ngIf="myform.get('passwords')['controls'].password.invalid && myform.get('passwords')['controls'].controls.password.touched">Password is too short</small>
+                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.password.invalid && myform.controls.passwords.controls.password.touched">Password is too short</small>
                                     </div>
                                     <div class="form-group" formGroupName="passwords">
                                         <input type="password" placeholder="{{'Dictionary.RepeatPassword' | translate}}" formControlName="repeatPassword" class="form-control">
-                                        <small class="text-danger" *ngIf="myform.get('passwords')['controls'].controls.repeatPassword.touched && myform.get('passwords')['controls'].errors?.mismatch">Password is different</small>
+                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.repeatPassword.touched && myform.controls.passwords.errors?.mismatch">Password is different</small>
                                     </div>
                                 </div>
                                 <div class="footer text-center">

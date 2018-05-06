@@ -20,7 +20,7 @@ export class RegisterComponent extends FullScreenPage {
     public user: User;
     public company: Company;
 
-    myform: FormGroup;
+    myform: any;
 
     constructor(
         element: ElementRef,
