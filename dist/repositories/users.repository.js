@@ -72,15 +72,15 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
         return __awaiter(this, void 0, void 0, function* () {
             return this
                 .findOne({ email: email, authType: auth_type_enum_1.AuthType.Local })
-                .then(user => {
-                if (user && user.isValidPassword(password))
+                .then((user) => __awaiter(this, void 0, void 0, function* () {
+                if (user && (yield bcrypt.compare(password, user.password)))
                     return Promise.resolve(user);
                 else
                     return Promise.reject({
                         message: "Bad login attempt",
                         code: "auth/bad-login"
                     });
-            })
+            }))
                 .catch((ex) => {
                 return Promise.reject(ex);
             });

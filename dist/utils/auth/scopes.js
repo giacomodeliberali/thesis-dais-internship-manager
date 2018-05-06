@@ -1,8 +1,18 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const dist_1 = require("gdl-thesis-core/dist");
 const ServerDefaults_1 = require("../../ServerDefaults");
 const api_response_model_1 = require("../../models/api-response.model");
+const di_container_1 = require("../di-container");
+const repositories_1 = require("../../repositories");
 /**
  * Check if the current request has a body property with the decoded JWT information.
  * If this value exists and its 'role' property has value it gets returned, otherwise
@@ -145,3 +155,81 @@ function professorScope(request, response, next) {
     }).send();
 }
 exports.professorScope = professorScope;
+function ownCompany(request, response, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        // Pick decoded user
+        const user = checkBodyUser(request, response);
+        // Check if has role
+        if (user) {
+            // If the user is admin, continue
+            if ((user.role.type & Number(dist_1.RoleType.Admin)) === Number(dist_1.RoleType.Admin))
+                return next();
+            try {
+                const comapniesRepsoitory = di_container_1.container.resolve(repositories_1.CompaniesRepository);
+                const icompany = yield comapniesRepsoitory.get(request.body.id);
+                if (icompany) {
+                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && icompany.owners.find(owner => owner.id === user.id)) {
+                        return next();
+                    }
+                }
+            }
+            catch (ex) {
+                // Return Unauthorized
+                return new api_response_model_1.ApiResponse({
+                    response: response,
+                    httpCode: 401,
+                    exception: ex
+                }).send();
+            }
+        }
+        // Return Unauthorized
+        return new api_response_model_1.ApiResponse({
+            response: response,
+            httpCode: 401,
+            exception: {
+                message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update a company of which you are not a owner.",
+                code: "auth/user-unauthorized"
+            }
+        }).send();
+    });
+}
+exports.ownCompany = ownCompany;
+function ownInternship(request, response, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        // Pick decoded user
+        const user = checkBodyUser(request, response);
+        // Check if has role
+        if (user) {
+            // If the user is admin, continue
+            if ((user.role.type & Number(dist_1.RoleType.Admin)) === Number(dist_1.RoleType.Admin))
+                return next();
+            try {
+                const internshipsRepsoitory = di_container_1.container.resolve(repositories_1.InternshipsRepository);
+                const iinternship = yield internshipsRepsoitory.get(request.body.id);
+                if (iinternship) {
+                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && iinternship.company.owners.find((owner) => owner === user.id)) {
+                        return next();
+                    }
+                }
+            }
+            catch (ex) {
+                // Return Unauthorized
+                return new api_response_model_1.ApiResponse({
+                    response: response,
+                    httpCode: 401,
+                    exception: ex
+                }).send();
+            }
+        }
+        // Return Unauthorized
+        return new api_response_model_1.ApiResponse({
+            response: response,
+            httpCode: 401,
+            exception: {
+                message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update an internship of which you are not a owner.",
+                code: "auth/user-unauthorized"
+            }
+        }).send();
+    });
+}
+exports.ownInternship = ownInternship;

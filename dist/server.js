@@ -99,12 +99,26 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
         .resolve(companies_controller_1.CompaniesController)
         .useAuth()
         .useGetByOwnerId()
-        .useCrud(crudOptions)
+        .useCrud({
+        delete: {
+            middleware: [scopes_1.adminScope]
+        },
+        update: {
+            middleware: [scopes_1.ownCompany]
+        }
+    })
         .register();
     const internshipsController = di_container_1.container
         .resolve(internships_controller_1.InternshipsController)
         .useAuth()
-        .useCrud(crudOptions)
+        .useCrud({
+        delete: {
+            middleware: [scopes_1.adminScope]
+        },
+        update: {
+            middleware: [scopes_1.ownInternship]
+        }
+    })
         .useGetByCompanyOwnerId()
         .register();
     const internshipProposalsController = di_container_1.container

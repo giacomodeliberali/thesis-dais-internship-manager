@@ -30,6 +30,11 @@ let CompaniesRepository = class CompaniesRepository extends base_1.BaseRepositor
         super(companyModel, dist_1.Defaults.collectionsName.companies);
         this.companyModel = companyModel;
     }
+    getByOnwerId(id) {
+        return this.find({
+            owners: id
+        });
+    }
 };
 CompaniesRepository = __decorate([
     inversify_1.injectable(),

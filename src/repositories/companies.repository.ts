@@ -1,10 +1,11 @@
 import { BaseRepository } from "./base";
-import { Defaults, Company } from "gdl-thesis-core/dist";
+import { Defaults, Company, ApiResponseDto } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { CompanyModel } from "../schemas/company.schema";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
 import { ICompany } from "../models/interfaces";
+import { ApiResponse } from "../models/api-response.model";
 
 /**
  * The [[Company]] repository
@@ -23,4 +24,9 @@ export class CompaniesRepository extends BaseRepository<ICompany, Company> {
         super(companyModel, Defaults.collectionsName.companies);
     }
 
+    public getByOnwerId(id: string): Promise<Array<ICompany>> {
+        return this.find({
+            owners: id
+        });
+    }
 }

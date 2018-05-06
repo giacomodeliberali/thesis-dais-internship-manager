@@ -1,1 +1,0 @@
-{"version":3,"file":"collection-name.decorator.js","sourceRoot":"","sources":["../../src/models/collection-name.decorator.ts"],"names":[],"mappings":";;AAAA,wBAA+B,IAAY;IACvC,OAAO,CAAC,GAAG,CAAC,uBAAuB,EAAE,IAAI,CAAC,CAAC;IAC3C,MAAM,CAAC,CAAC,MAAW,EAAS,EAAE;QAC1B,MAAM,CAAC,MAAM,CAAC,MAAM,CAAC,SAAS,EAAE;YAC5B,cAAc,EAAE,IAAI;SACvB,CAAC,CAAC;IACP,CAAC,CAAC;AACN,CAAC;AAPD,wCAOC"}

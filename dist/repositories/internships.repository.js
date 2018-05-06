@@ -45,12 +45,9 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
       */
     getByCompanyOwnerId(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find().populate({
-                path: 'company',
-                match: {
-                    owners: id
-                }
-            });
+            return this.find().then(all => all.filter(i => {
+                return !!i.company.owners.find(o => o.id === id);
+            }));
         });
     }
 };

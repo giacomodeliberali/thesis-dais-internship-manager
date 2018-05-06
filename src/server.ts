@@ -29,7 +29,7 @@ import { InternshipProposalsController } from "./controllers/internship-proposal
 import { InternshipModel } from "./schemas/internship.schema";
 import { InternshipProposalModel } from "./schemas/internship-proposal.schema";
 import { AuthenticationController } from "./controllers/authentication.controller";
-import { adminScope, companyScope, studentScope, professorScope } from "./utils/auth/scopes";
+import { adminScope, companyScope, studentScope, professorScope, ownCompany, ownInternship } from "./utils/auth/scopes";
 import { CurdOptions } from "./models/interfaces/crud-options.interface";
 import { IUser, IRole, ICompany, IInternship, IInternshipProposal } from "./models/interfaces";
 import { ApiResponse } from "./models/api-response.model";
@@ -119,13 +119,27 @@ mongoose.connect(environment.connectionString).then(client => {
     .resolve(CompaniesController)
     .useAuth()
     .useGetByOwnerId()
-    .useCrud(crudOptions)
+    .useCrud({
+      delete: {
+        middleware: [adminScope]
+      },
+      update: {
+        middleware: [ownCompany]
+      }
+    })
     .register();
 
   const internshipsController = container
     .resolve(InternshipsController)
     .useAuth()
-    .useCrud(crudOptions)
+    .useCrud({
+      delete: {
+        middleware: [adminScope]
+      },
+      update: {
+        middleware: [ownInternship]
+      }
+    })
     .useGetByCompanyOwnerId()
     .register();
 

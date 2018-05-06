@@ -1,1 +1,0 @@
-{"version":3,"file":"normalize-schema.js","sourceRoot":"","sources":["../../../src/schemas/base/normalize-schema.ts"],"names":[],"mappings":";;AACA;;;;;GAKG;AACH,mBAA0B,GAAgB,EAAE,GAAgB,EAAE,OAAY;IACtE,GAAG,CAAC,EAAE,GAAG,GAAG,CAAC,GAAG,CAAC;IACjB,OAAO,GAAG,CAAC,GAAG,CAAC;IACf,OAAO,GAAG,CAAC,GAAG,CAAC;AACnB,CAAC;AAJD,8BAIC"}

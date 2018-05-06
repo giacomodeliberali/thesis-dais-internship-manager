@@ -29,12 +29,9 @@ export class InternshipsRepository extends BaseRepository<IInternship, Internshi
      * @param id The company owner id
       */
     async getByCompanyOwnerId(id: string) {
-        return this.model.find().populate({
-            path: 'company',
-            match: {
-                owners: id
-            }
-        });
+        return this.find().then(all => all.filter(i => {
+            return !!i.company.owners.find(o => o.id === id);
+        }));
     }
 
 }

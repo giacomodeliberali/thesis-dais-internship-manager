@@ -55,8 +55,8 @@ export class UsersRepository extends BaseRepository<IUser, User> {
     public async login(email: string, password: string): Promise<IUser> {
         return this
             .findOne({ email: email, authType: AuthType.Local })
-            .then(user => {
-                if (user && (user as any).isValidPassword(password))
+            .then(async user => {
+                if (user && await bcrypt.compare(password, user.password))
                     return Promise.resolve(user);
                 else
                     return Promise.reject({

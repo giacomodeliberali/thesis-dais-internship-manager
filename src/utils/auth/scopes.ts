@@ -1,7 +1,11 @@
 import { Response, Request } from "express";
-import { User, RoleType } from "gdl-thesis-core/dist";
+import { User, RoleType, Company, Internship } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../../ServerDefaults";
 import { ApiResponse } from "../../models/api-response.model";
+import { container } from "../di-container";
+import { CompaniesController } from "../../controllers/companies.controller";
+import { CompaniesRepository, InternshipsRepository } from "../../repositories";
+import { IInternship } from "../../models/interfaces";
 
 /**
  * Check if the current request has a body property with the decoded JWT information.
@@ -154,6 +158,90 @@ export function professorScope(request: Request, response: Response, next: Funct
         httpCode: 401,
         exception: {
             message: "Insufficient permission to complete the operation. Missing required 'Professor' scope",
+            code: "auth/user-unauthorized"
+        } as any
+    }).send();
+}
+
+export async function ownCompany(request: Request, response: Response, next: Function) {
+
+    // Pick decoded user
+    const user = checkBodyUser(request, response);
+
+    // Check if has role
+    if (user) {
+
+        // If the user is admin, continue
+        if ((user.role.type & Number(RoleType.Admin)) === Number(RoleType.Admin))
+            return next();
+
+        try {
+            const comapniesRepsoitory = container.resolve(CompaniesRepository);
+            const icompany = await comapniesRepsoitory.get(request.body.id);
+            if (icompany) {
+                if ((user.role.type & Number(RoleType.Company)) === Number(RoleType.Company) && icompany.owners.find(owner => owner.id === user.id)) {
+                    return next();
+                }
+            }
+        } catch (ex) {
+            // Return Unauthorized
+            return new ApiResponse({
+                response: response,
+                httpCode: 401,
+                exception: ex
+            }).send();
+        }
+    }
+
+    // Return Unauthorized
+    return new ApiResponse({
+        response: response,
+        httpCode: 401,
+        exception: {
+            message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update a company of which you are not a owner.",
+            code: "auth/user-unauthorized"
+        } as any
+    }).send();
+}
+
+export async function ownInternship(request: Request, response: Response, next: Function) {
+
+    // Pick decoded user
+    const user = checkBodyUser(request, response);
+
+    // Check if has role
+    if (user) {
+
+        // If the user is admin, continue
+        if ((user.role.type & Number(RoleType.Admin)) === Number(RoleType.Admin))
+            return next();
+
+        try {
+
+            const internshipsRepsoitory = container.resolve(InternshipsRepository);
+
+            const iinternship = await internshipsRepsoitory.get(request.body.id);
+            if (iinternship) {
+                if ((user.role.type & Number(RoleType.Company)) === Number(RoleType.Company) && iinternship.company.owners.find((owner: any) => owner === user.id)) {
+                    return next();
+                }
+            }
+        } catch (ex) {
+            // Return Unauthorized
+            return new ApiResponse({
+                response: response,
+                httpCode: 401,
+                exception: ex
+            }).send();
+        }
+    }
+
+    // Return Unauthorized
+    return new ApiResponse({
+        response: response,
+        httpCode: 401,
+        exception: {
+            message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update an internship of which you are not a owner.",
             code: "auth/user-unauthorized"
         } as any
     }).send();
