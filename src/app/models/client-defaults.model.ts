@@ -2,6 +2,7 @@ export class ClientDefaults {
 
     /** The CKEditor default config */
     public static ckEditorConfig = {
+        extraPlugins: 'divarea',
         toolbarGroups: [
             { name: 'document', groups: ['mode', 'document', 'doctools'] },
             { name: 'clipboard', groups: ['clipboard', 'undo'] },
