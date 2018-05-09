@@ -23,7 +23,7 @@ export class InternshipsViewComponent {
     public isLoading = true;
 
     constructor(private internshipsService: InternshipsService) {
-        this.internshipsService.getAll().then(internsips => {
+        this.internshipsService.getApproved().then(internsips => {
             if (internsips.isOk)
                 this.internshipTable.dataRows = internsips.data;
         }).catch(ex => {

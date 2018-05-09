@@ -17,6 +17,21 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card" *ngIf="internship">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>
+                            Dictionary.Status
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <select class="selectpicker" data-style="btn btn-block" [(ngModel)]="internship.status">
+                                <option *ngFor="let status of states" [value]="status.value" [disabled]="status.disabled">{{('Enums.InternshipStatusType.' + status.text) | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
                         <h4 class="card-title" translate>

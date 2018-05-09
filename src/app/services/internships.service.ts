@@ -24,4 +24,8 @@ export class InternshipsService extends BaseService {
     getByCompanyOwnerId(id: string): Promise<ApiResponseDto<Array<Internship>>> {
         return this.get(`internships/getByCompanyOwnerId/${id}`);
     }
+
+    getApproved() {
+        return this.get('internships/getApproved') as Promise<ApiResponseDto<Array<Internship>>>;
+    }
 }

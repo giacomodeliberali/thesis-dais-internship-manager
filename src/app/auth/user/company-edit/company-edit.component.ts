@@ -30,7 +30,7 @@ export class ComapnyEditComponent {
 		const companyId = this.activatedRoute.snapshot.params.id;
 		this.companiesService.getById(companyId)
 			.then(response => {
-				this.comapny = response.data;
+				this.comapny = new Company(response.data);
 			});
 	}
 

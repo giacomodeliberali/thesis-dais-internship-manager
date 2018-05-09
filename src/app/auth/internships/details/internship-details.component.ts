@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
 import { LoadingHelper } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 declare var $;
 
@@ -29,6 +30,8 @@ export class InternshipDetailsComponent {
 
 	public startDate = new Date();
 
+	public InternshipStatusType = InternshipStatusType;
+
 	/**
 	 * Inject deps
 	 */
@@ -38,8 +41,8 @@ export class InternshipDetailsComponent {
 		private companiesService: CompaniesService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private location: Location) {
-
+		private location: Location,
+		public domSanitizer: DomSanitizer) {
 
 		LoadingHelper.isLoading = true;
 
@@ -48,8 +51,7 @@ export class InternshipDetailsComponent {
 		Promise.all([
 			this.internshipsService.getById(internshipId)
 				.then(response => {
-					if (response)
-						this.internship = new Internship(response.data);
+					this.internship = new Internship(response.data);
 				})
 				.catch(ex => {
 					console.error(ex);

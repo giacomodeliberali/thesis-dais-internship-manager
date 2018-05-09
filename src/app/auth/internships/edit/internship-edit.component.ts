@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address, Defaults } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, Defaults, InternshipStatusType } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -33,6 +33,8 @@ export class InternshipEditComponent {
 
 	public config = null;
 
+	public states = null;
+
 	/**
 	 * Inject deps
 	 */
@@ -47,6 +49,17 @@ export class InternshipEditComponent {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
+		this.states = Object.keys(InternshipStatusType).map(v => {
+			if (isNaN(Number(v))) {
+				return {
+					text: v,
+					value: InternshipStatusType[v],
+					disabled: true
+				};
+			}
+			return null;
+		}).filter(v => !!v);
+
 
 		LoadingHelper.isLoading = true;
 
@@ -55,8 +68,7 @@ export class InternshipEditComponent {
 		Promise.all([
 			this.internshipsService.getById(internshipId)
 				.then(response => {
-					if (response)
-						this.internship = new Internship(response.data);
+					this.internship = new Internship(response.data);
 				})
 				.catch(ex => {
 					console.error(ex);
@@ -66,11 +78,11 @@ export class InternshipEditComponent {
 				this.selectedCompanyId = response.data[0].id;
 				this.companies.push(...response.data);
 				this.updateAddress();
-				setTimeout(() => {
-					$(".selectpicker").selectpicker('refresh');
-				});
 			})
 		]).then(() => {
+			setTimeout(() => {
+				$(".selectpicker").selectpicker('refresh');
+			});
 			LoadingHelper.isLoading = false;
 		});
 	}
