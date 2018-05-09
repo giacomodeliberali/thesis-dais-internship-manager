@@ -31,7 +31,10 @@ export const InternshipSchema: Schema = new Schema({
         }
     ],
     studentsNumber: Number,
-    status: Number,
+    status: {
+        type: Number,
+        required: true
+    },
     rejectReason: String
 });
 

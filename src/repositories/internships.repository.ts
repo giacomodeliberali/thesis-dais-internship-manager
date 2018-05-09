@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, Internship } from "gdl-thesis-core/dist";
+import { Defaults, Internship, InternshipStatusType, InternshipProposalStatusType } from "gdl-thesis-core/dist";
 import { inject, injectable } from "inversify";
 import { InternshipModel } from "../schemas/internship.schema";
 import { Model } from "mongoose";
@@ -32,6 +32,15 @@ export class InternshipsRepository extends BaseRepository<IInternship, Internshi
         return this.find().then(all => all.filter(i => {
             return !!i.company.owners.find(o => o.id === id);
         }));
+    }
+
+    /**
+     * Return all the Approved internships
+     */
+    async getApproved() {
+        return this.find({
+            status: InternshipStatusType.Approved
+        });
     }
 
 }

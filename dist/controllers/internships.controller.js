@@ -68,6 +68,22 @@ let InternshipsController = class InternshipsController extends base_controller_
         }));
         return this;
     }
+    /**
+     * Return all the Approved internships
+     */
+    useGetApproved() {
+        this.router.get('/getApproved', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            return this.internshipsRepository.getApproved()
+                .then(result => {
+                return new api_response_model_1.ApiResponse({
+                    data: result,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            });
+        }));
+        return this;
+    }
 };
 InternshipsController = __decorate([
     inversify_1.injectable(),

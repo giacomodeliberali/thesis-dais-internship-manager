@@ -132,6 +132,8 @@ mongoose.connect(environment.connectionString).then(client => {
   const internshipsController = container
     .resolve(InternshipsController)
     .useAuth()
+    .useGetByCompanyOwnerId()
+    .useGetApproved()
     .useCrud({
       delete: {
         middleware: [adminScope]
@@ -140,7 +142,6 @@ mongoose.connect(environment.connectionString).then(client => {
         middleware: [ownInternship]
       }
     })
-    .useGetByCompanyOwnerId()
     .register();
 
   const internshipProposalsController = container

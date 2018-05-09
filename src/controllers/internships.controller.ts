@@ -54,4 +54,21 @@ export class InternshipsController extends BaseController<IInternship> {
     });
     return this;
   }
+
+  /**
+   * Return all the Approved internships
+   */
+  public useGetApproved() {
+    this.router.get('/getApproved', async (req, res) => {
+      return this.internshipsRepository.getApproved()
+        .then(result => {
+          return new ApiResponse({
+            data: result,
+            httpCode: 200,
+            response: res
+          }).send();
+        });
+    });
+    return this;
+  }
 }

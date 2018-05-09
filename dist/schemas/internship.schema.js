@@ -31,7 +31,10 @@ exports.InternshipSchema = new mongoose_1.Schema({
         }
     ],
     studentsNumber: Number,
-    status: Number,
+    status: {
+        type: Number,
+        required: true
+    },
     rejectReason: String
 });
 /** Ensure returned object has property id instead of _id and __v */

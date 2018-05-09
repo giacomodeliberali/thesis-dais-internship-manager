@@ -50,6 +50,16 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
             }));
         });
     }
+    /**
+     * Return all the Approved internships
+     */
+    getApproved() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.find({
+                status: dist_1.InternshipStatusType.Approved
+            });
+        });
+    }
 };
 InternshipsRepository = __decorate([
     inversify_1.injectable(),
