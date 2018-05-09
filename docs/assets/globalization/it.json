@@ -52,7 +52,8 @@
         "FullName": "Nome e cognome",
         "CompanyName": "Nome azienda",
         "RepeatPassword": "Ripeti password",
-        "CreateAccount": "Crea account"
+        "CreateAccount": "Crea account",
+        "Status": "Stato"
     },
     "Pages": {
         "Index": {
@@ -125,5 +126,14 @@
         "Professor": "Professore",
         "Admin": "Admin",
         "Company": "Azienda"
+    },
+    "Enums": {
+        "InternshipStatusType": {
+            "NotApproved": "In attesa di approvazione",
+            "Approved": "Approvato",
+            "Closed": "Chiuso",
+            "Canceled": "Annullato",
+            "Rejected": "Rifiutato"
+        }
     }
 }
