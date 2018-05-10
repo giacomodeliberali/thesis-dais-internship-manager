@@ -10,12 +10,12 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
     /** The collection name, used also as controller route name */
     public collectionName: string;
 
-    /** The moongose model for this repository */
+    /** The mongoose model for this repository */
     protected model: Model<MongooseDocumentOfDto>;
 
     /**
      * Initialize the base repository
-     * @param model The moongose model for this repository
+     * @param model The mongoose model for this repository
      * @param collectionName The collection name, used also as controller route name
      */
     constructor(
@@ -60,6 +60,17 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
             return this.create(item);
 
         return this.model.findByIdAndUpdate(item.id, item)
+            .then(result => {
+                return this.get(item.id);
+            });
+    }
+
+    /**
+     * Update only the specified property of the item
+     * @param item The item to update
+     */
+    async partialUpdate(item: Partial<Dto>): Promise<MongooseDocumentOfDto> {
+        return this.model.findByIdAndUpdate(item.id, { $set: item })
             .then(result => {
                 return this.get(item.id);
             });

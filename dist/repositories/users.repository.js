@@ -121,15 +121,9 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
      */
     updateOwn(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find({ _id: user.id })
-                .update({
-                $set: {
-                    phone: user.phone
-                }
-            }).then(u => {
-                return this.findOne({ _id: user.id });
-            }).catch(ex => {
-                return Promise.reject(ex);
+            return this.partialUpdate({
+                id: user.id,
+                phone: user.phone
             });
         });
     }

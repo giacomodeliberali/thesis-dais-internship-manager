@@ -107,16 +107,10 @@ export class UsersRepository extends BaseRepository<IUser, User> {
      * @param user The user to update
      */
     public async updateOwn(user: User): Promise<IUser> {
-        return this.model.find({ _id: user.id })
-            .update({
-                $set: {
-                    phone: user.phone
-                }
-            }).then(u => {
-                return this.findOne({ _id: user.id });
-            }).catch(ex => {
-                return Promise.reject(ex);
-            });
+        return this.partialUpdate({
+            id: user.id,
+            phone: user.phone
+        });
     }
 
 }

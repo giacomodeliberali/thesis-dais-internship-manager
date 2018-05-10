@@ -26,7 +26,7 @@ const mongoose_1 = require("mongoose");
 let BaseRepository = class BaseRepository {
     /**
      * Initialize the base repository
-     * @param model The moongose model for this repository
+     * @param model The mongoose model for this repository
      * @param collectionName The collection name, used also as controller route name
      */
     constructor(model, collectionName) {
@@ -67,6 +67,18 @@ let BaseRepository = class BaseRepository {
             if (!item.id)
                 return this.create(item);
             return this.model.findByIdAndUpdate(item.id, item)
+                .then(result => {
+                return this.get(item.id);
+            });
+        });
+    }
+    /**
+     * Update only the specified property of the item
+     * @param item The item to update
+     */
+    partialUpdate(item) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findByIdAndUpdate(item.id, { $set: item })
                 .then(result => {
                 return this.get(item.id);
             });

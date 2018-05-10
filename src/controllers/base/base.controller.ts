@@ -125,7 +125,6 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useRead(middleware?: Array<RequestHandler>) {
         this.router.get('/', middleware || [], async (req: Request, res: Response) => {
-            console.log(`GET [${this.routeName}/]`);
             return this.baseRepository.find()
                 .then(value => {
                     return new ApiResponse({
@@ -144,7 +143,6 @@ export class BaseController<T extends IBaseEntity> {
         });
 
         this.router.get('/:id', middleware || [], async (req: Request, res: Response) => {
-            console.log(`GET [${this.routeName}/${req.params.id}]`);
             this.baseRepository.get(req.params.id)
                 .then(result => {
                     return new ApiResponse({
@@ -171,7 +169,6 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useDelete(middleware?: Array<RequestHandler>) {
         this.router.delete('/:id', middleware || [], async (req: Request, res: Response) => {
-            console.log(`DELETE [${this.routeName}/${req.params.id}]`);
             this.baseRepository.delete(req.params.id)
                 .then(result => {
                     return new ApiResponse({
@@ -199,6 +196,7 @@ export class BaseController<T extends IBaseEntity> {
     public useAuth() {
         this.isAuthEnabled = true;
         this.router.use('*', async (req, res, next) => {
+            console.log(`[${req.method}] ${req.url}`);
             try {
                 const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
                 if (token) {

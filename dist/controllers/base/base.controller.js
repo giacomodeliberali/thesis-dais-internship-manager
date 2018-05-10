@@ -131,7 +131,6 @@ let BaseController = class BaseController {
      */
     useRead(middleware) {
         this.router.get('/', middleware || [], (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log(`GET [${this.routeName}/]`);
             return this.baseRepository.find()
                 .then(value => {
                 return new api_response_model_1.ApiResponse({
@@ -149,7 +148,6 @@ let BaseController = class BaseController {
             });
         }));
         this.router.get('/:id', middleware || [], (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log(`GET [${this.routeName}/${req.params.id}]`);
             this.baseRepository.get(req.params.id)
                 .then(result => {
                 return new api_response_model_1.ApiResponse({
@@ -175,7 +173,6 @@ let BaseController = class BaseController {
      */
     useDelete(middleware) {
         this.router.delete('/:id', middleware || [], (req, res) => __awaiter(this, void 0, void 0, function* () {
-            console.log(`DELETE [${this.routeName}/${req.params.id}]`);
             this.baseRepository.delete(req.params.id)
                 .then(result => {
                 return new api_response_model_1.ApiResponse({
@@ -202,6 +199,7 @@ let BaseController = class BaseController {
     useAuth() {
         this.isAuthEnabled = true;
         this.router.use('*', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            console.log(`[${req.method}] ${req.url}`);
             try {
                 const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
                 if (token) {

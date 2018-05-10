@@ -25,6 +25,8 @@ const inversify_1 = require("inversify");
 const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
+const internship_status_type_machine_1 = require("../utils/state-machines/internship-status.type.machine");
+const dist_1 = require("gdl-thesis-core/dist");
 /**
  * The [[Internship]] controller
  */
@@ -81,6 +83,118 @@ let InternshipsController = class InternshipsController extends base_controller_
                     response: res
                 }).send();
             });
+        }));
+        return this;
+    }
+    checkState(currentState, newState) {
+    }
+    useUpdateStates() {
+        this.router.put('/status', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const internshipId = req.body.id;
+            const newState = req.body.status;
+            if (newState === undefined && newState === null) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
+                }).send();
+            }
+            // Get the internship
+            const internship = yield this.internshipsRepository.get(internshipId);
+            if (!internship) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 404,
+                    response: res,
+                    exception: {
+                        message: `Cannot find a internship matching the id '${internshipId}'`
+                    }
+                }).send();
+            }
+            // Check the state transition
+            const stateMachine = new internship_status_type_machine_1.InternshipStatusTypeMachine(internship.status);
+            if (!stateMachine.can(newState)) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: `Cannot update the internship status from ${dist_1.InternshipStatusType[internship.status]} to ${dist_1.InternshipStatusType[newState]}`
+                    }
+                }).send();
+            }
+            const update = new dist_1.Internship(internship.toObject());
+            update.status = newState;
+            return this.internshipsRepository
+                .partialUpdate({
+                status: newState,
+                id: update.id
+            })
+                .then(result => {
+                return new api_response_model_1.ApiResponse({
+                    data: result,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            });
+        }));
+        return this;
+    }
+    useForceUpdateStates() {
+        this.router.put('/status/force', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const newState = req.body.status;
+            const id = req.body.id;
+            if (newState !== undefined && newState !== null) {
+                return this.internshipsRepository
+                    .partialUpdate({
+                    status: newState,
+                    id: id
+                })
+                    .then(result => {
+                    return new api_response_model_1.ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                });
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
+                }).send();
+            }
+        }));
+        return this;
+    }
+    useListStates() {
+        this.router.get('/status/:state', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const currentState = req.params.state;
+            if (currentState !== undefined && currentState !== null) {
+                const stateMachine = new internship_status_type_machine_1.InternshipStatusTypeMachine(currentState);
+                return new api_response_model_1.ApiResponse({
+                    data: stateMachine.getAvailableStates(),
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
+                }).send();
+            }
         }));
         return this;
     }

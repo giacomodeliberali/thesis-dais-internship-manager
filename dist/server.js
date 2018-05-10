@@ -113,6 +113,9 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
         .useAuth()
         .useGetByCompanyOwnerId()
         .useGetApproved()
+        .useListStates()
+        .useUpdateStates()
+        .useForceUpdateStates()
         .useCrud({
         delete: {
             middleware: [scopes_1.adminScope]
