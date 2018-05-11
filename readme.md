@@ -17,7 +17,7 @@ Repositories are the entities who read from and write into mongoose schema model
 Controllers expose repositories methods through an *ExpressJs* named route.
 
 
-## Deploy
+## Deploy 
 The app is published in *Heroku* and visible [here](https://arcane-tundra-32042.herokuapp.com/).
 
 
