@@ -2,16 +2,14 @@ import { Component } from '@angular/core';
 import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
-import { AuthService } from '../../../services/auth.service';
-import { InternshipStatusType } from 'gdl-thesis-core/dist';
 
 declare var $;
 
 @Component({
-    selector: 'internships-own-company-cmp',
-    templateUrl: './internships-own-company.component.html'
+    selector: 'internships-approve-list-cmp',
+    templateUrl: './internships-approve-list.component.html'
 })
-export class InternshipsOwnCompanyComponent {
+export class InternshipsApproveListComponent {
 
     internshipTable = {
         headerRow: [
@@ -26,15 +24,10 @@ export class InternshipsOwnCompanyComponent {
 
     public isLoading = true;
 
-    public InternshipStatusType = InternshipStatusType;
-
-    constructor(
-        private internshipsService: InternshipsService,
-        private authService: AuthService) {
-
-        this.internshipsService.getByCompanyOwnerId(this.authService.currentUser.id).then(internsips => {
-            if (internsips.isOk)
-                this.internshipTable.dataRows = internsips.data;
+    constructor(private internshipsService: InternshipsService) {
+        this.internshipsService.getNotApproved().then(response => {
+            if (response.isOk)
+                this.internshipTable.dataRows = response.data;
         }).catch(ex => {
             NotificationHelper.showNotification('Alerts.GetAllInternships.Error.Title', 'ti-warn', 'info');
         }).then(() => {
@@ -48,10 +41,7 @@ export class InternshipsOwnCompanyComponent {
     }
 
 
-    ngAfterViewInit() {
-        // Init Tooltips
-        $('[rel="tooltip"]').tooltip();
-    }
+
 
     /**
      * Access the object by path. eg val(obj,'uno.due.tre') return obj.uno.due.tre

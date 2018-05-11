@@ -132,11 +132,12 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" *ngIf="internship">
                     <div class="card-content">
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/company'" translate>Dictionary.Cancel</button>
-                            <button type="button" class="btn btn-success pull-right" (click)="save()" translate>Dictionary.Save</button>
+                            <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="internship.status < InternshipStatusType.Closed" translate>Dictionary.Delete</button>
+                            <button type="button" class="btn btn-success pull-right" (click)="save()" *ngIf="internship.status < InternshipStatusType.Closed" translate>Dictionary.Save</button>
                         </div>
                     </div>
                 </div>

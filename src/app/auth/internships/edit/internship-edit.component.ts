@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address, Defaults, InternshipStatusType } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, Defaults, InternshipStatusType, RoleType } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -11,6 +11,8 @@ import { LoadingHelper } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
+import { canExec } from '../../../helpers/can-exec.helper';
+import swal from 'sweetalert2';
 
 declare var $;
 
@@ -35,6 +37,8 @@ export class InternshipEditComponent {
 
 	public states = null;
 
+	public InternshipStatusType = InternshipStatusType;
+
 	/**
 	 * Inject deps
 	 */
@@ -48,18 +52,6 @@ export class InternshipEditComponent {
 		private translateService: TranslateService) {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
-
-		this.states = Object.keys(InternshipStatusType).map(v => {
-			if (isNaN(Number(v))) {
-				return {
-					text: v,
-					value: InternshipStatusType[v],
-					disabled: true
-				};
-			}
-			return null;
-		}).filter(v => !!v);
-
 
 		LoadingHelper.isLoading = true;
 
@@ -79,7 +71,13 @@ export class InternshipEditComponent {
 				this.companies.push(...response.data);
 				this.updateAddress();
 			})
-		]).then(() => {
+		]).then(async () => {
+			const states = await this.internshipsService.getAvailableStates(this.internship.status);
+
+			this.states = states.filter(s => {
+				return s.value !== InternshipStatusType.Approved && s.value !== InternshipStatusType.Rejected;
+			});
+
 			setTimeout(() => {
 				$(".selectpicker").selectpicker('refresh');
 			});
@@ -109,6 +107,35 @@ export class InternshipEditComponent {
 			console.error(ex);
 			LoadingHelper.isLoading = false;
 		});
+	}
+
+	async delete() {
+		const result = await swal({
+			title: await this.translateService.get('Alerts.ConfirmDelete.Title').toPromise(),
+			text: await this.translateService.get("Alerts.ConfirmDelete.SubTitle").toPromise(),
+			type: "question",
+			showCancelButton: true,
+			cancelButtonText: await this.translateService.get('Dictionary.Cancel').toPromise(),
+			confirmButtonText: await this.translateService.get('Dictionary.Delete').toPromise()
+		});
+
+		if (result.value) {
+			LoadingHelper.isLoading = true;
+			try {
+				const response = await this.internshipsService.delete(this.internship.id);
+				if (response && response.data) {
+					NotificationHelper.showNotification("Alerts.Delete.Success.Message", "ti-save", "success");
+					this.location.back();
+				} else {
+					NotificationHelper.showNotification("Alerts.Delete.Error.Message", "ti-save", "danger");
+				}
+			} catch (ex) {
+				NotificationHelper.showNotification("Alerts.Delete.Error.Message", "ti-save", "danger");
+				console.error(ex);
+			} finally {
+				LoadingHelper.isLoading = false;
+			}
+		}
 	}
 
 }

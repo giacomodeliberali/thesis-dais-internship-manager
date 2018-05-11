@@ -6,18 +6,18 @@ import { User, ApiResponseDto, Internship, Company } from "gdl-thesis-core/dist"
 export class CompaniesService extends BaseService {
 
     getByOwnerId(ownerId: string): Promise<ApiResponseDto<Array<Company>>> {
-        return this.get(`companies/getByOwnerId/${ownerId}`) as Promise<ApiResponseDto<Array<Company>>>;
+        return this.getVerb(`companies/getByOwnerId/${ownerId}`) as Promise<ApiResponseDto<Array<Company>>>;
     }
 
     create(company: Company) {
-        return this.post(`companies`, company.clone()) as Promise<ApiResponseDto<Company>>;
+        return this.postVerb(`companies`, company.clone()) as Promise<ApiResponseDto<Company>>;
     }
 
     getById(id: string): Promise<ApiResponseDto<Company>> {
-        return this.get(`companies/${id}`);
+        return this.getVerb(`companies/${id}`);
     }
 
     update(company: Company): Promise<ApiResponseDto<Company>> {
-        return this.put('companies', company);
+        return this.putVerb('companies', company);
     }
 }

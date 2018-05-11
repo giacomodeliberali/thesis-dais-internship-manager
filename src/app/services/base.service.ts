@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "environments/environment";
 import { AuthService } from "./auth.service";
 import { injectable } from "inversify";
+import { ApiResponseDto } from "gdl-thesis-core/dist";
 
 /**
  * A base service that exposes standard verbs
@@ -25,7 +26,7 @@ export class BaseService {
      * @param path The path
      * @param body The request body
      */
-    protected put(path: string, body: any) {
+    protected putVerb(path: string, body: any) {
         return this.httpClient.put(`${environment.apiServicesBaseUrl}/${path}`, body, {
             headers: {
                 "Authentication": this.authService.token || ''
@@ -38,7 +39,7 @@ export class BaseService {
      * @param path The path
      * @param body The request body
      */
-    protected post(path: string, body: any) {
+    protected postVerb(path: string, body: any) {
         return this.httpClient.post(`${environment.apiServicesBaseUrl}/${path}`, body, {
             headers: {
                 "Authentication": this.authService.token || ''
@@ -50,19 +51,19 @@ export class BaseService {
      * Make a GET request to the specified path
      * @param path The path
      */
-    protected get(path: string) {
+    protected getVerb(path: string) {
         return this.httpClient.get(`${environment.apiServicesBaseUrl}/${path}`, {
             headers: {
                 "Authentication": this.authService.token || ''
             }
-        }).toPromise() as Promise<any>;
+        }).toPromise() as Promise<ApiResponseDto<any>>;
     }
 
     /**
      * Make a DELETE request to the specified path
      * @param path The path
      */
-    protected delete(path: string) {
+    protected deleteVerb(path: string) {
         return this.httpClient.delete(`${environment.apiServicesBaseUrl}/${path}`, {
             headers: {
                 "Authentication": this.authService.token || ''

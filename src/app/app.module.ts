@@ -31,6 +31,7 @@ import { BaseService } from './services/base.service';
 import { NotificationHelper } from './helpers/notification.helper';
 import { InternshipsService } from './services/internships.service';
 import { CompaniesService } from './services/companies.service';
+import { EmailsService } from './services/emails.service';
 
 export function createNotificationHelper(translateService: TranslateService) {
     return new NotificationHelper(translateService);
@@ -65,6 +66,7 @@ export function createNotificationHelper(translateService: TranslateService) {
         UsersService,
         InternshipsService,
         CompaniesService,
+        EmailsService,
         {
             provide: NotificationHelper,
             useFactory: createNotificationHelper,

@@ -6,6 +6,6 @@ import { User, ApiResponseDto } from "gdl-thesis-core/dist";
 export class UsersService extends BaseService {
 
     updateOwn(user: User): Promise<ApiResponseDto<User>> {
-        return this.put('users/own', user) as Promise<ApiResponseDto<User>>;
+        return this.putVerb('users/own', user) as Promise<ApiResponseDto<User>>;
     }
 }

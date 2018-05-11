@@ -53,7 +53,13 @@
         "CompanyName": "Nome azienda",
         "RepeatPassword": "Ripeti password",
         "CreateAccount": "Crea account",
-        "Status": "Stato"
+        "Status": "Stato",
+        "WaitForApproval": "In attesa di approvazione",
+        "StudentsWaitForApproval": "Studenti in attesa",
+        "RejectReason": "Motivo del rifiuto",
+        "NotDefined": "Non specificato",
+        "Professor": "Professore",
+        "Delete": "Elimina"
     },
     "Pages": {
         "Index": {
@@ -109,6 +115,18 @@
         },
         "InternshipDetails": {
             "Title": "Dettagli tirocinio"
+        },
+        "ApproveInternshipList": {
+            "Title": "Lista tirocini da approvare",
+            "SubTitle": "Visualizza le offerte di stage inserite dalle aziende che devono ancora essere approvate"
+        },
+        "ApproveInternship": {
+            "Title": "Approva uno stage",
+            "SubTitle": "Verifica che lo stage sia pubblicabile e aggiornane lo stato"
+        },
+        "GenericError": {
+            "Title": "Si è veriificato un errore",
+            "SubTitle": "Non è stato possibile completare l'operazione richiesta"
         }
     },
     "Alerts": {
@@ -117,8 +135,20 @@
                 "Message": "Salvataggio avvenuto"
             },
             "Error": {
-                "Message": "Non è stato possibile completare l'operazione"
+                "Message": "Non è stato possibile completare l'operazione di salvataggio"
             }
+        },
+        "Delete": {
+            "Success": {
+                "Message": "Elimionazione avvenuta"
+            },
+            "Error": {
+                "Message": "Non è stato possibile eliminare l'elemento"
+            }
+        },
+        "ConfirmDelete": {
+            "Title": "Eliminare l'elemento?",
+            "SubTitle": "Vuoi eliminare l'elemento selezionato? L'operazione è irreversibile."
         }
     },
     "Roles": {

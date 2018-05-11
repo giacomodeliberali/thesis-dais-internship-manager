@@ -27,7 +27,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
    * @param route The route the user is navigating to
    */
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    if (!this.auth.currentUser) {
+    if (!this.auth.currentUser || !this.auth.currentUser.role) {
       console.log("User is not authenticated, redirect to '/'");
       this.router.navigate(['/']);
       return false;

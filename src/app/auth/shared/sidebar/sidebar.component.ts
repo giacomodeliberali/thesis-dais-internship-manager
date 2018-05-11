@@ -32,7 +32,7 @@ export const ROUTES: RouteInfo[] = [
         icontype: 'fas fa-th-list',
         children: [
             {
-                path: 'list',
+                path: 'offers',
                 title: 'Pages.Internships.ViewOffers',
                 ab: 'L'
             },
@@ -50,15 +50,33 @@ export const ROUTES: RouteInfo[] = [
             {
                 path: 'add',
                 title: 'Dictionary.AddInternship',
-                ab: 'A',
-                requiredRoles: [
-                    RoleType.Company
-                ]
+                ab: 'A'
             },
             {
                 path: 'company',
                 title: 'Dictionary.OwnInternships',
                 ab: 'M'
+            }
+        ]
+    },
+    {
+        path: '/auth/internships/',
+        title: 'Dictionary.Professor',
+        type: 'sub',
+        icontype: 'fas fa-user-graduate',
+        requiredRoles: [
+            RoleType.Professor
+        ],
+        children: [
+            {
+                path: 'approve-list',
+                title: 'Dictionary.WaitForApproval',
+                ab: 'I'
+            },
+            {
+                path: 'students-wait-for-approval',
+                title: 'Dictionary.StudentsWaitForApproval',
+                ab: 'S'
             }
         ]
     }

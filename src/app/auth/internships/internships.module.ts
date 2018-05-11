@@ -11,6 +11,8 @@ import { InternshipEditComponent } from './edit/internship-edit.component';
 import { InternshipsOwnCompanyComponent } from './own-company/internships-own-company.component';
 import { InternshipDetailsComponent } from './details/internship-details.component';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { InternshipsApproveListComponent } from './approve-list/internships-approve-list.component';
+import { InternshipApproveComponent } from './approve/internship-approve.component';
 
 @NgModule({
     imports: [
@@ -24,7 +26,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
         InternshipAddComponent,
         InternshipEditComponent,
         InternshipsOwnCompanyComponent,
-        InternshipDetailsComponent
+        InternshipDetailsComponent,
+        InternshipsApproveListComponent,
+        InternshipApproveComponent
     ]
 })
 export class InternshipsModule { }

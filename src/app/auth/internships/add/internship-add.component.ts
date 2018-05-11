@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -47,7 +47,8 @@ export class InternshipAddComponent {
 		LoadingHelper.isLoading = true;
 
 		this.internship = new Internship({
-			address: new Address()
+			address: new Address(),
+			status: InternshipStatusType.NotApproved
 		});
 
 		this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
@@ -74,7 +75,7 @@ export class InternshipAddComponent {
 		this.internship.company = this.selectedCompanyId as any;
 		this.internship.startDate = new Date(this.internship.startDate);
 		this.internship.endDate = new Date(this.internship.endDate);
-		this.internshipsService.update(this.internship).then(r => {
+		this.internshipsService.create(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.location.back();
 		}).catch(ex => {
