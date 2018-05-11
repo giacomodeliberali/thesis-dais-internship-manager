@@ -15,3 +15,4 @@ exports.types = {
         Role: Symbol.for("RoleModel")
     }
 };
+//# sourceMappingURL=index.js.map

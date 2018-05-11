@@ -12,3 +12,4 @@ ServerDefaults.authUserBodyPropertyName = "__user";
 /** The api base url */
 ServerDefaults.apiBaseUrl = "/api";
 exports.ServerDefaults = ServerDefaults;
+//# sourceMappingURL=ServerDefaults.js.map

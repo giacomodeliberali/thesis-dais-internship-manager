@@ -27,6 +27,7 @@ const internship_proposal_schema_1 = require("./schemas/internship-proposal.sche
 const authentication_controller_1 = require("./controllers/authentication.controller");
 const scopes_1 = require("./utils/auth/scopes");
 const api_response_model_1 = require("./models/api-response.model");
+const emails_controller_1 = require("./controllers/emails.controller");
 /**
  * Create Express server.
  */
@@ -83,8 +84,7 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     const usersController = di_container_1.container
         .resolve(users_controller_1.UsersController)
         .useAuth()
-        .useUpdateOwn()
-        .useGetByRoles([scopes_1.adminScope])
+        .useCustoms()
         .useCreate()
         .useUpdate([scopes_1.adminScope])
         .useRead([scopes_1.adminScope])
@@ -93,12 +93,13 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     const rolesController = di_container_1.container
         .resolve(roles_controller_1.RolesController)
         .useAuth()
+        .useCustoms()
         .useCrud(crudOptions)
         .register();
     const companiesController = di_container_1.container
         .resolve(companies_controller_1.CompaniesController)
         .useAuth()
-        .useGetByOwnerId()
+        .useCustoms()
         .useCrud({
         delete: {
             middleware: [scopes_1.adminScope]
@@ -111,14 +112,10 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     const internshipsController = di_container_1.container
         .resolve(internships_controller_1.InternshipsController)
         .useAuth()
-        .useGetByCompanyOwnerId()
-        .useGetApproved()
-        .useListStates()
-        .useUpdateStates()
-        .useForceUpdateStates()
+        .useCustoms()
         .useCrud({
         delete: {
-            middleware: [scopes_1.adminScope]
+            middleware: [scopes_1.ownInternship]
         },
         update: {
             middleware: [scopes_1.ownInternship]
@@ -128,7 +125,11 @@ mongoose.connect(environment_1.environment.connectionString).then(client => {
     const internshipProposalsController = di_container_1.container
         .resolve(internship_proposals_controller_1.InternshipProposalsController)
         .useAuth()
+        .useCustoms()
         .useCrud(crudOptions)
+        .register();
+    const emailsController = di_container_1.container
+        .resolve(emails_controller_1.EmailsController)
         .register();
     // Initialize Auth controller and catch all 404
     const authController = di_container_1.container
@@ -146,3 +147,4 @@ app.listen(app.get("port"), () => {
     console.log(("  App is running at http://localhost:%d in %s mode"), app.get("port"), app.get("env"));
     console.log("  Press CTRL-C to stop\n");
 });
+//# sourceMappingURL=server.js.map

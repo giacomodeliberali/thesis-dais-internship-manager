@@ -338,7 +338,8 @@ export class AuthenticationController {
       return new ApiResponse({
         data: null,
         exception: {
-          message: "Route not found"
+          message: "Route not found",
+          url: req.url
         } as any,
         httpCode: 404,
         response: res,

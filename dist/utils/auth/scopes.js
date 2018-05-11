@@ -13,6 +13,7 @@ const ServerDefaults_1 = require("../../ServerDefaults");
 const api_response_model_1 = require("../../models/api-response.model");
 const di_container_1 = require("../di-container");
 const repositories_1 = require("../../repositories");
+const can_exec_helper_1 = require("./can-exec.helper");
 /**
  * Check if the current request has a body property with the decoded JWT information.
  * If this value exists and its 'role' property has value it gets returned, otherwise
@@ -200,14 +201,11 @@ function ownInternship(request, response, next) {
         const user = checkBodyUser(request, response);
         // Check if has role
         if (user) {
-            // If the user is admin, continue
-            if ((user.role.type & Number(dist_1.RoleType.Admin)) === Number(dist_1.RoleType.Admin))
-                return next();
             try {
                 const internshipsRepsoitory = di_container_1.container.resolve(repositories_1.InternshipsRepository);
                 const iinternship = yield internshipsRepsoitory.get(request.body.id);
                 if (iinternship) {
-                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && iinternship.company.owners.find((owner) => owner === user.id)) {
+                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
                         return next();
                     }
                 }
@@ -226,10 +224,46 @@ function ownInternship(request, response, next) {
             response: response,
             httpCode: 401,
             exception: {
-                message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update an internship of which you are not a owner.",
+                message: "Insufficient permission to complete the operation. Maybe you are trying to update an internship of which you are not a owner.",
                 code: "auth/user-unauthorized"
             }
         }).send();
     });
 }
 exports.ownInternship = ownInternship;
+function canExecMw(...roles) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const fun = (request, response, next) => __awaiter(this, void 0, void 0, function* () {
+            // Pick decoded user
+            const user = checkBodyUser(request, response);
+            // Check if has role
+            if (user) {
+                try {
+                    if (can_exec_helper_1.canExec(user.role.type, roles)) {
+                        return next();
+                    }
+                }
+                catch (ex) {
+                    // Return Unauthorized
+                    return new api_response_model_1.ApiResponse({
+                        response: response,
+                        httpCode: 401,
+                        exception: ex
+                    }).send();
+                }
+            }
+            // Return Unauthorized
+            return new api_response_model_1.ApiResponse({
+                response: response,
+                httpCode: 401,
+                exception: {
+                    message: `Insufficient permission to complete the operation. Required roles are ${roles.map(r => dist_1.RoleType[r]).join(',')}`,
+                    code: "auth/user-unauthorized"
+                }
+            }).send();
+        });
+        return fun;
+    });
+}
+exports.canExecMw = canExecMw;
+//# sourceMappingURL=scopes.js.map

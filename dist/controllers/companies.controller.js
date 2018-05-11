@@ -38,6 +38,9 @@ let CompaniesController = class CompaniesController extends base_controller_1.Ba
         super(companiesRepository, app);
         this.companiesRepository = companiesRepository;
     }
+    useCustoms() {
+        return this.useGetByOwnerId();
+    }
     /**
      * Return the list of companies of the given userId
      */
@@ -74,3 +77,4 @@ CompaniesController = __decorate([
     __metadata("design:paramtypes", [repositories_1.CompaniesRepository, Object])
 ], CompaniesController);
 exports.CompaniesController = CompaniesController;
+//# sourceMappingURL=companies.controller.js.map

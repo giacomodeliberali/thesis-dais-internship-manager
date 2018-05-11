@@ -22,4 +22,8 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
 
     super(internshipProposalsRepository, app);
   }
+
+  public useCustoms() {
+    return this;
+  }
 }

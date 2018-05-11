@@ -60,6 +60,29 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
             });
         });
     }
+    /**
+     * Return all the NotApproved internships
+     */
+    getNotApproved() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.find({
+                status: dist_1.InternshipStatusType.NotApproved
+            });
+        });
+    }
+    /**
+     * Create a new [[Internship]] initialized with the NotApproved status
+     * @param item The internship to create
+     */
+    create(item) {
+        const _super = name => super[name];
+        return __awaiter(this, void 0, void 0, function* () {
+            if (item)
+                item.status = dist_1.InternshipStatusType.NotApproved;
+            console.log("Initialize status to NotApproved");
+            return _super("create").call(this, item);
+        });
+    }
 };
 InternshipsRepository = __decorate([
     inversify_1.injectable(),
@@ -67,3 +90,4 @@ InternshipsRepository = __decorate([
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], InternshipsRepository);
 exports.InternshipsRepository = InternshipsRepository;
+//# sourceMappingURL=internships.repository.js.map

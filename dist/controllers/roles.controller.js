@@ -28,6 +28,9 @@ let RolesController = class RolesController extends base_controller_1.BaseContro
     constructor(rolesRepository, app) {
         super(rolesRepository, app);
     }
+    useCustoms() {
+        return this;
+    }
 };
 RolesController = __decorate([
     inversify_1.injectable(),
@@ -35,3 +38,4 @@ RolesController = __decorate([
     __metadata("design:paramtypes", [repositories_1.RolesRepository, Object])
 ], RolesController);
 exports.RolesController = RolesController;
+//# sourceMappingURL=roles.controller.js.map

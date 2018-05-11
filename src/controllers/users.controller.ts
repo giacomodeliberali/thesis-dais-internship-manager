@@ -7,6 +7,7 @@ import { ApiResponse } from "../models/api-response.model";
 import { IUser } from "../models/interfaces";
 import { User } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../ServerDefaults";
+import { adminScope } from "../utils/auth/scopes";
 
 /**
  * The [[User]] controller
@@ -26,19 +27,16 @@ export class UsersController extends BaseController<IUser> {
     super(usersRepository, app);
   }
 
-  /**
-   * Use custom routes
-   */
-  public useAllCustom() {
+  public useCustoms() {
     return this
-      .useGetByRoles()
+      .useGetByRoles([adminScope])
       .useUpdateOwn();
   }
 
   /**
    * Return all users with role matching al least one of the given roles
    */
-  public useGetByRoles(middleware?: Array<RequestHandler>) {
+  private useGetByRoles(middleware?: Array<RequestHandler>) {
     this.router.post('/getByRoles', async (req, res) => {
       this.usersRepository.getByRoles(req.body.roles)
         .then(result => {
@@ -63,7 +61,10 @@ export class UsersController extends BaseController<IUser> {
     return this;
   }
 
-  public useUpdateOwn() {
+  /**
+   * Allow the the user specified in the token to update its onw user information
+   */
+  private useUpdateOwn() {
     this.router.put('/own', async (req, res) => {
       const user: User = req.body;
       if (user && user.id === req.body[ServerDefaults.authUserBodyPropertyName].id) {

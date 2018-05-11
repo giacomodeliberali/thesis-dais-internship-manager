@@ -321,7 +321,8 @@ let AuthenticationController = class AuthenticationController {
             return new api_response_model_1.ApiResponse({
                 data: null,
                 exception: {
-                    message: "Route not found"
+                    message: "Route not found",
+                    url: req.url
                 },
                 httpCode: 404,
                 response: res,
@@ -337,3 +338,4 @@ AuthenticationController = __decorate([
         repositories_1.RolesRepository, Object])
 ], AuthenticationController);
 exports.AuthenticationController = AuthenticationController;
+//# sourceMappingURL=authentication.controller.js.map

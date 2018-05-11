@@ -30,3 +30,4 @@ base_1.normalizeSchema(exports.InternshipProposalSchema);
 exports.InternshipProposalSchema.plugin(autopopulate);
 /** The [[InternshipProposalModel]] mongoose schema model  */
 exports.InternshipProposalModel = mongoose_1.model("InternshipProposal", exports.InternshipProposalSchema, dist_1.Defaults.collectionsName.internshipProposals);
+//# sourceMappingURL=internship-proposal.schema.js.map

@@ -7,6 +7,7 @@ import { IInternship } from "../models/interfaces";
 import { ApiResponse } from "../models/api-response.model";
 import { InternshipStatusTypeMachine } from "../utils/state-machines/internship-status.type.machine";
 import { InternshipStatusType, Internship } from "gdl-thesis-core/dist";
+import { professorScope, adminScope } from "../utils/auth/scopes";
 
 /**
  * The [[Internship]] controller
@@ -26,11 +27,21 @@ export class InternshipsController extends BaseController<IInternship> {
     super(internshipsRepository, app);
   }
 
+  public useCustoms() {
+    return this
+      .useGetApproved()
+      .useGetNotApproved()
+      .useGetByCompanyOwnerId()
+      .useListStates()
+      .useUpdateStates()
+      .useForceUpdateStates();
+  }
+
   /**
      * Return the list of all internships inserted by companies
      * in which owners contain the given ownerId
    */
-  public useGetByCompanyOwnerId() {
+  private useGetByCompanyOwnerId() {
     this.router.get('/getByCompanyOwnerId/:ownerId', async (req, res) => {
       const ownerId: string = req.params.ownerId;
 
@@ -60,7 +71,7 @@ export class InternshipsController extends BaseController<IInternship> {
   /**
    * Return all the Approved internships
    */
-  public useGetApproved() {
+  private useGetApproved() {
     this.router.get('/getApproved', async (req, res) => {
       return this.internshipsRepository.getApproved()
         .then(result => {
@@ -75,12 +86,30 @@ export class InternshipsController extends BaseController<IInternship> {
   }
 
   /**
+   * Return all the NotApproved internships
+   */
+  private useGetNotApproved() {
+    this.router.get('/getNotApproved', async (req, res) => {
+      return this.internshipsRepository.getNotApproved()
+        .then(result => {
+          return new ApiResponse({
+            data: result,
+            httpCode: 200,
+            response: res
+          }).send();
+        });
+    });
+    return this;
+  }
+
+  /**
    * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
    */
-  public useUpdateStates() {
-    this.router.put('/status', async (req, res) => {
+  private useUpdateStates() {
+    this.router.put('/status', [professorScope], async (req, res) => {
       const internshipId = req.body.id;
       const newState: InternshipStatusType = req.body.status;
+      const rejectReason: string = req.body.rejectReason;
 
       if (newState === undefined && newState === null) {
         return new ApiResponse({
@@ -128,7 +157,8 @@ export class InternshipsController extends BaseController<IInternship> {
       return this.internshipsRepository
         .partialUpdate({
           status: newState,
-          id: update.id
+          id: update.id,
+          rejectReason: rejectReason
         })
         .then(result => {
           return new ApiResponse({
@@ -144,8 +174,8 @@ export class InternshipsController extends BaseController<IInternship> {
   /**
    * Update the state of an [[Internship]] WITHOUT the constraint of the [[InternshipStatusTypeMachine]] transition function
    */
-  public useForceUpdateStates() {
-    this.router.put('/status/force', async (req, res) => {
+  private useForceUpdateStates() {
+    this.router.put('/status/force', [adminScope], async (req, res) => {
       const newState: InternshipStatusType = req.body.status;
       const id = req.body.id;
 
@@ -179,7 +209,7 @@ export class InternshipsController extends BaseController<IInternship> {
   /**
    * Given a [[InternshipsStatusType]] return all the available states
    */
-  public useListStates() {
+  private useListStates() {
     this.router.get('/status/:state', async (req, res) => {
       const currentState = req.params.state;
       if (currentState !== undefined && currentState !== null) {

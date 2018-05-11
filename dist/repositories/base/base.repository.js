@@ -130,3 +130,4 @@ BaseRepository = __decorate([
     __metadata("design:paramtypes", [mongoose_1.Model, String])
 ], BaseRepository);
 exports.BaseRepository = BaseRepository;
+//# sourceMappingURL=base.repository.js.map

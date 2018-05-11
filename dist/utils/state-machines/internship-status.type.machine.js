@@ -29,7 +29,13 @@ class InternshipStatusTypeMachine {
      */
     getAvailableStates() {
         const transitions = this.stateMachine.transitions();
-        const states = [];
+        const currentState = Number(this.stateMachine.state);
+        const states = [
+            {
+                value: currentState,
+                text: dist_1.InternshipStatusType[currentState]
+            }
+        ];
         this.transitions.forEach(t => {
             if (!!transitions.find(s => s === t.name)) {
                 const v = Number(t.to);
@@ -55,3 +61,4 @@ class InternshipStatusTypeMachine {
     }
 }
 exports.InternshipStatusTypeMachine = InternshipStatusTypeMachine;
+//# sourceMappingURL=internship-status.type.machine.js.map

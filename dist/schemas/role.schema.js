@@ -15,3 +15,4 @@ exports.RoleSchema = new mongoose_1.Schema({
 base_1.normalizeSchema(exports.RoleSchema);
 /** The [[RoleModel]] mongoose schema model  */
 exports.RoleModel = mongoose_1.model("Role", exports.RoleSchema, dist_1.Defaults.collectionsName.roles);
+//# sourceMappingURL=role.schema.js.map

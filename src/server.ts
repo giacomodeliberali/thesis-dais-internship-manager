@@ -33,6 +33,7 @@ import { adminScope, companyScope, studentScope, professorScope, ownCompany, own
 import { CurdOptions } from "./models/interfaces/crud-options.interface";
 import { IUser, IRole, ICompany, IInternship, IInternshipProposal } from "./models/interfaces";
 import { ApiResponse } from "./models/api-response.model";
+import { EmailsController } from "./controllers/emails.controller";
 
 /**
  * Create Express server.
@@ -101,8 +102,7 @@ mongoose.connect(environment.connectionString).then(client => {
   const usersController = container
     .resolve(UsersController)
     .useAuth()
-    .useUpdateOwn()
-    .useGetByRoles([adminScope])
+    .useCustoms()
     .useCreate()
     .useUpdate([adminScope])
     .useRead([adminScope])
@@ -112,13 +112,14 @@ mongoose.connect(environment.connectionString).then(client => {
   const rolesController = container
     .resolve(RolesController)
     .useAuth()
+    .useCustoms()
     .useCrud(crudOptions)
     .register();
 
   const companiesController = container
     .resolve(CompaniesController)
     .useAuth()
-    .useGetByOwnerId()
+    .useCustoms()
     .useCrud({
       delete: {
         middleware: [adminScope]
@@ -132,14 +133,10 @@ mongoose.connect(environment.connectionString).then(client => {
   const internshipsController = container
     .resolve(InternshipsController)
     .useAuth()
-    .useGetByCompanyOwnerId()
-    .useGetApproved()
-    .useListStates()
-    .useUpdateStates()
-    .useForceUpdateStates()
+    .useCustoms()
     .useCrud({
       delete: {
-        middleware: [adminScope]
+        middleware: [ownInternship]
       },
       update: {
         middleware: [ownInternship]
@@ -150,7 +147,12 @@ mongoose.connect(environment.connectionString).then(client => {
   const internshipProposalsController = container
     .resolve(InternshipProposalsController)
     .useAuth()
+    .useCustoms()
     .useCrud(crudOptions)
+    .register();
+
+  const emailsController = container
+    .resolve(EmailsController)
     .register();
 
   // Initialize Auth controller and catch all 404

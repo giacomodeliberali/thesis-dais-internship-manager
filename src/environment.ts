@@ -15,5 +15,16 @@ export const environment = {
     googleOAuth: {
         clientId: "220120198496-hkvm483iubjh5fnbrtu6kspv3kfjgat2.apps.googleusercontent.com",
         clientSecret: "YjVWdW92hf-RNYsU9nh7QOvC"
+    },
+
+    /** The emails configuration */
+    email: {
+        service: "gmail",
+        host: null,
+        port: null,
+        auth: {
+            user: "dev.dbgracoon@gmail.com",
+            password: "Development13@unive!"
+        }
     }
 };

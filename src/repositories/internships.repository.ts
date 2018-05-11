@@ -43,4 +43,24 @@ export class InternshipsRepository extends BaseRepository<IInternship, Internshi
         });
     }
 
+    /**
+     * Return all the NotApproved internships
+     */
+    async getNotApproved() {
+        return this.find({
+            status: InternshipStatusType.NotApproved
+        });
+    }
+
+    /**
+     * Create a new [[Internship]] initialized with the NotApproved status
+     * @param item The internship to create
+     */
+    async create(item: Internship) {
+        if (item)
+            item.status = InternshipStatusType.NotApproved;
+        console.log("Initialize status to NotApproved");
+        return super.create(item);
+    }
+
 }

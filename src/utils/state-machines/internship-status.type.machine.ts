@@ -34,7 +34,13 @@ export class InternshipStatusTypeMachine {
      */
     getAvailableStates() {
         const transitions: Array<string> = this.stateMachine.transitions();
-        const states: Array<any> = [];
+        const currentState = Number(this.stateMachine.state);
+        const states: Array<any> = [
+            {
+                value: currentState,
+                text: InternshipStatusType[currentState]
+            }
+        ];
         this.transitions.forEach(t => {
             if (!!transitions.find(s => s === t.name)) {
                 const v = Number(t.to);

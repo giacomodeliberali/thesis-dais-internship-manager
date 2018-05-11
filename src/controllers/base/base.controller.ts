@@ -15,7 +15,7 @@ import { ApiResponse } from "../../models/api-response.model";
  * The base controller with CRUD and authentication
  */
 @injectable()
-export class BaseController<T extends IBaseEntity> {
+export abstract class BaseController<T extends IBaseEntity> {
 
     /** The express router */
     protected router: Router = Router();
@@ -26,6 +26,52 @@ export class BaseController<T extends IBaseEntity> {
     /** The collection name */
     get routeName() {
         return this.baseRepository.collectionName;
+    }
+
+    /**
+     * The authentication middleware. Populate the request.body with the [[ServerDefaults.authUserBodyPropertyName]] property
+     * containing the token user
+     */
+    public static AuthMiddleware = async (req, res, next) => {
+        try {
+            const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
+            if (token) {
+                // Verify token
+                const isValid = verify(token, environment.jwtSecret);
+
+                // Is is valid proceed
+                if (isValid) {
+                    req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
+                    return next();
+                }
+
+                // Otherwise throw an auth error
+                return new ApiResponse({
+                    response: res,
+                    httpCode: 401,
+                    exception: {
+                        message: "Invalid token. Unauthorized",
+                        code: "auth/user-unauthorized"
+                    }
+                }).send();
+            } else {
+                // Token not found, throw an auth error
+                return new ApiResponse({
+                    response: res,
+                    httpCode: 401,
+                    exception: {
+                        message: "Missing token. Unauthorized",
+                        code: "auth/user-unauthorized"
+                    }
+                }).send();
+            }
+        } catch (ex) {
+            return new ApiResponse({
+                response: res,
+                httpCode: 500,
+                exception: ex
+            }).send();
+        }
     }
 
     /**
@@ -72,7 +118,6 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useCreate(middleware?: Array<RequestHandler>) {
         this.router.post('/', middleware || [], async (req: Request, res: Response) => {
-            console.log(`POST [${this.routeName}]`);
             this.baseRepository.create(req.body)
                 .then(result => {
                     return new ApiResponse({
@@ -99,7 +144,6 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useUpdate(middleware?: Array<RequestHandler>) {
         this.router.put('/', middleware || [], async (req: Request, res: Response) => {
-            console.log(`PUT [${this.routeName}]`);
             this.baseRepository.update(req.body)
                 .then(result => {
                     return new ApiResponse({
@@ -188,6 +232,8 @@ export class BaseController<T extends IBaseEntity> {
         return this;
     }
 
+
+
     /**
      * Enable JWT token verification. Every method called after this call will use authentication
      * 
@@ -195,48 +241,7 @@ export class BaseController<T extends IBaseEntity> {
      */
     public useAuth() {
         this.isAuthEnabled = true;
-        this.router.use('*', async (req, res, next) => {
-            console.log(`[${req.method}] ${req.url}`);
-            try {
-                const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
-                if (token) {
-                    // Verify token
-                    const isValid = verify(token, environment.jwtSecret);
-
-                    // Is is valid proceed
-                    if (isValid) {
-                        req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
-                        return next();
-                    }
-
-                    // Otherwise throw an auth error
-                    return new ApiResponse({
-                        response: res,
-                        httpCode: 401,
-                        exception: {
-                            message: "Invalid token. Unauthorized",
-                            code: "auth/user-unauthorized"
-                        }
-                    }).send();
-                } else {
-                    // Token not found, throw an auth error
-                    return new ApiResponse({
-                        response: res,
-                        httpCode: 401,
-                        exception: {
-                            message: "Missing token. Unauthorized",
-                            code: "auth/user-unauthorized"
-                        }
-                    }).send();
-                }
-            } catch (ex) {
-                return new ApiResponse({
-                    response: res,
-                    httpCode: 500,
-                    exception: ex
-                }).send();
-            }
-        });
+        this.router.use('*', BaseController.AuthMiddleware);
         return this;
     }
 
@@ -247,4 +252,10 @@ export class BaseController<T extends IBaseEntity> {
         this.app.use(`${ServerDefaults.apiBaseUrl}/${this.routeName}`, this.router);
         return this;
     }
+
+
+    /**
+     * Implement this method to register all custom controller routes
+     */
+    public abstract useCustoms(): BaseController<T>;
 }

@@ -27,6 +27,7 @@ const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
 const internship_status_type_machine_1 = require("../utils/state-machines/internship-status.type.machine");
 const dist_1 = require("gdl-thesis-core/dist");
+const scopes_1 = require("../utils/auth/scopes");
 /**
  * The [[Internship]] controller
  */
@@ -39,6 +40,15 @@ let InternshipsController = class InternshipsController extends base_controller_
     constructor(internshipsRepository, app) {
         super(internshipsRepository, app);
         this.internshipsRepository = internshipsRepository;
+    }
+    useCustoms() {
+        return this
+            .useGetApproved()
+            .useGetNotApproved()
+            .useGetByCompanyOwnerId()
+            .useListStates()
+            .useUpdateStates()
+            .useForceUpdateStates();
     }
     /**
        * Return the list of all internships inserted by companies
@@ -86,12 +96,30 @@ let InternshipsController = class InternshipsController extends base_controller_
         }));
         return this;
     }
-    checkState(currentState, newState) {
+    /**
+     * Return all the NotApproved internships
+     */
+    useGetNotApproved() {
+        this.router.get('/getNotApproved', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            return this.internshipsRepository.getNotApproved()
+                .then(result => {
+                return new api_response_model_1.ApiResponse({
+                    data: result,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            });
+        }));
+        return this;
     }
+    /**
+     * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
+     */
     useUpdateStates() {
-        this.router.put('/status', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.router.put('/status', [scopes_1.professorScope], (req, res) => __awaiter(this, void 0, void 0, function* () {
             const internshipId = req.body.id;
             const newState = req.body.status;
+            const rejectReason = req.body.rejectReason;
             if (newState === undefined && newState === null) {
                 return new api_response_model_1.ApiResponse({
                     data: null,
@@ -131,7 +159,8 @@ let InternshipsController = class InternshipsController extends base_controller_
             return this.internshipsRepository
                 .partialUpdate({
                 status: newState,
-                id: update.id
+                id: update.id,
+                rejectReason: rejectReason
             })
                 .then(result => {
                 return new api_response_model_1.ApiResponse({
@@ -143,8 +172,11 @@ let InternshipsController = class InternshipsController extends base_controller_
         }));
         return this;
     }
+    /**
+     * Update the state of an [[Internship]] WITHOUT the constraint of the [[InternshipStatusTypeMachine]] transition function
+     */
     useForceUpdateStates() {
-        this.router.put('/status/force', (req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.router.put('/status/force', [scopes_1.adminScope], (req, res) => __awaiter(this, void 0, void 0, function* () {
             const newState = req.body.status;
             const id = req.body.id;
             if (newState !== undefined && newState !== null) {
@@ -174,6 +206,9 @@ let InternshipsController = class InternshipsController extends base_controller_
         }));
         return this;
     }
+    /**
+     * Given a [[InternshipsStatusType]] return all the available states
+     */
     useListStates() {
         this.router.get('/status/:state', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const currentState = req.params.state;
@@ -205,3 +240,4 @@ InternshipsController = __decorate([
     __metadata("design:paramtypes", [repositories_1.InternshipsRepository, Object])
 ], InternshipsController);
 exports.InternshipsController = InternshipsController;
+//# sourceMappingURL=internships.controller.js.map

@@ -26,6 +26,7 @@ const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
 const ServerDefaults_1 = require("../ServerDefaults");
+const scopes_1 = require("../utils/auth/scopes");
 /**
  * The [[User]] controller
  */
@@ -39,12 +40,9 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
         super(usersRepository, app);
         this.usersRepository = usersRepository;
     }
-    /**
-     * Use custom routes
-     */
-    useAllCustom() {
+    useCustoms() {
         return this
-            .useGetByRoles()
+            .useGetByRoles([scopes_1.adminScope])
             .useUpdateOwn();
     }
     /**
@@ -73,6 +71,9 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
         }));
         return this;
     }
+    /**
+     * Allow the the user specified in the token to update its onw user information
+     */
     useUpdateOwn() {
         this.router.put('/own', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const user = req.body;
@@ -107,3 +108,4 @@ UsersController = __decorate([
     __metadata("design:paramtypes", [repositories_1.UsersRepository, Object])
 ], UsersController);
 exports.UsersController = UsersController;
+//# sourceMappingURL=users.controller.js.map

@@ -43,3 +43,4 @@ base_1.normalizeSchema(exports.InternshipSchema);
 exports.InternshipSchema.plugin(autopopulate);
 /** The [[CompanyModel]] mongoose schema model  */
 exports.InternshipModel = mongoose_1.model("Internship", exports.InternshipSchema, dist_1.Defaults.collectionsName.internships);
+//# sourceMappingURL=internship.schema.js.map

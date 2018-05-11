@@ -24,10 +24,14 @@ export class CompaniesController extends BaseController<ICompany> {
     super(companiesRepository, app);
   }
 
+  public useCustoms() {
+    return this.useGetByOwnerId();
+  }
+
   /**
    * Return the list of companies of the given userId
    */
-  public useGetByOwnerId() {
+  private useGetByOwnerId() {
     this.router.get('/getByOwnerId/:ownerId', async (req, res) => {
       const ownerId: string = req.params.ownerId;
 

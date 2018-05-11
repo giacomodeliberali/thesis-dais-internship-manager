@@ -6,6 +6,7 @@ import { container } from "../di-container";
 import { CompaniesController } from "../../controllers/companies.controller";
 import { CompaniesRepository, InternshipsRepository } from "../../repositories";
 import { IInternship } from "../../models/interfaces";
+import { canExec } from "./can-exec.helper";
 
 /**
  * Check if the current request has a body property with the decoded JWT information.
@@ -212,17 +213,13 @@ export async function ownInternship(request: Request, response: Response, next: 
     // Check if has role
     if (user) {
 
-        // If the user is admin, continue
-        if ((user.role.type & Number(RoleType.Admin)) === Number(RoleType.Admin))
-            return next();
-
         try {
 
             const internshipsRepsoitory = container.resolve(InternshipsRepository);
 
             const iinternship = await internshipsRepsoitory.get(request.body.id);
             if (iinternship) {
-                if ((user.role.type & Number(RoleType.Company)) === Number(RoleType.Company) && iinternship.company.owners.find((owner: any) => owner === user.id)) {
+                if ((user.role.type & Number(RoleType.Company)) === Number(RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
                     return next();
                 }
             }
@@ -241,8 +238,46 @@ export async function ownInternship(request: Request, response: Response, next: 
         response: response,
         httpCode: 401,
         exception: {
-            message: "Insufficient permission to complete the operation. Missing required 'Admin' scope. Maybe you are trying to update an internship of which you are not a owner.",
+            message: "Insufficient permission to complete the operation. Maybe you are trying to update an internship of which you are not a owner.",
             code: "auth/user-unauthorized"
         } as any
     }).send();
+}
+
+export async function canExecMw(...roles: Array<RoleType>) {
+
+    const fun = async (request: Request, response: Response, next: Function) => {
+        // Pick decoded user
+        const user = checkBodyUser(request, response);
+
+        // Check if has role
+        if (user) {
+            try {
+
+                if (canExec(user.role.type, roles)) {
+                    return next();
+                }
+
+            } catch (ex) {
+                // Return Unauthorized
+                return new ApiResponse({
+                    response: response,
+                    httpCode: 401,
+                    exception: ex
+                }).send();
+            }
+        }
+
+        // Return Unauthorized
+        return new ApiResponse({
+            response: response,
+            httpCode: 401,
+            exception: {
+                message: `Insufficient permission to complete the operation. Required roles are ${roles.map(r => RoleType[r]).join(',')}`,
+                code: "auth/user-unauthorized"
+            } as any
+        }).send();
+    };
+
+    return fun;
 }

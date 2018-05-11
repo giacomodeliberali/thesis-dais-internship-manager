@@ -22,4 +22,8 @@ export class RolesController extends BaseController<IRole> {
 
     super(rolesRepository, app);
   }
+
+  public useCustoms() {
+    return this;
+  }
 }

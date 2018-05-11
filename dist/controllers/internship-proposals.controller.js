@@ -28,6 +28,9 @@ let InternshipProposalsController = class InternshipProposalsController extends 
     constructor(internshipProposalsRepository, app) {
         super(internshipProposalsRepository, app);
     }
+    useCustoms() {
+        return this;
+    }
 };
 InternshipProposalsController = __decorate([
     inversify_1.injectable(),
@@ -35,3 +38,4 @@ InternshipProposalsController = __decorate([
     __metadata("design:paramtypes", [repositories_1.InternshipsProposalsRepository, Object])
 ], InternshipProposalsController);
 exports.InternshipProposalsController = InternshipProposalsController;
+//# sourceMappingURL=internship-proposals.controller.js.map

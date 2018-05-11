@@ -42,3 +42,4 @@ CompaniesRepository = __decorate([
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], CompaniesRepository);
 exports.CompaniesRepository = CompaniesRepository;
+//# sourceMappingURL=companies.repository.js.map
