@@ -149,6 +149,9 @@
         "ConfirmDelete": {
             "Title": "Eliminare l'elemento?",
             "SubTitle": "Vuoi eliminare l'elemento selezionato? L'operazione è irreversibile."
+        },
+        "SessionExpired": {
+            "Message": "La sessione è scaduta. Effettua nuovamente il login"
         }
     },
     "Roles": {

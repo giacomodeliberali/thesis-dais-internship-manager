@@ -14,10 +14,44 @@ declare var gapi: any;
 export class AuthService {
 
     /** The current logged in [[User]] */
-    public currentUser: User;
+    public get currentUser(): User {
+        try {
+            const user = localStorage.getItem("currentUser");
+
+            if (!user)
+                return null;
+
+            return new User(JSON.parse(user));
+        } catch (ex) {
+            console.error("Error getting currentUser", ex);
+            return null;
+        }
+    };
+
+    /** Set the current logged in [[User]] */
+    public set currentUser(user: User) {
+        try {
+            if (user)
+                localStorage.setItem("currentUser", JSON.stringify(user));
+            else
+                localStorage.removeItem("currentUser");
+        } catch (ex) {
+            console.error("Error setting currentUser", ex);
+        }
+    };
 
     /** The current logged in user token */
-    public token: string;
+    public get token(): string {
+        return localStorage.getItem("token");
+    }
+
+    /** Set the current logged in user token */
+    public set token(value: string) {
+        if (value)
+            localStorage.setItem("token", value);
+        else
+            localStorage.removeItem("token");
+    }
 
     /** The Google API configuration */
     private oauth2: any;
@@ -28,9 +62,21 @@ export class AuthService {
      * @param httpClient The fetch client
      */
     constructor(private httpClient: HttpClient) {
-        const cachedResponse = this.getAuthResponse();
-        this.token = cachedResponse.token;
-        this.currentUser = cachedResponse.user ? new User(cachedResponse.user) : null;
+    }
+
+    /**
+     * Validate server side the current token
+     */
+    public async validateToken(): Promise<boolean> {
+        try {
+            const result: ApiResponseDto<boolean> = await this.post('auth/token/validate', {
+                token: this.token
+            });
+            return Promise.resolve(result && result.isOk && result.data);
+        } catch (ex) {
+            console.error("Validate token failed with error", ex);
+            return Promise.resolve(false);
+        }
     }
 
     protected post(path: string, body: any) {
@@ -43,12 +89,7 @@ export class AuthService {
      */
     public updateUser(user: User) {
         if (this.currentUser && this.token) {
-            this.currentUser = new User(user);
-            this.setAuthResponse({
-                token: this.token,
-                user: this.currentUser,
-                isNew: false
-            });
+            this.currentUser = user;
         }
     }
 
@@ -106,9 +147,7 @@ export class AuthService {
 
                 if (apiResponse.isOk) {
                     this.token = apiResponse.data.token;
-                    this.currentUser = new User(apiResponse.data.user);
-                    localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-                    localStorage.setItem("token", apiResponse.data.token);
+                    this.currentUser = apiResponse.data.user;
                 }
 
                 return apiResponse.data;
@@ -128,9 +167,8 @@ export class AuthService {
         try {
             const googleAuth = await this.initialize();
             const googleUser = await googleAuth.signOut();
-            this.clearAuthResponse();
-            this.currentUser = null;
             this.token = null;
+            this.currentUser = null;
         } catch (ex) {
             console.log("Cannot logout from google", ex);
         }
@@ -144,9 +182,7 @@ export class AuthService {
 
         if (apiResponse.isOk) {
             this.token = apiResponse.data.token;
-            this.currentUser = new User(apiResponse.data.user);
-            localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-            localStorage.setItem("token", apiResponse.data.token);
+            this.currentUser = apiResponse.data.user
         }
 
         return apiResponse;
@@ -158,40 +194,10 @@ export class AuthService {
 
         if (apiResponse.isOk) {
             this.token = apiResponse.data.token;
-            this.currentUser = new User(apiResponse.data.user);
-            localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
-            localStorage.setItem("token", apiResponse.data.token);
+            this.currentUser = apiResponse.data.user;
         }
 
         return apiResponse;
     }
 
-    /**
-     * Cache an [[AuthResponse]] in the local storage
-     * @param res The auth response
-     */
-    private setAuthResponse(res: AuthResponse) {
-        localStorage.setItem("currentUser", JSON.stringify(res.user));
-        localStorage.setItem("token", res.token);
-    }
-
-    /**
-     * Retrive the [[AuthResponse]] from the local storage
-     */
-    private getAuthResponse(): AuthResponse {
-        const strinfigiedUser = localStorage.getItem("currentUser");
-        return {
-            user: strinfigiedUser ? JSON.parse(strinfigiedUser) : null,
-            token: localStorage.getItem("token"),
-            isNew: false
-        };
-    }
-
-    /**
-     * Clear the local storage auth response
-     */
-    private clearAuthResponse() {
-        localStorage.removeItem("currentUser");
-        localStorage.removeItem("token");
-    }
 }
