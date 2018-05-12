@@ -23,11 +23,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const inversify_1 = require("inversify");
 const di_types_1 = require("../utils/di-types");
-const base_controller_1 = require("./base/base.controller");
 const api_response_model_1 = require("../models/api-response.model");
 const nodemailer = require("nodemailer");
 const ServerDefaults_1 = require("../ServerDefaults");
 const environment_1 = require("../environment");
+const authentication_controller_1 = require("./authentication.controller");
 /**
  * The Emails controller
  */
@@ -58,7 +58,7 @@ let EmailsController = class EmailsController {
    * A user scope can be specified using a scope middleware.
    */
     useAuth() {
-        this.router.use('*', base_controller_1.BaseController.AuthMiddleware);
+        this.router.use('*', authentication_controller_1.AuthenticationController.AuthMiddleware);
         return this;
     }
     /**

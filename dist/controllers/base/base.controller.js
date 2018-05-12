@@ -23,14 +23,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const repositories_1 = require("../../repositories");
 const inversify_1 = require("inversify");
-const jsonwebtoken_1 = require("jsonwebtoken");
-const environment_1 = require("../../environment");
 const ServerDefaults_1 = require("../../ServerDefaults");
 const api_response_model_1 = require("../../models/api-response.model");
+const authentication_controller_1 = require("../authentication.controller");
 /**
  * The base controller with CRUD and authentication
  */
-let BaseController = BaseController_1 = class BaseController {
+let BaseController = class BaseController {
     /**
      * Create a new base controller and attaches CRUD method with 'routeName' express route
      * @param baseRepository The generic base repository with CRUD operations
@@ -196,7 +195,7 @@ let BaseController = BaseController_1 = class BaseController {
      */
     useAuth() {
         this.isAuthEnabled = true;
-        this.router.use('*', BaseController_1.AuthMiddleware);
+        this.router.use('*', authentication_controller_1.AuthenticationController.AuthMiddleware);
         return this;
     }
     /**
@@ -207,57 +206,11 @@ let BaseController = BaseController_1 = class BaseController {
         return this;
     }
 };
-/**
- * The authentication middleware. Populate the request.body with the [[ServerDefaults.authUserBodyPropertyName]] property
- * containing the token user
- */
-BaseController.AuthMiddleware = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
-    try {
-        const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
-        if (token) {
-            // Verify token
-            const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret);
-            // Is is valid proceed
-            if (isValid) {
-                req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName] = jsonwebtoken_1.decode(token);
-                return next();
-            }
-            // Otherwise throw an auth error
-            return new api_response_model_1.ApiResponse({
-                response: res,
-                httpCode: 401,
-                exception: {
-                    message: "Invalid token. Unauthorized",
-                    code: "auth/user-unauthorized"
-                }
-            }).send();
-        }
-        else {
-            // Token not found, throw an auth error
-            return new api_response_model_1.ApiResponse({
-                response: res,
-                httpCode: 401,
-                exception: {
-                    message: "Missing token. Unauthorized",
-                    code: "auth/user-unauthorized"
-                }
-            }).send();
-        }
-    }
-    catch (ex) {
-        return new api_response_model_1.ApiResponse({
-            response: res,
-            httpCode: 500,
-            exception: ex
-        }).send();
-    }
-});
-BaseController = BaseController_1 = __decorate([
+BaseController = __decorate([
     inversify_1.injectable(),
     __param(0, inversify_1.unmanaged()),
     __param(1, inversify_1.unmanaged()),
     __metadata("design:paramtypes", [repositories_1.BaseRepository, Object])
 ], BaseController);
 exports.BaseController = BaseController;
-var BaseController_1;
 //# sourceMappingURL=base.controller.js.map

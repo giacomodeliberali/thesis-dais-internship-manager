@@ -36,7 +36,7 @@ const GooglePlusTokenStrategy = require('passport-google-plus-token');
 /**
  * The Auth controller
  */
-let AuthenticationController = class AuthenticationController {
+let AuthenticationController = AuthenticationController_1 = class AuthenticationController {
     /**
      * Create the controller that handles authentication
      * @param app The express application used to register a new route for this controller
@@ -56,7 +56,8 @@ let AuthenticationController = class AuthenticationController {
         this
             .useLogin()
             .useRegister()
-            .useGoogleOAuth();
+            .useGoogleOAuth()
+            .useTokenValidate();
         if (environment_1.environment.isDebug)
             this.useTokenDecode();
         this.app.use(`/auth`, this.router);
@@ -311,6 +312,37 @@ let AuthenticationController = class AuthenticationController {
         return this;
     }
     /**
+     * Return true if the given token is valid
+     */
+    useTokenValidate() {
+        this.router.post('/token/validate', (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const token = req.body.token;
+            if (token) {
+                const isValid = AuthenticationController_1.ValidateToken(token);
+                if (isValid)
+                    return new api_response_model_1.ApiResponse({
+                        response: res,
+                        httpCode: 200,
+                        data: true
+                    }).send();
+                else
+                    return new api_response_model_1.ApiResponse({
+                        response: res,
+                        httpCode: 200,
+                        data: false
+                    }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    response: res,
+                    httpCode: 400,
+                    exception: "Bad request, missing 'token' parameter"
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
      * Handle all 404 routes.
      *
      * Must be called *after* every controller registration.
@@ -331,11 +363,67 @@ let AuthenticationController = class AuthenticationController {
         return this;
     }
 };
-AuthenticationController = __decorate([
+/**
+* Return true if the given token is valid, false otherwise
+*/
+AuthenticationController.ValidateToken = (token) => {
+    if (token) {
+        try {
+            const isValid = jsonwebtoken_1.verify(token, environment_1.environment.jwtSecret, {
+                ignoreExpiration: false
+            });
+            return !!isValid;
+        }
+        catch (ex) {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+};
+/**
+ * The authentication middleware. Populate the request.body with the [[ServerDefaults.authUserBodyPropertyName]] property
+ * containing the token user
+ */
+AuthenticationController.AuthMiddleware = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    const token = req.headers[ServerDefaults_1.ServerDefaults.jwtTokenHeaderName];
+    if (token) {
+        // Verify token
+        const isValid = AuthenticationController_1.ValidateToken(token);
+        // Is is valid proceed
+        if (isValid) {
+            req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName] = jsonwebtoken_1.decode(token);
+            return next();
+        }
+        // Otherwise throw an auth error
+        return new api_response_model_1.ApiResponse({
+            response: res,
+            httpCode: 401,
+            exception: {
+                message: "Invalid token. Unauthorized",
+                code: "auth/user-unauthorized"
+            }
+        }).send();
+    }
+    else {
+        // Token not found, throw an auth error
+        return new api_response_model_1.ApiResponse({
+            response: res,
+            httpCode: 401,
+            exception: {
+                message: "Missing token. Unauthorized",
+                code: "auth/user-unauthorized"
+            }
+        }).send();
+    }
+});
+AuthenticationController = AuthenticationController_1 = __decorate([
     inversify_1.injectable(),
     __param(2, inversify_1.inject(di_types_1.types.App)),
     __metadata("design:paramtypes", [repositories_1.UsersRepository,
         repositories_1.RolesRepository, Object])
 ], AuthenticationController);
 exports.AuthenticationController = AuthenticationController;
+var AuthenticationController_1;
 //# sourceMappingURL=authentication.controller.js.map

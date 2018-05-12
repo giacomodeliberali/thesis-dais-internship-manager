@@ -35,6 +35,64 @@ export class AuthenticationController {
   }
 
   /**
+ * Return true if the given token is valid, false otherwise
+ */
+  public static ValidateToken = (token) => {
+    if (token) {
+      try {
+        const isValid = verify(token, environment.jwtSecret, {
+          ignoreExpiration: false
+        });
+
+        return !!isValid;
+      } catch (ex) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * The authentication middleware. Populate the request.body with the [[ServerDefaults.authUserBodyPropertyName]] property
+   * containing the token user
+   */
+  public static AuthMiddleware = async (req, res, next) => {
+
+    const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
+    if (token) {
+      // Verify token
+      const isValid = AuthenticationController.ValidateToken(token);
+
+      // Is is valid proceed
+      if (isValid) {
+        req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
+        return next();
+      }
+
+      // Otherwise throw an auth error
+      return new ApiResponse({
+        response: res,
+        httpCode: 401,
+        exception: {
+          message: "Invalid token. Unauthorized",
+          code: "auth/user-unauthorized"
+        }
+      }).send();
+    } else {
+      // Token not found, throw an auth error
+      return new ApiResponse({
+        response: res,
+        httpCode: 401,
+        exception: {
+          message: "Missing token. Unauthorized",
+          code: "auth/user-unauthorized"
+        }
+      }).send();
+    }
+  }
+
+  /**
  * Register this controller routes
  * @param useAllCustom Indicates if the custom routes should be registred automatically [default true]
  */
@@ -42,7 +100,8 @@ export class AuthenticationController {
     this
       .useLogin()
       .useRegister()
-      .useGoogleOAuth();
+      .useGoogleOAuth()
+      .useTokenValidate();
 
     if (environment.isDebug)
       this.useTokenDecode();
@@ -324,6 +383,39 @@ export class AuthenticationController {
       })(req, res);
     });
 
+    return this;
+  }
+
+  /**
+   * Return true if the given token is valid
+   */
+  private useTokenValidate() {
+    this.router.post('/token/validate', async (req, res, next) => {
+      const token = req.body.token;
+      if (token) {
+
+        const isValid = AuthenticationController.ValidateToken(token);
+
+        if (isValid)
+          return new ApiResponse({
+            response: res,
+            httpCode: 200,
+            data: true
+          }).send();
+        else
+          return new ApiResponse({
+            response: res,
+            httpCode: 200,
+            data: false
+          }).send();
+      } else {
+        return new ApiResponse({
+          response: res,
+          httpCode: 400,
+          exception: "Bad request, missing 'token' parameter"
+        }).send();
+      }
+    });
     return this;
   }
 

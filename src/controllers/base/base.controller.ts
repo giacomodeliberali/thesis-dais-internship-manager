@@ -10,6 +10,7 @@ import { adminScope } from "../../utils/auth/scopes";
 import { CurdOptions } from "../../models/interfaces/crud-options.interface";
 import { IBaseEntity } from "../../models/interfaces";
 import { ApiResponse } from "../../models/api-response.model";
+import { AuthenticationController } from "../authentication.controller";
 
 /**
  * The base controller with CRUD and authentication
@@ -26,52 +27,6 @@ export abstract class BaseController<T extends IBaseEntity> {
     /** The collection name */
     get routeName() {
         return this.baseRepository.collectionName;
-    }
-
-    /**
-     * The authentication middleware. Populate the request.body with the [[ServerDefaults.authUserBodyPropertyName]] property
-     * containing the token user
-     */
-    public static AuthMiddleware = async (req, res, next) => {
-        try {
-            const token = req.headers[ServerDefaults.jwtTokenHeaderName] as string;
-            if (token) {
-                // Verify token
-                const isValid = verify(token, environment.jwtSecret);
-
-                // Is is valid proceed
-                if (isValid) {
-                    req.body[ServerDefaults.authUserBodyPropertyName] = decode(token);
-                    return next();
-                }
-
-                // Otherwise throw an auth error
-                return new ApiResponse({
-                    response: res,
-                    httpCode: 401,
-                    exception: {
-                        message: "Invalid token. Unauthorized",
-                        code: "auth/user-unauthorized"
-                    }
-                }).send();
-            } else {
-                // Token not found, throw an auth error
-                return new ApiResponse({
-                    response: res,
-                    httpCode: 401,
-                    exception: {
-                        message: "Missing token. Unauthorized",
-                        code: "auth/user-unauthorized"
-                    }
-                }).send();
-            }
-        } catch (ex) {
-            return new ApiResponse({
-                response: res,
-                httpCode: 500,
-                exception: ex
-            }).send();
-        }
     }
 
     /**
@@ -241,7 +196,7 @@ export abstract class BaseController<T extends IBaseEntity> {
      */
     public useAuth() {
         this.isAuthEnabled = true;
-        this.router.use('*', BaseController.AuthMiddleware);
+        this.router.use('*', AuthenticationController.AuthMiddleware);
         return this;
     }
 

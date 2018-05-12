@@ -6,6 +6,7 @@ import { ApiResponse } from "../models/api-response.model";
 import * as nodemailer from 'nodemailer';
 import { ServerDefaults } from "../ServerDefaults";
 import { environment } from "../environment";
+import { AuthenticationController } from "./authentication.controller";
 
 /**
  * The Emails controller
@@ -45,7 +46,7 @@ export class EmailsController {
  * A user scope can be specified using a scope middleware.
  */
   public useAuth() {
-    this.router.use('*', BaseController.AuthMiddleware);
+    this.router.use('*', AuthenticationController.AuthMiddleware);
     return this;
   }
 
