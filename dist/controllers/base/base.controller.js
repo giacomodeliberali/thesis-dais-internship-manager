@@ -213,4 +213,3 @@ BaseController = __decorate([
     __metadata("design:paramtypes", [repositories_1.BaseRepository, Object])
 ], BaseController);
 exports.BaseController = BaseController;
-//# sourceMappingURL=base.controller.js.map

@@ -26,4 +26,3 @@ function canExec(role, requiredRoles) {
     return canExecV;
 }
 exports.canExec = canExec;
-//# sourceMappingURL=can-exec.helper.js.map

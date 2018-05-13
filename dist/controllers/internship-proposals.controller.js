@@ -11,11 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_controller_1 = require("./base/base.controller");
 const inversify_1 = require("inversify");
 const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
+const api_response_model_1 = require("../models/api-response.model");
 /**
  * The [[InternshipProposal]] controller
  */
@@ -27,8 +36,35 @@ let InternshipProposalsController = class InternshipProposalsController extends 
      */
     constructor(internshipProposalsRepository, app) {
         super(internshipProposalsRepository, app);
+        this.internshipProposalsRepository = internshipProposalsRepository;
     }
     useCustoms() {
+        return this
+            .useGetPendingStudents();
+    }
+    useGetPendingStudents() {
+        this.router.get('/pendingstudents/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const professorId = req.params.id;
+            const proposals = yield this.internshipProposalsRepository.find({
+                professor: professorId
+            });
+            if (professorId) {
+                return new api_response_model_1.ApiResponse({
+                    data: proposals,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    exception: {
+                        message: "Bad request. Missing 'id' parameter"
+                    },
+                    httpCode: 400,
+                    response: res
+                }).send();
+            }
+        }));
         return this;
     }
 };
@@ -38,4 +74,3 @@ InternshipProposalsController = __decorate([
     __metadata("design:paramtypes", [repositories_1.InternshipsProposalsRepository, Object])
 ], InternshipProposalsController);
 exports.InternshipProposalsController = InternshipProposalsController;
-//# sourceMappingURL=internship-proposals.controller.js.map

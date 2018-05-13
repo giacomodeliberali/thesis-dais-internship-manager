@@ -38,4 +38,3 @@ RolesController = __decorate([
     __metadata("design:paramtypes", [repositories_1.RolesRepository, Object])
 ], RolesController);
 exports.RolesController = RolesController;
-//# sourceMappingURL=roles.controller.js.map

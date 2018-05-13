@@ -48,4 +48,3 @@ class ApiResponse extends dist_1.Constructor {
     }
 }
 exports.ApiResponse = ApiResponse;
-//# sourceMappingURL=api-response.model.js.map

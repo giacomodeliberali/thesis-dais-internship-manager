@@ -33,4 +33,3 @@ base_1.normalizeSchema(exports.CompanySchema);
 exports.CompanySchema.plugin(autopopulate);
 /** The [[CompanyModel]] mongoose schema model  */
 exports.CompanyModel = mongoose_1.model("Company", exports.CompanySchema, dist_1.Defaults.collectionsName.companies);
-//# sourceMappingURL=company.schema.js.map

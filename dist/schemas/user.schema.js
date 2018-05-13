@@ -111,4 +111,3 @@ exports.UserSchema.methods.isValidPassword = function (newPassword) {
 exports.UserSchema.plugin(autopopulate);
 /** The [[UserModel]] mongoose schema model  */
 exports.UserModel = mongoose_1.model("User", exports.UserSchema, dist_1.Defaults.collectionsName.users);
-//# sourceMappingURL=user.schema.js.map

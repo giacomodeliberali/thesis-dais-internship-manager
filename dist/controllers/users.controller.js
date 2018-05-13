@@ -25,6 +25,7 @@ const inversify_1 = require("inversify");
 const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
+const dist_1 = require("gdl-thesis-core/dist");
 const ServerDefaults_1 = require("../ServerDefaults");
 const scopes_1 = require("../utils/auth/scopes");
 const jsonwebtoken_1 = require("jsonwebtoken");
@@ -45,7 +46,8 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
     useCustoms() {
         return this
             .useGetByRoles([scopes_1.adminScope])
-            .useUpdateOwn();
+            .useUpdateOwn()
+            .useLookupProfessor();
     }
     /**
      * Return all users with role matching al least one of the given roles
@@ -106,6 +108,28 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
         }));
         return this;
     }
+    useLookupProfessor() {
+        this.router.post('/professors/lookup', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const search = req.body.search;
+            let professors = yield this.usersRepository.getByRoles(dist_1.RoleType.Professor);
+            professors = professors.filter(p => p.name.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+            if (search) {
+                return new api_response_model_1.ApiResponse({
+                    data: professors,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    data: professors,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+        }));
+        return this;
+    }
 };
 UsersController = __decorate([
     inversify_1.injectable(),
@@ -113,4 +137,3 @@ UsersController = __decorate([
     __metadata("design:paramtypes", [repositories_1.UsersRepository, Object])
 ], UsersController);
 exports.UsersController = UsersController;
-//# sourceMappingURL=users.controller.js.map

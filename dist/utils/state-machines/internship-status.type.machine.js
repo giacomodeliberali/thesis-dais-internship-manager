@@ -61,4 +61,3 @@ class InternshipStatusTypeMachine {
     }
 }
 exports.InternshipStatusTypeMachine = InternshipStatusTypeMachine;
-//# sourceMappingURL=internship-status.type.machine.js.map

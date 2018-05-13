@@ -43,4 +43,3 @@ function normalizeSchema(schema) {
     return schema;
 }
 exports.normalizeSchema = normalizeSchema;
-//# sourceMappingURL=normalize-schema.js.map

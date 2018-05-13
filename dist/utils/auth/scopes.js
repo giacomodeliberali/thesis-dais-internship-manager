@@ -266,4 +266,3 @@ function canExecMw(...roles) {
     });
 }
 exports.canExecMw = canExecMw;
-//# sourceMappingURL=scopes.js.map

@@ -240,4 +240,3 @@ InternshipsController = __decorate([
     __metadata("design:paramtypes", [repositories_1.InternshipsRepository, Object])
 ], InternshipsController);
 exports.InternshipsController = InternshipsController;
-//# sourceMappingURL=internships.controller.js.map

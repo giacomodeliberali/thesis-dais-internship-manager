@@ -90,4 +90,3 @@ InternshipsRepository = __decorate([
     __metadata("design:paramtypes", [mongoose_1.Model])
 ], InternshipsRepository);
 exports.InternshipsRepository = InternshipsRepository;
-//# sourceMappingURL=internships.repository.js.map

@@ -5,7 +5,7 @@ import { UsersRepository } from "../repositories";
 import { types } from "../utils/di-types";
 import { ApiResponse } from "../models/api-response.model";
 import { IUser } from "../models/interfaces";
-import { User } from "gdl-thesis-core/dist";
+import { User, RoleType } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../ServerDefaults";
 import { adminScope } from "../utils/auth/scopes";
 import { sign } from "jsonwebtoken";
@@ -32,7 +32,8 @@ export class UsersController extends BaseController<IUser> {
   public useCustoms() {
     return this
       .useGetByRoles([adminScope])
-      .useUpdateOwn();
+      .useUpdateOwn()
+      .useLookupProfessor();
   }
 
   /**
@@ -89,6 +90,33 @@ export class UsersController extends BaseController<IUser> {
             code: "auth/user-unauthorized"
           },
           httpCode: 401,
+          response: res
+        }).send();
+      }
+    });
+    return this;
+  }
+
+  /**
+   * Return all the [[User]] with role Professor matching the given search string
+   */
+  private useLookupProfessor() {
+    this.router.post('/professors/lookup', async (req, res) => {
+      const search: string = req.body.search;
+
+      let professors = await this.usersRepository.getByRoles(RoleType.Professor);
+      professors = professors.filter(p => p.name.toLowerCase().indexOf(search.toLowerCase()) >= 0);
+
+      if (search) {
+        return new ApiResponse({
+          data: professors,
+          httpCode: 200,
+          response: res
+        }).send();
+      } else {
+        return new ApiResponse({
+          data: professors,
+          httpCode: 200,
           response: res
         }).send();
       }
