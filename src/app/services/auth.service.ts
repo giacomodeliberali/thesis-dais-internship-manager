@@ -76,7 +76,6 @@ export class AuthService {
                 return result.data;
             return null;
         } catch (ex) {
-            console.error("Validate token failed with error", ex);
             return Promise.resolve(null);
         }
     }
