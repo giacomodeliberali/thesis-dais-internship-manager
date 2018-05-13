@@ -76,7 +76,8 @@
                     <div class="card-content">
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships'" translate>Dictionary.Back</button>
-                            <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships'" *ngIf="internship.status == InternshipStatusType.Approved"
+                            <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
+                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student])"
                                 translate>Dictionary.ProposeYourSelf</button>
                         </div>
                     </div>

@@ -26,6 +26,12 @@ export interface ChildrenItems {
 // Menu Items
 export const ROUTES: RouteInfo[] = [
     {
+        path: '/',
+        title: 'Dictionary.Home',
+        type: 'link',
+        icontype: 'ti-home'
+    },
+    {
         path: '/auth/internships/',
         title: 'Pages.Internships.Title',
         type: 'sub',
@@ -36,6 +42,22 @@ export const ROUTES: RouteInfo[] = [
                 title: 'Pages.Internships.ViewOffers',
                 ab: 'L'
             },
+        ]
+    },
+    {
+        path: '/auth/internships/',
+        title: 'Dictionary.Student',
+        type: 'sub',
+        icontype: 'fas fa-user-graduate',
+        requiredRoles: [
+            RoleType.Professor
+        ],
+        children: [
+            {
+                path: 'my-proposals',
+                title: 'Dictionary.MyProposals',
+                ab: 'P'
+            }
         ]
     },
     {
@@ -74,25 +96,12 @@ export const ROUTES: RouteInfo[] = [
                 ab: 'I'
             },
             {
-                path: 'students-wait-for-approval',
+                path: 'students-list',
                 title: 'Dictionary.StudentsWaitForApproval',
                 ab: 'S'
             }
         ]
     }
-    /*     {
-            path: '/charts',
-            title: 'Dictionary.Charts',
-            type: 'link',
-            icontype: 'ti-gift'
-    
-        },
-        {
-            path: '/calendar',
-            title: 'Dictionary.Calendar',
-            type: 'link',
-            icontype: 'ti-calendar'
-        } */
 ];
 
 @Component({

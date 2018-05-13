@@ -13,13 +13,18 @@ import { InternshipDetailsComponent } from './details/internship-details.compone
 import { CKEditorModule } from 'ng2-ckeditor';
 import { InternshipsApproveListComponent } from './approve-list/internships-approve-list.component';
 import { InternshipApproveComponent } from './approve/internship-approve.component';
+import { InternshipsStudentsListComponent } from './students-list/internships-students-list.component';
+import { InternshipCandidateComponent } from './candidate/internship-candidate.component';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @NgModule({
     imports: [
         SharedModule.forRoot(),
         RouterModule.forChild(InternshipsRoutes),
         FormsModule,
-        CKEditorModule
+        CKEditorModule,
+        NguiAutoCompleteModule
     ],
     declarations: [
         InternshipsViewComponent,
@@ -28,7 +33,9 @@ import { InternshipApproveComponent } from './approve/internship-approve.compone
         InternshipsOwnCompanyComponent,
         InternshipDetailsComponent,
         InternshipsApproveListComponent,
-        InternshipApproveComponent
+        InternshipApproveComponent,
+        InternshipsStudentsListComponent,
+        InternshipCandidateComponent
     ]
 })
 export class InternshipsModule { }

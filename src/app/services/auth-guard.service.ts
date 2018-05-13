@@ -40,31 +40,31 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     const requiredRoles: Array<RoleType> = route.data && route.data.requiredRoles ? route.data.requiredRoles : [];
 
     let canActivate = false;
-    try {
-      // Check roles
-      canActivate = canExec(this.auth.currentUser.role.type, requiredRoles);
 
-      // Log
-      if (canActivate) {
+    // Check roles
+    canActivate = canExec(this.auth.currentUser.role.type, requiredRoles);
 
-        // Check session
-        this.auth.currentUser = await this.auth.validateToken();
-
-        // tslint:disable-next-line:max-line-length
-        console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' can activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
-      } else
-        // tslint:disable-next-line:max-line-length
-        console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' cannot activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
-    } catch (ex) {
-      console.log(`Exception executing 'canActivate' on route ${getFullPath(route)}`, ex);
+    // Log
+    if (canActivate) {
+      // Check session
+      this.auth.currentUser = await this.auth.validateToken();
     }
 
     if (!this.auth.currentUser) {
-      console.log("Session expired");
+      console.log("Session expired or invalid token");
       NotificationHelper.showNotification("Alerts.SessionExpired.Message", "ti-lock", "warning");
       this.auth.token = null;
       this.auth.currentUser = null;
     }
+
+
+    if (canActivate)
+      // tslint:disable-next-line:max-line-length
+      console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' can activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
+    else
+      // tslint:disable-next-line:max-line-length
+      console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' cannot activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
+
 
 
     if (!canActivate || !this.auth.currentUser) {

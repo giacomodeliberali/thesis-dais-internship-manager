@@ -1,8 +1,8 @@
-import { NgModule, ModuleWithProviders, LOCALE_ID } from '@angular/core';
+import { NgModule, ModuleWithProviders, LOCALE_ID, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { AuthService } from '../services/auth.service';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TranslateModule, TranslateLoader, MissingTranslationHandler, TranslateService, TranslatePipe } from '@ngx-translate/core';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { SharedRoutes } from './shared.routing';
@@ -36,7 +36,8 @@ registerLocaleData(localeIt);
             },
             isolate: false
         }),
-        RouterModule.forChild(SharedRoutes)
+        RouterModule.forChild(SharedRoutes),
+        NguiAutoCompleteModule
     ],
     declarations: [
         NotFoundComponent,

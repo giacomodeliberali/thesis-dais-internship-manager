@@ -33,7 +33,7 @@ export class NotificationHelper {
             },
             {
                 type: type,
-                timer: 4000,
+                timer: 8000,
                 placement: {
                     from: 'top',
                     align: 'right'

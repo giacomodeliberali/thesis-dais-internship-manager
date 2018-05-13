@@ -32,6 +32,9 @@ export const AppRoutes: Routes = [
         canActivate: [
             AuthGuardService
         ],
+        canLoad: [
+            AuthGuardService
+        ],
         component: AuthLayoutComponent,
         children: [
             {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address, Defaults, InternshipStatusType, RoleType } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, Defaults, InternshipStatusType, RoleType, ApiResponseDto } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -13,6 +13,7 @@ import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
 import { canExec } from '../../../helpers/can-exec.helper';
 import swal from 'sweetalert2';
+import { throws } from 'assert';
 
 declare var $;
 
@@ -53,36 +54,48 @@ export class InternshipEditComponent {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
-		LoadingHelper.isLoading = true;
+		this.init();
+	}
 
+	async init() {
 		const internshipId = this.activatedRoute.snapshot.params['id'];
+		try {
+			LoadingHelper.isLoading = true;
 
-		Promise.all([
-			this.internshipsService.getById(internshipId)
-				.then(response => {
-					this.internship = new Internship(response.data);
-				})
-				.catch(ex => {
-					console.error(ex);
-				})
-			,
-			this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
-				this.selectedCompanyId = response.data[0].id;
-				this.companies.push(...response.data);
-				this.updateAddress();
-			})
-		]).then(async () => {
+			let response: ApiResponseDto<any> = await this.internshipsService.getById(internshipId);
+
+			let internship: Internship = null;
+			if (response.isOk) {
+				internship = new Internship(response.data);
+			}
+
+			if (!internship.company.owners.find(o => o.id === this.authService.currentUser.id)) {
+				throw new Error("auth/user-unauthorized");
+			}
+
+			this.internship = new Internship(internship);
+
+			response = await this.companiesService.getByOwnerId(this.authService.currentUser.id);
+			this.selectedCompanyId = response.data[0].id;
+			this.companies.push(...response.data);
+
+			this.updateAddress();
+
 			const states = await this.internshipsService.getAvailableStates(this.internship.status);
-
 			this.states = states.filter(s => {
 				return s.value !== InternshipStatusType.Approved && s.value !== InternshipStatusType.Rejected;
 			});
 
-			setTimeout(() => {
-				$(".selectpicker").selectpicker('refresh');
-			});
+
+		} catch (ex) {
+			if (ex && ex.message == 'auth/user-unauthorized') {
+				NotificationHelper.showNotification("Alerts.GenericError.NotAuthorized.SubTitle", "ti-save", "danger");
+				this.router.navigate(['/auth/internships/details', internshipId]);
+			}
+		} finally {
+			setTimeout(() => $(".selectpicker").selectpicker('refresh'));
 			LoadingHelper.isLoading = false;
-		});
+		}
 	}
 
 	updateAddress() {

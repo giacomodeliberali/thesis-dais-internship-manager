@@ -3,7 +3,8 @@ import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
-import { InternshipStatusType } from 'gdl-thesis-core/dist';
+import { InternshipStatusType, Internship } from 'gdl-thesis-core/dist';
+import { TranslatePipe } from '@ngx-translate/core';
 
 declare var $;
 
@@ -19,7 +20,13 @@ export class InternshipsOwnCompanyComponent {
             { name: 'Dictionary.StartDate', value: 'startDate', class: 'text-center', pipe: DatePipe },
             { name: 'Dictionary.EndDate', value: 'endDate', class: 'text-center', pipe: DatePipe },
             { name: 'Dictionary.Title', value: 'title' },
-            { name: 'Dictionary.TotalHours', value: 'totalHours' }
+            { name: 'Dictionary.TotalHours', value: 'totalHours' },
+            {
+                name: 'Dictionary.Status',
+                value: 'status',
+                formatter: (data: any, col?: any, row?: Internship) => 'Enums.InternshipStatusType.' + InternshipStatusType[data],
+                translate: true
+            }
         ] as Array<any>,
         dataRows: []
     };

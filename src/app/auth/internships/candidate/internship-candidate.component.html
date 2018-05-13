@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>
+                            Pages.Candidate.Title
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label translate>Dictionary.Professor</label>
+                            <input class="form-control" ngui-auto-complete [(ngModel)]="professor" placeholder="{{'Dictionary.Professor' | translate}}"
+                                [source]="getProfessors.bind(this)" no-match-found-text="{{'Dictionary.NoResults' | translate}}"
+                                loading-text="{{'Dictionary.Loading' | translate}}..." value-formatter="name" list-formatter="name"
+                                max-num-list="20" />
+                            <span>
+                                Seleziona il professore che sarà il responsabile
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/list'" translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-success pull-right" (click)="save()" translate [disabled]="!professor">Dictionary.ProposeYourSelf</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

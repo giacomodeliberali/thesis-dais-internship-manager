@@ -3,6 +3,8 @@ import { environment } from "environments/environment";
 import { AuthService } from "./auth.service";
 import { injectable } from "inversify";
 import { ApiResponseDto } from "gdl-thesis-core/dist";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/operators';
 
 /**
  * A base service that exposes standard verbs
@@ -40,11 +42,15 @@ export class BaseService {
      * @param body The request body
      */
     protected postVerb(path: string, body: any) {
+        return this.postVerbObservable(path, body).toPromise();
+    }
+
+    protected postVerbObservable(path: string, body: any): Observable<any> {
         return this.httpClient.post(`${environment.apiServicesBaseUrl}/${path}`, body, {
             headers: {
                 "Authentication": this.authService.token || ''
             }
-        }).toPromise() as Promise<any>;
+        });
     }
 
     /**

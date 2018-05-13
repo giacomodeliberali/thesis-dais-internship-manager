@@ -1,6 +1,7 @@
 import { BaseService } from "./base.service";
 import { injectable } from "inversify";
 import { User, ApiResponseDto } from "gdl-thesis-core/dist";
+import { Observable } from 'rxjs/Observable';
 
 @injectable()
 export class UsersService extends BaseService {
@@ -10,5 +11,11 @@ export class UsersService extends BaseService {
             user: User,
             token: string
         }>>;
+    }
+
+    lookupProfessors(search: string): Observable<ApiResponseDto<Array<User>>> {
+        return this.postVerbObservable('users/professors/lookup', {
+            search
+        });
     }
 }
