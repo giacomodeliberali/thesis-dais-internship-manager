@@ -27,6 +27,8 @@ const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
 const ServerDefaults_1 = require("../ServerDefaults");
 const scopes_1 = require("../utils/auth/scopes");
+const jsonwebtoken_1 = require("jsonwebtoken");
+const environment_1 = require("../environment");
 /**
  * The [[User]] controller
  */
@@ -82,7 +84,10 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
                 return this.usersRepository.updateOwn(req.body)
                     .then(result => {
                     return new api_response_model_1.ApiResponse({
-                        data: result,
+                        data: {
+                            user: result,
+                            token: jsonwebtoken_1.sign(result.toJSON(), environment_1.environment.jwtSecret)
+                        },
                         httpCode: 200,
                         response: res
                     }).send();

@@ -8,6 +8,8 @@ import { IUser } from "../models/interfaces";
 import { User } from "gdl-thesis-core/dist";
 import { ServerDefaults } from "../ServerDefaults";
 import { adminScope } from "../utils/auth/scopes";
+import { sign } from "jsonwebtoken";
+import { environment } from "../environment";
 
 /**
  * The [[User]] controller
@@ -72,7 +74,10 @@ export class UsersController extends BaseController<IUser> {
         return this.usersRepository.updateOwn(req.body)
           .then(result => {
             return new ApiResponse({
-              data: result,
+              data: {
+                user: result,
+                token: sign(result.toJSON(), environment.jwtSecret)
+              },
               httpCode: 200,
               response: res
             }).send();

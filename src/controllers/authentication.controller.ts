@@ -400,13 +400,13 @@ export class AuthenticationController {
           return new ApiResponse({
             response: res,
             httpCode: 200,
-            data: true
+            data: decode(token)
           }).send();
         else
           return new ApiResponse({
             response: res,
-            httpCode: 200,
-            data: false
+            httpCode: 401,
+            data: null
           }).send();
       } else {
         return new ApiResponse({

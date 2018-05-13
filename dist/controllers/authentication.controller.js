@@ -323,13 +323,13 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                     return new api_response_model_1.ApiResponse({
                         response: res,
                         httpCode: 200,
-                        data: true
+                        data: jsonwebtoken_1.decode(token)
                     }).send();
                 else
                     return new api_response_model_1.ApiResponse({
                         response: res,
-                        httpCode: 200,
-                        data: false
+                        httpCode: 401,
+                        data: null
                     }).send();
             }
             else {
