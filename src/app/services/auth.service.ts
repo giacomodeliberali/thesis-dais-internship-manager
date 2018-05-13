@@ -67,30 +67,22 @@ export class AuthService {
     /**
      * Validate server side the current token
      */
-    public async validateToken(): Promise<boolean> {
+    public async validateToken(): Promise<User> {
         try {
-            const result: ApiResponseDto<boolean> = await this.post('auth/token/validate', {
+            const result: ApiResponseDto<User> = await this.post('auth/token/validate', {
                 token: this.token
             });
-            return Promise.resolve(result && result.isOk && result.data);
+            if (result && result.isOk && result.data)
+                return result.data;
+            return null;
         } catch (ex) {
             console.error("Validate token failed with error", ex);
-            return Promise.resolve(false);
+            return Promise.resolve(null);
         }
     }
 
     protected post(path: string, body: any) {
         return this.httpClient.post(`${environment.servicesBaseUrl}/${path}`, body).toPromise() as Promise<any>;
-    }
-
-    /**
-     * Update the global user instance
-     * @param user The new user
-     */
-    public updateUser(user: User) {
-        if (this.currentUser && this.token) {
-            this.currentUser = user;
-        }
     }
 
     /**

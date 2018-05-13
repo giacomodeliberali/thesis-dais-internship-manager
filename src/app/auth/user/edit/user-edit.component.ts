@@ -52,8 +52,9 @@ export class UserEditComponent {
 
 		this.userService.updateOwn(this.user).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
-			if (r && r.isOk)
-				this.authService.updateUser(r.data);
+			if (r && r.isOk && r.data.token) {
+				this.authService.token = r.data.token;
+			}
 			this.router.navigate(['/auth/user']);
 		}).catch(ex => {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");

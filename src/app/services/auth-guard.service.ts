@@ -40,7 +40,6 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     const requiredRoles: Array<RoleType> = route.data && route.data.requiredRoles ? route.data.requiredRoles : [];
 
     let canActivate = false;
-    let isSessionValid = false;
     try {
       // Check roles
       canActivate = canExec(this.auth.currentUser.role.type, requiredRoles);
@@ -49,7 +48,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
       if (canActivate) {
 
         // Check session
-        isSessionValid = await this.auth.validateToken();
+        this.auth.currentUser = await this.auth.validateToken();
 
         // tslint:disable-next-line:max-line-length
         console.log(`User '${this.auth.currentUser.email}' with role '${this.auth.currentUser.role.name} - ${this.auth.currentUser.role.type}' can activate route '${getFullPath(route)}' which require roles [${requiredRoles.join(',')}]`);
@@ -60,7 +59,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
       console.log(`Exception executing 'canActivate' on route ${getFullPath(route)}`, ex);
     }
 
-    if (!isSessionValid) {
+    if (!this.auth.currentUser) {
       console.log("Session expired");
       NotificationHelper.showNotification("Alerts.SessionExpired.Message", "ti-lock", "warning");
       this.auth.token = null;
@@ -68,7 +67,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     }
 
 
-    if (!canActivate || !isSessionValid) {
+    if (!canActivate || !this.auth.currentUser) {
       console.log("Redirect to '/not-found'");
       this.router.navigate(['/not-found']);
       return false;

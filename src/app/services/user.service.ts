@@ -5,7 +5,10 @@ import { User, ApiResponseDto } from "gdl-thesis-core/dist";
 @injectable()
 export class UsersService extends BaseService {
 
-    updateOwn(user: User): Promise<ApiResponseDto<User>> {
-        return this.putVerb('users/own', user) as Promise<ApiResponseDto<User>>;
+    updateOwn(user: User) {
+        return this.putVerb('users/own', user) as Promise<ApiResponseDto<{
+            user: User,
+            token: string
+        }>>;
     }
 }
