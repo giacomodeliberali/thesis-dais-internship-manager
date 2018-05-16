@@ -30,7 +30,11 @@ let CompaniesRepository = class CompaniesRepository extends base_1.BaseRepositor
         super(companyModel, dist_1.Defaults.collectionsName.companies);
         this.companyModel = companyModel;
     }
-    getByOnwerId(id) {
+    /**
+     * Return all the companies of which the given user id is a owner
+     * @param id The owner id
+     */
+    getByOwnerId(id) {
         return this.find({
             owners: id
         });

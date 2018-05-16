@@ -49,7 +49,7 @@ let CompaniesController = class CompaniesController extends base_controller_1.Ba
             const ownerId = req.params.ownerId;
             if (ownerId) {
                 // The user to update is the same as token
-                return this.companiesRepository.getByOnwerId(ownerId).then(result => {
+                return this.companiesRepository.getByOwnerId(ownerId).then(result => {
                     return new api_response_model_1.ApiResponse({
                         data: result,
                         httpCode: 200,

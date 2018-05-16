@@ -27,7 +27,8 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
 
   public useCustoms() {
     return this
-      .useGetPendingStudents();
+      .useGetPendingStudents()
+      .useGetAvailablePlaces();
   }
 
   /**
@@ -46,6 +47,35 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
       if (professorId) {
         return new ApiResponse({
           data: proposals,
+          httpCode: 200,
+          response: res
+        }).send();
+      } else {
+        return new ApiResponse({
+          exception: {
+            message: "Bad request. Missing 'id' parameter"
+          },
+          httpCode: 400,
+          response: res
+        }).send();
+      }
+    });
+    return this;
+  }
+
+  /**
+   * Return the number of available place in an [[Internship]]
+   */
+  private useGetAvailablePlaces() {
+
+    this.router.get('/availableplaces/:id', async (req, res) => {
+      const internshipId: string = req.params.id;
+
+      const count = await this.internshipProposalsRepository.getAvailablePlaces(internshipId);
+
+      if (internshipId) {
+        return new ApiResponse({
+          data: count,
           httpCode: 200,
           response: res
         }).send();

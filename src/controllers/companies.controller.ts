@@ -37,7 +37,7 @@ export class CompaniesController extends BaseController<ICompany> {
 
       if (ownerId) {
         // The user to update is the same as token
-        return this.companiesRepository.getByOnwerId(ownerId).then(result => {
+        return this.companiesRepository.getByOwnerId(ownerId).then(result => {
           return new ApiResponse({
             data: result,
             httpCode: 200,

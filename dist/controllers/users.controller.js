@@ -108,6 +108,9 @@ let UsersController = class UsersController extends base_controller_1.BaseContro
         }));
         return this;
     }
+    /**
+     * Return all the [[User]] with role Professor matching the given search string
+     */
     useLookupProfessor() {
         this.router.post('/professors/lookup', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const search = req.body.search;
