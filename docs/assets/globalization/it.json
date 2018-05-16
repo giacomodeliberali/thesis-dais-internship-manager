@@ -62,7 +62,8 @@
         "Delete": "Elimina",
         "Student": "Studente",
         "MyProposals": "Le mie proposte",
-        "Home": "Home"
+        "Home": "Home",
+        "NotSpecified": "Non specificato"
     },
     "Pages": {
         "Index": {
@@ -101,35 +102,45 @@
         "NotFound": {
             "Title": "404 - Pagina non trovata. Devi forse effettuare il login?"
         },
-        "Internships": {
+        "EditCompany": {
+            "Title": "Modifica azienda"
+        },
+        "InternshipOffers": {
             "Title": "Tirocini",
             "ViewOffers": "Visualizza offerte",
             "SubTitle": "Visualizza le offerte di stage offerte dalle aziende"
         },
         "User": {
-            "ViewProfile": "Visualizza profilo"
+            "Title": "Visualizza profilo"
         },
-        "AddInternship": {
+        "UserEdit":{
+            "Title": "Modifica profilo"
+        },
+        "InternshipAdd": {
             "Title": "Aggiungi stage"
         },
-        "Company": {
+        "InternshipOwnCompany": {
             "Title": "Azienda",
             "SubTitle": "Visualizza le offerte di stage che hai inserito"
         },
         "InternshipDetails": {
             "Title": "Dettagli tirocinio"
         },
-        "ApproveInternshipList": {
+        "InternshipApproveList": {
             "Title": "Lista tirocini da approvare",
             "SubTitle": "Offerte di stage inserite dalle aziende che sono in attesa di pubblicazione"
         },
-        "ApproveInternship": {
+        "InternshipApprove": {
             "Title": "Approva uno stage",
             "SubTitle": "Verifica che lo stage sia pubblicabile e aggiornane lo stato"
         },
-        "StudentsWaitingForApprove": {
+        "InternshipProposalList": {
             "Title": "Lista studenti in attesa",
             "SubTitle": "Proposte di stage richieste dagli studenti che ti coinvolgono come referente"
+        },
+        "InternshipCandidate": {
+            "Title": "Candidati",
+            "ProfessorDescription": "Seleziona il professore che farà da referente per il tirocinio"
         }
     },
     "Alerts": {

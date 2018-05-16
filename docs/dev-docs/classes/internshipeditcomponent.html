@@ -95,6 +95,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="internshipeditcomponent.html#config" class="tsd-kind-icon">config</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="internshipeditcomponent.html#internship" class="tsd-kind-icon">internship</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="internshipeditcomponent.html#internshipsservice" class="tsd-kind-icon">internships<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="internshipeditcomponent.html#loadingservice" class="tsd-kind-icon">loading<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="internshipeditcomponent.html#location" class="tsd-kind-icon">location</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="internshipeditcomponent.html#router" class="tsd-kind-icon">router</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="internshipeditcomponent.html#selectedcompanyid" class="tsd-kind-icon">selected<wbr>Company<wbr>Id</a></li>
@@ -121,13 +122,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Internship<wbr>Edit<wbr>Component<span class="tsd-signature-symbol">(</span>internshipsService<span class="tsd-signature-symbol">: </span><a href="internshipsservice.html" class="tsd-signature-type">InternshipsService</a>, authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, companiesService<span class="tsd-signature-symbol">: </span><a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a>, activatedRoute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRoute</span>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, translateService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TranslateService</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="internshipeditcomponent.html" class="tsd-signature-type">InternshipEditComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Internship<wbr>Edit<wbr>Component<span class="tsd-signature-symbol">(</span>internshipsService<span class="tsd-signature-symbol">: </span><a href="internshipsservice.html" class="tsd-signature-type">InternshipsService</a>, authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, companiesService<span class="tsd-signature-symbol">: </span><a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a>, activatedRoute<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ActivatedRoute</span>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span>, location<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Location</span>, translateService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TranslateService</span>, loadingService<span class="tsd-signature-symbol">: </span><a href="loadingservice.html" class="tsd-signature-type">LoadingService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="internshipeditcomponent.html" class="tsd-signature-type">InternshipEditComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L41">app/auth/internships/edit/internship-edit.component.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L41">app/auth/internships/edit/internship-edit.component.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -158,6 +159,9 @@
 								<li>
 									<h5>translateService: <span class="tsd-signature-type">TranslateService</span></h5>
 								</li>
+								<li>
+									<h5>loadingService: <a href="loadingservice.html" class="tsd-signature-type">LoadingService</a></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="internshipeditcomponent.html" class="tsd-signature-type">InternshipEditComponent</a></h4>
 						</li>
@@ -172,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">Internship<wbr>Status<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">InternshipStatusType</span><span class="tsd-signature-symbol"> =&nbsp;InternshipStatusType</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L41">app/auth/internships/edit/internship-edit.component.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L41">app/auth/internships/edit/internship-edit.component.ts:41</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">activated<wbr>Route<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActivatedRoute</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L50">app/auth/internships/edit/internship-edit.component.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L50">app/auth/internships/edit/internship-edit.component.ts:50</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L48">app/auth/internships/edit/internship-edit.component.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L48">app/auth/internships/edit/internship-edit.component.ts:48</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">companies<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Company</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L31">app/auth/internships/edit/internship-edit.component.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L31">app/auth/internships/edit/internship-edit.component.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -217,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">companies<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="companiesservice.html" class="tsd-signature-type">CompaniesService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L49">app/auth/internships/edit/internship-edit.component.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L49">app/auth/internships/edit/internship-edit.component.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -227,7 +231,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L37">app/auth/internships/edit/internship-edit.component.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L37">app/auth/internships/edit/internship-edit.component.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -237,7 +241,7 @@
 					<div class="tsd-signature tsd-kind-icon">internship<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Internship</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L28">app/auth/internships/edit/internship-edit.component.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L28">app/auth/internships/edit/internship-edit.component.ts:28</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -252,7 +256,17 @@
 					<div class="tsd-signature tsd-kind-icon">internships<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="internshipsservice.html" class="tsd-signature-type">InternshipsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L47">app/auth/internships/edit/internship-edit.component.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L47">app/auth/internships/edit/internship-edit.component.ts:47</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="loadingservice" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> loading<wbr>Service</h3>
+					<div class="tsd-signature tsd-kind-icon">loading<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="loadingservice.html" class="tsd-signature-type">LoadingService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L54">app/auth/internships/edit/internship-edit.component.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -262,7 +276,7 @@
 					<div class="tsd-signature tsd-kind-icon">location<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Location</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L52">app/auth/internships/edit/internship-edit.component.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L52">app/auth/internships/edit/internship-edit.component.ts:52</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -272,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L51">app/auth/internships/edit/internship-edit.component.ts:51</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L51">app/auth/internships/edit/internship-edit.component.ts:51</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -282,7 +296,7 @@
 					<div class="tsd-signature tsd-kind-icon">selected<wbr>Company<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L33">app/auth/internships/edit/internship-edit.component.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L33">app/auth/internships/edit/internship-edit.component.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -292,7 +306,7 @@
 					<div class="tsd-signature tsd-kind-icon">start<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> =&nbsp;new Date()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L35">app/auth/internships/edit/internship-edit.component.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L35">app/auth/internships/edit/internship-edit.component.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -302,7 +316,7 @@
 					<div class="tsd-signature tsd-kind-icon">states<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L39">app/auth/internships/edit/internship-edit.component.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L39">app/auth/internships/edit/internship-edit.component.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -312,7 +326,7 @@
 					<div class="tsd-signature tsd-kind-icon">translate<wbr>Service<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TranslateService</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L53">app/auth/internships/edit/internship-edit.component.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L53">app/auth/internships/edit/internship-edit.component.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -329,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L125">app/auth/internships/edit/internship-edit.component.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L126">app/auth/internships/edit/internship-edit.component.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -346,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L60">app/auth/internships/edit/internship-edit.component.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L61">app/auth/internships/edit/internship-edit.component.ts:61</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -363,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L109">app/auth/internships/edit/internship-edit.component.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L110">app/auth/internships/edit/internship-edit.component.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -385,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/auth/internships/edit/internship-edit.component.ts#L101">app/auth/internships/edit/internship-edit.component.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/internships/edit/internship-edit.component.ts#L102">app/auth/internships/edit/internship-edit.component.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -435,6 +449,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="internshipeditcomponent.html#internshipsservice" class="tsd-kind-icon">internships<wbr>Service</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="internshipeditcomponent.html#loadingservice" class="tsd-kind-icon">loading<wbr>Service</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="internshipeditcomponent.html#location" class="tsd-kind-icon">location</a>

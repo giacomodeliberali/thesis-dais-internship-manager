@@ -94,6 +94,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="internshipproposalservice.html#create" class="tsd-kind-icon">create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="internshipproposalservice.html#deleteverb" class="tsd-kind-icon">delete<wbr>Verb</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="internshipproposalservice.html#getavailableplace" class="tsd-kind-icon">get<wbr>Available<wbr>Place</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="internshipproposalservice.html#getpendingstudents" class="tsd-kind-icon">get<wbr>Pending<wbr>Students</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="internshipproposalservice.html#getverb" class="tsd-kind-icon">get<wbr>Verb</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="internshipproposalservice.html#postverb" class="tsd-kind-icon">post<wbr>Verb</a></li>
@@ -117,7 +118,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L13">app/services/base.service.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L13">app/services/base.service.ts:13</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,7 +162,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/internships-proposal.service.ts#L9">app/services/internships-proposal.service.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/internships-proposal.service.ts#L9">app/services/internships-proposal.service.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -185,7 +186,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#deleteverb">deleteVerb</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L72">app/services/base.service.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L72">app/services/base.service.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,6 +208,29 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getavailableplace" class="tsd-anchor"></a>
+					<h3>get<wbr>Available<wbr>Place</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Available<wbr>Place<span class="tsd-signature-symbol">(</span>internshipId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ApiResponseDto</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/internships-proposal.service.ts#L17">app/services/internships-proposal.service.ts:17</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>internshipId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ApiResponseDto</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getpendingstudents" class="tsd-anchor"></a>
 					<h3>get<wbr>Pending<wbr>Students</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -216,7 +240,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/internships-proposal.service.ts#L13">app/services/internships-proposal.service.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/internships-proposal.service.ts#L13">app/services/internships-proposal.service.ts:13</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -240,7 +264,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#getverb">getVerb</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L60">app/services/base.service.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L60">app/services/base.service.ts:60</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -272,7 +296,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#postverb">postVerb</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L44">app/services/base.service.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L44">app/services/base.service.ts:44</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -310,7 +334,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#postverbobservable">postVerbObservable</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L48">app/services/base.service.ts:48</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L48">app/services/base.service.ts:48</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -337,7 +361,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="baseservice.html">BaseService</a>.<a href="baseservice.html#putverb">putVerb</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/b8d97c0/src/app/services/base.service.ts#L31">app/services/base.service.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/services/base.service.ts#L31">app/services/base.service.ts:31</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,6 +413,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="internshipproposalservice.html#deleteverb" class="tsd-kind-icon">delete<wbr>Verb</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="internshipproposalservice.html#getavailableplace" class="tsd-kind-icon">get<wbr>Available<wbr>Place</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="internshipproposalservice.html#getpendingstudents" class="tsd-kind-icon">get<wbr>Pending<wbr>Students</a>
