@@ -7,7 +7,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import 'moment/locale/it'; */
 import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
@@ -52,11 +52,12 @@ export class InternshipApproveComponent {
 		private location: Location,
 		private translateService: TranslateService,
 		public domSanitizer: DomSanitizer,
-		private emailsService: EmailsService) {
+		private emailsService: EmailsService,
+		private loadingService: LoadingService) {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 
 		const internshipId = this.activatedRoute.snapshot.params['id'];
 
@@ -91,7 +92,7 @@ export class InternshipApproveComponent {
 				setTimeout(() => {
 					$(".selectpicker").selectpicker('refresh');
 				});
-				LoadingHelper.isLoading = false;
+				this.loadingService.isLoading = false;
 			});
 	}
 
@@ -104,7 +105,7 @@ export class InternshipApproveComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 
 
 		if (this.internship.status !== InternshipStatusType.Rejected)
@@ -127,11 +128,11 @@ export class InternshipApproveComponent {
 					NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 					this.location.back();
 				}
-				LoadingHelper.isLoading = false;
+				this.loadingService.isLoading = false;
 			}).catch(ex => {
 				NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 				console.error(ex);
-				LoadingHelper.isLoading = false;
+				this.loadingService.isLoading = false;
 			});
 	}
 

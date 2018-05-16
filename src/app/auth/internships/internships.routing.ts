@@ -21,15 +21,15 @@ export const InternshipsRoutes: Routes = [
     {
         path: '',
         children: [
-            generateAuthRoute('offers', InternshipsViewComponent),
-            generateAuthRoute('offers/:id/candidate', InternshipCandidateComponent, [RoleType.Student]),
-            generateAuthRoute('add', InternshipAddComponent, [RoleType.Company]),
-            generateAuthRoute('edit/:id', InternshipEditComponent, [RoleType.Company]),
-            generateAuthRoute('details/:id', InternshipDetailsComponent),
-            generateAuthRoute('company', InternshipsOwnCompanyComponent, [RoleType.Company]),
-            generateAuthRoute('approve-list', InternshipsApproveListComponent, [RoleType.Professor]),
-            generateAuthRoute('approve/:id', InternshipApproveComponent, [RoleType.Professor]),
-            generateAuthRoute('students-list', InternshipsStudentsListComponent, [RoleType.Professor])
+            generateAuthRoute('offers', InternshipsViewComponent, [], 'Pages.InternshipOffers.Title'),
+            generateAuthRoute('offers/:id/candidate', InternshipCandidateComponent, [RoleType.Student], 'Pages.InternshipCandidate.Title'),
+            generateAuthRoute('add', InternshipAddComponent, [RoleType.Company], 'Pages.InternshipAdd.Title'),
+            generateAuthRoute('edit/:id', InternshipEditComponent, [RoleType.Company], 'Pages.InternshipEdit.Title'),
+            generateAuthRoute('details/:id', InternshipDetailsComponent, [], 'Pages.InternshipDetails.Title'),
+            generateAuthRoute('company', InternshipsOwnCompanyComponent, [RoleType.Company], 'Pages.InternshipOwnCompany.Title'),
+            generateAuthRoute('approve-list', InternshipsApproveListComponent, [RoleType.Professor], 'Pages.InternshipApproveList.Title'),
+            generateAuthRoute('approve/:id', InternshipApproveComponent, [RoleType.Professor], 'Pages.InternshipApprove.Title'),
+            generateAuthRoute('students-list', InternshipsStudentsListComponent, [RoleType.Professor], 'Pages.InternshipProposalList.Title')
         ]
     }
 ];

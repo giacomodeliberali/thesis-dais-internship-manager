@@ -43,20 +43,29 @@
                         <div class="row form-group">
                             <div class="col-lg-6 col-xs-12">
                                 <label translate>Dictionary.Address</label>
-                                <p class="form-control-static">{{internship.address.street}} {{internship.address.number}}, {{internship.address.city}}
-                                    ({{internship.address.state}})
-                                </p>
+                                <p class="form-control-static">{{internship.address | address}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label translate>Dictionary.StartDate</label>
+                                <p class="form-control-static">{{internship.startDate | date}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label translate>Dictionary.EndDate</label>
+                                <p class="form-control-static">{{internship.endDate | date}}</p>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <label translate>Dictionary.TotalHours</label>
-                                <p class="form-control-static">{{internship.totalHours}}</p>
+                                <p class="form-control-static">{{internship.totalHours || ('Dictionary.NotSpecified' | translate)}}</p>
                             </div>
                             <div class="col-sm-6">
                                 <label translate>Dictionary.StudentsNumber</label>
-                                <p class="form-control-static">{{internship.studentsNumber}}</p>
+                                <p class="form-control-static">{{internship.studentsNumber || ('Dictionary.NotSpecified' | translate)}}</p>
                             </div>
                         </div>
                     </div>
@@ -77,8 +86,11 @@
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships'" translate>Dictionary.Back</button>
                             <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
-                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student])"
+                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace > 0"
                                 translate>Dictionary.ProposeYourSelf</button>
+                            <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
+                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace == 0"
+                                disabled translate>Dictionary.NoAvailablePlace</button>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import { User, Company } from 'gdl-thesis-core/dist';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CompaniesService } from '../../services/companies.service';
-import { LoadingHelper } from '../../helpers/loading.helper';
+import { LoadingService } from '../../helpers/loading.helper';
 import swal from 'sweetalert2';
 
 @Component({
@@ -26,7 +26,8 @@ export class RegisterComponent extends FullScreenPage {
         element: ElementRef,
         private authService: AuthService,
         private companiesService: CompaniesService,
-        private router: Router) {
+        private router: Router,
+        private loadingService: LoadingService) {
 
         super(element);
 
@@ -83,7 +84,7 @@ export class RegisterComponent extends FullScreenPage {
     async signup() {
 
         try {
-            LoadingHelper.isLoading = true;
+            this.loadingService.isLoading = true;
             const response = await this.authService.register(this.user);
 
             const user = response.data.user;
@@ -101,7 +102,7 @@ export class RegisterComponent extends FullScreenPage {
                 ex && ex.error && ex.error.exception ? ex.error.exception.message : ex.error,
                 'error');
         } finally {
-            LoadingHelper.isLoading = false;
+            this.loadingService.isLoading = false;
         }
     }
 }

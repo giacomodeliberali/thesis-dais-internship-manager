@@ -9,7 +9,7 @@ import { UserRoutes } from './user.routing';
 import { UserLogoutComponent } from './logout/user-logout.component';
 import { UserViewComponent } from './view/user-view.component';
 import { UserEditComponent } from './edit/user-edit.component';
-import { ComapnyEditComponent } from './company-edit/company-edit.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { ComapnyEditComponent } from './company-edit/company-edit.component';
         UserEditComponent,
         UserLogoutComponent,
         UserViewComponent,
-        ComapnyEditComponent
+        CompanyEditComponent
     ]
 })
 

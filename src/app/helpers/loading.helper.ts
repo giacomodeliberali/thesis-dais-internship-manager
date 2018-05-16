@@ -1,20 +1,20 @@
 declare var $;
 
-export class LoadingHelper {
+export class LoadingService {
 
-    private static _isLoading: boolean;
+    private _isLoading: boolean;
 
-    public static get isLoading() {
+    public get isLoading() {
         return this._isLoading;
     }
 
-    public static set isLoading(value: boolean) {
+    public set isLoading(value: boolean) {
         this._isLoading = value;
         this.checkBodyBlur();
     }
 
-    private static checkBodyBlur() {
-        if (LoadingHelper.isLoading)
+    private checkBodyBlur() {
+        if (this.isLoading)
             $('body').addClass('blur');
         else
             $('body').removeClass('blur');

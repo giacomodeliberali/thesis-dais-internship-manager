@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RoleType, Company } from 'gdl-thesis-core/dist';
 import { canExec } from '../../../helpers/can-exec.helper';
 import { CompaniesService } from '../../../services/companies.service';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 
 declare var $;
 
@@ -26,26 +26,27 @@ export class UserViewComponent {
 	constructor(
 		public authService: AuthService,
 		private translateService: TranslateService,
-		private companiesService: CompaniesService) {
+		private companiesService: CompaniesService,
+		private loadingService: LoadingService) {
 
 
 		this.currentLanguage = this.translateService.currentLang;
 
 		if (canExec(this.authService.currentUser.role.type, [RoleType.Company])) {
-			LoadingHelper.isLoading = true;
+			this.loadingService.isLoading = true;
 			this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
 				if (response.isOk)
 					this.ownComapnies = response.data;
 			}).catch(ex => {
 				console.error(ex);
 			}).then(() => {
-				LoadingHelper.isLoading = false;
+				this.loadingService.isLoading = false;
 			});
 		}
 	}
 
 	onChangeLanguage() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 		console.log("Use " + this.currentLanguage);
 		localStorage.setItem('default:culture', this.currentLanguage);
 		window.location.reload();

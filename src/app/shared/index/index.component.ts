@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FullScreenPage } from '../../models/full-screen-page.model';
 import { TranslateService } from '@ngx-translate/core';
-import { LoadingHelper } from '../../helpers/loading.helper';
+import { LoadingService } from '../../helpers/loading.helper';
 
 declare var $: any;
 
@@ -19,14 +19,15 @@ export class IndexComponent extends FullScreenPage {
 
     constructor(
         element: ElementRef,
-        private translateService: TranslateService) {
+        private translateService: TranslateService,
+        private loadingService: LoadingService) {
         super(element);
 
         this.currentLanguage = this.translateService.currentLang;
     }
 
-    onChangeLanguage(lang:string) {
-        LoadingHelper.isLoading = true;
+    onChangeLanguage(lang: string) {
+        this.loadingService.isLoading = true;
         this.currentLanguage = lang;
         console.log("Use " + this.currentLanguage);
         localStorage.setItem('default:culture', this.currentLanguage);

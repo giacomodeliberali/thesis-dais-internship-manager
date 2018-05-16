@@ -4,7 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { User } from 'gdl-thesis-core/dist';
 import { UsersService } from '../../../services/user.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class UserEditComponent {
 	constructor(
 		public authService: AuthService,
 		private userService: UsersService,
-		private router: Router) {
+		private router: Router,
+		private loadingService: LoadingService) {
 
 		this.user = this.authService.currentUser.clone();
 
@@ -46,7 +47,7 @@ export class UserEditComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 
 		this.user.phone = this.phones.map(p => p.value).filter(p => !!p);
 
@@ -60,7 +61,7 @@ export class UserEditComponent {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);
 		}).then(() => {
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		});
 	}
 

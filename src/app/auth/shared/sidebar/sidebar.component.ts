@@ -33,13 +33,13 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '/auth/internships/',
-        title: 'Pages.Internships.Title',
+        title: 'Pages.InternshipOffers.Title',
         type: 'sub',
         icontype: 'fas fa-th-list',
         children: [
             {
                 path: 'offers',
-                title: 'Pages.Internships.ViewOffers',
+                title: 'Pages.InternshipOffers.ViewOffers',
                 ab: 'L'
             },
         ]
@@ -62,7 +62,7 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '/auth/internships/',
-        title: 'Pages.Company.Title',
+        title: 'Pages.InternshipOwnCompany.Title',
         type: 'sub',
         icontype: 'fas fa-briefcase',
         requiredRoles: [

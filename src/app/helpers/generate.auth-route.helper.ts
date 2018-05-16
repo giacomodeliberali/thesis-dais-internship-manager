@@ -17,14 +17,15 @@ export function generateAuthRouteModule(path: string, loadChildren: string, role
     };
 }
 
-export function generateAuthRoute(path: string, component: any, roles: Array<RoleType> = []): Route {
+export function generateAuthRoute(path: string, component: any, roles: Array<RoleType> = [], title?: string): Route {
     return {
         path: path,
         canActivate: [
             AuthGuardService
         ],
         data: {
-            requiredRoles: roles
+            requiredRoles: roles,
+            title: title
         },
         component: component
     };

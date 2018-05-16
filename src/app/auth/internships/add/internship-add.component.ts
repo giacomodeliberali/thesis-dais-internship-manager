@@ -7,7 +7,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import 'moment/locale/it'; */
 import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
@@ -40,11 +40,12 @@ export class InternshipAddComponent {
 		private companiesService: CompaniesService,
 		private router: Router,
 		private location: Location,
-		private translateService: TranslateService) {
+		private translateService: TranslateService,
+		private loadingService: LoadingService) {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 
 		this.internship = new Internship({
 			address: new Address(),
@@ -59,7 +60,7 @@ export class InternshipAddComponent {
 				$(".selectpicker").selectpicker('refresh');
 			});
 		}).then(() => {
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		});
 	}
 
@@ -71,7 +72,7 @@ export class InternshipAddComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 		this.internship.company = this.selectedCompanyId as any;
 		this.internship.startDate = new Date(this.internship.startDate);
 		this.internship.endDate = new Date(this.internship.endDate);
@@ -82,7 +83,7 @@ export class InternshipAddComponent {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);
 		}).then(() => {
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		});
 	}
 

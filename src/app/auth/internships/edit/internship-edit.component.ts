@@ -7,7 +7,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import 'moment/locale/it'; */
 import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
@@ -50,7 +50,8 @@ export class InternshipEditComponent {
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private location: Location,
-		private translateService: TranslateService) {
+		private translateService: TranslateService,
+		private loadingService: LoadingService) {
 
 		this.config = Object.assign({}, ClientDefaults.ckEditorConfig, { language: translateService.currentLang });
 
@@ -60,7 +61,7 @@ export class InternshipEditComponent {
 	async init() {
 		const internshipId = this.activatedRoute.snapshot.params['id'];
 		try {
-			LoadingHelper.isLoading = true;
+			this.loadingService.isLoading = true;
 
 			let response: ApiResponseDto<any> = await this.internshipsService.getById(internshipId);
 
@@ -94,7 +95,7 @@ export class InternshipEditComponent {
 			}
 		} finally {
 			setTimeout(() => $(".selectpicker").selectpicker('refresh'));
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		}
 	}
 
@@ -107,18 +108,18 @@ export class InternshipEditComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 		this.internship.company = this.selectedCompanyId as any;
 		this.internship.startDate = new Date(this.internship.startDate);
 		this.internship.endDate = new Date(this.internship.endDate);
 		this.internshipsService.update(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.location.back();
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		}).catch(ex => {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		});
 	}
 
@@ -133,7 +134,7 @@ export class InternshipEditComponent {
 		});
 
 		if (result.value) {
-			LoadingHelper.isLoading = true;
+			this.loadingService.isLoading = true;
 			try {
 				const response = await this.internshipsService.delete(this.internship.id);
 				if (response && response.data) {
@@ -146,7 +147,7 @@ export class InternshipEditComponent {
 				NotificationHelper.showNotification("Alerts.Delete.Error.Message", "ti-save", "danger");
 				console.error(ex);
 			} finally {
-				LoadingHelper.isLoading = false;
+				this.loadingService.isLoading = false;
 			}
 		}
 	}

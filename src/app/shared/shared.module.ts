@@ -13,6 +13,8 @@ import { DatepickerDirective } from '../directives/datepicker.directive';
 import { TableColPipe } from '../pipes/table-col.pipe';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import localeIt from '@angular/common/locales/it';
+import { AddressPipe } from '../pipes/address.pipe';
+import { LoadingService } from '../helpers/loading.helper';
 registerLocaleData(localeIt);
 
 /**
@@ -43,18 +45,21 @@ registerLocaleData(localeIt);
         NotFoundComponent,
         IndexComponent,
         DatepickerDirective,
-        TableColPipe
+        TableColPipe,
+        AddressPipe
     ],
     exports: [
         CommonModule,
         HttpClientModule,
         TranslateModule,
         DatepickerDirective,
-        TableColPipe
+        TableColPipe,
+        AddressPipe
     ],
     providers: [
         TranslateService,
         DatePipe,
+        LoadingService,
         {
             provide: LOCALE_ID,
             deps: [TranslateService],      //some service handling global settings

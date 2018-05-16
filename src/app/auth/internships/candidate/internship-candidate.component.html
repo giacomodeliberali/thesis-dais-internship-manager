@@ -15,8 +15,8 @@
                                 [source]="getProfessors.bind(this)" no-match-found-text="{{'Dictionary.NoResults' | translate}}"
                                 loading-text="{{'Dictionary.Loading' | translate}}..." value-formatter="name" list-formatter="name"
                                 max-num-list="20" />
-                            <span>
-                                Seleziona il professore che sarà il responsabile
+                            <span translate>
+                                Pages.Candidate.ProfessorDescription
                             </span>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div>
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/list'" translate>Dictionary.Back</button>
+                            <a class="btn btn-default" [routerLink]="['/auth/internships/details', '5ae5fcfa02ed7c0a996d4b28']" translate>Dictionary.Back</a>
                             <button type="button" class="btn btn-success pull-right" (click)="save()" translate [disabled]="!professor">Dictionary.ProposeYourSelf</button>
                         </div>
                     </div>

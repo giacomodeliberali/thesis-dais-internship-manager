@@ -13,4 +13,8 @@ export class InternshipProposalService extends BaseService {
     getPendingStudents(professorId: string): Promise<ApiResponseDto<Array<InternshipProposal>>> {
         return this.getVerb(Defaults.collectionsName.internshipProposals + '/pendingstudents/' + professorId);
     }
+
+    getAvailablePlace(internshipId: string): Promise<ApiResponseDto<number>> {
+        return this.getVerb(Defaults.collectionsName.internshipProposals + '/availableplaces/' + internshipId);
+    }
 }

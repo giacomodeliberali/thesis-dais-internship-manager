@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LoadingHelper } from './helpers/loading.helper';
+import { LoadingService } from './helpers/loading.helper';
 
 /**
  * The app container
@@ -10,5 +10,9 @@ import { LoadingHelper } from './helpers/loading.helper';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  public loadingHelper = LoadingHelper;
+
+  constructor(
+    public loadingService: LoadingService) {
+
+  }
 }

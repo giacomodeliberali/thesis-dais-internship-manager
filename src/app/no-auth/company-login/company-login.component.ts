@@ -4,7 +4,7 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { FullScreenPage } from '../../models/full-screen-page.model';
-import { LoadingHelper } from '../../helpers/loading.helper';
+import { LoadingService } from '../../helpers/loading.helper';
 import swal from 'sweetalert2';
 
 declare var $: any;
@@ -22,14 +22,15 @@ export class CompanyLoginComponent extends FullScreenPage {
 
     constructor(element: ElementRef,
         private authService: AuthService,
-        private router: Router) {
+        private router: Router,
+        private loadingService: LoadingService) {
 
         super(element);
     }
 
     async login() {
         try {
-            LoadingHelper.isLoading = true;
+            this.loadingService.isLoading = true;
             const authResponse = await this.authService.login(this.email, this.password);
             if (authResponse.data.isNew)
                 this.router.navigate(['/auth/user/edit'])
@@ -48,7 +49,7 @@ export class CompanyLoginComponent extends FullScreenPage {
                 ex && ex.error && ex.error.exception ? ex.error.exception.message : ex.error,
                 'error');
         } finally {
-            LoadingHelper.isLoading = false;
+            this.loadingService.isLoading = false;
         }
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -35,14 +35,22 @@ export class NavbarComponent implements OnInit {
         private renderer: Renderer,
         private element: ElementRef,
         private translateService: TranslateService,
-        private router: Router) {
+        private router: Router,
+        private activatedRoute: ActivatedRoute) {
 
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
 
-        this.router.events.subscribe(e => {
-            this.getTitle();
-        });
+        this.router.events
+            .filter((event) => event instanceof NavigationEnd)
+            .map(() => this.activatedRoute)
+            .map((route) => {
+                while (route.firstChild) route = route.firstChild;
+                return route;
+            })
+            .subscribe((route) => {
+                this.getTitle(route);
+            });
     }
 
     ngOnInit() {
@@ -110,25 +118,12 @@ export class NavbarComponent implements OnInit {
         }
     }
 
-    getTitle() {
-        let currentRouteTitle = 'Pages.User.ViewProfile';
+    async getTitle(route: ActivatedRoute) {
+        const currentRouteTitle = route.routeConfig.data ? route.routeConfig.data.title : null;
 
-        ROUTES.forEach(r => {
-            if (r.path == this.location.path()) {
-                currentRouteTitle = r.title;
-                return true;
-            }
-
-
-            if (r.children) {
-                for (let index in r.children) {
-                    if (`${r.path}${r.children[index].path}` == this.location.path()) {
-                        currentRouteTitle = r.children[index].title;
-                        return true;
-                    }
-                }
-            }
-        });
-        this.title = this.translateService.get(currentRouteTitle);
+        if (currentRouteTitle)
+            this.title = await this.translateService.get(currentRouteTitle);
+        else
+            this.title = Observable.of('');
     }
 }

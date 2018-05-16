@@ -7,7 +7,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import 'moment/locale/it'; */
 import { AuthService } from '../../../services/auth.service';
 import { CompaniesService } from '../../../services/companies.service';
-import { LoadingHelper } from '../../../helpers/loading.helper';
+import { LoadingService } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
@@ -27,7 +27,11 @@ export class InternshipCandidateComponent {
 	/** The internships current in edit */
 	public internshipsProposal: InternshipProposal;
 
+	/** The selected professor */
 	public professor: User;
+
+	/** The internship id retrived by route url */
+	public internshipId: string;
 
 	/**
 	 * Inject deps
@@ -39,11 +43,14 @@ export class InternshipCandidateComponent {
 		private router: Router,
 		private location: Location,
 		private usersService: UsersService,
-		private translateService: TranslateService) {
+		private translateService: TranslateService,
+		private loadingService: LoadingService) {
+
+		this.internshipId = this.activatedRoute.snapshot.params.id;
 
 		this.internshipsProposal = new InternshipProposal({
 			creationDate: new Date(),
-			internship: this.activatedRoute.snapshot.params.id,
+			internship: this.internshipId as any,
 			student: this.authService.currentUser.id as any,
 			status: InternshipProposalStatusType.WaitingForProfessor
 		});
@@ -66,7 +73,7 @@ export class InternshipCandidateComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
-		LoadingHelper.isLoading = true;
+		this.loadingService.isLoading = true;
 		this.internshipsProposal.professor = this.professor.id as any;
 		this.internshipProposalsService.create(this.internshipsProposal).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
@@ -75,8 +82,7 @@ export class InternshipCandidateComponent {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);
 		}).then(() => {
-			LoadingHelper.isLoading = false;
+			this.loadingService.isLoading = false;
 		});
 	}
-
 }
