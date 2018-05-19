@@ -6,8 +6,9 @@ import { types } from "../utils/di-types";
 import { IInternship } from "../models/interfaces";
 import { ApiResponse } from "../models/api-response.model";
 import { InternshipStatusTypeMachine } from "../utils/state-machines/internship-status.type.machine";
-import { InternshipStatusType, Internship } from "gdl-thesis-core/dist";
+import { InternshipStatusType, Internship, User } from "gdl-thesis-core/dist";
 import { professorScope, adminScope } from "../utils/auth/scopes";
+import { ServerDefaults } from "../ServerDefaults";
 
 /**
  * The [[Internship]] controller
@@ -216,8 +217,9 @@ export class InternshipsController extends BaseController<IInternship> {
 
         const stateMachine = new InternshipStatusTypeMachine(currentState);
 
+        const user: User = req.body[ServerDefaults.authUserBodyPropertyName];
         return new ApiResponse({
-          data: stateMachine.getAvailableStates(),
+          data: stateMachine.getAvailableStates(user.role.type),
           httpCode: 200,
           response: res
         }).send();

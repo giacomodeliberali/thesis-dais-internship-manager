@@ -1,5 +1,6 @@
 import * as StateMachine from 'javascript-state-machine';
-import { InternshipStatusType } from 'gdl-thesis-core/dist';
+import { InternshipStatusType, RoleType } from 'gdl-thesis-core/dist';
+import { canExec } from '../auth/can-exec.helper';
 
 /**
  * The state machine helper for the [[InternshipStatusType]]
@@ -11,11 +12,11 @@ export class InternshipStatusTypeMachine {
 
     /** The allowed transitions */
     private transitions = [
-        { name: 'approved', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Approved.toString() },
-        { name: 'rejected', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Rejected.toString() },
-        { name: 'closed', from: InternshipStatusType.Approved.toString(), to: InternshipStatusType.Closed.toString() },
-        { name: 'canceled', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Canceled.toString() },
-        { name: 'canceled', from: InternshipStatusType.Approved.toString(), to: InternshipStatusType.Canceled.toString() }
+        { name: 'approved', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Approved.toString(), requiredRoles: [RoleType.Professor] },
+        { name: 'rejected', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Rejected.toString(), requiredRoles: [RoleType.Professor] },
+        { name: 'closed', from: InternshipStatusType.Approved.toString(), to: InternshipStatusType.Closed.toString(), requiredRoles: [RoleType.Company] },
+        { name: 'canceled', from: InternshipStatusType.NotApproved.toString(), to: InternshipStatusType.Canceled.toString(), requiredRoles: [RoleType.Company] },
+        { name: 'canceled', from: InternshipStatusType.Approved.toString(), to: InternshipStatusType.Canceled.toString(), requiredRoles: [RoleType.Company] }
     ];
 
     /**
@@ -32,7 +33,7 @@ export class InternshipStatusTypeMachine {
     /**
      * Return all the available state from the current one
      */
-    getAvailableStates() {
+    getAvailableStates(userRole?: RoleType): Array<{ value: InternshipStatusType, text: string }> {
         const transitions: Array<string> = this.stateMachine.transitions();
         const currentState = Number(this.stateMachine.state);
         const states: Array<any> = [
@@ -42,7 +43,8 @@ export class InternshipStatusTypeMachine {
             }
         ];
         this.transitions.forEach(t => {
-            if (!!transitions.find(s => s === t.name)) {
+            const transition = userRole ? transitions.find(s => s === t.name && canExec(userRole, t.requiredRoles)) : transitions.find(s => s === t.name);
+            if (transition) {
                 const v = Number(t.to);
                 if (!states.find(s => s.value === v)) {
                     states.push({

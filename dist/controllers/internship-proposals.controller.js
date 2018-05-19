@@ -26,6 +26,9 @@ const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
 const dist_1 = require("gdl-thesis-core/dist");
+const scopes_1 = require("../utils/auth/scopes");
+const internship_proposal_status_type_machine_1 = require("../utils/state-machines/internship-proposal-status.type.machine");
+const ServerDefaults_1 = require("../ServerDefaults");
 /**
  * The [[InternshipProposal]] controller
  */
@@ -42,7 +45,11 @@ let InternshipProposalsController = class InternshipProposalsController extends 
     useCustoms() {
         return this
             .useGetPendingStudents()
-            .useGetAvailablePlaces();
+            .useGetAvailablePlaces()
+            .useGetByStudentId()
+            .useUpdateStates()
+            .useForceUpdateStates()
+            .useListStates();
     }
     /**
      * Return the list of [[InternshipProposal]] waiting for a response from the given professor id
@@ -55,6 +62,34 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                 status: dist_1.InternshipProposalStatusType.WaitingForProfessor
             });
             if (professorId) {
+                return new api_response_model_1.ApiResponse({
+                    data: proposals,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    exception: {
+                        message: "Bad request. Missing 'id' parameter"
+                    },
+                    httpCode: 400,
+                    response: res
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+     * Return the list of [[InternshipProposal]] created by the given student id
+     */
+    useGetByStudentId() {
+        this.router.get('/getByStudentId/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const studentId = req.params.id;
+            const proposals = yield this.internshipProposalsRepository.find({
+                student: studentId
+            });
+            if (studentId) {
                 return new api_response_model_1.ApiResponse({
                     data: proposals,
                     httpCode: 200,
@@ -94,6 +129,126 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                     },
                     httpCode: 400,
                     response: res
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+   * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
+   */
+    useUpdateStates() {
+        this.router.put('/status', [scopes_1.ownInternshipProposal], (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const internshipProposalId = req.body.id;
+            const newState = req.body.status;
+            if (newState === undefined && newState === null) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
+                }).send();
+            }
+            // Get the internship
+            const internshipProposal = yield this.internshipProposalsRepository.get(internshipProposalId);
+            if (!internshipProposal) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 404,
+                    response: res,
+                    exception: {
+                        message: `Cannot find a internship matching the id '${internshipProposalId}'`
+                    }
+                }).send();
+            }
+            // Check the state transition
+            const stateMachine = new internship_proposal_status_type_machine_1.InternshipProposalStatusTypeMachine(internshipProposal.status);
+            if (!stateMachine.can(newState)) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: `Cannot update the internship status from ${dist_1.InternshipProposalStatusType[internshipProposal.status]} to ${dist_1.InternshipProposalStatusType[newState]}`
+                    }
+                }).send();
+            }
+            const update = new dist_1.InternshipProposal(internshipProposal.toObject());
+            update.status = newState;
+            return this.internshipProposalsRepository
+                .partialUpdate({
+                status: newState,
+                id: update.id
+            })
+                .then(result => {
+                return new api_response_model_1.ApiResponse({
+                    data: result,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            });
+        }));
+        return this;
+    }
+    /**
+     * Update the state of an [[Internship]] WITHOUT the constraint of the [[InternshipStatusTypeMachine]] transition function
+     */
+    useForceUpdateStates() {
+        this.router.put('/status/force', [scopes_1.adminScope], (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const newState = req.body.status;
+            const id = req.body.id;
+            if (newState !== undefined && newState !== null) {
+                return this.internshipProposalsRepository
+                    .partialUpdate({
+                    status: newState,
+                    id: id
+                })
+                    .then(result => {
+                    return new api_response_model_1.ApiResponse({
+                        data: result,
+                        httpCode: 200,
+                        response: res
+                    }).send();
+                });
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+   * Given a [[InternshipsStatusType]] return all the available states
+   */
+    useListStates() {
+        this.router.get('/status/:state', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const currentState = req.params.state;
+            if (currentState !== undefined && currentState !== null) {
+                const stateMachine = new internship_proposal_status_type_machine_1.InternshipProposalStatusTypeMachine(currentState);
+                const user = req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName];
+                return new api_response_model_1.ApiResponse({
+                    data: stateMachine.getAvailableStates(user.role.type),
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            else {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 400,
+                    response: res,
+                    exception: {
+                        message: "Bad request. Request body is empty, missing 'status' parameter"
+                    }
                 }).send();
             }
         }));

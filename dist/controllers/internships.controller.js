@@ -28,6 +28,7 @@ const api_response_model_1 = require("../models/api-response.model");
 const internship_status_type_machine_1 = require("../utils/state-machines/internship-status.type.machine");
 const dist_1 = require("gdl-thesis-core/dist");
 const scopes_1 = require("../utils/auth/scopes");
+const ServerDefaults_1 = require("../ServerDefaults");
 /**
  * The [[Internship]] controller
  */
@@ -214,8 +215,9 @@ let InternshipsController = class InternshipsController extends base_controller_
             const currentState = req.params.state;
             if (currentState !== undefined && currentState !== null) {
                 const stateMachine = new internship_status_type_machine_1.InternshipStatusTypeMachine(currentState);
+                const user = req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName];
                 return new api_response_model_1.ApiResponse({
-                    data: stateMachine.getAvailableStates(),
+                    data: stateMachine.getAvailableStates(user.role.type),
                     httpCode: 200,
                     response: res
                 }).send();

@@ -231,6 +231,43 @@ function ownInternship(request, response, next) {
     });
 }
 exports.ownInternship = ownInternship;
+function ownInternshipProposal(request, response, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        // Pick decoded user
+        const user = checkBodyUser(request, response);
+        // Check if has role
+        if (user) {
+            try {
+                const internshipsProposalRepsoitory = di_container_1.container.resolve(repositories_1.InternshipsProposalsRepository);
+                const iinternshipProposal = yield internshipsProposalRepsoitory.get(request.body.id);
+                if (iinternshipProposal) {
+                    // if the current token user is the student or the professor or the company owner of this internship proposal, continue
+                    if (iinternshipProposal.student.id === user.id || iinternshipProposal.professor.id === user.id || iinternshipProposal.internship.company.owners.find(o => o.id === user.id)) {
+                        return next();
+                    }
+                }
+            }
+            catch (ex) {
+                // Return Unauthorized
+                return new api_response_model_1.ApiResponse({
+                    response: response,
+                    httpCode: 401,
+                    exception: ex
+                }).send();
+            }
+        }
+        // Return Unauthorized
+        return new api_response_model_1.ApiResponse({
+            response: response,
+            httpCode: 401,
+            exception: {
+                message: "Insufficient permission to complete the operation. Maybe you are trying to update an internship proposal of which you are not a member",
+                code: "auth/user-unauthorized"
+            }
+        }).send();
+    });
+}
+exports.ownInternshipProposal = ownInternshipProposal;
 function canExecMw(...roles) {
     return __awaiter(this, void 0, void 0, function* () {
         const fun = (request, response, next) => __awaiter(this, void 0, void 0, function* () {

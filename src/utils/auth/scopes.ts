@@ -4,7 +4,7 @@ import { ServerDefaults } from "../../ServerDefaults";
 import { ApiResponse } from "../../models/api-response.model";
 import { container } from "../di-container";
 import { CompaniesController } from "../../controllers/companies.controller";
-import { CompaniesRepository, InternshipsRepository } from "../../repositories";
+import { CompaniesRepository, InternshipsRepository, InternshipsProposalsRepository } from "../../repositories";
 import { IInternship } from "../../models/interfaces";
 import { canExec } from "./can-exec.helper";
 
@@ -239,6 +239,46 @@ export async function ownInternship(request: Request, response: Response, next: 
         httpCode: 401,
         exception: {
             message: "Insufficient permission to complete the operation. Maybe you are trying to update an internship of which you are not a owner.",
+            code: "auth/user-unauthorized"
+        } as any
+    }).send();
+}
+
+export async function ownInternshipProposal(request: Request, response: Response, next: Function) {
+
+    // Pick decoded user
+    const user = checkBodyUser(request, response);
+
+    // Check if has role
+    if (user) {
+
+        try {
+
+            const internshipsProposalRepsoitory = container.resolve(InternshipsProposalsRepository);
+
+            const iinternshipProposal = await internshipsProposalRepsoitory.get(request.body.id);
+            if (iinternshipProposal) {
+                // if the current token user is the student or the professor or the company owner of this internship proposal, continue
+                if (iinternshipProposal.student.id === user.id || iinternshipProposal.professor.id === user.id || iinternshipProposal.internship.company.owners.find(o => o.id === user.id)) {
+                    return next();
+                }
+            }
+        } catch (ex) {
+            // Return Unauthorized
+            return new ApiResponse({
+                response: response,
+                httpCode: 401,
+                exception: ex
+            }).send();
+        }
+    }
+
+    // Return Unauthorized
+    return new ApiResponse({
+        response: response,
+        httpCode: 401,
+        exception: {
+            message: "Insufficient permission to complete the operation. Maybe you are trying to update an internship proposal of which you are not a member",
             code: "auth/user-unauthorized"
         } as any
     }).send();

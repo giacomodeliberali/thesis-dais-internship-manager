@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const StateMachine = require("javascript-state-machine");
 const dist_1 = require("gdl-thesis-core/dist");
+const can_exec_helper_1 = require("../auth/can-exec.helper");
 /**
  * The state machine helper for the [[InternshipStatusType]]
  */
@@ -13,11 +14,11 @@ class InternshipStatusTypeMachine {
     constructor(initialState) {
         /** The allowed transitions */
         this.transitions = [
-            { name: 'approved', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Approved.toString() },
-            { name: 'rejected', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Rejected.toString() },
-            { name: 'closed', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Closed.toString() },
-            { name: 'canceled', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Canceled.toString() },
-            { name: 'canceled', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Canceled.toString() }
+            { name: 'approved', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Approved.toString(), requiredRoles: [dist_1.RoleType.Professor] },
+            { name: 'rejected', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Rejected.toString(), requiredRoles: [dist_1.RoleType.Professor] },
+            { name: 'closed', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Closed.toString(), requiredRoles: [dist_1.RoleType.Company] },
+            { name: 'canceled', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Company] },
+            { name: 'canceled', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Company] }
         ];
         this.stateMachine = new StateMachine({
             init: initialState.toString(),
@@ -27,7 +28,7 @@ class InternshipStatusTypeMachine {
     /**
      * Return all the available state from the current one
      */
-    getAvailableStates() {
+    getAvailableStates(userRole) {
         const transitions = this.stateMachine.transitions();
         const currentState = Number(this.stateMachine.state);
         const states = [
@@ -37,7 +38,8 @@ class InternshipStatusTypeMachine {
             }
         ];
         this.transitions.forEach(t => {
-            if (!!transitions.find(s => s === t.name)) {
+            const transition = userRole ? transitions.find(s => s === t.name && can_exec_helper_1.canExec(userRole, t.requiredRoles)) : transitions.find(s => s === t.name);
+            if (transition) {
                 const v = Number(t.to);
                 if (!states.find(s => s.value === v)) {
                     states.push({
