@@ -16,12 +16,8 @@ export const AuthRoutes: Routes = [
         path: '',
         children: [
             generateAuthRouteModule('internships', './internships/internships.module#InternshipsModule', []),
-        ]
-    },
-    {
-        path: '',
-        children: [
             generateAuthRouteModule('user', './user/user.module#UserModule', []),
+            generateAuthRouteModule('proposals', './proposals/proposals.module#ProposalsModule', []),
         ]
     }
 ];

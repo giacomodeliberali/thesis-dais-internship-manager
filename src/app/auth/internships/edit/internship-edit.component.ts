@@ -82,14 +82,10 @@ export class InternshipEditComponent {
 
 			this.updateAddress();
 
-			const states = await this.internshipsService.getAvailableStates(this.internship.status);
-			this.states = states.filter(s => {
-				return s.value !== InternshipStatusType.Approved && s.value !== InternshipStatusType.Rejected;
-			});
-
+			this.states = await this.internshipsService.getAvailableStates(this.internship.status);
 
 		} catch (ex) {
-			if (ex && ex.message == 'auth/user-unauthorized') {
+			if (ex && ex.message === 'auth/user-unauthorized') {
 				NotificationHelper.showNotification("Alerts.GenericError.NotAuthorized.SubTitle", "ti-save", "danger");
 				this.router.navigate(['/auth/internships/details', internshipId]);
 			}
@@ -108,6 +104,7 @@ export class InternshipEditComponent {
 	 * Save the user and redirect back
 	 */
 	save() {
+		// TODO: add server middleware to prevent a company to approve its own internship
 		this.loadingService.isLoading = true;
 		this.internship.company = this.selectedCompanyId as any;
 		this.internship.startDate = new Date(this.internship.startDate);

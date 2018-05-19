@@ -15,8 +15,8 @@ export class LoadingService {
 
     private checkBodyBlur() {
         if (this.isLoading)
-            $('body').addClass('blur');
+            $('body').addClass('blur').addClass('spinner-visible');
         else
-            $('body').removeClass('blur');
+            $('body').removeClass('blur').removeClass('spinner-visible');;
     }
 }

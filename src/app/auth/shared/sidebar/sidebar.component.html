@@ -45,9 +45,9 @@
         </div>
     </div>
     <ul class="nav">
-        <li [routerLinkActive]="menuitem.path != '/' ? 'active' : ''" *ngFor="let menuitem of menuItems">
+        <li [class.active]="isActive(menuitem)" *ngFor="let menuitem of menuItems">
             <!--If is a single link-->
-            <a [routerLink]="[menuitem.path]" *ngIf="menuitem.type === 'link' && canExecute(menuitem.requiredRoles)">
+            <a [routerLink]="menuitem.path" *ngIf="menuitem.type === 'link' && canExecute(menuitem.requiredRoles)">
                 <i class="{{menuitem.icontype}}"></i>
                 <p>{{menuitem.title | translate}}</p>
             </a>

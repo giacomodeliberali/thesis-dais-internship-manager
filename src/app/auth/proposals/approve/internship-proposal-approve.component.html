@@ -1,0 +1,105 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>
+                            Pages.InternshipProposalApprove.Title
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label translate>Dictionary.Company</label>
+                            <p class="form-control-static">{{internshipProposal.internship.company.name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Professor</label>
+                            <p class="form-control-static">{{internshipProposal.professor.name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Student</label>
+                            <p class="form-control-static">{{internshipProposal.student.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>
+                            Dictionary.Status
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label translate>Dictionary.Status</label>
+                            <p class="form-control-static">{{('Enums.InternshipProposalStatusType.' + InternshipProposalStatusType[internshipProposal.status])
+                                | translate}}</p>
+                        </div>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-success" (click)="confirm(InternshipProposalStatusType.WaitingForCompany)" *ngIf="internshipProposal.status == InternshipProposalStatusType.WaitingForProfessor && canExec(authService.currentUser.role.type,[RoleType.Professor])"
+                                translate>Dictionary.ConfirmInternshipProposal</button>
+                            <button type="button" class="btn btn-success" (click)="confirm(InternshipProposalStatusType.Confirmed)" *ngIf="internshipProposal.status == InternshipProposalStatusType.WaitingForCompany && canExec(authService.currentUser.role.type,[RoleType.Company])"
+                                translate>Dictionary.ConfirmInternshipProposal</button>
+                            <button type="button" class="btn btn-danger" (click)="confirm(InternshipProposalStatusType.RejectedByProfessor)" *ngIf="internshipProposal.status == InternshipProposalStatusType.WaitingForProfessor && canExec(authService.currentUser.role.type,[RoleType.Professor])"
+                                translate>Dictionary.RejectInternshipProposal</button>
+                            <button type="button" class="btn btn-danger" (click)="confirm(InternshipProposalStatusType.RejectedByCompany)" *ngIf="internshipProposal.status == InternshipProposalStatusType.WaitingForCompany && canExec(authService.currentUser.role.type,[RoleType.Company])"
+                                translate>Dictionary.RejectInternshipProposal</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>
+                            Dictionary.Details
+                        </h4>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row form-group">
+                            <div class="col-lg-6 col-xs-12">
+                                <label translate>Dictionary.Address</label>
+                                <p class="form-control-static">{{internshipProposal.internship.address | address}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label translate>Dictionary.StartDate</label>
+                                <p class="form-control-static">{{internshipProposal.internship.startDate | date}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label translate>Dictionary.EndDate</label>
+                                <p class="form-control-static">{{internshipProposal.internship.endDate | date}}</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label translate>Dictionary.TotalHours</label>
+                                <p class="form-control-static">{{internshipProposal.internship.totalHours || ('Dictionary.NotSpecified' | translate)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{internshipProposal.internship.title}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internshipProposal.internship.description)"></div>
+                    </div>
+                </div>
+
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-content">
+                        <div>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/professor'" translate>Dictionary.Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

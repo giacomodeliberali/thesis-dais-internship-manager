@@ -45,16 +45,16 @@ export const ROUTES: RouteInfo[] = [
         ]
     },
     {
-        path: '/auth/internships/',
+        path: '/auth/',
         title: 'Dictionary.Student',
         type: 'sub',
         icontype: 'fas fa-user-graduate',
         requiredRoles: [
-            RoleType.Professor
+            RoleType.Student
         ],
         children: [
             {
-                path: 'my-proposals',
+                path: 'proposals/student',
                 title: 'Dictionary.MyProposals',
                 ab: 'P'
             }
@@ -82,7 +82,7 @@ export const ROUTES: RouteInfo[] = [
         ]
     },
     {
-        path: '/auth/internships/',
+        path: '/auth/',
         title: 'Dictionary.Professor',
         type: 'sub',
         icontype: 'fas fa-user-graduate',
@@ -91,12 +91,12 @@ export const ROUTES: RouteInfo[] = [
         ],
         children: [
             {
-                path: 'approve-list',
+                path: 'internships/approve',
                 title: 'Dictionary.WaitForApproval',
                 ab: 'I'
             },
             {
-                path: 'students-list',
+                path: 'proposals/professor',
                 title: 'Dictionary.StudentsWaitForApproval',
                 ab: 'S'
             }
@@ -115,7 +115,8 @@ export class SidebarComponent implements AfterViewInit, OnInit {
     public menuItems: RouteInfo[] = ROUTES;
 
     constructor(
-        public authService: AuthService) {
+        public authService: AuthService,
+        private router: Router) {
     }
 
     canExecute(requiredRoles: Array<RoleType>) {
@@ -153,5 +154,20 @@ export class SidebarComponent implements AfterViewInit, OnInit {
 
     public getTemplateString(str: string): string {
         return str.replace(/./g, 'a');
+    }
+
+    /**
+     * Determine if the current menu item has at least an active child
+     * @param menuItem The parent menu item
+     */
+    isActive(menuItem: RouteInfo): boolean {
+        let isActive = false;
+        if (menuItem.children)
+            menuItem.children.forEach(c => {
+                isActive = isActive || this.router.isActive(menuItem.path + c.path, true);
+            });
+        else
+            isActive = this.router.isActive(menuItem.path, true);
+        return isActive;
     }
 }

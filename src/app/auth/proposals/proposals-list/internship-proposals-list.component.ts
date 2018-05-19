@@ -8,10 +8,10 @@ import { AuthService } from '../../../services/auth.service';
 declare var $;
 
 @Component({
-    selector: 'internships-students-list-cmp',
-    templateUrl: './internships-students-list.component.html'
+    selector: 'internship-proposals-list-cmp',
+    templateUrl: './internship-proposals-list.component.html'
 })
-export class InternshipsStudentsListComponent {
+export class InternshipProposalsListComponent {
 
     internshipTable = {
         headerRow: [

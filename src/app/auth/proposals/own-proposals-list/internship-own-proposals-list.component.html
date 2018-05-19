@@ -4,8 +4,8 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" translate>Pages.InternshipProposalList.Title</h4>
-                        <p class="category" translate>Pages.InternshipProposalList.SubTitle</p>
+                        <h4 class="card-title" translate>Pages.InternshipOwnProposalList.Title</h4>
+                        <p class="category" translate>Pages.InternshipOwnProposalList.SubTitle</p>
                     </div>
                     <div class="card-content table-responsive table-full-width">
                         <table class="table">
@@ -31,12 +31,15 @@
                                 </tr>
                                 <tr *ngFor="let row of internshipTable.dataRows">
                                     <td class="td-actions text-center">
-                                        <a rel="tooltip" title="{{'Dictionary.Details' | translate}}" [routerLink]="'/auth/internships/approve/' + row.id" class="btn btn-primary btn-simple btn-xs">
+                                        <a rel="tooltip" title="{{'Dictionary.Details' | translate}}" [routerLink]="'/auth/proposals/details/' + row.id" class="btn btn-primary btn-simple btn-xs">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     </td>
                                     <td *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
-                                        {{val(row,col.value) | tablecol:col.pipe}}
+                                        <span *ngIf="!col.formatter && !col.translate">{{val(row,col.value) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="!col.formatter && col.translate">{{val(row,col.value) | tablecol:col.pipe | translate}}</span>
+                                        <span *ngIf="col.formatter && !col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="col.formatter && col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe | translate}}</span>
                                     </td>
                                 </tr>
                             </tbody>

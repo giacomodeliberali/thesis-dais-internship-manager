@@ -46,7 +46,7 @@
     "easy-pie-chart": "2.1.7",
     "eonasdan-bootstrap-datetimepicker": "4.17.47",
     "fullcalendar": "3.4.0",
-    "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git",
+    "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git#master",
     "jasny-bootstrap": "3.1.3",
     "jquery": "^3.3.1",
     "ng2-ckeditor": "^1.2.0",

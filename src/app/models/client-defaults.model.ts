@@ -1,5 +1,7 @@
 export class ClientDefaults {
 
+    public static appName = "DAIS Internship Manager";
+
     /** The CKEditor default config */
     public static ckEditorConfig = {
         extraPlugins: 'divarea',

@@ -152,9 +152,9 @@ export class AuthService {
     }
 
     /**
-     * Log out the current user from Google
+     * Log out the current user
      */
-    async googleLogout() {
+    async logout() {
         try {
             const googleAuth = await this.initialize();
             const googleUser = await googleAuth.signOut();

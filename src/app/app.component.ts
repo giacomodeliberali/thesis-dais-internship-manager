@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { LoadingService } from './helpers/loading.helper';
 
 /**
  * The app container
@@ -10,9 +9,4 @@ import { LoadingService } from './helpers/loading.helper';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-
-  constructor(
-    public loadingService: LoadingService) {
-
-  }
 }

@@ -69,20 +69,7 @@ export class InternshipApproveComponent {
 					NotificationHelper.showNotification("Alerts.ApproveWrongInternshipStatus.Title", "ti-alert", "danger");
 					this.location.back();
 				} else {
-					this.states = [
-						{
-							text: InternshipStatusType[InternshipStatusType.NotApproved],
-							value: InternshipStatusType.NotApproved
-						},
-						{
-							text: InternshipStatusType[InternshipStatusType.Approved],
-							value: InternshipStatusType.Approved
-						},
-						{
-							text: InternshipStatusType[InternshipStatusType.Rejected],
-							value: InternshipStatusType.Rejected
-						}
-					];
+					this.states = await this.internshipsService.getAvailableStates(this.internship.status);
 				}
 			})
 			.catch(ex => {
@@ -114,7 +101,7 @@ export class InternshipApproveComponent {
 		this.internshipsService.updateStatus(this.internship.id, this.internship.status, this.internship.rejectReason)
 			.then(async r => {
 
-				if (r && r.isOk && r.data.status == InternshipStatusType.Approved) {
+				if (r && r.isOk && r.data.status === InternshipStatusType.Approved) {
 					const options: MailOptions = {
 						html: `La tua offerta di stage ${r.data.id} è stato approvata`,
 						subject: 'Stage approvato',
@@ -126,7 +113,7 @@ export class InternshipApproveComponent {
 						console.error(ex);
 					}
 					NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
-					this.location.back();
+					this.router.navigate(['/auth/internship/details', this.internship.id]);
 				}
 				this.loadingService.isLoading = false;
 			}).catch(ex => {
@@ -134,6 +121,10 @@ export class InternshipApproveComponent {
 				console.error(ex);
 				this.loadingService.isLoading = false;
 			});
+	}
+
+	toNumber() {
+		this.internship.status = Number(this.internship.status);
 	}
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { User, Company } from 'gdl-thesis-core/dist';
+import { User, Company, Address } from 'gdl-thesis-core/dist';
 import { UsersService } from '../../../services/user.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { CompaniesService } from '../../../services/companies.service';
@@ -15,8 +15,8 @@ import { LoadingService } from '../../../helpers/loading.helper';
 })
 export class CompanyEditComponent {
 
-	/** A copy of the comapny current in edit */
-	public comapny: Company;
+	/** A copy of the company current in edit */
+	public company: Company;
 
 	/**
 	 * Inject deps
@@ -28,10 +28,18 @@ export class CompanyEditComponent {
 		private activatedRoute: ActivatedRoute,
 		private loadingService: LoadingService) {
 
+		this.loadingService.isLoading = true;
 		const companyId = this.activatedRoute.snapshot.params.id;
 		this.companiesService.getById(companyId)
 			.then(response => {
-				this.comapny = new Company(response.data);
+				const company = new Company(response.data);
+				if (!company.address)
+					company.address = new Address();
+
+				this.company = company;
+			})
+			.then(() => {
+				this.loadingService.isLoading = false;
 			});
 	}
 
@@ -41,8 +49,8 @@ export class CompanyEditComponent {
 	 */
 	save() {
 		this.loadingService.isLoading = true;
-		this.comapny.owners = this.comapny.owners.map(u => u.id) as any;
-		this.companiesService.update(this.comapny).then(r => {
+		this.company.owners = this.company.owners.map(u => u.id) as any;
+		this.companiesService.update(this.company).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.router.navigate(['/auth/user']);
 		}).catch(ex => {

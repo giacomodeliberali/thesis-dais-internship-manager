@@ -10,7 +10,6 @@ import { InternshipsOwnCompanyComponent } from './own-company/internships-own-co
 import { InternshipDetailsComponent } from './details/internship-details.component';
 import { InternshipsApproveListComponent } from './approve-list/internships-approve-list.component';
 import { InternshipApproveComponent } from './approve/internship-approve.component';
-import { InternshipsStudentsListComponent } from './students-list/internships-students-list.component';
 import { InternshipCandidateComponent } from './candidate/internship-candidate.component';
 
 export const InternshipsRoutes: Routes = [
@@ -27,9 +26,8 @@ export const InternshipsRoutes: Routes = [
             generateAuthRoute('edit/:id', InternshipEditComponent, [RoleType.Company], 'Pages.InternshipEdit.Title'),
             generateAuthRoute('details/:id', InternshipDetailsComponent, [], 'Pages.InternshipDetails.Title'),
             generateAuthRoute('company', InternshipsOwnCompanyComponent, [RoleType.Company], 'Pages.InternshipOwnCompany.Title'),
-            generateAuthRoute('approve-list', InternshipsApproveListComponent, [RoleType.Professor], 'Pages.InternshipApproveList.Title'),
-            generateAuthRoute('approve/:id', InternshipApproveComponent, [RoleType.Professor], 'Pages.InternshipApprove.Title'),
-            generateAuthRoute('students-list', InternshipsStudentsListComponent, [RoleType.Professor], 'Pages.InternshipProposalList.Title')
+            generateAuthRoute('approve', InternshipsApproveListComponent, [RoleType.Professor], 'Pages.InternshipApproveList.Title'),
+            generateAuthRoute('approve/:id', InternshipApproveComponent, [RoleType.Professor], 'Pages.InternshipApprove.Title')
         ]
     }
 ];

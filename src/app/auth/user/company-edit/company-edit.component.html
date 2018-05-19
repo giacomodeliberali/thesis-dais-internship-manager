@@ -2,20 +2,72 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="card" *ngIf="comapny">
+                <div class="card" *ngIf="company">
                     <div class="card-header">
                         <h4 class="card-title">
-                            {{comapny.name}}
+                            {{company.name}}
                         </h4>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
-                            <label translate>Dictionary.VatCode</label>
-                            <p class="form-control-static">{{comapny.vatCode}}</p>
+                            <label translate>Dictionary.Name</label>
+                            <input type="text" placeholder="{{'Dictionary.Name' | translate}}" class="form-control" [(ngModel)]="company.name">
                         </div>
                         <div class="form-group">
-                            <label translate>Dictionary.RegistrationDate</label>
-                            <p class="form-control-static">{{comapny.registrationDate | date}}</p>
+                            <label translate>Dictionary.VatCode</label>
+                            <input type="text" placeholder="{{'Dictionary.VatCode' | translate}}" class="form-control" [(ngModel)]="company.vatCode">
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="company">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.Address' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <div class="row form-group">
+                                <div class="col-lg-6 col-xs-12">
+                                    <label translate>Dictionary.Street</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.Street' | translate}}" [(ngModel)]="company.address.street"
+                                    />
+                                </div>
+                                <div class="col-lg-4 col-xs-6">
+                                    <label translate>Dictionary.Number</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.Number' | translate}}" [(ngModel)]="company.address.number"
+                                    />
+                                </div>
+                                <div class="col-lg-2 col-xs-6">
+                                    <label translate>Dictionary.Floor</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.Number' | translate}}" [(ngModel)]="company.address.floor"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    <label translate>Dictionary.City</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.City' | translate}}" [(ngModel)]="company.address.city"
+                                    />
+                                </div>
+                                <div class="col-xs-6">
+                                    <label translate>Dictionary.State</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.State' | translate}}" [(ngModel)]="company.address.state"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-xs-6">
+                                    <label translate>Dictionary.Zip</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.Zip' | translate}}" [(ngModel)]="company.address.zip"
+                                    />
+                                </div>
+                                <div class="col-xs-6">
+                                    <label translate>Dictionary.Country</label>
+                                    <input type="text" class="form-control" placeholder="{{'Dictionary.Country' | translate}}" [(ngModel)]="company.address.country"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div class="text-right">
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/user'" translate>Dictionary.Cancel</button>

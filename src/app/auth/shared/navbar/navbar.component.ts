@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { ClientDefaults } from '../../../models/client-defaults.model';
 
 var misc: any = {
     navbar_menu_visible: 0,
@@ -121,9 +122,17 @@ export class NavbarComponent implements OnInit {
     async getTitle(route: ActivatedRoute) {
         const currentRouteTitle = route.routeConfig.data ? route.routeConfig.data.title : null;
 
+        let title: Observable<string>;
         if (currentRouteTitle)
-            this.title = await this.translateService.get(currentRouteTitle);
+            title = await this.translateService.get(currentRouteTitle);
         else
-            this.title = Observable.of('');
+            title = Observable.of('');
+
+        this.title = title;
+
+        this.title.subscribe(val => {
+            document.title = `${val} | ${ClientDefaults.appName}`;
+        });
+
     }
 }

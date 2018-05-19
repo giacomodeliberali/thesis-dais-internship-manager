@@ -37,6 +37,10 @@ export class InternshipsService extends BaseService {
         return this.deleteVerb(`internships/${id}`);
     }
 
+    /**
+     * Get all the available state based on the current token role
+     * @param newState The current state
+     */
     async getAvailableStates(newState: InternshipStatusType): Promise<Array<{ text: string, value: InternshipStatusType }>> {
         const result = await this.getVerb(`internships/status/${newState}`);
 
