@@ -96,6 +96,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sidebarcomponent.html#authservice" class="tsd-kind-icon">auth<wbr>Service</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="sidebarcomponent.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="sidebarcomponent.html#router" class="tsd-kind-icon">router</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -103,6 +104,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#canexecute" class="tsd-kind-icon">can<wbr>Execute</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#gettemplatestring" class="tsd-kind-icon">get<wbr>Template<wbr>String</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#isactive" class="tsd-kind-icon">is<wbr>Active</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#isnotmobilemenu" class="tsd-kind-icon">is<wbr>Not<wbr>Mobile<wbr>Menu</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#ngafterviewinit" class="tsd-kind-icon">ng<wbr>After<wbr>View<wbr>Init</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="sidebarcomponent.html#ngoninit" class="tsd-kind-icon">ng<wbr>OnInit</a></li>
@@ -117,19 +119,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sidebar<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sidebarcomponent.html" class="tsd-signature-type">SidebarComponent</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Sidebar<wbr>Component<span class="tsd-signature-symbol">(</span>authService<span class="tsd-signature-symbol">: </span><a href="authservice.html" class="tsd-signature-type">AuthService</a>, router<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Router</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sidebarcomponent.html" class="tsd-signature-type">SidebarComponent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L115">app/auth/shared/sidebar/sidebar.component.ts:115</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L115">app/auth/shared/sidebar/sidebar.component.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>authService: <a href="authservice.html" class="tsd-signature-type">AuthService</a></h5>
+								</li>
+								<li>
+									<h5>router: <span class="tsd-signature-type">Router</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="sidebarcomponent.html" class="tsd-signature-type">SidebarComponent</a></h4>
@@ -145,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">auth<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L118">app/auth/shared/sidebar/sidebar.component.ts:118</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L118">app/auth/shared/sidebar/sidebar.component.ts:118</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +160,17 @@
 					<div class="tsd-signature tsd-kind-icon">menu<wbr>Items<span class="tsd-signature-symbol">:</span> <a href="../interfaces/routeinfo.html" class="tsd-signature-type">RouteInfo</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;ROUTES</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L115">app/auth/shared/sidebar/sidebar.component.ts:115</a></li>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L115">app/auth/shared/sidebar/sidebar.component.ts:115</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="router" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> router</h3>
+					<div class="tsd-signature tsd-kind-icon">router<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Router</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L119">app/auth/shared/sidebar/sidebar.component.ts:119</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +187,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L121">app/auth/shared/sidebar/sidebar.component.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L122">app/auth/shared/sidebar/sidebar.component.ts:122</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -195,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L154">app/auth/shared/sidebar/sidebar.component.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L155">app/auth/shared/sidebar/sidebar.component.ts:155</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -209,6 +224,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isactive" class="tsd-anchor"></a>
+					<h3>is<wbr>Active</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Active<span class="tsd-signature-symbol">(</span>menuItem<span class="tsd-signature-symbol">: </span><a href="../interfaces/routeinfo.html" class="tsd-signature-type">RouteInfo</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L163">app/auth/shared/sidebar/sidebar.component.ts:163</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determine if the current menu item has at least an active child</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>menuItem: <a href="../interfaces/routeinfo.html" class="tsd-signature-type">RouteInfo</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The parent menu item</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="isnotmobilemenu" class="tsd-anchor"></a>
 					<h3>is<wbr>Not<wbr>Mobile<wbr>Menu</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -218,7 +264,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L127">app/auth/shared/sidebar/sidebar.component.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L128">app/auth/shared/sidebar/sidebar.component.ts:128</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -235,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L146">app/auth/shared/sidebar/sidebar.component.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L147">app/auth/shared/sidebar/sidebar.component.ts:147</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -252,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/ea3aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L134">app/auth/shared/sidebar/sidebar.component.ts:134</a></li>
+									<li>Defined in <a href="https://github.com/giacomodeliberali/thesis-client/blob/eb9aa97/src/app/auth/shared/sidebar/sidebar.component.ts#L135">app/auth/shared/sidebar/sidebar.component.ts:135</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -285,11 +331,17 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="sidebarcomponent.html#menuitems" class="tsd-kind-icon">menu<wbr>Items</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="sidebarcomponent.html#router" class="tsd-kind-icon">router</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="sidebarcomponent.html#canexecute" class="tsd-kind-icon">can<wbr>Execute</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="sidebarcomponent.html#gettemplatestring" class="tsd-kind-icon">get<wbr>Template<wbr>String</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="sidebarcomponent.html#isactive" class="tsd-kind-icon">is<wbr>Active</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="sidebarcomponent.html#isnotmobilemenu" class="tsd-kind-icon">is<wbr>Not<wbr>Mobile<wbr>Menu</a>

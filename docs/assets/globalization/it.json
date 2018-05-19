@@ -63,7 +63,11 @@
         "Student": "Studente",
         "MyProposals": "Le mie proposte",
         "Home": "Home",
-        "NotSpecified": "Non specificato"
+        "NotSpecified": "Non specificato",
+        "Confirm": "Conferma",
+        "CancelInternshipProposal": "Annulla candidatura",
+        "ConfirmInternshipProposal": "Conferma tirocinio",
+        "RejectInternshipProposal": "Rifiuta tirocinio"
     },
     "Pages": {
         "Index": {
@@ -113,7 +117,7 @@
         "User": {
             "Title": "Visualizza profilo"
         },
-        "UserEdit":{
+        "UserEdit": {
             "Title": "Modifica profilo"
         },
         "InternshipAdd": {
@@ -141,6 +145,19 @@
         "InternshipCandidate": {
             "Title": "Candidati",
             "ProfessorDescription": "Seleziona il professore che farà da referente per il tirocinio"
+        },
+        "InternshipOwnProposalList": {
+            "Title": "Le mie proposte di stage",
+            "SubTitle": "Le proposte di stage a cui ti sei candidato"
+        },
+        "InternshipProposalDetails": {
+            "Title": "Dettagli proposta di stage"
+        },
+        "InternshipProposalEdit":{
+            "Title": "Modifica proposta di stage"
+        },
+        "InternshipProposalApprove":{
+            "Title": "Approva proposta di stage"
         }
     },
     "Alerts": {
@@ -174,6 +191,33 @@
                 "Title": "Si è veriificato un errore",
                 "SubTitle": "Non disponi dei permessi necessari per completare l'operazione richiesta"
             }
+        },
+        "ConfirmCancelInternshipProposal": {
+            "Title": "Vuoi annullare questa candidatura?",
+            "Success": {
+                "Message": "La candidatura è stata annullata"
+            },
+            "Error": {
+                "Message": "Non è stato possibile annullate la candidatura"
+            }
+        },
+        "ConfirmApproveInternshipProposal": {
+            "Title": "Vuoi approvare questa candidatura?",
+            "Success": {
+                "Message": "La candidatura è stata approvata"
+            },
+            "Error": {
+                "Message": "Non è stato possibile approvare la candidatura"
+            }
+        },
+        "ConfirmRejectInternshipProposal": {
+            "Title": "Vuoi rifiutare questa candidatura?",
+            "Success": {
+                "Message": "La candidatura è stata rifutata"
+            },
+            "Error": {
+                "Message": "Non è stato possibile rifiutare la candidatura"
+            }
         }
     },
     "Roles": {
@@ -189,6 +233,35 @@
             "Closed": "Chiuso",
             "Canceled": "Annullato",
             "Rejected": "Rifiutato"
+        },
+        "InternshipProposalStatusType": {
+            "WaitingForProfessor": "In attesa del professore",
+            "WaitingForCompany": "In attesa dell'azienda",
+            "Confirmed": "Confermato",
+            "Started": "Iniziato",
+            "Ended": "Terminato",
+            "Canceled": "Annullato",
+            "RejectedByProfessor": "Rifiutato dal professore",
+            "RejectedByCompany": "Rifiutato dall'azienda"
+        }
+    },
+    "EnumsWithDescription": {
+        "InternshipStatusType": {
+            "NotApproved": "Appena un amministratore visionerà la tua richiesta e la approverà sarà pubblicamente visibile.",
+            "Approved": "L'offerta è pubblicamente visibile e gli studenti possono proporre candidature",
+            "Closed": "Il tirocinio si è concluso",
+            "Canceled": "Il tirocinio è stato annullato",
+            "Rejected": "Un amministratore ha rifiutato la pubblicazione di questa offerta"
+        },
+        "InternshipProposalStatusType": {
+            "WaitingForProfessor": "In attesa del professore",
+            "WaitingForCompany": "Il professore ha già accettato la proposta, ora bisogna attendere l'azienda",
+            "Confirmed": "Sia l'azienda che il professore hanno accettato questa proposta",
+            "Started": "Il tirocinio è stato confermato ed è iniziato",
+            "Ended": "Il tirocinio si è svolto correttamente ed è terminato",
+            "Canceled": "La proposta è stata annullata",
+            "RejectedByProfessor": "La proposta è stata rifutata dal professore",
+            "RejectedByCompany": "La proposta è stata rifutata dall'azienda"
         }
     }
 }
