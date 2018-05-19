@@ -15,6 +15,10 @@ var InternshipProposalStatusType;
     InternshipProposalStatusType[InternshipProposalStatusType["Started"] = 3] = "Started";
     /** The [[InternshipProposal]] is ended */
     InternshipProposalStatusType[InternshipProposalStatusType["Ended"] = 4] = "Ended";
+    /** The [[InternshipProposal]] is rejected by a professor */
+    InternshipProposalStatusType[InternshipProposalStatusType["RejectedByProfessor"] = 5] = "RejectedByProfessor";
+    /** The [[InternshipProposal]] is rejected by the company */
+    InternshipProposalStatusType[InternshipProposalStatusType["RejectedByCompany"] = 6] = "RejectedByCompany";
     /** The [[InternshipProposal]] is canceled by the [[Company]] or the professor ([[User]]) */
-    InternshipProposalStatusType[InternshipProposalStatusType["Canceled"] = 5] = "Canceled";
+    InternshipProposalStatusType[InternshipProposalStatusType["Canceled"] = 7] = "Canceled";
 })(InternshipProposalStatusType = exports.InternshipProposalStatusType || (exports.InternshipProposalStatusType = {}));

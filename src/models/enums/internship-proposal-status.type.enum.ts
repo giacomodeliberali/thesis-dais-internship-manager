@@ -18,6 +18,12 @@ export enum InternshipProposalStatusType {
     /** The [[InternshipProposal]] is ended */
     Ended,
 
+    /** The [[InternshipProposal]] is rejected by a professor */
+    RejectedByProfessor,
+
+    /** The [[InternshipProposal]] is rejected by the company */
+    RejectedByCompany,
+
     /** The [[InternshipProposal]] is canceled by the [[Company]] or the professor ([[User]]) */
     Canceled
 }
