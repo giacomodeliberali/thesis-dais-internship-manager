@@ -27,6 +27,7 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.15.5",
     "express-session": "^1.15.6",
     "gdl-thesis-core": "git+https://github.com/giacomodeliberali/thesis-core.git#master",
@@ -46,6 +47,7 @@
   },
   "devDependencies": {
     "@types/body-parser": "^1.16.5",
+    "@types/dotenv": "^4.0.3",
     "@types/express": "^4.0.37",
     "@types/express-session": "^1.15.3",
     "@types/jsonwebtoken": "^7.2.6",

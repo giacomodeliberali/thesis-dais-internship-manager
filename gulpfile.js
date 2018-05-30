@@ -14,6 +14,10 @@ gulp.task("build", ["tslint"], () => {
     tsProject.src()
         .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
+
+
+    gulp.src('./*.env')
+        .pipe(gulp.dest("dist"));
 });
 
 

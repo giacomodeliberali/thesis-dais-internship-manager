@@ -1,7 +1,9 @@
+
+import * as path from "path";
+import { environment } from "./environment";
 import * as express from "express";
 import * as session from "express-session";
 import * as bodyParser from "body-parser";
-import * as path from "path";
 import "reflect-metadata";
 import * as cors from 'cors';
 /**
@@ -21,7 +23,6 @@ import { CompanyModel } from './schemas/company.schema';
 import { RoleModel } from "./schemas/role.schema";
 import { RolesRepository } from "./repositories/roles.repository";
 import { RolesController } from "./controllers/roles.controller";
-import { environment } from "./environment";
 import { types } from "./utils/di-types";
 import { CompaniesController } from "./controllers/companies.controller";
 import { InternshipsController } from "./controllers/internships.controller";
@@ -39,6 +40,7 @@ import { EmailsController } from "./controllers/emails.controller";
  * Create Express server.
  */
 const app = express();
+
 
 /**
  * Express configuration.

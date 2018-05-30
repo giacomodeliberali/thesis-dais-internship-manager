@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const environment_1 = require("./environment");
 const express = require("express");
 const bodyParser = require("body-parser");
 require("reflect-metadata");
@@ -17,7 +18,6 @@ const company_schema_1 = require("./schemas/company.schema");
 const role_schema_1 = require("./schemas/role.schema");
 const roles_repository_1 = require("./repositories/roles.repository");
 const roles_controller_1 = require("./controllers/roles.controller");
-const environment_1 = require("./environment");
 const di_types_1 = require("./utils/di-types");
 const companies_controller_1 = require("./controllers/companies.controller");
 const internships_controller_1 = require("./controllers/internships.controller");
