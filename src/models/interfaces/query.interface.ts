@@ -4,4 +4,4 @@ import { Query } from "mongoose";
 type Properties<Dto> = { [P in keyof Dto]?: Dto[P] };
 
 /** The repository query request */
-export type RepositoryQuery<Dto> = Properties<Dto> | Query<Dto> | { _id: string };
+export type RepositoryQuery<Dto> = Properties<Dto> | Query<Dto> | { _id: string } | { [prop: string]: any };

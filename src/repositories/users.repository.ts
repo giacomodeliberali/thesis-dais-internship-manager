@@ -107,8 +107,7 @@ export class UsersRepository extends BaseRepository<IUser, User> {
      * @param user The user to update
      */
     public async updateOwn(user: User): Promise<IUser> {
-        return this.partialUpdate({
-            id: user.id,
+        return this.partialUpdate(user.id, {
             phone: user.phone
         });
     }

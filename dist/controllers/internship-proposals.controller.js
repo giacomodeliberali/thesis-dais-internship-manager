@@ -38,29 +38,31 @@ let InternshipProposalsController = class InternshipProposalsController extends 
      * @param internshipProposalsRepository The companies repository
      * @param app The express application used to register a new route for this controller
      */
-    constructor(internshipProposalsRepository, app) {
+    constructor(internshipProposalsRepository, app, companiesRepository, internshipsRepository) {
         super(internshipProposalsRepository, app);
         this.internshipProposalsRepository = internshipProposalsRepository;
+        this.companiesRepository = companiesRepository;
+        this.internshipsRepository = internshipsRepository;
     }
     useCustoms() {
         return this
-            .useGetPendingStudents()
+            .useGetByProfessorId()
             .useGetAvailablePlaces()
             .useGetByStudentId()
+            .useGetByCompanyOwnerId()
             .useUpdateStates()
             .useForceUpdateStates()
             .useListStates();
     }
     /**
-     * Return the list of [[InternshipProposal]] waiting for a response from the given professor id
+     * Return the list of [[InternshipProposal]] that reference the given professor id
      */
-    useGetPendingStudents() {
-        this.router.get('/pendingstudents/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    useGetByProfessorId() {
+        this.router.get('/getByProfessorId/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const professorId = req.params.id;
             const proposals = yield this.internshipProposalsRepository.find({
-                professor: professorId,
-                status: dist_1.InternshipProposalStatusType.WaitingForProfessor
-            });
+                professor: professorId
+            }).sort([['status', 'ascending']]);
             if (professorId) {
                 return new api_response_model_1.ApiResponse({
                     data: proposals,
@@ -74,6 +76,47 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                         message: "Bad request. Missing 'id' parameter"
                     },
                     httpCode: 400,
+                    response: res
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+     * Return the list of [[InternshipProposal]] that reference at least one company of the given user id
+     */
+    useGetByCompanyOwnerId() {
+        this.router.get('/getByCompanyOwnerId/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const companyOwnerId = req.params.id;
+                if (!companyOwnerId)
+                    return new api_response_model_1.ApiResponse({
+                        exception: {
+                            message: "Bad request. Missing 'id' parameter"
+                        },
+                        httpCode: 400,
+                        response: res
+                    }).send();
+                // Get all companies of the given user id
+                const companies = yield this.companiesRepository.getByOwnerId(companyOwnerId);
+                // Get all proposals 
+                // TODO: make a nested query with populate, but how?
+                let proposals = yield this.internshipProposalsRepository.find();
+                // Filter only proposals in which the company id is one of the above
+                proposals = proposals.filter(p => {
+                    const companiesIds = companies.map(c => c.id);
+                    return !!companiesIds.find(c => c === p.internship.company.id);
+                });
+                return new api_response_model_1.ApiResponse({
+                    data: proposals,
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            catch (ex) {
+                return new api_response_model_1.ApiResponse({
+                    exception: ex,
+                    httpCode: 500,
                     response: res
                 }).send();
             }
@@ -175,20 +218,27 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                     }
                 }).send();
             }
+            // Update the proposal
             const update = new dist_1.InternshipProposal(internshipProposal.toObject());
             update.status = newState;
-            return this.internshipProposalsRepository
-                .partialUpdate({
-                status: newState,
-                id: update.id
-            })
-                .then(result => {
-                return new api_response_model_1.ApiResponse({
-                    data: result,
-                    httpCode: 200,
-                    response: res
-                }).send();
+            const result = yield this.internshipProposalsRepository
+                .partialUpdate(update.id, {
+                status: newState
             });
+            // Check remaining places for the related internship
+            const availablePlaces = yield this.internshipProposalsRepository.getAvailablePlaces(update.internship.id);
+            // If no more free spaces change the internship status to Closed
+            if (availablePlaces === 0)
+                yield this.internshipsRepository
+                    .partialUpdate(update.internship.id, {
+                    status: dist_1.InternshipStatusType.Closed
+                });
+            // Return the updated internship proposal
+            return new api_response_model_1.ApiResponse({
+                data: result,
+                httpCode: 200,
+                response: res
+            }).send();
         }));
         return this;
     }
@@ -200,18 +250,26 @@ let InternshipProposalsController = class InternshipProposalsController extends 
             const newState = req.body.status;
             const id = req.body.id;
             if (newState !== undefined && newState !== null) {
-                return this.internshipProposalsRepository
-                    .partialUpdate({
-                    status: newState,
-                    id: id
-                })
-                    .then(result => {
-                    return new api_response_model_1.ApiResponse({
-                        data: result,
-                        httpCode: 200,
-                        response: res
-                    }).send();
+                // Update the proposal
+                const result = yield this.internshipProposalsRepository
+                    .partialUpdate(id, {
+                    status: newState
                 });
+                // Check remaining places for the related internship
+                const internshipProposal = yield this.internshipProposalsRepository.get(id);
+                const availablePlaces = yield this.internshipProposalsRepository.getAvailablePlaces(internshipProposal.internship.id);
+                // If no more free spaces change the internship status to Closed
+                if (availablePlaces === 0)
+                    yield this.internshipsRepository
+                        .partialUpdate(internshipProposal.internship.id, {
+                        status: dist_1.InternshipStatusType.Closed
+                    });
+                // Return the updated internship proposal
+                return new api_response_model_1.ApiResponse({
+                    data: result,
+                    httpCode: 200,
+                    response: res
+                }).send();
             }
             else {
                 return new api_response_model_1.ApiResponse({
@@ -258,6 +316,7 @@ let InternshipProposalsController = class InternshipProposalsController extends 
 InternshipProposalsController = __decorate([
     inversify_1.injectable(),
     __param(1, inversify_1.inject(di_types_1.types.App)),
-    __metadata("design:paramtypes", [repositories_1.InternshipsProposalsRepository, Object])
+    __metadata("design:paramtypes", [repositories_1.InternshipsProposalsRepository, Object, repositories_1.CompaniesRepository,
+        repositories_1.InternshipsRepository])
 ], InternshipProposalsController);
 exports.InternshipProposalsController = InternshipProposalsController;

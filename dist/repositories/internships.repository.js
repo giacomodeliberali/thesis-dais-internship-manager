@@ -79,7 +79,6 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
         return __awaiter(this, void 0, void 0, function* () {
             if (item)
                 item.status = dist_1.InternshipStatusType.NotApproved;
-            console.log("Initialize status to NotApproved");
             return _super("create").call(this, item);
         });
     }

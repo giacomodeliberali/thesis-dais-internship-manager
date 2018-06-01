@@ -217,7 +217,7 @@ export async function ownInternship(request: Request, response: Response, next: 
 
             const internshipsRepsoitory = container.resolve(InternshipsRepository);
 
-            const iinternship = await internshipsRepsoitory.get(request.body.id);
+            const iinternship = await internshipsRepsoitory.get(request.body.id || request.params.id);
             if (iinternship) {
                 if ((user.role.type & Number(RoleType.Company)) === Number(RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
                     return next();

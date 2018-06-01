@@ -1,14 +1,15 @@
 import { Request, Response, Router } from "express";
 import { BaseController } from "./base/base.controller";
 import { inject, injectable } from "inversify";
-import { InternshipsProposalsRepository } from "../repositories";
+import { InternshipsProposalsRepository, CompaniesRepository, InternshipsRepository } from "../repositories";
 import { types } from "../utils/di-types";
 import { IInternshipProposal } from "../models/interfaces";
 import { ApiResponse } from "../models/api-response.model";
-import { InternshipProposalStatusType, InternshipProposal, User } from "gdl-thesis-core/dist";
+import { InternshipProposalStatusType, InternshipProposal, User, Company, InternshipStatusType } from "gdl-thesis-core/dist";
 import { ownInternshipProposal, adminScope } from "../utils/auth/scopes";
 import { InternshipProposalStatusTypeMachine } from "../utils/state-machines/internship-proposal-status.type.machine";
 import { ServerDefaults } from "../ServerDefaults";
+import { InternshipProposalModel } from "../schemas/internship-proposal.schema";
 
 /**
  * The [[InternshipProposal]] controller
@@ -23,33 +24,35 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
    */
   constructor(
     private internshipProposalsRepository: InternshipsProposalsRepository,
-    @inject(types.App) app: Express.Application) {
+    @inject(types.App) app: Express.Application,
+    private companiesRepository: CompaniesRepository,
+    private internshipsRepository: InternshipsRepository) {
 
     super(internshipProposalsRepository, app);
   }
 
   public useCustoms() {
     return this
-      .useGetPendingStudents()
+      .useGetByProfessorId()
       .useGetAvailablePlaces()
       .useGetByStudentId()
+      .useGetByCompanyOwnerId()
       .useUpdateStates()
       .useForceUpdateStates()
       .useListStates();
   }
 
   /**
-   * Return the list of [[InternshipProposal]] waiting for a response from the given professor id
+   * Return the list of [[InternshipProposal]] that reference the given professor id
    */
-  private useGetPendingStudents() {
+  private useGetByProfessorId() {
 
-    this.router.get('/pendingstudents/:id', async (req, res) => {
+    this.router.get('/getByProfessorId/:id', async (req, res) => {
       const professorId: string = req.params.id;
 
       const proposals = await this.internshipProposalsRepository.find({
-        professor: professorId as any,
-        status: InternshipProposalStatusType.WaitingForProfessor
-      });
+        professor: professorId as any
+      }).sort([['status', 'ascending']]);
 
       if (professorId) {
         return new ApiResponse({
@@ -63,6 +66,54 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
             message: "Bad request. Missing 'id' parameter"
           },
           httpCode: 400,
+          response: res
+        }).send();
+      }
+    });
+    return this;
+  }
+
+  /**
+   * Return the list of [[InternshipProposal]] that reference at least one company of the given user id
+   */
+  private useGetByCompanyOwnerId() {
+
+    this.router.get('/getByCompanyOwnerId/:id', async (req, res) => {
+      try {
+        const companyOwnerId: string = req.params.id;
+
+        if (!companyOwnerId)
+          return new ApiResponse({
+            exception: {
+              message: "Bad request. Missing 'id' parameter"
+            },
+            httpCode: 400,
+            response: res
+          }).send();
+
+        // Get all companies of the given user id
+        const companies = await this.companiesRepository.getByOwnerId(companyOwnerId);
+
+        // Get all proposals 
+        // TODO: make a nested query with populate, but how?
+        let proposals = await this.internshipProposalsRepository.find();
+
+        // Filter only proposals in which the company id is one of the above
+        proposals = proposals.filter(p => {
+          const companiesIds = companies.map(c => c.id);
+          return !!companiesIds.find(c => c === p.internship.company.id);
+        });
+
+        return new ApiResponse({
+          data: proposals,
+          httpCode: 200,
+          response: res
+        }).send();
+
+      } catch (ex) {
+        return new ApiResponse({
+          exception: ex,
+          httpCode: 500,
           response: res
         }).send();
       }
@@ -178,21 +229,32 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
         }).send();
       }
 
-      const update = new InternshipProposal(internshipProposal.toObject());
+      // Update the proposal
+      const update: InternshipProposal = new InternshipProposal(internshipProposal.toObject());
       update.status = newState;
 
-      return this.internshipProposalsRepository
-        .partialUpdate({
-          status: newState,
-          id: update.id
-        })
-        .then(result => {
-          return new ApiResponse({
-            data: result,
-            httpCode: 200,
-            response: res
-          }).send();
+      const result = await this.internshipProposalsRepository
+        .partialUpdate(update.id, {
+          status: newState
         });
+
+      // Check remaining places for the related internship
+      const availablePlaces = await this.internshipProposalsRepository.getAvailablePlaces(update.internship.id);
+
+      // If no more free spaces change the internship status to Closed
+      if (availablePlaces === 0)
+        await this.internshipsRepository
+          .partialUpdate(update.internship.id, {
+            status: InternshipStatusType.Closed
+          });
+
+      // Return the updated internship proposal
+      return new ApiResponse({
+        data: result,
+        httpCode: 200,
+        response: res
+      }).send();
+
     });
     return this;
   }
@@ -206,18 +268,31 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
       const id = req.body.id;
 
       if (newState !== undefined && newState !== null) {
-        return this.internshipProposalsRepository
-          .partialUpdate({
-            status: newState,
-            id: id
-          })
-          .then(result => {
-            return new ApiResponse({
-              data: result,
-              httpCode: 200,
-              response: res
-            }).send();
+
+        // Update the proposal
+        const result = await this.internshipProposalsRepository
+          .partialUpdate(id, {
+            status: newState
           });
+
+        // Check remaining places for the related internship
+        const internshipProposal = await this.internshipProposalsRepository.get(id);
+        const availablePlaces = await this.internshipProposalsRepository.getAvailablePlaces(internshipProposal.internship.id);
+
+        // If no more free spaces change the internship status to Closed
+        if (availablePlaces === 0)
+          await this.internshipsRepository
+            .partialUpdate(internshipProposal.internship.id, {
+              status: InternshipStatusType.Closed
+            });
+
+        // Return the updated internship proposal
+        return new ApiResponse({
+          data: result,
+          httpCode: 200,
+          response: res
+        }).send();
+
       } else {
         return new ApiResponse({
           data: null,

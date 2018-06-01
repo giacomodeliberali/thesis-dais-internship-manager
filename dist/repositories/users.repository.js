@@ -121,8 +121,7 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
      */
     updateOwn(user) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.partialUpdate({
-                id: user.id,
+            return this.partialUpdate(user.id, {
                 phone: user.phone
             });
         });

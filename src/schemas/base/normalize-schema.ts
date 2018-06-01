@@ -29,7 +29,7 @@ export function normalizeSchema(schema: Schema) {
 
     // Add id virtual property
     schema.virtual('id').get(function (this: IBaseEntity) {
-        return this._id;
+        return this._id.toString();
     });
 
     // Remove _id and __v

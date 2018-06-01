@@ -28,7 +28,7 @@ export class CompaniesRepository extends BaseRepository<ICompany, Company> {
      * Return all the companies of which the given user id is a owner
      * @param id The owner id
      */
-    public getByOwnerId(id: string): Promise<Array<ICompany>> {
+    public getByOwnerId(id: string) {
         return this.find({
             owners: id as any
         });

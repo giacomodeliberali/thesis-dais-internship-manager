@@ -203,7 +203,7 @@ function ownInternship(request, response, next) {
         if (user) {
             try {
                 const internshipsRepsoitory = di_container_1.container.resolve(repositories_1.InternshipsRepository);
-                const iinternship = yield internshipsRepsoitory.get(request.body.id);
+                const iinternship = yield internshipsRepsoitory.get(request.body.id || request.params.id);
                 if (iinternship) {
                     if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
                         return next();

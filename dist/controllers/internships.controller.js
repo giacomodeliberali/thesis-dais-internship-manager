@@ -158,9 +158,8 @@ let InternshipsController = class InternshipsController extends base_controller_
             const update = new dist_1.Internship(internship.toObject());
             update.status = newState;
             return this.internshipsRepository
-                .partialUpdate({
+                .partialUpdate(update.id, {
                 status: newState,
-                id: update.id,
                 rejectReason: rejectReason
             })
                 .then(result => {
@@ -182,9 +181,8 @@ let InternshipsController = class InternshipsController extends base_controller_
             const id = req.body.id;
             if (newState !== undefined && newState !== null) {
                 return this.internshipsRepository
-                    .partialUpdate({
-                    status: newState,
-                    id: id
+                    .partialUpdate(id, {
+                    status: newState
                 })
                     .then(result => {
                     return new api_response_model_1.ApiResponse({

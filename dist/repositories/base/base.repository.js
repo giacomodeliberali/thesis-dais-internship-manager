@@ -76,11 +76,11 @@ let BaseRepository = class BaseRepository {
      * Update only the specified property of the item
      * @param item The item to update
      */
-    partialUpdate(item) {
+    partialUpdate(id, item) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.model.findByIdAndUpdate(item.id, { $set: item })
+            return this.model.findByIdAndUpdate(id, { $set: item })
                 .then(result => {
-                return this.get(item.id);
+                return this.get(id);
             });
         });
     }
@@ -106,12 +106,11 @@ let BaseRepository = class BaseRepository {
     }
     /**
      * Return all elements matching the specified query
-     * @param query The query. If not specified return the collection elements
+     *
+     * @param {RepositoryQuery<Dto>} [query] The query. If not specified return the collection elements
      */
     find(query) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.model.find(query || {});
-        });
+        return this.model.find(query || {});
     }
     /**
      * Return a the first element matching the specified query

@@ -1,7 +1,7 @@
 import { Defaults, BaseEntity } from "gdl-thesis-core/dist";
 import { Collection, Db, ObjectID } from "mongodb";
 import { injectable, inject, unmanaged } from "inversify";
-import { Model, SchemaType } from "mongoose";
+import { Model, SchemaType, DocumentQuery } from "mongoose";
 import { IBaseEntity, RepositoryQuery } from "../../models/interfaces";
 
 @injectable()
@@ -69,10 +69,10 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
      * Update only the specified property of the item
      * @param item The item to update
      */
-    async partialUpdate(item: Partial<Dto>): Promise<MongooseDocumentOfDto> {
-        return this.model.findByIdAndUpdate(item.id, { $set: item })
+    async partialUpdate(id: string, item: Partial<Dto>): Promise<MongooseDocumentOfDto> {
+        return this.model.findByIdAndUpdate(id, { $set: item })
             .then(result => {
-                return this.get(item.id);
+                return this.get(id);
             });
     }
 
@@ -96,9 +96,10 @@ export class BaseRepository<MongooseDocumentOfDto extends IBaseEntity & Dto = an
 
     /**
      * Return all elements matching the specified query
-     * @param query The query. If not specified return the collection elements
+     * 
+     * @param {RepositoryQuery<Dto>} [query] The query. If not specified return the collection elements
      */
-    async find(query?: RepositoryQuery<Dto>): Promise<MongooseDocumentOfDto[]> {
+    find(query?: RepositoryQuery<Dto>): DocumentQuery<MongooseDocumentOfDto[], MongooseDocumentOfDto> {
         return this.model.find(query || {});
     }
 

@@ -59,7 +59,6 @@ export class InternshipsRepository extends BaseRepository<IInternship, Internshi
     async create(item: Internship) {
         if (item)
             item.status = InternshipStatusType.NotApproved;
-        console.log("Initialize status to NotApproved");
         return super.create(item);
     }
 

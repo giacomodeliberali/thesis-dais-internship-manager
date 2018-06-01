@@ -156,9 +156,8 @@ export class InternshipsController extends BaseController<IInternship> {
       update.status = newState;
 
       return this.internshipsRepository
-        .partialUpdate({
+        .partialUpdate(update.id, {
           status: newState,
-          id: update.id,
           rejectReason: rejectReason
         })
         .then(result => {
@@ -182,9 +181,8 @@ export class InternshipsController extends BaseController<IInternship> {
 
       if (newState !== undefined && newState !== null) {
         return this.internshipsRepository
-          .partialUpdate({
-            status: newState,
-            id: id
+          .partialUpdate(id, {
+            status: newState
           })
           .then(result => {
             return new ApiResponse({
