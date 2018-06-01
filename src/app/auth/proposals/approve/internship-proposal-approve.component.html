@@ -65,11 +65,13 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label translate>Dictionary.StartDate</label>
-                                <p class="form-control-static">{{internshipProposal.internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.startDate">{{internshipProposal.internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.startDate" translate>Dictionary.NotSpecified</p>
                             </div>
                             <div class="col-md-6">
                                 <label translate>Dictionary.EndDate</label>
-                                <p class="form-control-static">{{internshipProposal.internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.endDate">{{internshipProposal.internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.endDate" translate>Dictionary.NotSpecified</p>
                             </div>
                         </div>
 

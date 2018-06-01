@@ -74,6 +74,10 @@ export class InternshipEditComponent {
 				throw new Error("auth/user-unauthorized");
 			}
 
+			if (internship.status !== InternshipStatusType.NotApproved) {
+				throw new Error("edit/cannot-edit-bad-status");
+			}
+
 			this.internship = new Internship(internship);
 
 			response = await this.companiesService.getByOwnerId(this.authService.currentUser.id);
@@ -85,9 +89,9 @@ export class InternshipEditComponent {
 			this.states = await this.internshipsService.getAvailableStates(this.internship.status);
 
 		} catch (ex) {
-			if (ex && ex.message === 'auth/user-unauthorized') {
+			if (ex && (ex.message === 'auth/user-unauthorized' || ex.message === 'edit/cannot-edit-bad-status')) {
 				NotificationHelper.showNotification("Alerts.GenericError.NotAuthorized.SubTitle", "ti-save", "danger");
-				this.router.navigate(['/auth/internships/details', internshipId]);
+				await this.router.navigate(['/auth/internships/details', internshipId]);
 			}
 		} finally {
 			setTimeout(() => $(".selectpicker").selectpicker('refresh'));
@@ -96,7 +100,7 @@ export class InternshipEditComponent {
 	}
 
 	updateAddress() {
-		if (this.internship)
+		if (this.internship && !this.internship.address)
 			this.internship.address = new Address(this.companies.find(c => c.id === this.selectedCompanyId).address).clone();
 	}
 
@@ -107,8 +111,10 @@ export class InternshipEditComponent {
 		// TODO: add server middleware to prevent a company to approve its own internship
 		this.loadingService.isLoading = true;
 		this.internship.company = this.selectedCompanyId as any;
-		this.internship.startDate = new Date(this.internship.startDate);
-		this.internship.endDate = new Date(this.internship.endDate);
+		if (this.internship.startDate)
+			this.internship.startDate = new Date(this.internship.startDate);
+		if (this.internship.endDate)
+			this.internship.endDate = new Date(this.internship.endDate);
 		this.internshipsService.update(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.location.back();

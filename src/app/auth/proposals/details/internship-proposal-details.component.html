@@ -55,11 +55,13 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label translate>Dictionary.StartDate</label>
-                                <p class="form-control-static">{{internshipProposal.internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.startDate">{{internshipProposal.internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.startDate" translate>Dictionary.NotSpecified</p>
                             </div>
                             <div class="col-md-6">
                                 <label translate>Dictionary.EndDate</label>
-                                <p class="form-control-static">{{internshipProposal.internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.endDate">{{internshipProposal.internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.endDate" translate>Dictionary.NotSpecified</p>
                             </div>
                         </div>
 
@@ -86,7 +88,8 @@
                     <div class="card-content">
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals'" translate>Dictionary.Back</button>
-                            <button *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student]) && internshipProposal.status < InternshipProposalStatusType.WaitingForCompany" type="button" class="btn btn-success pull-right" [routerLink]="'/auth/proposals/edit/' + internshipProposal.id"
+                            <button *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student]) && internshipProposal.status < InternshipProposalStatusType.WaitingForCompany"
+                                type="button" class="btn btn-success pull-right" [routerLink]="'/auth/proposals/edit/' + internshipProposal.id"
                                 translate>Dictionary.Edit</button>
                         </div>
                     </div>

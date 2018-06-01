@@ -9,6 +9,7 @@ import { InternshipOwnProposalsListComponent } from './own-proposals-list/intern
 import { InternshipProposalDetailsComponent } from './details/internship-proposal-details.component';
 import { InternshipProposalEditComponent } from './edit/internship-proposal-edit.component';
 import { InternshipProposalApproveComponent } from './approve/internship-proposal-approve.component';
+import { CompanyInternshipProposalsListComponent } from './company-internship-proposals-list/company-internship-proposals-list.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { InternshipProposalApproveComponent } from './approve/internship-proposa
         InternshipOwnProposalsListComponent,
         InternshipProposalDetailsComponent,
         InternshipProposalEditComponent,
-        InternshipProposalApproveComponent
+        InternshipProposalApproveComponent,
+        CompanyInternshipProposalsListComponent
     ]
 })
 export class ProposalsModule { }

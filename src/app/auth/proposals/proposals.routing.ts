@@ -7,6 +7,7 @@ import { RoleType, Role } from 'gdl-thesis-core/dist';
 import { InternshipProposalDetailsComponent } from './details/internship-proposal-details.component';
 import { InternshipProposalEditComponent } from './edit/internship-proposal-edit.component';
 import { InternshipProposalApproveComponent } from './approve/internship-proposal-approve.component';
+import { CompanyInternshipProposalsListComponent } from './company-internship-proposals-list/company-internship-proposals-list.component';
 
 export const ProposalsRoutes: Routes = [
     {
@@ -21,6 +22,7 @@ export const ProposalsRoutes: Routes = [
             generateAuthRoute('details/:id', InternshipProposalDetailsComponent, [], 'Pages.InternshipProposalDetails.Title'),
             generateAuthRoute('edit/:id', InternshipProposalEditComponent, [RoleType.Student], 'Pages.InternshipProposalDetails.Title'),
             generateAuthRoute('approve/:id', InternshipProposalApproveComponent, [RoleType.Professor, RoleType.Company], 'Pages.InternshipProposalApprove.Title'),
+            generateAuthRoute('company', CompanyInternshipProposalsListComponent, [RoleType.Company], 'Pages.CompanyInternshipProposals.Title'),
         ]
     }
 ];

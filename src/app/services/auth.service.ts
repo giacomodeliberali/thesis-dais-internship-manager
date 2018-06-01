@@ -157,7 +157,8 @@ export class AuthService {
     async logout() {
         try {
             const googleAuth = await this.initialize();
-            const googleUser = await googleAuth.signOut();
+            if (googleAuth.isSignedIn.get())
+                await googleAuth.signOut();
             this.token = null;
             this.currentUser = null;
         } catch (ex) {

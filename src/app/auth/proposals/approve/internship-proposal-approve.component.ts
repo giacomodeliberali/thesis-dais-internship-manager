@@ -90,8 +90,10 @@ export class InternshipProposalApproveComponent implements OnInit {
 		if (response.value) {
 			try {
 				const apiResponse = await this.internshipProposalService.updateStatus(this.internshipProposal.id, newState);
-				this.internshipProposal = new InternshipProposal(apiResponse.data);
-				NotificationHelper.showNotification(`Alerts.Confirm${op}InternshipProposal.Success.Message`, "ti-save", 'success');
+				if (apiResponse && apiResponse.isOk) {
+					this.internshipProposal = new InternshipProposal(apiResponse.data);
+					NotificationHelper.showNotification(`Alerts.Confirm${op}InternshipProposal.Success.Message`, "ti-save", 'success');
+				}
 			} catch (ex) {
 				console.error(ex);
 				NotificationHelper.showNotification(`Alerts.Confirm${op}InternshipProposal.Error.Message`, "ti-save", 'warning');

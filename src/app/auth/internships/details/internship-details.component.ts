@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType, RoleType } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType, RoleType, InternshipProposalStatusType } from 'gdl-thesis-core/dist';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';
@@ -36,6 +36,8 @@ export class InternshipDetailsComponent implements OnInit {
 
 	public availablePlace = 0;
 
+	public alreadyCandidate = false;
+
 	/**
 	 * Inject deps
 	 */
@@ -61,6 +63,11 @@ export class InternshipDetailsComponent implements OnInit {
 
 			const placesResponse = await this.internshipProposalService.getAvailablePlace(internshipId);
 			this.availablePlace = placesResponse.data;
+
+			if (canExec(this.authService.currentUser.role.type, [RoleType.Student])) {
+				const alreadyCandidateResponse = await this.internshipProposalService.getByStudentId(this.authService.currentUser.id);
+				this.alreadyCandidate = !!alreadyCandidateResponse.data.find(p => p.internship.id == this.internship.id && p.status < InternshipProposalStatusType.Ended);
+			}
 		} catch (ex) {
 			console.error(ex);
 		} finally {

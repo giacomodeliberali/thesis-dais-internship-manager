@@ -4,15 +4,15 @@ import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { InternshipProposalService } from '../../../services/internships-proposal.service';
 import { AuthService } from '../../../services/auth.service';
-import { InternshipProposalStatusType, InternshipStatusType } from 'gdl-thesis-core/dist';
+import { InternshipProposalStatusType } from 'gdl-thesis-core/dist';
 
 declare var $;
 
 @Component({
-    selector: 'internship-proposals-list-cmp',
-    templateUrl: './internship-proposals-list.component.html'
+    selector: 'company-internship-proposals-list-cmp',
+    templateUrl: './company-internship-proposals-list.component.html'
 })
-export class InternshipProposalsListComponent {
+export class CompanyInternshipProposalsListComponent {
 
     internshipTable = {
         headerRow: [
@@ -32,14 +32,13 @@ export class InternshipProposalsListComponent {
     };
 
     public isLoading = true;
-
     public InternshipProposalStatusType = InternshipProposalStatusType;
 
     constructor(
         private authService: AuthService,
         private internshipProposalService: InternshipProposalService) {
 
-        this.internshipProposalService.getByProfessorId(this.authService.currentUser.id).then(response => {
+        this.internshipProposalService.getByCompanyOwnerId(this.authService.currentUser.id).then(response => {
             if (response.isOk)
                 this.internshipTable.dataRows = response.data;
         }).catch(ex => {

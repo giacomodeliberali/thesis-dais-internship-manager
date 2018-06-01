@@ -50,11 +50,13 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label translate>Dictionary.StartDate</label>
-                                <p class="form-control-static">{{internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internship.startDate">{{internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internship.startDate" translate>Dictionary.NotSpecified</p>
                             </div>
                             <div class="col-md-6">
                                 <label translate>Dictionary.EndDate</label>
-                                <p class="form-control-static">{{internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internship.endDate">{{internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internship.endDate" translate>Dictionary.NotSpecified</p>
                             </div>
                         </div>
 
@@ -77,7 +79,7 @@
                         </h4>
                     </div>
                     <div class="card-content">
-                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internship.description)"></div>
+                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internship.description || '')"></div>
                     </div>
                 </div>
 
@@ -86,11 +88,12 @@
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships'" translate>Dictionary.Back</button>
                             <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
-                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace > 0"
+                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace > 0 && !alreadyCandidate"
                                 translate>Dictionary.ProposeYourSelf</button>
-                            <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
-                                *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace == 0"
-                                disabled translate>Dictionary.NoAvailablePlace</button>
+                            <button type="button" class="btn btn-success pull-right" disabled *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace > 0 && alreadyCandidate"
+                                translate>Dictionary.AlreadyCandidate</button>
+                            <button type="button" class="btn btn-success pull-right" *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace == 0"
+                                disabled translate>Dictionary.NoAvailablePlaces</button>
                         </div>
                     </div>
                 </div>

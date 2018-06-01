@@ -29,14 +29,17 @@
                                         <span translate>Dictionary.NoResults</span>
                                     </td>
                                 </tr>
-                                <tr *ngFor="let row of internshipTable.dataRows">
+                                <tr *ngFor="let row of internshipTable.dataRows" class="InternshipProposalType colorify {{InternshipProposalStatusType[row.status]}}">
                                     <td class="td-actions text-center">
                                         <a rel="tooltip" title="{{'Dictionary.Details' | translate}}" [routerLink]="'/auth/proposals/approve/' + row.id" class="btn btn-primary btn-simple btn-xs">
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     </td>
                                     <td *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
-                                        {{val(row,col.value) | tablecol:col.pipe}}
+                                        <span *ngIf="!col.formatter && !col.translate">{{val(row,col.value) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="!col.formatter && col.translate">{{val(row,col.value) | tablecol:col.pipe | translate}}</span>
+                                        <span *ngIf="col.formatter && !col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="col.formatter && col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe | translate}}</span>
                                     </td>
                                 </tr>
                             </tbody>

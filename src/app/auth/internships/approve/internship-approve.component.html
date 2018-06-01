@@ -56,11 +56,13 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label translate>Dictionary.StartDate</label>
-                                <p class="form-control-static">{{internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internship.startDate">{{internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internship.startDate" translate>Dictionary.NotSpecified</p>
                             </div>
                             <div class="col-md-6">
                                 <label translate>Dictionary.EndDate</label>
-                                <p class="form-control-static">{{internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="internship.endDate">{{internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internship.endDate" translate>Dictionary.NotSpecified</p>
                             </div>
                         </div>
 
@@ -83,7 +85,7 @@
                         </h4>
                     </div>
                     <div class="card-content">
-                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internship.description)"></div>
+                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internship.description || '')"></div>
                     </div>
                 </div>
 

@@ -19,22 +19,32 @@ export class InternshipProposalService extends BaseService {
     }
 
     /**
-     * Return a list af all students waiting for a response from the given professor user id
+     * Return a list af all proposals that reference the given professor id
      *
      * @param {string} professorId The professor id
      */
-    getPendingStudents(professorId: string): Promise<ApiResponseDto<Array<InternshipProposal>>> {
-        return this.getVerb(Defaults.collectionsName.internshipProposals + '/pendingstudents/' + professorId);
+    getByProfessorId(professorId: string): Promise<ApiResponseDto<Array<InternshipProposal>>> {
+        return this.getVerb(Defaults.collectionsName.internshipProposals + '/getByProfessorId/' + professorId);
     }
 
     /**
-     * Return the list internship proposal made by the given student user id
+     * Return the list internship proposal made by the given student id
      *
      * @param {string} studentId The student id
      */
     getByStudentId(studentId: string): Promise<ApiResponseDto<Array<InternshipProposal>>> {
         return this.getVerb(Defaults.collectionsName.internshipProposals + '/getByStudentId/' + studentId);
     }
+
+    /**
+     * Return a list af all proposals that reference the given company owner id
+     *
+     * @param {string} companyOwnerId The company owner id
+     */
+    getByCompanyOwnerId(companyOwnerId: string): Promise<ApiResponseDto<Array<InternshipProposal>>> {
+        return this.getVerb(Defaults.collectionsName.internshipProposals + '/getByCompanyOwnerId/' + companyOwnerId);
+    }
+
 
     /**
      * Return the number of available places for the given internship

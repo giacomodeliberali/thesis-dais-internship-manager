@@ -42,6 +42,12 @@ export const ROUTES: RouteInfo[] = [
                 title: 'Pages.InternshipOffers.ViewOffers',
                 ab: 'L'
             },
+            {
+                path: 'add',
+                title: 'Dictionary.AddInternship',
+                ab: 'A',
+                requiredRoles: [RoleType.Company]
+            }
         ]
     },
     {
@@ -61,7 +67,7 @@ export const ROUTES: RouteInfo[] = [
         ]
     },
     {
-        path: '/auth/internships/',
+        path: '/auth/',
         title: 'Pages.InternshipOwnCompany.Title',
         type: 'sub',
         icontype: 'fas fa-briefcase',
@@ -70,14 +76,14 @@ export const ROUTES: RouteInfo[] = [
         ],
         children: [
             {
-                path: 'add',
-                title: 'Dictionary.AddInternship',
-                ab: 'A'
-            },
-            {
-                path: 'company',
+                path: 'internships/company',
                 title: 'Dictionary.OwnInternships',
                 ab: 'M'
+            },
+            {
+                path: 'proposals/company',
+                title: 'Pages.CompanyInternshipProposals.MenuItem',
+                ab: 'P'
             }
         ]
     },

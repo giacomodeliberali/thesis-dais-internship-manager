@@ -73,3 +73,14 @@ body.spinner-visible {
 ul.dropdown-menu li.disabled a {
     color: rgba(119, 119, 119, 0.8) !important;
 }
+
+/** ########### InternshipProposal table colors ########### **/
+
+.InternshipProposalType.colorify {
+    &.WaitingForProfessor>td:first-of-type {
+        border-left: 3px solid #7AC29A;
+    }
+    &.Confirmed>td:first-of-type {
+        border-left: 3px solid rgba(35, 204, 239, 0.71);
+    }
+}

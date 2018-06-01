@@ -49,7 +49,10 @@ export class InternshipAddComponent {
 
 		this.internship = new Internship({
 			address: new Address(),
-			status: InternshipStatusType.NotApproved
+			status: InternshipStatusType.NotApproved,
+			studentsNumber: 1,
+			endDate: null,
+			startDate: null
 		});
 
 		this.companiesService.getByOwnerId(this.authService.currentUser.id).then(response => {
@@ -74,8 +77,10 @@ export class InternshipAddComponent {
 	save() {
 		this.loadingService.isLoading = true;
 		this.internship.company = this.selectedCompanyId as any;
-		this.internship.startDate = new Date(this.internship.startDate);
-		this.internship.endDate = new Date(this.internship.endDate);
+		if (this.internship.startDate)
+			this.internship.startDate = new Date(this.internship.startDate);
+		if (this.internship.endDate)
+			this.internship.endDate = new Date(this.internship.endDate);
 		this.internshipsService.create(this.internship).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
 			this.router.navigate(['/auth/internships/company']);

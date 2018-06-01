@@ -44,7 +44,7 @@
         "Zip": "CAP",
         "Access": "Accedi",
         "ProposeYourSelf": "Candidati",
-        "AddInternship": "Aggiungi stage",
+        "AddInternship": "Aggiungi tirocinio",
         "MyComapanies": "Le mie aziende",
         "Password": "Password",
         "VatCode": "Partita IVA",
@@ -67,7 +67,9 @@
         "Confirm": "Conferma",
         "CancelInternshipProposal": "Annulla candidatura",
         "ConfirmInternshipProposal": "Conferma tirocinio",
-        "RejectInternshipProposal": "Rifiuta tirocinio"
+        "RejectInternshipProposal": "Rifiuta tirocinio",
+        "NoAvailablePlaces": "Posti esauriti",
+        "AlreadyCandidate": "Sei già candidato"
     },
     "Pages": {
         "Index": {
@@ -153,11 +155,19 @@
         "InternshipProposalDetails": {
             "Title": "Dettagli proposta di stage"
         },
-        "InternshipProposalEdit":{
+        "InternshipProposalEdit": {
             "Title": "Modifica proposta di stage"
         },
-        "InternshipProposalApprove":{
+        "InternshipProposalApprove": {
             "Title": "Approva proposta di stage"
+        },
+        "CompanyInternshipProposals": {
+            "Title": "Proposte di tirocinio ricevute",
+            "SubTitle": "Le proposte di stage che convolgono le tue aziende",
+            "MenuItem": "Proposte ricevute"
+        },
+        "InternshipEdit":{
+            "Title": "Modifica tirocinio"
         }
     },
     "Alerts": {
@@ -218,6 +228,9 @@
             "Error": {
                 "Message": "Non è stato possibile rifiutare la candidatura"
             }
+        },
+        "ApproveWrongInternshipStatus":{
+            "Title": "Il tirocinio è già stato approvato o respinto"
         }
     },
     "Roles": {

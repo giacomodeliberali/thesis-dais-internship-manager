@@ -77,7 +77,7 @@ export class InternshipCandidateComponent {
 		this.internshipsProposal.professor = this.professor.id as any;
 		this.internshipProposalsService.create(this.internshipsProposal).then(r => {
 			NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
-			this.location.back();
+			this.router.navigate(['/auth/proposals/details/' + r.data.id]);
 		}).catch(ex => {
 			NotificationHelper.showNotification("Alerts.Save.Error.Message", "ti-save", "danger");
 			console.error(ex);

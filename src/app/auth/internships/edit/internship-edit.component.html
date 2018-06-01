@@ -5,12 +5,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" translate>
-                            Pages.AddInternship.Title
+                            Dictionary.Company
                         </h4>
                     </div>
                     <div class="card-content" *ngIf="selectedCompanyId">
                         <div class="form-group">
-                            <label translate>Dictionary.Company</label>
                             <select class="selectpicker" data-style="btn btn-block" [(ngModel)]="selectedCompanyId" (change)="updateAddress()">
                                 <option *ngFor="let cmp of companies" [value]="cmp.id">{{cmp.name}} - {{cmp.vatCode}}</option>
                             </select>
@@ -136,7 +135,7 @@
                     <div class="card-content">
                         <div>
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/company'" translate>Dictionary.Cancel</button>
-                            <!-- <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="internship.status < InternshipStatusType.Closed" translate>Dictionary.Delete</button> -->
+                            <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="internship.status === InternshipStatusType.NotApproved" translate>Dictionary.Delete</button>
                             <button type="button" class="btn btn-success pull-right" (click)="save()" translate>Dictionary.Save</button>
                         </div>
                     </div>
