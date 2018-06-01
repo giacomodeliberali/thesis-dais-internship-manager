@@ -164,7 +164,12 @@ export class AuthService {
             console.log("Cannot logout from google", ex);
         }
     }
-
+    /**
+     * Log the user in
+     *
+     * @param {string} email The user email
+     * @param {string} password The user password
+     */
     public async login(email: string, password: string): Promise<ApiResponseDto<AuthResponse>> {
         const apiResponse = await this.post('auth/login', {
             email: email,
@@ -178,7 +183,11 @@ export class AuthService {
 
         return apiResponse;
     }
-
+    /**
+     * Register a new user
+     *
+     * @param {User} user The new user
+     */
     public async register(user: User) {
 
         const apiResponse = await this.post('auth/register', user.clone()) as ApiResponseDto<AuthResponse>;

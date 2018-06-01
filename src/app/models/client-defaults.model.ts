@@ -1,5 +1,9 @@
+/**
+ * The client defaults constants
+ */
 export class ClientDefaults {
 
+    /** The application name */
     public static appName = "DAIS Internship Manager";
 
     /** The CKEditor default config */

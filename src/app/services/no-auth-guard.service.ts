@@ -12,9 +12,9 @@ import { canExec } from '../helpers/can-exec.helper';
 export class NoAuthGuardService implements CanActivate, CanActivateChild {
 
   /**
-   * Inject deps
-   * @param auth The [[AuthService]]
-   * @param router The Router
+   * Creates an instance of NoAuthGuardService.
+   * @param {AuthService} auth The authService
+   * @param {Router} router The router
    */
   constructor(
     public auth: AuthService,

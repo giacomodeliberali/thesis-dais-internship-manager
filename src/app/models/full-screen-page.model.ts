@@ -4,6 +4,11 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 
 declare var $: any;
 
+/**
+ * A full page used by template
+ * 
+ * @implements {OnInit}
+ */
 export class FullScreenPage implements OnInit {
 
     private toggleButton;

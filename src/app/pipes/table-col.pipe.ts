@@ -6,10 +6,20 @@ import { Pipe, PipeTransform, Injector } from "@angular/core";
 @Pipe({ name: 'tablecol' })
 export class TableColPipe implements PipeTransform {
 
+    /**
+     * Creates an instance of TableColPipe.
+     * @param {Injector} injector The app injector
+     */
     constructor(private injector: Injector) {
 
     }
 
+    /**
+     * Format the value with the given pipe
+     *
+     * @param {*} value The value to format
+     * @param {PipeTransform} pipe The pipe to use
+     */
     transform(value: any, pipe: PipeTransform): any {
 
         if (pipe) {

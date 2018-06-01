@@ -14,9 +14,9 @@ import { NotificationHelper } from '../helpers/notification.helper';
 export class AuthGuardService implements CanActivate, CanActivateChild {
 
   /**
-   * Inject deps
-   * @param auth The [[AuthService]]
-   * @param router The Router
+   * Creates an instance of AuthGuardService.
+   * @param {AuthService} auth The authService
+   * @param {Router} router The router
    */
   constructor(
     public auth: AuthService,
@@ -24,8 +24,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   }
 
   /**
-   * Return true if the current user can navigate the given route, false otherwise.
-   * @param route The route the user is navigating to
+   * Return true if the current user can navigate the given route, false otherwise
+   *
+   * @param {ActivatedRouteSnapshot} route The route the user is navigating to
    */
   async canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
     if (!this.auth.currentUser || !this.auth.currentUser.role || !this.auth.token) {
@@ -77,8 +78,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   }
 
   /**
-   * Return true if the current user can navigate the children of the route, false otherwise.
-   * @param route The route the user is navigating to
+   * Return true if the current user can navigate the children of the route, false otherwise
+   *
+   * @param {ActivatedRouteSnapshot} route The route the user is navigating to
    */
   canActivateChild(route: ActivatedRouteSnapshot): Promise<boolean> {
     return this.canActivate(route);

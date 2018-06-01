@@ -7,11 +7,19 @@ import { Address } from "gdl-thesis-core/dist";
 @Pipe({ name: 'address' })
 export class AddressPipe implements PipeTransform {
 
+    /**
+     * Creates an instance of AddressPipe.
+     * @param {Injector} injector The injector
+     */
     constructor(private injector: Injector) {
 
     }
-
-    transform(value: Address, pipe: PipeTransform): any {
+    /**
+     * Format the address object to a string
+     *
+     * @param {Address} value The address to format
+     */
+    transform(value: Address): any {
 
         if (value) {
             return `${value.street || ''} ${value.number || ''}, ${value.city || ''}${value.zip ? ' - ' + value.zip : ''}, ${value.state}`;

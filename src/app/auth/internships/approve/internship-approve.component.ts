@@ -13,7 +13,8 @@ import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
 import { canExec } from '../../../helpers/can-exec.helper';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MailOptions, EmailsService } from '../../../services/emails.service';
+import { EmailsService } from '../../../services/emails.service';
+import { MailOptions } from '../../../models/mail-options.interface';
 
 declare var $;
 
