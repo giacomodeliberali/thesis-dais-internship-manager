@@ -4,8 +4,8 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Company
+                        <h4 class="card-title">
+                            {{'Dictionary.Company' | translate}}
                         </h4>
                     </div>
                     <div class="card-content" *ngIf="selectedCompanyId">
@@ -19,8 +19,8 @@
 
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Status
+                        <h4 class="card-title">
+                            {{'Dictionary.Status' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
@@ -33,49 +33,49 @@
                 </div>
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Address
+                        <h4 class="card-title">
+                            {{'Dictionary.Address' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
                             <div class="row form-group">
                                 <div class="col-lg-6 col-xs-12">
-                                    <label translate>Dictionary.Street</label>
+                                    <label>{{'Dictionary.Street' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.Street' | translate}}" [(ngModel)]="internship.address.street"
                                     />
                                 </div>
                                 <div class="col-lg-4 col-xs-6">
-                                    <label translate>Dictionary.Number</label>
+                                    <label>{{'Dictionary.Number' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.Number' | translate}}" [(ngModel)]="internship.address.number"
                                     />
                                 </div>
                                 <div class="col-lg-2 col-xs-6">
-                                    <label translate>Dictionary.Floor</label>
+                                    <label>{{'Dictionary.Floor' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.Number' | translate}}" [(ngModel)]="internship.address.floor"
                                     />
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-6">
-                                    <label translate>Dictionary.City</label>
+                                    <label>{{'Dictionary.City' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.City' | translate}}" [(ngModel)]="internship.address.city"
                                     />
                                 </div>
                                 <div class="col-xs-6">
-                                    <label translate>Dictionary.State</label>
+                                    <label>{{'Dictionary.State' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.State' | translate}}" [(ngModel)]="internship.address.state"
                                     />
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-6">
-                                    <label translate>Dictionary.Zip</label>
+                                    <label>{{'Dictionary.Zip' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.Zip' | translate}}" [(ngModel)]="internship.address.zip"
                                     />
                                 </div>
                                 <div class="col-xs-6">
-                                    <label translate>Dictionary.Country</label>
+                                    <label>{{'Dictionary.Country' | translate}}</label>
                                     <input type="text" class="form-control" placeholder="{{'Dictionary.Country' | translate}}" [(ngModel)]="internship.address.country"
                                     />
                                 </div>
@@ -86,29 +86,29 @@
 
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Details
+                        <h4 class="card-title">
+                            {{'Dictionary.Details' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
-                            <label translate>Dictionary.Title</label>
+                            <label>{{'Dictionary.Title' | translate}}</label>
                             <input type="text" class="form-control" placeholder="{{'Dictionary.Title' | translate}}" [(ngModel)]="internship.title" />
                         </div>
                         <div class="form-group">
-                            <label translate>Dictionary.Description</label>
+                            <label>{{'Dictionary.Description' | translate}}</label>
                             <ckeditor [(ngModel)]="internship.description" [config]="config"></ckeditor>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-xs-6">
 
-                                <label translate>Dictionary.StartDate</label>
+                                <label>{{'Dictionary.StartDate' | translate}}</label>
                                 <input type="text" class="form-control" datepicker [startDate]="startDate" [(date)]="internship.startDate" placeholder="{{'Dictionary.StartDate' | translate}}"
                                 />
                             </div>
                             <div class="col-xs-6">
-                                <label translate>Dictionary.EndDate</label>
+                                <label>{{'Dictionary.EndDate' | translate}}</label>
                                 <input type="text" class="form-control" datepicker [startDate]="startDate" [(date)]="internship.endDate" placeholder="{{'Dictionary.EndDate' | translate}}"
                                 />
                             </div>
@@ -116,12 +116,12 @@
                         <div class="form-group row">
                             <div class="col-sm-6">
 
-                                <label translate>Dictionary.TotalHours</label>
+                                <label>{{'Dictionary.TotalHours' | translate}}</label>
                                 <input type="number" class="form-control" placeholder="{{'Dictionary.TotalHours' | translate}}" [(ngModel)]="internship.totalHours"
                                 />
                             </div>
                             <div class="col-sm-6">
-                                <label translate>Dictionary.StudentsNumber</label>
+                                <label>{{'Dictionary.StudentsNumber' | translate}}</label>
                                 <input type="number" class="form-control" placeholder="{{'Dictionary.StudentsNumber' | translate}}" [(ngModel)]="internship.studentsNumber"
                                 />
                             </div>
@@ -134,9 +134,9 @@
                 <div class="card" *ngIf="internship">
                     <div class="card-content">
                         <div>
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/company'" translate>Dictionary.Cancel</button>
-                            <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="internship.status === InternshipStatusType.NotApproved" translate>Dictionary.Delete</button>
-                            <button type="button" class="btn btn-success pull-right" (click)="save()" translate>Dictionary.Save</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships/company'">{{'Dictionary.Cancel' | translate}}</button>
+                            <button type="button" class="btn btn-danger" (click)="delete()" *ngIf="internship.status === InternshipStatusType.NotApproved">{{'Dictionary.Delete' | translate}}</button>
+                            <button type="button" class="btn btn-success pull-right" (click)="save()">{{'Dictionary.Save' | translate}}</button>
                         </div>
                     </div>
                 </div>

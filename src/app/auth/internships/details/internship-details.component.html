@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-content">
                         <div class="form-group">
-                            <label translate>Dictionary.Company</label>
+                            <label>{{'Dictionary.Company' | translate}}</label>
                             <p class="form-control-static">{{internship.company?.name}}</p>
                         </div>
                     </div>
@@ -23,11 +23,11 @@
                     </div>
                     <div class="card-content">
                         <div class="form-group">
-                            <label translate>Dictionary.Status</label>
+                            <label>{{'Dictionary.Status' | translate}}</label>
                             <p class="form-control-static">{{('Enums.InternshipStatusType.' + InternshipStatusType[internship.status]) | translate}}</p>
                         </div>
                         <div class="form-group" [hidden]="internship.status != InternshipStatusType.Rejected">
-                            <label translate>Dictionary.RejectReason</label>
+                            <label>{{'Dictionary.RejectReason' | translate}}</label>
                             <p class="form-control-static" [innerHTML]="internship.rejectReason ? domSanitizer.bypassSecurityTrustHtml(internship.rejectReason) : ('Dictionary.NotDefined' | translate)"></p>
                         </div>
                     </div>
@@ -42,31 +42,31 @@
 
                         <div class="row form-group">
                             <div class="col-lg-6 col-xs-12">
-                                <label translate>Dictionary.Address</label>
+                                <label>{{'Dictionary.Address' | translate}}</label>
                                 <p class="form-control-static">{{internship.address | address}}</p>
                             </div>
                         </div>
 
                         <div class="row form-group">
                             <div class="col-md-6">
-                                <label translate>Dictionary.StartDate</label>
+                                <label>{{'Dictionary.StartDate' | translate}}</label>
                                 <p class="form-control-static" *ngIf="internship.startDate">{{internship.startDate | date}}</p>
-                                <p class="form-control-static" *ngIf="!internship.startDate" translate>Dictionary.NotSpecified</p>
+                                <p class="form-control-static" *ngIf="!internship.startDate">{{'Dictionary.NotSpecified' | translate}}</p>
                             </div>
                             <div class="col-md-6">
-                                <label translate>Dictionary.EndDate</label>
+                                <label>{{'Dictionary.EndDate' | translate}}</label>
                                 <p class="form-control-static" *ngIf="internship.endDate">{{internship.endDate | date}}</p>
-                                <p class="form-control-static" *ngIf="!internship.endDate" translate>Dictionary.NotSpecified</p>
+                                <p class="form-control-static" *ngIf="!internship.endDate">{{'Dictionary.NotSpecified' | translate}}</p>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6">
-                                <label translate>Dictionary.TotalHours</label>
+                                <label>{{'Dictionary.TotalHours' | translate}}</label>
                                 <p class="form-control-static">{{internship.totalHours || ('Dictionary.NotSpecified' | translate)}}</p>
                             </div>
                             <div class="col-sm-6">
-                                <label translate>Dictionary.StudentsNumber</label>
+                                <label>{{'Dictionary.StudentsNumber' | translate}}</label>
                                 <p class="form-control-static">{{internship.studentsNumber || ('Dictionary.NotSpecified' | translate)}}</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                 <div class="card" *ngIf="internship">
                     <div class="card-content">
                         <div>
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships'" translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/internships'">{{'Dictionary.Back' | translate}}</button>
                             <button type="button" class="btn btn-success pull-right" [routerLink]="'/auth/internships/' + internship.id + '/candidate'"
                                 *ngIf="internship.status == InternshipStatusType.Approved && canExec(authService.currentUser.role.type,[RoleType.Student]) && availablePlace > 0 && !alreadyCandidate"
                                 translate>Dictionary.ProposeYourSelf</button>

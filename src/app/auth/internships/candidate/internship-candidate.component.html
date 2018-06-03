@@ -10,7 +10,7 @@
                     </div>
                     <div class="card-content">
                         <div class="form-group">
-                            <label translate>Dictionary.Professor</label>
+                            <label>{{'Dictionary.Professor' | translate}}</label>
                             <input class="form-control" ngui-auto-complete [(ngModel)]="professor" placeholder="{{'Dictionary.Professor' | translate}}"
                                 [source]="getProfessors.bind(this)" no-match-found-text="{{'Dictionary.NoResults' | translate}}"
                                 loading-text="{{'Dictionary.Loading' | translate}}..." value-formatter="name" list-formatter="name"
@@ -25,8 +25,8 @@
                 <div class="card">
                     <div class="card-content">
                         <div>
-                            <a class="btn btn-default" [routerLink]="['/auth/internships/details/',internshipId]" translate>Dictionary.Back</a>
-                            <button type="button" class="btn btn-success pull-right" (click)="save()" translate [disabled]="!professor">Dictionary.ProposeYourSelf</button>
+                            <a class="btn btn-default" [routerLink]="['/auth/internships/details/',internshipId]">{{'Dictionary.Back' | translate}}</a>
+                            <button type="button" class="btn btn-success pull-right" (click)="save()" [disabled]="!professor">{{'Dictionary.ProposeYourSelf' | translate}}</button>
                         </div>
                     </div>
                 </div>
