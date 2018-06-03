@@ -114,7 +114,7 @@ export class InternshipApproveComponent {
 						console.error(ex);
 					}
 					NotificationHelper.showNotification("Alerts.Save.Success.Message", "ti-save", "success");
-					this.router.navigate(['/auth/internship/details/' + this.internship.id]);
+					this.router.navigate(['/auth/internships/details/' + this.internship.id]);
 				}
 				this.loadingService.isLoading = false;
 			}).catch(ex => {

@@ -69,7 +69,9 @@
         "ConfirmInternshipProposal": "Conferma tirocinio",
         "RejectInternshipProposal": "Rifiuta tirocinio",
         "NoAvailablePlaces": "Posti esauriti",
-        "AlreadyCandidate": "Sei già candidato"
+        "AlreadyCandidate": "Sei già candidato",
+        "TotalRows": "risultati",
+        "Search": "Cerca"
     },
     "Pages": {
         "Index": {

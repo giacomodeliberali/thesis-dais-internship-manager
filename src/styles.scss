@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import '../node_modules/@swimlane/ngx-datatable/release/index.css';
+@import '../node_modules/@swimlane/ngx-datatable/release/themes/material.css';
+@import '../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 @import "./assets/sass/paper-dashboard.scss";
 a {
     cursor: pointer;
@@ -83,4 +86,23 @@ ul.dropdown-menu li.disabled a {
     &.Confirmed>td:first-of-type {
         border-left: 3px solid rgba(35, 204, 239, 0.71);
     }
+}
+
+ngx-datatable {
+    border-radius: 3px 3px 0 0 !important;
+    box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5) !important;
+}
+
+datatable-body-row:hover {
+    cursor: pointer;
+}
+
+.ngx-datatable.material.single-selection .datatable-body-row.active,
+.ngx-datatable.material.single-selection .datatable-body-row.active .datatable-row-group {
+    background-color: rgba(204, 197, 185, 0.5) !important;
+}
+
+.empty-row {
+    text-align: center !important;
+    margin-top: 20px;
 }

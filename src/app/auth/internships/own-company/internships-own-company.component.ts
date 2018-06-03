@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnInit, TemplateRef } from '@angular/core';
 import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
 import { InternshipStatusType, Internship } from 'gdl-thesis-core/dist';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { GridComponent, Column } from '../../../components/grid/grid.component';
 
 declare var $;
 
@@ -12,72 +15,49 @@ declare var $;
     selector: 'internships-own-company-cmp',
     templateUrl: './internships-own-company.component.html'
 })
-export class InternshipsOwnCompanyComponent {
-
-    internshipTable = {
-        headerRow: [
-            { name: 'Dictionary.Company', value: 'company.name' },
-            { name: 'Dictionary.StartDate', value: 'startDate', class: 'text-center', pipe: DatePipe },
-            { name: 'Dictionary.EndDate', value: 'endDate', class: 'text-center', pipe: DatePipe },
-            { name: 'Dictionary.Title', value: 'title' },
-            { name: 'Dictionary.TotalHours', value: 'totalHours' },
-            {
-                name: 'Dictionary.Status',
-                value: 'status',
-                formatter: (data: any, col?: any, row?: Internship) => 'Enums.InternshipStatusType.' + InternshipStatusType[data],
-                translate: true
-            }
-        ] as Array<any>,
-        dataRows: []
-    };
-
-    public isLoading = true;
+export class InternshipsOwnCompanyComponent implements OnInit {
 
     public InternshipStatusType = InternshipStatusType;
 
+    @ViewChild(GridComponent) table: GridComponent<Internship>;
+    @ViewChild('statusTemplate') statusTemplate: TemplateRef<Internship>;
+    rows: Array<Internship> = null;
+    columns: Array<Column<Internship>> = null;
+
     constructor(
         private internshipsService: InternshipsService,
-        private authService: AuthService) {
+        private authService: AuthService,
+        private router: Router,
+        private datePipe: DatePipe) {
 
         this.internshipsService.getByCompanyOwnerId(this.authService.currentUser.id).then(internsips => {
             if (internsips.isOk)
-                this.internshipTable.dataRows = internsips.data;
+                this.rows = internsips.data;
         }).catch(ex => {
             NotificationHelper.showNotification('Alerts.GetAllInternships.Error.Title', 'ti-warn', 'info');
-        }).then(() => {
-            this.isLoading = false;
-
-            setTimeout(() => {
-                // Init Tooltips
-                $('[rel="tooltip"]').tooltip();
-            });
         });
     }
 
+    ngOnInit() {
+        const sub: Subscription = this.table.onRowSelection.subscribe(((internship: Internship) => {
+            this.router.navigate(['/auth/internships/details/', internship.id]);
+            sub.unsubscribe();
+        }));
 
-    ngAfterViewInit() {
-        // Init Tooltips
-        $('[rel="tooltip"]').tooltip();
+        this.columns = [
+            { name: 'Dictionary.Company', prop: 'company.name' },
+            { name: 'Dictionary.StartDate', prop: 'startDate', cellClass: 'text-center', pipe: this.datePipe },
+            { name: 'Dictionary.EndDate', prop: 'endDate', cellClass: 'text-center', pipe: this.datePipe },
+            { name: 'Dictionary.Title', prop: 'title' },
+            { name: 'Dictionary.TotalHours', prop: 'totalHours' },
+            {
+                name: 'Dictionary.Status',
+                prop: 'status',
+                cellTemplate: this.statusTemplate
+            }
+        ];
     }
 
-    /**
-     * Access the object by path. eg val(obj,'uno.due.tre') return obj.uno.due.tre
-     * @param obj The object
-     * @param path The path
-     */
-    public val(obj: any, path: string) {
 
-        const paths = path.split('.');
-        let current = obj;
-
-        for (let i = 0; i < paths.length; ++i) {
-            if (current[paths[i]] === undefined) {
-                return undefined;
-            } else {
-                current = current[paths[i]];
-            }
-        }
-        return current;
-    };
 
 }

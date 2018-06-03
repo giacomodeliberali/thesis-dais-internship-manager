@@ -29,6 +29,7 @@
     "@ngui/auto-complete": "^1.0.2",
     "@ngx-translate/core": "^9.1.1",
     "@ngx-translate/http-loader": "^3.0.1",
+    "@swimlane/ngx-datatable": "^13.0.1",
     "@types/googlemaps": "3.26.14",
     "bootstrap": "3.3.5",
     "bootstrap-datepicker": "^1.8.0",

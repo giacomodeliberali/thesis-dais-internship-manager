@@ -15,6 +15,8 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import localeIt from '@angular/common/locales/it';
 import { AddressPipe } from '../pipes/address.pipe';
 import { LoadingService } from '../helpers/loading.helper';
+import { GridComponent } from '../components/grid/grid.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 registerLocaleData(localeIt);
 
 /**
@@ -39,14 +41,16 @@ registerLocaleData(localeIt);
             isolate: false
         }),
         RouterModule.forChild(SharedRoutes),
-        NguiAutoCompleteModule
+        NguiAutoCompleteModule,
+        NgxDatatableModule
     ],
     declarations: [
         NotFoundComponent,
         IndexComponent,
         DatepickerDirective,
         TableColPipe,
-        AddressPipe
+        AddressPipe,
+        GridComponent
     ],
     exports: [
         CommonModule,
@@ -54,7 +58,9 @@ registerLocaleData(localeIt);
         TranslateModule,
         DatepickerDirective,
         TableColPipe,
-        AddressPipe
+        AddressPipe,
+        NgxDatatableModule,
+        GridComponent
     ],
     providers: [
         TranslateService,

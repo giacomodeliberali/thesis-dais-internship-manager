@@ -33,6 +33,7 @@ import { InternshipsService } from './services/internships.service';
 import { CompaniesService } from './services/companies.service';
 import { EmailsService } from './services/emails.service';
 import { InternshipProposalService } from './services/internships-proposal.service';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 export function createNotificationHelper(translateService: TranslateService) {
     return new NotificationHelper(translateService);
@@ -52,6 +53,7 @@ export function createNotificationHelper(translateService: TranslateService) {
         NavbarModule,
         FooterModule,
         FixedPluginModule,
+        NgxDatatableModule
     ],
     declarations: [
         AppComponent,

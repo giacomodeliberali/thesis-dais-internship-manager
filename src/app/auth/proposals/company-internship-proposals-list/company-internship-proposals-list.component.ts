@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { InternshipProposalService } from '../../../services/internships-proposal.service';
 import { AuthService } from '../../../services/auth.service';
-import { InternshipProposalStatusType } from 'gdl-thesis-core/dist';
+import { InternshipProposalStatusType, InternshipProposal } from 'gdl-thesis-core/dist';
+import { GridComponent, Column } from '../../../components/grid/grid.component';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 declare var $;
 
@@ -12,68 +15,50 @@ declare var $;
     selector: 'company-internship-proposals-list-cmp',
     templateUrl: './company-internship-proposals-list.component.html'
 })
-export class CompanyInternshipProposalsListComponent {
+export class CompanyInternshipProposalsListComponent implements OnInit {
 
-    internshipTable = {
-        headerRow: [
-            { name: 'Dictionary.Student', value: 'student.name' },
-            { name: 'Dictionary.Company', value: 'internship.company.name' },
-            { name: 'Dictionary.StartDate', value: 'internship.startDate', class: 'text-center', pipe: DatePipe },
-            { name: 'Dictionary.EndDate', value: 'internship.endDate', class: 'text-center', pipe: DatePipe },
-            {
-                name: 'Dictionary.Status',
-                value: 'status',
-                class: 'text-center',
-                formatter: (value) => 'Enums.InternshipProposalStatusType.' + InternshipProposalStatusType[value],
-                translate: true
-            }
-        ] as Array<any>,
-        dataRows: []
-    };
+    @ViewChild(GridComponent) table: GridComponent<InternshipProposal>;
+    @ViewChild('statusTemplate') statusTemplate: TemplateRef<InternshipProposal>;
+    rows: Array<InternshipProposal> = null;
+    columns: Array<Column<InternshipProposal>> = null;
 
-    public isLoading = true;
     public InternshipProposalStatusType = InternshipProposalStatusType;
 
     constructor(
         private authService: AuthService,
-        private internshipProposalService: InternshipProposalService) {
+        private internshipProposalService: InternshipProposalService,
+        private datePipe: DatePipe,
+        private router: Router) {
 
         this.internshipProposalService.getByCompanyOwnerId(this.authService.currentUser.id).then(response => {
             if (response.isOk)
-                this.internshipTable.dataRows = response.data;
+                this.rows = response.data;
         }).catch(ex => {
             NotificationHelper.showNotification('Alerts.GetAllInternships.Error.Title', 'ti-warn', 'info');
-        }).then(() => {
-            this.isLoading = false;
-
-            setTimeout(() => {
-                // Init Tooltips
-                $('[rel="tooltip"]').tooltip();
-            });
         });
     }
 
 
-
-
-    /**
-     * Access the object by path. eg val(obj,'uno.due.tre') return obj.uno.due.tre
-     * @param obj The object
-     * @param path The path
-     */
-    public val(obj: any, path: string) {
-
-        const paths = path.split('.');
-        let current = obj;
-
-        for (let i = 0; i < paths.length; ++i) {
-            if (current[paths[i]] === undefined) {
-                return undefined;
-            } else {
-                current = current[paths[i]];
+    ngOnInit() {
+        this.columns = [
+            { name: 'Dictionary.Student', prop: 'student.name' },
+            { name: 'Dictionary.Company', prop: 'internship.company.name' },
+            { name: 'Dictionary.StartDate', prop: 'internship.startDate', cellClass: 'text-center', pipe: this.datePipe },
+            { name: 'Dictionary.EndDate', prop: 'internship.endDate', cellClass: 'text-center', pipe: this.datePipe },
+            {
+                name: 'Dictionary.Status',
+                prop: 'status',
+                cellTemplate: this.statusTemplate
             }
-        }
-        return current;
-    };
+        ];
+
+        const sub: Subscription = this.table.onRowSelection.subscribe(((internshipProposal: InternshipProposal) => {
+            if (internshipProposal.status === InternshipProposalStatusType.WaitingForCompany)
+                this.router.navigate(['/auth/proposals/approve/', internshipProposal.id]);
+            else
+                this.router.navigate(['/auth/proposals/details/', internshipProposal.id]);
+            sub.unsubscribe();
+        }));
+    }
 
 }

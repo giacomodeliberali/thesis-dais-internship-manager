@@ -2,7 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="card">
+                <grid-cmp [rows]="rows" [allRows]="rows" [columns]="columns"></grid-cmp>
+
+                <ng-template #statusTemplate let-row="row" let-value="value">
+                    <span>{{('Enums.InternshipStatusType.' + InternshipStatusType[value]) | translate}}</span>
+                </ng-template>
+                <!-- <div class="card">
                     <div class="card-header">
                         <h4 class="card-title" translate>Dictionary.OwnInternships</h4>
                         <p class="category" translate>Pages.InternshipOwnCompany.SubTitle</p>
@@ -48,7 +53,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

@@ -87,7 +87,11 @@
                 <div class="card" *ngIf="internshipProposal">
                     <div class="card-content">
                         <div>
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals'" translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/professor'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Professor])"
+                                translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/company'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Company])"
+                                translate>Dictionary.Back</button>
+
                             <button *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student]) && internshipProposal.status < InternshipProposalStatusType.WaitingForCompany"
                                 type="button" class="btn btn-success pull-right" [routerLink]="'/auth/proposals/edit/' + internshipProposal.id"
                                 translate>Dictionary.Edit</button>

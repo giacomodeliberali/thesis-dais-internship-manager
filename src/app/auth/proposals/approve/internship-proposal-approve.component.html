@@ -97,7 +97,8 @@
                 <div class="card" *ngIf="internshipProposal">
                     <div class="card-content">
                         <div>
-                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/professor'" translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/professor'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Professor])" translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/company'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Company])" translate>Dictionary.Back</button>
                         </div>
                     </div>
                 </div>
