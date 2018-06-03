@@ -1,11 +1,13 @@
+
+import {of as observableOf,  Observable } from 'rxjs';
+
+import {map, filter} from 'rxjs/operators';
 import { Component, OnInit, Renderer, ViewChild, ElementRef, Directive } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ROUTES, RouteInfo } from '../sidebar/sidebar.component';
 import { TranslateService } from '@ngx-translate/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 
 var misc: any = {
@@ -42,13 +44,13 @@ export class NavbarComponent implements OnInit {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
 
-        this.router.events
-            .filter((event) => event instanceof NavigationEnd)
-            .map(() => this.activatedRoute)
-            .map((route) => {
+        this.router.events.pipe(
+            filter((event) => event instanceof NavigationEnd),
+            map(() => this.activatedRoute),
+            map((route) => {
                 while (route.firstChild) route = route.firstChild;
                 return route;
-            })
+            }),)
             .subscribe((route) => {
                 this.getTitle(route);
             });
@@ -126,7 +128,7 @@ export class NavbarComponent implements OnInit {
         if (currentRouteTitle)
             title = await this.translateService.get(currentRouteTitle);
         else
-            title = Observable.of('');
+            title = observableOf('');
 
         this.title = title;
 

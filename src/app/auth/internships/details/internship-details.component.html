@@ -4,21 +4,21 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Pages.InternshipDetails.Title
+                        <h4 class="card-title">
+                            {{'Pages.InternshipDetails.Title' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
                         <div class="form-group">
                             <label translate>Dictionary.Company</label>
-                            <p class="form-control-static">{{internship.company.name}}</p>
+                            <p class="form-control-static">{{internship.company?.name}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="card" *ngIf="internship && canExec(authService.currentUser.role.type,[RoleType.Company,RoleType.Professor])">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Status
+                        <h4 class="card-title">
+                            {{'Dictionary.Status' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
@@ -34,8 +34,8 @@
                 </div>
                 <div class="card" *ngIf="internship">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Dictionary.Details
+                        <h4 class="card-title">
+                            {{'Dictionary.Details' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">

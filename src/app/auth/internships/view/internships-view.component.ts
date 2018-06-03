@@ -2,7 +2,6 @@ import { Component, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
-import { RangeObservable } from 'rxjs/observable/RangeObservable';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { InternshipStatusType, Internship } from 'gdl-thesis-core/dist';
 import { GridComponent, Column } from '../../../components/grid/grid.component';

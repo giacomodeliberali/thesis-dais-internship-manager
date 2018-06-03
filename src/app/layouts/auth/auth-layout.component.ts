@@ -1,9 +1,11 @@
+
 import { Component, OnInit, OnDestroy, ViewChild, HostListener } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
-import 'rxjs/add/operator/filter';
+
 import { NavbarComponent } from '../../auth/shared/navbar/navbar.component';
+import { filter } from 'rxjs/operators';
 
 declare var $: any;
 
@@ -19,19 +21,19 @@ export class AuthLayoutComponent implements OnInit {
 
     @ViewChild('sidebar') sidebar;
     @ViewChild(NavbarComponent) navbar: NavbarComponent;
-    constructor( private router: Router, location:Location ) {
-      this.location = location;
+    constructor(private router: Router, location: Location) {
+        this.location = location;
     }
 
     ngOnInit() {
-        this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-        //   this.url = event.url;
-          this.navbar.sidebarClose();
+        this._router = this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
+            //   this.url = event.url;
+            this.navbar.sidebarClose();
         });
 
         var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
-        if (isWindows){
-        // if we are on windows OS we activate the perfectScrollbar function
+        if (isWindows) {
+            // if we are on windows OS we activate the perfectScrollbar function
             var $main_panel = $('.main-panel');
             $main_panel.perfectScrollbar();
         }

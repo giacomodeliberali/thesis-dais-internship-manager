@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType, InternshipProposal, InternshipProposalStatusType } from 'gdl-thesis-core/dist';
@@ -11,10 +12,10 @@ import { LoadingService } from '../../../helpers/loading.helper';
 import { Location } from '@angular/common';
 import { ClientDefaults } from '../../../models/client-defaults.model';
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { UsersService } from '../../../services/user.service';
 import { InternshipProposalService } from '../../../services/internships-proposal.service';
+import { map } from 'rxjs/operators';
 declare var $;
 
 @Component({
@@ -58,7 +59,7 @@ export class InternshipCandidateComponent {
 	}
 
 	public getProfessors(search: string): Observable<Array<User>> {
-		return this.usersService.lookupProfessors(search).map(v => {
+		return this.usersService.lookupProfessors(search).pipe(map(v => {
 			if (v.data) {
 				return v.data.map(p => {
 					p.name = p.name.toUpperCase();
@@ -66,7 +67,7 @@ export class InternshipCandidateComponent {
 				});
 			}
 			return [];
-		});
+		}));
 	}
 
 	/**

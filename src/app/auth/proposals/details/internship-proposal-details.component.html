@@ -92,6 +92,9 @@
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/company'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Company])"
                                 translate>Dictionary.Back</button>
 
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/student'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student])"
+                            translate>Dictionary.Back</button>
+
                             <button *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student]) && internshipProposal.status < InternshipProposalStatusType.WaitingForCompany"
                                 type="button" class="btn btn-success pull-right" [routerLink]="'/auth/proposals/edit/' + internshipProposal.id"
                                 translate>Dictionary.Edit</button>

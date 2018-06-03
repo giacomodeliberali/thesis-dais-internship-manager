@@ -4,8 +4,8 @@
             <div class="col-md-10 col-md-offset-1">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title" translate>
-                            Pages.InternshipCandidate.Title
+                        <h4 class="card-title">
+                            {{'Pages.InternshipCandidate.Title' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
@@ -15,8 +15,8 @@
                                 [source]="getProfessors.bind(this)" no-match-found-text="{{'Dictionary.NoResults' | translate}}"
                                 loading-text="{{'Dictionary.Loading' | translate}}..." value-formatter="name" list-formatter="name"
                                 max-num-list="20" />
-                            <span translate>
-                                Pages.InternshipCandidate.ProfessorDescription
+                            <span>
+                                {{'Pages.InternshipCandidate.ProfessorDescription' | translate}}
                             </span>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-content">
                         <div>
-                            <a class="btn btn-default" [routerLink]="['/auth/internships/details', '5ae5fcfa02ed7c0a996d4b28']" translate>Dictionary.Back</a>
+                            <a class="btn btn-default" [routerLink]="['/auth/internships/details/',internshipId]" translate>Dictionary.Back</a>
                             <button type="button" class="btn btn-success pull-right" (click)="save()" translate [disabled]="!professor">Dictionary.ProposeYourSelf</button>
                         </div>
                     </div>

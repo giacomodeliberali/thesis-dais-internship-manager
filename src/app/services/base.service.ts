@@ -3,7 +3,7 @@ import { environment } from "environments/environment";
 import { AuthService } from "./auth.service";
 import { injectable } from "inversify";
 import { ApiResponseDto } from "gdl-thesis-core/dist";
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/operators';
 
 /**
