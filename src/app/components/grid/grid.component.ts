@@ -28,7 +28,7 @@ export class GridComponent<T> implements OnInit, OnChanges {
     /** The columns */
     @Input()
     columns: Array<Column<T>>;
-    private _columns: Array<Column<T>>;
+    _columns: Array<Column<T>>;
 
     /** The rows */
     @Input()
