@@ -77,7 +77,11 @@
         "Forward": "Avanti",
         "Total": "Totale",
         "EndInternshipProposal": "Termina tirocinio",
-        "GenerateDocs": "Genera documenti"
+        "GenerateDocs": "Genera documenti",
+        "RemainingHours": "Ore rimanenti",
+        "CurrentState": "Stato corrente",
+        "RealStartDate": "Data di inizio reale",
+        "RealEndDate": "Data di fine reale"
     },
     "Pages": {
         "Index": {

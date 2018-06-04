@@ -46,7 +46,7 @@
                     <div class="card-content">
 
                         <div class="row form-group">
-                            <div class="col-lg-6 col-xs-12">
+                            <div class="col-xs-12">
                                 <label translate>Dictionary.Address</label>
                                 <p class="form-control-static">{{internshipProposal.internship.address | address}}</p>
                             </div>
@@ -81,6 +81,28 @@
                     </div>
                     <div class="card-content">
                         <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internshipProposal.internship.description)"></div>
+                    </div>
+                </div>
+
+                <div class="card" *ngIf="internshipProposal && internshipProposal.status === InternshipProposalStatusType.Ended">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.CurrentState' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label translate>Dictionary.RealStartDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.startDate">{{internshipProposal.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.startDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label translate>Dictionary.RealEndDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.endDate">{{internshipProposal.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.endDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

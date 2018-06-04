@@ -93,6 +93,7 @@ export class InternshipProposalApproveComponent implements OnInit {
 				if (apiResponse && apiResponse.isOk) {
 					this.internshipProposal = new InternshipProposal(apiResponse.data);
 					NotificationHelper.showNotification(`Alerts.Confirm${op}InternshipProposal.Success.Message`, "ti-save", 'success');
+					this.router.navigate(['/auth/proposals/details/', this.internshipProposal.id]);
 				}
 			} catch (ex) {
 				console.error(ex);
