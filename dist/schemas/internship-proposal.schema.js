@@ -23,6 +23,7 @@ exports.InternshipProposalSchema = new mongoose_1.Schema({
     },
     creationDate: mongoose_1.Schema.Types.Date,
     endDate: mongoose_1.Schema.Types.Date,
+    startDate: mongoose_1.Schema.Types.Date,
     status: mongoose_1.Schema.Types.Number,
     attendances: [
         {

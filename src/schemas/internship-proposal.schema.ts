@@ -23,6 +23,7 @@ export const InternshipProposalSchema: Schema = new Schema({
     },
     creationDate: Schema.Types.Date,
     endDate: Schema.Types.Date,
+    startDate: Schema.Types.Date,
     status: Schema.Types.Number,
     attendances: [
         {

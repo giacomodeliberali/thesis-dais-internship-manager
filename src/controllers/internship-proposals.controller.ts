@@ -237,9 +237,22 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
       const update: InternshipProposal = new InternshipProposal(internshipProposal.toObject());
       update.status = newState;
 
+      // Set startDate once started
+      if (newState === InternshipProposalStatusType.Started)
+        update.startDate = new Date();
+
+      // Set end date once Ended,Canceled or rejected
+      if (newState === InternshipProposalStatusType.Ended ||
+        newState === InternshipProposalStatusType.Canceled ||
+        newState === InternshipProposalStatusType.RejectedByCompany ||
+        newState === InternshipProposalStatusType.RejectedByProfessor)
+        update.endDate = new Date();
+
       const result = await this.internshipProposalsRepository
         .partialUpdate(update.id, {
-          status: newState
+          status: newState,
+          startDate: update.startDate,
+          endDate: update.endDate
         });
 
       // Check remaining places for the related internship
@@ -481,7 +494,7 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
         }
 
         PdfGenerator.generateAndSend(generateInternshipProposalTemplate(proposal), res);
-        
+
       } catch (ex) {
         return new ApiResponse({
           data: null,

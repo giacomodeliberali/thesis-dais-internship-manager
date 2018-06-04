@@ -225,9 +225,20 @@ let InternshipProposalsController = class InternshipProposalsController extends 
             // Update the proposal
             const update = new dist_1.InternshipProposal(internshipProposal.toObject());
             update.status = newState;
+            // Set startDate once started
+            if (newState === dist_1.InternshipProposalStatusType.Started)
+                update.startDate = new Date();
+            // Set end date once Ended,Canceled or rejected
+            if (newState === dist_1.InternshipProposalStatusType.Ended ||
+                newState === dist_1.InternshipProposalStatusType.Canceled ||
+                newState === dist_1.InternshipProposalStatusType.RejectedByCompany ||
+                newState === dist_1.InternshipProposalStatusType.RejectedByProfessor)
+                update.endDate = new Date();
             const result = yield this.internshipProposalsRepository
                 .partialUpdate(update.id, {
-                status: newState
+                status: newState,
+                startDate: update.startDate,
+                endDate: update.endDate
             });
             // Check remaining places for the related internship
             const availablePlaces = yield this.internshipProposalsRepository.getAvailablePlaces(update.internship.id);

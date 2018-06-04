@@ -42,9 +42,20 @@ function generateInternshipProposalTemplate(proposal) {
     };
     const totalWorkedHours = proposal.attendances.map(p => p.hours).reduce(((acc, val) => acc + val));
     const documentDefinition = {
+        // Set of images used in template
         images: {
             logo: './assets/images/logo-unive.jpg'
         },
+        // Set of styles used in template
+        styles: {
+            header: {
+                fontSize: 18
+            },
+            subHeader: {
+                fontSize: 14
+            }
+        },
+        // Document header
         header: {
             image: 'logo',
             width: 100,
@@ -52,6 +63,7 @@ function generateInternshipProposalTemplate(proposal) {
             // margin: [left, top, right, bottom]
             margin: [0, 20, 10, 0]
         },
+        // Document content
         content: [
             { text: 'Resoconto tirocinio', style: ['header'] },
             { text: proposal.internship.title, style: ['SubHeader'] },
@@ -62,13 +74,14 @@ function generateInternshipProposalTemplate(proposal) {
             '\n',
             { text: 'Dettagli tirocinio', style: ['header'] },
             '\n',
-            `Data inizio: ${proposal.endDate || 'Non specificata'}`,
-            `Data fine: ${proposal.endDate || 'Non specificata'}`,
-            `Luogo di lavoro: ${proposal.internship.address.city}`,
+            `Data inizio: ${moment(proposal.startDate).format('ll') || 'Non specificata'}`,
+            `Data fine: ${moment(proposal.endDate).format('ll') || 'Non specificata'}`,
+            `Ore lavorate: ${totalWorkedHours}`,
+            `Luogo di lavoro: ${proposal.internship.address.city || 'Non specificato'}`,
             '\n',
             { text: 'Foglio presenze', style: ['header'] },
             '\n',
-            `Le seguenti tabelle riportano le giornate lavorate e la quantità di ore. Totale ore lavorate ${totalWorkedHours}.`,
+            `Le seguenti tabelle riportano le giornate lavorate e la quantità di ore.`,
             '\n',
             {
                 columns: genColumns()
@@ -97,13 +110,13 @@ function generateInternshipProposalTemplate(proposal) {
                 ]
             }
         ],
-        styles: {
-            header: {
-                fontSize: 18
-            },
-            subHeader: {
-                fontSize: 14
-            }
+        // Document footer
+        footer: {
+            text: `${moment(new Date()).format('LLL')}`,
+            width: 100,
+            alignment: 'center',
+            // margin: [left, top, right, bottom]
+            margin: [0, 0, 0, 20]
         }
     };
     return documentDefinition;
