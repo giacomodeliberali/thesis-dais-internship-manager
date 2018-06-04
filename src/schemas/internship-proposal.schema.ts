@@ -21,8 +21,21 @@ export const InternshipProposalSchema: Schema = new Schema({
         ref: 'User',
         autopopulate: true
     },
-    creationDate: Date,
-    status: Number
+    creationDate: Schema.Types.Date,
+    endDate: Schema.Types.Date,
+    status: Schema.Types.Number,
+    attendances: [
+        {
+            date: {
+                type: Schema.Types.Date,
+                required: true
+            },
+            hours: {
+                type: Schema.Types.Number,
+                required: true
+            }
+        }
+    ]
 });
 
 

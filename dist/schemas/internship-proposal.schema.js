@@ -21,8 +21,21 @@ exports.InternshipProposalSchema = new mongoose_1.Schema({
         ref: 'User',
         autopopulate: true
     },
-    creationDate: Date,
-    status: Number
+    creationDate: mongoose_1.Schema.Types.Date,
+    endDate: mongoose_1.Schema.Types.Date,
+    status: mongoose_1.Schema.Types.Number,
+    attendances: [
+        {
+            date: {
+                type: mongoose_1.Schema.Types.Date,
+                required: true
+            },
+            hours: {
+                type: mongoose_1.Schema.Types.Number,
+                required: true
+            }
+        }
+    ]
 });
 /** Ensure returned object has property id instead of _id and __v */
 base_1.normalizeSchema(exports.InternshipProposalSchema);

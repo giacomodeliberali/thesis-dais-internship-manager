@@ -181,7 +181,10 @@ export class AuthenticationController {
             httpCode: 200,
             data: {
               user: user.toJSON(),
-              token: sign(user.toJSON(), environment.jwtSecret),
+              token: sign(user.toJSON(), environment.jwtSecret, {
+                // Expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d"
+                expiresIn: "7d" // seven days. 
+              }),
               isNew: false
             }
           }).send();

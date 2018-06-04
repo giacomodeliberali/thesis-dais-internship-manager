@@ -52,7 +52,8 @@ let InternshipProposalsController = class InternshipProposalsController extends 
             .useGetByCompanyOwnerId()
             .useUpdateStates()
             .useForceUpdateStates()
-            .useListStates();
+            .useListStates()
+            .useAddAttendance();
     }
     /**
      * Return the list of [[InternshipProposal]] that reference the given professor id
@@ -307,6 +308,78 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                     exception: {
                         message: "Bad request. Request body is empty, missing 'status' parameter"
                     }
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+     * Add a list of attandances to a internship proposal
+     *
+     * ***POST***
+     *
+     * /internshipProposals/addAttendances
+     *
+     * ***Body parameters***
+     * ```
+     * {
+     *    attendances: Array<Attendance>,
+     *    internshipProposalId: string
+     * }```
+     *
+     * @return ApiResponse<InternshipProposal>
+     */
+    useAddAttendance() {
+        this.router.post('/addAttendances', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const attendances = req.body.attendances;
+                const internshipProposalId = req.body.internshipProposalId;
+                if (!attendances) {
+                    return new api_response_model_1.ApiResponse({
+                        data: null,
+                        httpCode: 400,
+                        response: res,
+                        exception: {
+                            message: "Bad request. Request body is empty, missing 'status' parameter"
+                        }
+                    }).send();
+                }
+                //  Get proposal
+                const proposal = yield this.internshipProposalsRepository.get(internshipProposalId);
+                // Get user
+                const user = req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName];
+                // Check if the user is related to the internship proposal
+                // The user is the student
+                if (proposal.student.id !== user.id &&
+                    // or the professor
+                    proposal.professor.id !== user.id &&
+                    // or the company owner
+                    !proposal.internship.company.owners.find(o => o.id === user.id)) {
+                    return new api_response_model_1.ApiResponse({
+                        data: null,
+                        httpCode: 401,
+                        response: res,
+                        exception: {
+                            code: "auth/user-unauthorized",
+                            message: "You cannot add an attendance of an internship proposal you are not in"
+                        }
+                    }).send();
+                }
+                // Ok, push and update
+                proposal.attendances = proposal.attendances || [];
+                proposal.attendances.push(...attendances);
+                return new api_response_model_1.ApiResponse({
+                    data: yield proposal.save(),
+                    httpCode: 200,
+                    response: res
+                }).send();
+            }
+            catch (ex) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 500,
+                    response: res,
+                    exception: ex
                 }).send();
             }
         }));
