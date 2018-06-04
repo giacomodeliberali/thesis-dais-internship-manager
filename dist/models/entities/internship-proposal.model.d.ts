@@ -1,5 +1,6 @@
 import { Internship, User, BaseEntity } from "./index";
 import { InternshipProposalStatusType } from "../enums";
+import { Attendance } from "./attendance.model";
 /** In internship proposal */
 export declare class InternshipProposal extends BaseEntity<InternshipProposal> {
     /** The referral internship */
@@ -12,4 +13,6 @@ export declare class InternshipProposal extends BaseEntity<InternshipProposal> {
     creationDate: Date;
     /** The proposal status */
     status: InternshipProposalStatusType;
+    /** The completed attendances */
+    attendances: Array<Attendance>;
 }

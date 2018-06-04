@@ -10,3 +10,4 @@ __export(require("./internship-proposal.model"));
 __export(require("./internship.model"));
 __export(require("./role.model"));
 __export(require("./user.model"));
+__export(require("./attendance.model"));
