@@ -76,7 +76,8 @@
         "AttendanceSheet": "Foglio presenze",
         "Forward": "Avanti",
         "Total": "Totale",
-        "EndInternshipProposal": "Termina tirocinio"
+        "EndInternshipProposal": "Termina tirocinio",
+        "GenerateDocs": "Genera documenti"
     },
     "Pages": {
         "Index": {

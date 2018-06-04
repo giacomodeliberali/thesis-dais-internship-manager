@@ -104,8 +104,32 @@ export class InternshipProposalDetailsComponent implements OnInit {
 		}
 	}
 
-	async printDocs() {
-		console.log("Print docs");
+	async generateDocs() {
+		try {
+
+			this.loadingService.isLoading = true;
+
+			const result = await this.internshipProposalService.generateDocs(this.internshipProposal.id);
+			const fileUrl = URL.createObjectURL(result);
+			// window.open(fileUrl);
+
+
+			var a = document.createElement("a");
+			document.body.appendChild(a);
+
+			a.href = fileUrl;
+			a.download = `${new Date().getTime()}-${this.internshipProposal.student.name.toLowerCase().split(' ').join('-')}.pdf`;
+			a.click();
+			window.URL.revokeObjectURL(fileUrl);
+
+
+		} catch (ex) {
+			NotificationHelper.showNotification("Alerts.GenericError.SubTitle", "ti-close", "warning");
+			console.error("GenerateDocs", ex);
+		}
+		finally {
+			this.loadingService.isLoading = false;
+		}
 	}
 
 

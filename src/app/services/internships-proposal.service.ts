@@ -102,4 +102,18 @@ export class InternshipProposalService extends BaseService {
             attendances: attendances
         });
     }
+
+    /**
+     * Generate the documentation for an ended internship proposal
+     *
+     * @param {string} internshipProposalId The internship identifier
+     * @returns {Promise<string>} The resulting PDF url
+     */
+    generateDocs(internshipProposalId: string): Promise<Blob> {
+        return this.getVerb(`${Defaults.collectionsName.internshipProposals}/generateDocs/${internshipProposalId}`, {
+            responseType: 'arraybuffer'
+        }).then(response => {
+            return new Blob([response], { type: 'application/pdf' });
+        });
+    }
 }

@@ -57,12 +57,15 @@ export class BaseService {
      * Make a GET request to the specified path
      * @param path The path
      */
-    protected getVerb(path: string) {
-        return this.httpClient.get(`${environment.apiServicesBaseUrl}/${path}`, {
+    protected getVerb(path: string, options?: any) {
+
+        const httpOptions = Object.assign({}, {
             headers: {
                 "Authentication": this.authService.token || ''
             }
-        }).toPromise() as Promise<ApiResponseDto<any>>;
+        }, options || {})
+
+        return this.httpClient.get(`${environment.apiServicesBaseUrl}/${path}`, httpOptions).toPromise() as Promise<any>;
     }
 
     /**
