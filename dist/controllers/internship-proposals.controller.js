@@ -29,6 +29,8 @@ const dist_1 = require("gdl-thesis-core/dist");
 const scopes_1 = require("../utils/auth/scopes");
 const internship_proposal_status_type_machine_1 = require("../utils/state-machines/internship-proposal-status.type.machine");
 const ServerDefaults_1 = require("../ServerDefaults");
+const internship_proposal_template_1 = require("../utils/pdf-generation/internship-proposal.template");
+const pdf_generator_util_1 = require("../utils/pdf-generation/pdf-generator.util");
 /**
  * The [[InternshipProposal]] controller
  */
@@ -53,7 +55,8 @@ let InternshipProposalsController = class InternshipProposalsController extends 
             .useUpdateStates()
             .useForceUpdateStates()
             .useListStates()
-            .useAddAttendance();
+            .useAddAttendance()
+            .useGenerateDocs();
     }
     /**
      * Return the list of [[InternshipProposal]] that reference the given professor id
@@ -179,8 +182,8 @@ let InternshipProposalsController = class InternshipProposalsController extends 
         return this;
     }
     /**
-   * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
-   */
+     * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
+     */
     useUpdateStates() {
         this.router.put('/status', [scopes_1.ownInternshipProposal], (req, res) => __awaiter(this, void 0, void 0, function* () {
             const internshipProposalId = req.body.id;
@@ -286,8 +289,8 @@ let InternshipProposalsController = class InternshipProposalsController extends 
         return this;
     }
     /**
-   * Given a [[InternshipsStatusType]] return all the available states
-   */
+     * Given a [[InternshipsStatusType]] return all the available states
+     */
     useListStates() {
         this.router.get('/status/:state', (req, res) => __awaiter(this, void 0, void 0, function* () {
             const currentState = req.params.state;
@@ -314,7 +317,7 @@ let InternshipProposalsController = class InternshipProposalsController extends 
         return this;
     }
     /**
-     * Add a list of attandances to a internship proposal
+     * Add a list of attendances to a internship proposal
      *
      * ***POST***
      *
@@ -373,6 +376,69 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                     httpCode: 200,
                     response: res
                 }).send();
+            }
+            catch (ex) {
+                return new api_response_model_1.ApiResponse({
+                    data: null,
+                    httpCode: 500,
+                    response: res,
+                    exception: ex
+                }).send();
+            }
+        }));
+        return this;
+    }
+    /**
+     * Create the documentation at the end of an InternshipProposal
+     *
+     * ***GET***
+     *
+     * /internshipProposals/generateDocs/${internshipProposalId}
+     *
+     * ***Query parameters***
+     * ```
+     * {
+     *    internshipProposalId: string
+     * }```
+     *
+     * @return PDF Stream
+     */
+    useGenerateDocs() {
+        this.router.get('/generateDocs/:internshipProposalId', (req, res) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const internshipProposalId = req.params.internshipProposalId;
+                if (!internshipProposalId) {
+                    return new api_response_model_1.ApiResponse({
+                        data: null,
+                        httpCode: 400,
+                        response: res,
+                        exception: {
+                            message: "Bad request. Missing 'internshipProposalId' parameter"
+                        }
+                    }).send();
+                }
+                //  Get proposal
+                const proposal = yield this.internshipProposalsRepository.get(internshipProposalId);
+                // Get user
+                const user = req.body[ServerDefaults_1.ServerDefaults.authUserBodyPropertyName];
+                // Check if the user is related to the internship proposal
+                // The user is the student
+                if (proposal.student.id !== user.id &&
+                    // or the professor
+                    proposal.professor.id !== user.id &&
+                    // or the company owner
+                    !proposal.internship.company.owners.find(o => o.id === user.id)) {
+                    return new api_response_model_1.ApiResponse({
+                        data: null,
+                        httpCode: 401,
+                        response: res,
+                        exception: {
+                            code: "auth/user-unauthorized",
+                            message: "You cannot generate documentation of an internship proposal you are not in"
+                        }
+                    }).send();
+                }
+                pdf_generator_util_1.PdfGenerator.generateAndSend(internship_proposal_template_1.generateInternshipProposalTemplate(proposal), res);
             }
             catch (ex) {
                 return new api_response_model_1.ApiResponse({
