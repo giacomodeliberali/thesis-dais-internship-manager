@@ -71,7 +71,13 @@
         "NoAvailablePlaces": "Posti esauriti",
         "AlreadyCandidate": "Sei già candidato",
         "TotalRows": "risultati",
-        "Search": "Cerca"
+        "Search": "Cerca",
+        "StartInternship": "Avvia tirocinio",
+        "AttendanceSheet": "Foglio presenze",
+        "Forward": "Avanti",
+        "Total": "Totale",
+        "EndInternshipProposal": "Termina tirocinio",
+        "GenerateDocs": "Genera documenti"
     },
     "Pages": {
         "Index": {
@@ -168,8 +174,11 @@
             "SubTitle": "Le proposte di stage che convolgono le tue aziende",
             "MenuItem": "Proposte ricevute"
         },
-        "InternshipEdit":{
+        "InternshipEdit": {
             "Title": "Modifica tirocinio"
+        },
+        "InternshipProposalTrack": {
+            "Title": "Traccia uno stage in corso"
         }
     },
     "Alerts": {
@@ -231,8 +240,40 @@
                 "Message": "Non è stato possibile rifiutare la candidatura"
             }
         },
-        "ApproveWrongInternshipStatus":{
+        "ApproveWrongInternshipStatus": {
             "Title": "Il tirocinio è già stato approvato o respinto"
+        },
+        "ConfirmStartInternshipProposal": {
+            "Title": "Vuoi avviare questo tirocinio?",
+            "Error": {
+                "Message": "Si è verificato un problema nell'avvio del tirocinio. Ti preghiamo di riprovare"
+            },
+            "Success": {
+                "Message": "Il tirocinio è stato avviato con successo"
+            }
+        },
+        "AddAttendance": {
+            "Date": {
+                "Title": "Data",
+                "SubTitle": "Inserisci la data che vuoi registrare"
+            },
+            "Duration": {
+                "Title": "Ore lavorate",
+                "SubTitle": "Inserisci la quantità di ore lavorate nella giornata"
+            },
+            "Success": {
+                "Title": "La presenza è stata registrata"
+            }
+        },
+        "InternshipProposalEnded": {
+            "Title": "Concludi tirocinio",
+            "SubTitle": "Vuoi marcare questo tirocinio come concluso?",
+            "Success": {
+                "Message": "Il tirocinio è concluso. Stampa la documentazione dalla pagina di dettaglio"
+            },
+            "Error": {
+                "Message": "Non è stato possibile concludere il tirocinio"
+            }
         }
     },
     "Roles": {
