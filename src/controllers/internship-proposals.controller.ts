@@ -10,6 +10,8 @@ import { ownInternshipProposal, adminScope } from "../utils/auth/scopes";
 import { InternshipProposalStatusTypeMachine } from "../utils/state-machines/internship-proposal-status.type.machine";
 import { ServerDefaults } from "../ServerDefaults";
 import { InternshipProposalModel } from "../schemas/internship-proposal.schema";
+import { generateInternshipProposalTemplate } from "../utils/pdf-generation/internship-proposal.template";
+import { PdfGenerator } from "../utils/pdf-generation/pdf-generator.util";
 
 /**
  * The [[InternshipProposal]] controller
@@ -40,7 +42,8 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
       .useUpdateStates()
       .useForceUpdateStates()
       .useListStates()
-      .useAddAttendance();
+      .useAddAttendance()
+      .useGenerateDocs();
   }
 
   /**
@@ -183,8 +186,8 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
   }
 
   /**
- * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
- */
+   * Update the state of an [[Internship]] following the [[InternshipStatusTypeMachine]] transition function
+   */
   private useUpdateStates() {
     this.router.put('/status', [ownInternshipProposal], async (req, res) => {
       const internshipProposalId = req.body.id;
@@ -309,8 +312,8 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
   }
 
   /**
- * Given a [[InternshipsStatusType]] return all the available states
- */
+   * Given a [[InternshipsStatusType]] return all the available states
+   */
   private useListStates() {
     this.router.get('/status/:state', async (req, res) => {
       const currentState = req.params.state;
@@ -340,7 +343,7 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
 
 
   /**
-   * Add a list of attandances to a internship proposal
+   * Add a list of attendances to a internship proposal
    *  
    * ***POST*** 
    * 
@@ -408,6 +411,77 @@ export class InternshipProposalsController extends BaseController<IInternshipPro
           response: res
         }).send();
 
+      } catch (ex) {
+        return new ApiResponse({
+          data: null,
+          httpCode: 500,
+          response: res,
+          exception: ex
+        }).send();
+      }
+    });
+    return this;
+  }
+
+  /**
+   * Create the documentation at the end of an InternshipProposal
+   *  
+   * ***GET*** 
+   * 
+   * /internshipProposals/generateDocs/${internshipProposalId}
+   * 
+   * ***Query parameters***
+   * ```
+   * {
+   *    internshipProposalId: string
+   * }```
+   * 
+   * @return PDF Stream
+   */
+  private useGenerateDocs() {
+    this.router.get('/generateDocs/:internshipProposalId', async (req, res) => {
+      try {
+        const internshipProposalId = req.params.internshipProposalId;
+
+        if (!internshipProposalId) {
+          return new ApiResponse({
+            data: null,
+            httpCode: 400,
+            response: res,
+            exception: {
+              message: "Bad request. Missing 'internshipProposalId' parameter"
+            }
+          }).send();
+        }
+
+
+        //  Get proposal
+        const proposal = await this.internshipProposalsRepository.get(internshipProposalId);
+
+        // Get user
+        const user: User = req.body[ServerDefaults.authUserBodyPropertyName];
+
+        // Check if the user is related to the internship proposal
+        // The user is the student
+        if (proposal.student.id !== user.id &&
+          // or the professor
+          proposal.professor.id !== user.id &&
+          // or the company owner
+          !proposal.internship.company.owners.find(o => o.id === user.id)) {
+
+          return new ApiResponse({
+            data: null,
+            httpCode: 401,
+            response: res,
+            exception: {
+              code: "auth/user-unauthorized",
+              message: "You cannot generate documentation of an internship proposal you are not in"
+            }
+          }).send();
+        }
+
+        PdfGenerator.generateAndSend(generateInternshipProposalTemplate(proposal), res);
+        
       } catch (ex) {
         return new ApiResponse({
           data: null,
