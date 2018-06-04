@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { User, ApiResponseDto, AuthResponse } from 'gdl-thesis-core/dist';
 import { HttpClient } from "@angular/common/http";
 import { BaseService } from "./base.service";
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 /** The Google API Javascript SDK */
 declare var gapi: any;
@@ -66,17 +67,30 @@ export class AuthService {
 
     /**
      * Validate server side the current token
+     * @param {boolean} serverSide Validate the token server side
      */
-    public async validateToken(): Promise<User> {
-        try {
-            const result: ApiResponseDto<User> = await this.post('auth/token/validate', {
-                token: this.token
-            });
-            if (result && result.isOk && result.data)
-                return result.data;
-            return null;
-        } catch (ex) {
-            return Promise.resolve(null);
+    public async validateToken(serverSide: boolean = false): Promise<User> {
+        if (serverSide) {
+            try {
+                const result: ApiResponseDto<User> = await this.post('auth/token/validate', {
+                    token: this.token
+                });
+                if (result && result.isOk && result.data)
+                    return result.data;
+                return null;
+            } catch (ex) {
+                return Promise.resolve(null);
+            }
+        } else {
+            const helper = new JwtHelperService();
+
+            const decodedToken = helper.decodeToken(this.token);
+            const isExpired = helper.isTokenExpired(this.token);
+
+            if (isExpired || !decodedToken)
+                return Promise.resolve(null);
+            else
+                return Promise.resolve(decodedToken);
         }
     }
 

@@ -19,10 +19,10 @@ declare var $;
 
 @Component({
 	moduleId: module.id,
-	selector: 'internship-proposal-details-cmp',
-	templateUrl: 'internship-proposal-details.component.html'
+	selector: 'internship-proposal-track-cmp',
+	templateUrl: 'internship-proposal-track.component.html'
 })
-export class InternshipProposalDetailsComponent implements OnInit {
+export class InternshipProposalTrackComponent implements OnInit {
 
 	/** The internships current in edit */
 	public internshipProposal: InternshipProposal;
@@ -36,7 +36,12 @@ export class InternshipProposalDetailsComponent implements OnInit {
 	/** The can exec exported to the template */
 	public canExec = canExec;
 
-	public canStartInternship = false;
+	public get totalHours() {
+		let sum = 0;
+		if (this.internshipProposal && this.internshipProposal.attendances)
+			this.internshipProposal.attendances.forEach(a => sum += a.hours);
+		return sum;
+	}
 
 	/**
 	 * Inject deps
@@ -60,18 +65,10 @@ export class InternshipProposalDetailsComponent implements OnInit {
 			const internshipProposalId = this.activatedRoute.snapshot.params['id'];
 			const internshipProposalResponse = await this.internshipProposalService.getById(internshipProposalId);
 
-			this.internshipProposal = new InternshipProposal(internshipProposalResponse.data);
-
-			// The user is the student
-			if (this.internshipProposal.student.id === this.authService.currentUser.id ||
-				// or the professor
-				this.internshipProposal.professor.id === this.authService.currentUser.id ||
-				// or the company owner
-				!!this.internshipProposal.internship.company.owners.find(o => o.id === this.authService.currentUser.id)) {
-				this.canStartInternship = true;
-			}
-
-
+			const temp = new InternshipProposal(internshipProposalResponse.data);
+			temp.attendances = temp.attendances || [];
+			temp.attendances.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+			this.internshipProposal = temp;
 		} catch (ex) {
 			console.error(ex);
 		} finally {
@@ -79,11 +76,11 @@ export class InternshipProposalDetailsComponent implements OnInit {
 		}
 	}
 
-	async startInternship() {
-
+	async close() {
 		const response = await swal({
 			type: 'question',
-			text: await this.translateService.get(`Alerts.ConfirmStartInternshipProposal.Title`).toPromise(),
+			title: await this.translateService.get(`Alerts.InternshipProposalEnded.Title`).toPromise(),
+			text: await this.translateService.get(`Alerts.InternshipProposalEnded.SubTitle`).toPromise(),
 			showCancelButton: true,
 			cancelButtonText: await this.translateService.get("Dictionary.Cancel").toPromise(),
 			confirmButtonText: await this.translateService.get("Dictionary.Confirm").toPromise()
@@ -91,21 +88,16 @@ export class InternshipProposalDetailsComponent implements OnInit {
 
 		if (response.value) {
 			try {
-				const apiResponse = await this.internshipProposalService.updateStatus(this.internshipProposal.id, InternshipProposalStatusType.Started);
+				const apiResponse = await this.internshipProposalService.updateStatus(this.internshipProposal.id, InternshipProposalStatusType.Ended);
 				if (apiResponse && apiResponse.isOk) {
-					this.internshipProposal = new InternshipProposal(apiResponse.data);
-					NotificationHelper.showNotification(`Alerts.ConfirmStartInternshipProposal.Success.Message`, "ti-save", 'success');
-					this.router.navigate(['/auth/proposals/track/' + this.internshipProposal.id]);
+					this.router.navigate(['/auth/proposals/details/' + this.internshipProposal.id]);
+					NotificationHelper.showNotification(`Alerts.InternshipProposalEnded.Success.Message`, "ti-save", 'success');
 				}
 			} catch (ex) {
 				console.error(ex);
-				NotificationHelper.showNotification(`Alerts.ConfirmStartInternshipProposal.Error.Message`, "ti-save", 'warning');
+				NotificationHelper.showNotification(`Alerts.InternshipProposalEnded.Error.Message`, "ti-save", 'warning');
 			}
 		}
-	}
-
-	async printDocs() {
-		console.log("Print docs");
 	}
 
 

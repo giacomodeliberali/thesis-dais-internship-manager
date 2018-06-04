@@ -5,7 +5,7 @@
                 <div class="card" *ngIf="internshipProposal">
                     <div class="card-header">
                         <h4 class="card-title">
-                            {{'Pages.InternshipProposalDetails.Title' | translate}}
+                            {{'Pages.InternshipProposalTrack.Title' | translate}}
                         </h4>
                     </div>
                     <div class="card-content">
@@ -73,18 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card" *ngIf="internshipProposal">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            {{internshipProposal.internship.title}}
-                        </h4>
-                    </div>
-                    <div class="card-content">
-                        <div [innerHTML]="domSanitizer.bypassSecurityTrustHtml(internshipProposal.internship.description)"></div>
-                    </div>
-                </div>
-
-                <attendances-cmp [internshipProposal]="internshipProposal" *ngIf="internshipProposal?.status === InternshipProposalStatusType.Ended"></attendances-cmp>
+                <attendances-cmp [internshipProposal]="internshipProposal"></attendances-cmp>
 
                 <div class="card" *ngIf="internshipProposal">
                     <div class="card-content">
@@ -97,19 +86,8 @@
                             <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/student'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student])"
                                 translate>Dictionary.Back</button>
 
-                            <button *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student]) && internshipProposal.status < InternshipProposalStatusType.WaitingForCompany"
-                                type="button" class="btn btn-success pull-right" [routerLink]="'/auth/proposals/edit/' + internshipProposal.id"
-                                translate>Dictionary.Edit</button>
+                            <button *ngIf="internshipProposal.status === InternshipProposalStatusType.Started" class="btn btn-success pull-right" (click)="close()">{{'Dictionary.EndInternshipProposal' | translate}}</button>
 
-
-
-                            <button *ngIf="internshipProposal.status === InternshipProposalStatusType.Confirmed && canStartInternship" type="button"
-                                class="btn btn-success pull-right" (click)="startInternship()" translate>Dictionary.StartInternship</button>
-
-
-
-                            <button *ngIf="internshipProposal.status === InternshipProposalStatusType.Ended" type="button" class="btn btn-success pull-right"
-                                (click)="printDocs()">{{'Dictionary.PrintDocs' | translate}}</button>
                         </div>
                     </div>
                 </div>

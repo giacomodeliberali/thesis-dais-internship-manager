@@ -1,6 +1,6 @@
 import { BaseService } from "./base.service";
 import { injectable } from "inversify";
-import { User, ApiResponseDto, Internship, Company, Defaults, InternshipProposal, InternshipProposalStatusType } from "gdl-thesis-core/dist";
+import { User, ApiResponseDto, Internship, Company, Defaults, InternshipProposal, InternshipProposalStatusType, Attendance } from "gdl-thesis-core/dist";
 /**
  * The internship proposal service
  * 
@@ -87,6 +87,19 @@ export class InternshipProposalService extends BaseService {
         return this.putVerb(`${Defaults.collectionsName.internshipProposals}/status/force`, {
             id: internshipId,
             status: newState
+        });
+    }
+
+    /**
+     * Add the list of attendances to the internship proposal
+     *
+     * @param {string} internshipProposalId The internship proposal id
+     * @param {Array<Attendance>} attendances The list of attendances to add
+     */
+    addAttendances(internshipProposalId: string, attendances: Array<Attendance>): Promise<ApiResponseDto<InternshipProposal>> {
+        return this.postVerb(`${Defaults.collectionsName.internshipProposals}/addAttendances`, {
+            internshipProposalId: internshipProposalId,
+            attendances: attendances
         });
     }
 }

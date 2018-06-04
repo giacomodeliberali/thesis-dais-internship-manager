@@ -52,7 +52,12 @@ export class InternshipProposalsListComponent implements OnInit {
         ];
 
         const sub: Subscription = this.table.onRowSelection.subscribe(((internshipProposal: InternshipProposal) => {
-            this.router.navigate(['/auth/proposals/approve/', internshipProposal.id]);
+            if (internshipProposal.status === InternshipProposalStatusType.Started)
+                this.router.navigate(['/auth/proposals/track/', internshipProposal.id]);
+            else if (internshipProposal.status === InternshipProposalStatusType.WaitingForProfessor)
+                this.router.navigate(['/auth/proposals/approve/', internshipProposal.id]);
+            else
+                this.router.navigate(['/auth/proposals/details/', internshipProposal.id]);
             sub.unsubscribe();
         }));
     }
