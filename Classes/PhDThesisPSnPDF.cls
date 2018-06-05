@@ -467,7 +467,7 @@ supported!}
       sorting=nty, natbib=true]{biblatex}
     \setBiBLaTeXtrue
   \else
-    \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
+    \RequirePackage[round, sort, numbers, authoryear,super,square]{natbib} %author year
   \fi
 \else
   \ifPHD@numbered
@@ -476,7 +476,7 @@ supported!}
         citestyle=numeric, sorting=none, natbib=true]{biblatex}
       \setBiBLaTeXtrue
     \else
-      \RequirePackage[numbers,compress]{natbib} % numbered citation
+      \RequirePackage[numbers,compress,super,square]{natbib} % numbered citation
     \fi
   \else
     \ifuseCustomBib
@@ -496,7 +496,7 @@ supported!}
           citestyle=numeric, sorting=none, natbib=true]{biblatex}
         \setBiBLaTeXfalse
       \else
-        \RequirePackage[numbers,compress]{natbib} 
+        \RequirePackage[numbers,compress,super,square]{natbib} 
       \fi % default
       \setBibfalse
     \fi % custombib
@@ -1040,17 +1040,6 @@ wish to left align your text}
 }
 
 
-% ***************************** Create the index *******************************
-\ifPHD@index
-    \RequirePackage{makeidx}
-    \makeindex
-    \newcommand{\printthesisindex}{
-        \cleardoublepage
-        \phantomsection
-        \printindex}
-\else
-    \newcommand{\printthesisindex}{}
-\fi
 
 % ***************************** Chapter Mode ***********************************
 % The chapter mode allows user to only print particular chapters with references

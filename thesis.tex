@@ -8,26 +8,6 @@
 % Thesis title and author information, reference file for biblatex
 \input{thesis-info}
 
-% ***************************** Abstract Separate ******************************
-% To printout only the titlepage and the abstract with the PhD title and the
-% author name for submission to the Student Registry, use the `abstract' option in
-% the document class.
-
-\ifdefineAbstract
- \pagestyle{empty}
- \includeonly{Declaration/declaration, Abstract/abstract}
-\fi
-
-% ***************************** Chapter Mode ***********************************
-% The chapter mode allows user to only print particular chapters with references
-% Title, Contents, Frontmatter are disabled by default
-% Useful option to review a particular chapter or to send it to supervisior.
-% To use choose `chapter' option in the document class
-
-\ifdefineChapter
- \includeonly{Chapter3/chapter3}
-\fi
-
 % ******************************** Front Matter ********************************
 \begin{document}
 
@@ -57,30 +37,18 @@
 \include{Chapter1/chapter1}
 \include{Chapter2/chapter2}
 \include{Chapter3/chapter3}
-%\include{Chapter4/chapter4}
-%\include{Chapter5/chapter5}
-%\include{Chapter6/chapter6}
+\include{Chapter4/chapter4}
+\include{Chapter5/chapter5}
+\include{Chapter6/chapter6}
 %\include{Chapter7/chapter7}
 
 
 % ********************************** Bibliography ******************************
 \begin{spacing}{0.9}
 
-% To use the conventional natbib style referencing
-% Bibliography style previews: http://nodonn.tipido.net/bibstyle.php
-% Reference styles: http://sites.stat.psu.edu/~surajit/present/bib.htm
-
 \bibliographystyle{plainnat} % use this to have URLs listed in References
 \cleardoublepage
 \bibliography{References/references} % Path to your References.bib file
-
-
-% If you would like to use BibLaTeX for your references, pass `custombib' as
-% an option in the document class. The location of 'reference.bib' should be
-% specified in the preamble.tex file in the custombib section.
-% Comment out the lines related to natbib above and uncomment the following line.
-
-%\printbibliography[heading=bibintoc, title={References}]
 
 
 \end{spacing}
@@ -89,11 +57,12 @@
 
 \begin{appendices} % Using appendices environment for more functunality
 
-\include{Appendix1/appendix1}
+%\include{Appendix1/appendix1}
 
 \end{appendices}
 
-% *************************************** Index ********************************
-\printthesisindex % If index is present
-
+% *************************************** Index *******************************
+\glsaddall
+\printglossary[type=\acronymtype,title=Arconimi,toctitle=Termini ed abbreviazioni] % prints just the list of acronyms
+\printglossary % if no option is supplied the default glossary is printed.
 \end{document}

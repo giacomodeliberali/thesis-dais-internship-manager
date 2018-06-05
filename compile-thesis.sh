@@ -1,6 +1,4 @@
 #!/bin/bash
-# A script to compile the PhD Thesis - Krishna Kumar 
-# Distributed under GPLv2.0 License
 
 compile="compile";
 clean="clean";
@@ -29,13 +27,19 @@ if [ $1 = $clean ]; then
 	rm -rf $filename.ps
 	rm -rf $filename.dvi
 	rm -rf *#* 
+	rm -rf *.glg*
+	rm -rf *.glo*
+	rm -rf *.ist*
+	rm -rf *.gls*
+	rm -rf *.acn
+	rm -rf *.fdb_latexmk
 	echo "Cleaning complete!"
 	exit
 else
-	echo "Shell script for compiling the PhD Thesis"
+	echo "Shell script for compiling the thesis"
 	echo "Usage: sh ./compile-thesis.sh [OPTIONS] [filename]"
-	echo "[option]  compile: Compiles the PhD Thesis"
-	echo "[option]  clean: removes temporary files no filename required"
+	echo "[option]  compile: Compiles the thesis"
+	echo "[option]  clean: removes aux temporary files"
 	exit
 fi
 fi
@@ -64,10 +68,16 @@ if [ $1 = $clean ]; then
 	rm -rf $filename.ps
 	rm -rf $filename.dvi
 	rm -rf *#* 
+	rm -rf *.glg*
+	rm -rf *.glo*
+	rm -rf *.ist*
+	rm -rf *.gls*
+	rm -rf *.acn
+	rm -rf *.fdb_latexmk
 	echo "Cleaning complete!"
 	exit
 elif [ $1 = $compile ]; then
-	echo "Compiling your PhD Thesis...please wait...!"
+	echo "Compiling thesis, please wait..."
 	pdflatex -interaction=nonstopmode $filename.tex
 	bibtex $filename.aux 	
 	makeindex $filename.aux
