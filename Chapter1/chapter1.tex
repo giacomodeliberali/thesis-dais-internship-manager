@@ -19,20 +19,26 @@ La soluzione deve essere fruibile da quanti più dispositivi possibili, e per ra
 Un requsito di fondamentale importanza è quindi la responsività dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
 Inoltre, per favorire l'accessibilità dell'applicazione essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'\textit{italiano} e l'\textit{inglese}.
 
-\subsection{Tecnologie adottate}
+\section{Tecnologie adottate}
 Dal momento che abbiamo deciso di puntare su un applicazione web, le tecnologie che andremo ad utilizzare per il frontend della soluzione saranno sicuramente \textit{web-based}, in particolare il framework \textit{Angular}, prodotto opensource di casa Google. 
 Per quanto rigurada il backend dell'applicazione, che dovrà gestire database ed esporre servizi alla parte client, abbiamo optato per \textit{Node.js} --- ed in particolare il framework \textit{Express.js} per la creazione dei servizi --- e \textit{MongoDB}, un database documentale \acrshort{nosql} come \acrshort{dbms}.
 
-\subsubsection{Node.js \& Express.js}
-\nodejs è un ambiente open source e cross platform che esegue codice Javascript lato server.
+\subsection{\nodejs}
+\nodejs è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice Javascript lato server.
 \begin{quote}
 	<<Node.js\textregistered ~ è un runtime Javascript costruito sul motore JavaScript V8 di Chrome. Node.js usa un modello I/O non bloccante e ad eventi, che lo rende un framework leggero ed efficiente. L'ecosistema dei pacchetti di Node.js, npm, è il più grande ecosistema di librerie open source al mondo.>> \cite{nodejs}
 \end{quote}
 
 Storicamente Javascript era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs rappresenta il paradigma <<Javascript everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
 
-\nodejs porta la programmazione orientata agli eventi ai server Web, consentendo lo sviluppo di server Web veloci in JavaScript. Gli sviluppatori possono creare server altamente scalabili senza utilizzare il threading, ma utilizzando un modello di programmazione event-drivern che utilizza i callback per segnalare il completamento di un'attività.
+% Archietettura nodejs
+La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{callbacks}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs invoca la corrispondende \textit{callback}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
+%Dettagli tecnici
+\nodejs opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente realtime. Processa le richieste in arrivo in un ciclo, chiamato \acrshort{eventloop}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{callback} il server rientra in modo automatico nell'\acrshort{eventloop}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{callbacks} da eseguire.
 
+% Vantaggi e svantaggi
+I vantaggi che hanno portato \nodejs ad avere una comunity così ampia sono principalmente due. La prima è che Javascript è un lignuaggio ben conosciuto e largamente utilizzato e la seconda è che gli sviluppatori, grazie alla programmazione orientata agli eventi offerta da \nodejs, possono creare server facilmente scalabili senza l'utilizzo del \textit{threading}, rendendo la creazione di applicazioni più veloce e meno dispendiosa.
 
-\subsubsection{MongoDB}
-\subsubsection{Angular}
+\subsection{\expressjs}
+\subsection{\mongodb}
+\subsection{\angular}
