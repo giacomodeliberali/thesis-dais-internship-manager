@@ -5,7 +5,7 @@
 
 Il progetto \projectName nasce con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema non è altro che una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
 
-Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è pittosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, all pubblicazione dello stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti, che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un contatto via email. 
+Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è pittosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, alla pubblicazione dello stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un rapporto basato su email. 
 
 Risulta quindi chiaro che sia necessaria una soluzione che permetta di automatizzare il più possibile questo processo, che tenga traccia dell'andamento del tirocinio e ne monitori lo stato.
 
@@ -20,25 +20,46 @@ Un requsito di fondamentale importanza è quindi la responsività dell'applicazi
 Inoltre, per favorire l'accessibilità dell'applicazione essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'\textit{italiano} e l'\textit{inglese}.
 
 \section{Tecnologie adottate}
-Dal momento che abbiamo deciso di puntare su un applicazione web, le tecnologie che andremo ad utilizzare per il frontend della soluzione saranno sicuramente \textit{web-based}, in particolare il framework \textit{Angular}, prodotto opensource di casa Google. 
-Per quanto rigurada il backend dell'applicazione, che dovrà gestire database ed esporre servizi alla parte client, abbiamo optato per \textit{Node.js} --- ed in particolare il framework \textit{Express.js} per la creazione dei servizi --- e \textit{MongoDB}, un database documentale \acrshort{nosql} come \acrshort{dbms}.
+Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il frontend della soluzione saranno sicuramente \textit{web-based}, in particolare lo stack MEAN. Questo stack applicativo è composto da
+\begin{enumerate}
+	\item \mongodb: un \acrshort{nosql} basato su un database documentale \acrshort{nosql}
+	\item \expressjs: framework per \nodejs per la creazione di applicazione web e rest \acrshort{api}
+	\item  \angular: framework \textit{Javascript} opensource di casa Google
+\end{enumerate}
 
 \subsection{\nodejs}
-\nodejs è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice Javascript lato server.
+\nodejs~è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice Javascript lato server.
 \begin{quote}
 	<<Node.js\textregistered ~ è un runtime Javascript costruito sul motore JavaScript V8 di Chrome. Node.js usa un modello I/O non bloccante e ad eventi, che lo rende un framework leggero ed efficiente. L'ecosistema dei pacchetti di Node.js, npm, è il più grande ecosistema di librerie open source al mondo.>> \cite{nodejs}
 \end{quote}
 
-Storicamente Javascript era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs rappresenta il paradigma <<Javascript everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
+\noindent
+Storicamente Javascript era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<Javascript everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
 
 % Archietettura nodejs
-La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{callbacks}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs invoca la corrispondende \textit{callback}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
+La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondende \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
 %Dettagli tecnici
-\nodejs opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente realtime. Processa le richieste in arrivo in un ciclo, chiamato \acrshort{eventloop}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{callback} il server rientra in modo automatico nell'\acrshort{eventloop}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{callbacks} da eseguire.
+\nodejs~opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente realtime. Processa le richieste in arrivo in un ciclo, chiamato \textit{\gls{eventloop}}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{\gls{callback}} il server rientra in modo automatico nell'\textit{\gls{eventloop}}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{\gls{callback}} da eseguire.
 
 % Vantaggi e svantaggi
-I vantaggi che hanno portato \nodejs ad avere una comunity così ampia sono principalmente due. La prima è che Javascript è un lignuaggio ben conosciuto e largamente utilizzato e la seconda è che gli sviluppatori, grazie alla programmazione orientata agli eventi offerta da \nodejs, possono creare server facilmente scalabili senza l'utilizzo del \textit{threading}, rendendo la creazione di applicazioni più veloce e meno dispendiosa.
+I vantaggi che hanno portato \nodejs~ad avere una diffusione così ampia sono molti. Sicuramente possiamo notare che Javascript è un linguaggio ben conosciuto e largamente utilizzato, quindi la curva di apprendimento di questa tecnologia è molto più breve; offrendo inoltre la programmazione orientata agli eventi permette agli sviluppatori di creare server in grado di gestire un alto numero di richieste simultanee che siano facilmente scalabili senza l'utilizzo del \textit{threading}. Lo svantaggio principale di \nodejs~è la mancanza al supporto per la scalabilità verticale, determinata dalla sua architettura single-thread.
 
 \subsection{\expressjs}
+\expressjs~è un \textit{\gls{framework}} per costruire applicazioni web ed \textit{\acrshort{api}} basato sulla piattaforma \nodejs. Nel corso del tempo è devenuto lo standard de facto per i \textit{\gls{framework}} server di \nodejs. 
+% Descrizione principale
+Si presenta in modo minimale, offrendo un sottile livello applicativo che punti a velocizzare lo sviluppo senza tuttavia oscurare le funzionalità di \nodejs. \expressjs~è diviso in diversi moduli che possono essere innestati uno spora l'altro, rendendolo adatto ad ogni tipo di applicazione.  
+% Principali funzionalità
+Le sue funzionalità principali sono:
+\begin{enumerate}[label=(\alph*)]
+	\item Un sistema di routing: contenuto all'interno del pacchetto `express-router`, è il modulo per la gestione e la manipolazioni delle routes. Permette di definire in modo gerarchico un insieme di \textit{\acrshort{url}}, alle quali associare una specifica azione. Un'azione è un metodo che viene invocato e che produce una risposta.
+	\item \textit{\acrshort{http}} helpers, come redirect o sistemi di caching: contenuto all'interno del modulo core, mette a disposizione alcune utility class che facilitano operazioni ripetitive oppure forniscono strumenti aggiuntivi utili ad ogni tipologia di sistema che si intende sviluppare
+	\item Supporto a diversi template engines. Dal momento che si possono anche realizzare applicazioni che ritornano del contenuto, ad esempio un applicazione \textit{\gls{mvc}}, è necessario un interprete del template che permetta l'inserimento dinamico di contenuto all'interno di esso. Un esempio di quelli che \expressjs~supporta out of the box sono \textit{Pug (Jade), Haml.js, React, Blade} e altri.
+\end{enumerate}
+
+\noindent
+Un esempio di un'applicazione \expressjs~che una volta avviata risponde 'Hello World!' è la seguente:
+\lstinputlisting{Chapter1/express.js}
+Qui possiamo vedere che una volta creata l'applicazione (riga 3), viene registrata una nuova route (riga 5) alla quale viene associata una \textit{\gls{callback}}. Questa \textit{\gls{callback}} riceve due parametri, la richiesta e la risposta. Il processo di \nodejs~resterà in stato di sleep fino a che una nuova richiesta verrà inoltrata nella route appena definita (quindi fino a che non verrà eseguita una chiamata in HTTP GET all'indirizzo dove è in esecuzione l'applicazione). Una volta ricevuta la notifica \nodejs~entrerà nell'\textit{\gls{eventloop}} per gestirla e una volta completata l'operazione eseguirà la \textit{\gls{callback}} registrata, rispondendo al client che ha effettuato la connessione con la stringa 'Hello World!'.
+
 \subsection{\mongodb}
 \subsection{\angular}

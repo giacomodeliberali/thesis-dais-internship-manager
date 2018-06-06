@@ -33,6 +33,8 @@ if [ $1 = $clean ]; then
 	rm -rf *.gls*
 	rm -rf *.acn
 	rm -rf *.fdb_latexmk
+	rm -rf *.alg
+	rm -rf *.acr
 	echo "Cleaning complete!"
 	exit
 else
@@ -74,6 +76,8 @@ if [ $1 = $clean ]; then
 	rm -rf *.gls*
 	rm -rf *.acn
 	rm -rf *.fdb_latexmk
+	rm -rf *.alg
+	rm -rf *.acr
 	echo "Cleaning complete!"
 	exit
 elif [ $1 = $compile ]; then

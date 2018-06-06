@@ -11,15 +11,76 @@
 \newdualentry{eda}
 {EDA}
 {Event-driver architecture}
-{Un pattern di architettura software che promuove la produzione, l'individuazione, il consumo e la reazioni agli eventi}
-
-\newdualentry{eventloop}
-{Event-loop}
-{Event-loop}
-{Un costrutto di programmazione che attende e invia eventi o messaggi in un programma}
+{Un pattern di architettura software che promuove la produzione, l'individuazione, il consumo e la reazione agli eventi}
 
 
 \newdualentry{patternobserver}
 {Observer}
 {Observer pattern}
 {Un design pattern in cui un oggetto, chiamato \textit{subject}, mantiene un elenco dei suoi dipendenti, chiamati \textit{observers} e li notifica automaticamente di qualsiasi cambiamento di stato, di solito chiamando uno dei loro metodi}
+
+
+\newdualentry{api}
+{API}
+{Application Programming Interface}
+{Un insieme di definizioni di metodi, protocolli e strumenti per la creazione di software applicativo. In termini generali, si tratta di un insieme di metodi di comunicazione definiti in modo chiaro tra i vari componenti software}
+
+\newdualentry{url}
+{URL}
+{Uniform Resource Locator}
+{Rappresenta una referenza ad una risorsa web. Specifica la sua posizione nella rete e il meccanismo per recuperarla}
+
+\newdualentry{mvc}
+{MVC}
+{Model-View-Controller}
+{
+Un pattern architetturale comunemente usato per lo sviluppo di software che divide un'applicazione in tre parti interconnesse. Separa le rappresentazioni interne delle informazioni dal modo in cui vengono presentate all'utente. Il modello di progettazione MVC disaccoppia questi componenti principali consentendo un riutilizzo efficiente del codice.
+}
+
+\newdualentry{http}
+{HTTP}
+{Hyper Text Transfer Protocol}
+{Protocollo di comunicazione che sta alla base del World Wide Web}
+
+% use with \gls{label}
+\newglossaryentry
+{framework}
+{
+	name={
+		Framework
+	},
+	text={
+		framework
+	},
+	description={
+		Fornisce un modo standard per creare e distribuire applicazioni.
+	}
+}
+
+\newglossaryentry
+{callback}
+{
+	name={
+		Callback
+	},
+	text={
+		callback
+	},
+	description={
+		Rappresenta un codice eseguibile che viene passato come argomento ad un altra funzione da cui ci si aspetta che venga richiamata (eseguita) in un dato momento. L'esecuzione potrebbe essere immediata come nei callbacks sincroni oppure potrebbe verificarsi in un momento successivo, come nel caso dei callbacks asincroni
+	}
+}
+
+\newglossaryentry
+{eventloop}
+{
+	name={
+		Event-loop
+	},
+	text={
+		event-loop
+	},
+	description={
+		Un costrutto di programmazione che attende e invia eventi o messaggi in un programma
+	}
+}
