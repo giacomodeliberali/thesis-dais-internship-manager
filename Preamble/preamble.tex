@@ -97,6 +97,12 @@
 \RequirePackage[labelsep=space,tableposition=top]{caption}
 \renewcommand{\figurename}{Fig.} %to support older versions of captions.sty
 
+% Make full toc with hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+	linktoc=all,     %set to all if you want both sections and subsections linked
+}
+
 
 % *************************** Graphics and figures *****************************
 
@@ -194,6 +200,7 @@
 
 % *****************************************************************************
 % **************************** Custom commands ********************************
+
 \usepackage[toc,acronyms]{glossaries}
 \makeglossaries
 

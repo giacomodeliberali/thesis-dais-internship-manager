@@ -34,13 +34,18 @@
 {MVC}
 {Model-View-Controller}
 {
-Un pattern architetturale comunemente usato per lo sviluppo di software che divide un'applicazione in tre parti interconnesse. Separa le rappresentazioni interne delle informazioni dal modo in cui vengono presentate all'utente. Il modello di progettazione MVC disaccoppia questi componenti principali consentendo un riutilizzo efficiente del codice.
+Un pattern architetturale comunemente usato per lo sviluppo di software che divide un'applicazione in tre parti interconnesse. Separa le rappresentazioni interne delle informazioni dal modo in cui vengono presentate all'utente. Il modello di progettazione MVC disaccoppia questi componenti principali consentendo un riutilizzo efficiente del codice
 }
 
 \newdualentry{http}
 {HTTP}
 {Hyper Text Transfer Protocol}
-{Protocollo di comunicazione che sta alla base del World Wide Web}
+{Protocollo di comunicazione che sta alla base del World Wide Web, Supporta diversi metodi, detti verbi, quali \textit{GET, PUT, POST, PATCH, DELETE, OPTIONS, HEAD}}
+
+\newdualentry{mean}
+{MEAN}
+{MongoDB, Express, Angular \& Node.js}
+{Uno stack di tencologie utilizzate insieme al fine di creare applicazioni web}
 
 % use with \gls{label}
 \newglossaryentry
@@ -53,7 +58,7 @@ Un pattern architetturale comunemente usato per lo sviluppo di software che divi
 		framework
 	},
 	description={
-		Fornisce un modo standard per creare e distribuire applicazioni.
+		Fornisce un modo standard per creare e distribuire applicazioni
 	}
 }
 
@@ -82,5 +87,33 @@ Un pattern architetturale comunemente usato per lo sviluppo di software che divi
 	},
 	description={
 		Un costrutto di programmazione che attende e invia eventi o messaggi in un programma
+	}
+}
+
+\newglossaryentry
+{frontend}
+{
+	name={
+		Front-end
+	},
+	text={
+		front-end
+	},
+	description={
+		Si intende la parte di applicazione visibile all'utente finale, che nasconde i dettagli implementetivi
+	}
+}
+
+\newglossaryentry
+{backend}
+{
+	name={
+		Back-end
+	},
+	text={
+		back-end
+	},
+	description={
+		Si intende la parte di applicazione non visibile all'utente finale che manipola, gestisce e fornsce i dati alla parte di \textit{\gls{frontend}}
 	}
 }

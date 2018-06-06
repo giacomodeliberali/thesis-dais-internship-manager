@@ -3,29 +3,34 @@
 %********************************** %First Section  *************************************
 \section{Da dove nasce questo progetto}
 
-Il progetto \projectName nasce con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema non è altro che una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
+Il progetto \projectName nasce con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
 
-Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è pittosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, alla pubblicazione dello stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un rapporto basato su email. 
+Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è piuttosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, alla pubblicazione della stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un rapporto basato su email. 
 
-Risulta quindi chiaro che sia necessaria una soluzione che permetta di automatizzare il più possibile questo processo, che tenga traccia dell'andamento del tirocinio e ne monitori lo stato.
+Risulta quindi necessaria una soluzione che permetta di automatizzare il più possibile questo processo, che tenga traccia dell'andamento del tirocinio e ne monitori lo stato.
 
 
 
 %********************************** %Second Section  *************************************
 \section{Scelte e vincoli tecnici} 
 
-La soluzione deve essere fruibile da quanti più dispositivi possibili, e per raggiungere questo obbiettivo è stato scelto di sviluppare una \textit{Web Application}. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere un solo codebase per raggiungere tutti i dispositivi - computers, smartphones e tablets.
+La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obbiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere un solo codebase per raggiungere tutti i dispositivi --- computers, smartphones e tablets.
 
-Un requsito di fondamentale importanza è quindi la responsività dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
-Inoltre, per favorire l'accessibilità dell'applicazione essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'\textit{italiano} e l'\textit{inglese}.
+Un requisito di fondamentale importanza è quindi la responsività dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
+Inoltre, per favorire l'accessibilità dell'applicazione, essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'\textit{italiano} e l'\textit{inglese}.
 
 \section{Tecnologie adottate}
-Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il frontend della soluzione saranno sicuramente \textit{web-based}, in particolare lo stack MEAN. Questo stack applicativo è composto da
+Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \textit{\gls{frontend}} della soluzione saranno sicuramente web-based, in particolare lo stack \textit{\gls{mean}}. Questo insieme applicativo è composto da
 \begin{enumerate}
-	\item \mongodb: un \acrshort{nosql} basato su un database documentale \acrshort{nosql}
-	\item \expressjs: framework per \nodejs per la creazione di applicazione web e rest \acrshort{api}
-	\item  \angular: framework \textit{Javascript} opensource di casa Google
+	\item Un \acrshort{dbms} basato su un database documentale \acrshort{nosql} (\mongodb)
+	\item Un framework server-side per la creazione di applicazione web e rest \textit{\acrshort{api}} (\expressjs)
+	\item Un framework client-side (\angular)
 \end{enumerate}
+
+
+\subsection{\mongodb}
+
+TODO
 
 \subsection{\nodejs}
 \nodejs~è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice Javascript lato server.
@@ -59,7 +64,24 @@ Le sue funzionalità principali sono:
 \noindent
 Un esempio di un'applicazione \expressjs~che una volta avviata risponde 'Hello World!' è la seguente:
 \lstinputlisting{Chapter1/express.js}
-Qui possiamo vedere che una volta creata l'applicazione (riga 3), viene registrata una nuova route (riga 5) alla quale viene associata una \textit{\gls{callback}}. Questa \textit{\gls{callback}} riceve due parametri, la richiesta e la risposta. Il processo di \nodejs~resterà in stato di sleep fino a che una nuova richiesta verrà inoltrata nella route appena definita (quindi fino a che non verrà eseguita una chiamata in HTTP GET all'indirizzo dove è in esecuzione l'applicazione). Una volta ricevuta la notifica \nodejs~entrerà nell'\textit{\gls{eventloop}} per gestirla e una volta completata l'operazione eseguirà la \textit{\gls{callback}} registrata, rispondendo al client che ha effettuato la connessione con la stringa 'Hello World!'.
+Qui possiamo vedere che una volta creata l'applicazione (riga 3), viene registrata una nuova route (riga 5) alla quale viene associata una \textit{\gls{callback}}. Questa \textit{\gls{callback}} riceve due parametri, la richiesta e la risposta. Il processo di \nodejs~resterà in stato di sleep fino a che una nuova richiesta verrà inoltrata nella route appena definita (quindi fino a che non verrà eseguita una chiamata in \textit{\acrshort{http} GET} all'indirizzo dove è in esecuzione l'applicazione). Una volta ricevuta la notifica \nodejs~entrerà nell'\textit{\gls{eventloop}} per gestirla e una volta completata l'operazione eseguirà la \textit{\gls{callback}} registrata, rispondendo al client che ha effettuato la connessione con la stringa 'Hello World!'.
 
-\subsection{\mongodb}
 \subsection{\angular}
+
+TODO
+
+\section{Attori del sistema}
+
+Dal momento che vi sono più soggetti diversi che accedono alla piattaforma è necessario definire i ruoli dei soggetti coinvolti. Il sistema prevede la gestione di quattro tipi di account, ognuno con permessi diversi, e la personalizzazione dell'interfaccia in base all'utente correntemente autenticato.
+
+\subsection{Azienda}
+Inserisce le offerte di tirocinio presso una delle proprie sedi, visualizza le candidature ricevute e approva l'inizio di uno stage
+
+\subsection{Professore}
+Approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che li coinvolgono come referenti
+
+\subsection{Studente}
+Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore
+
+\subsection{Admin}
+Ricopre il ruolo di ammistratore dei dati, è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati
