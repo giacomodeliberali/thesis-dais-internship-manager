@@ -1,7 +1,11 @@
+\nocite{*}
+
 \chapter{Introduzione}
 
 %********************************** %First Section  *************************************
 \section{Da dove nasce questo progetto}
+
+\textbf{Todo}: Spiegare in modo più generico come funzionano gli stage universitari \\
 
 Il progetto \projectName nasce con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
 
@@ -17,7 +21,7 @@ Risulta quindi necessaria una soluzione che permetta di automatizzare il più po
 La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obbiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere un solo codebase per raggiungere tutti i dispositivi --- computers, smartphones e tablets.
 
 Un requisito di fondamentale importanza è quindi la responsività dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
-Inoltre, per favorire l'accessibilità dell'applicazione, essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'\textit{italiano} e l'\textit{inglese}.
+Inoltre, per favorire l'accessibilità dell'applicazione, essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'italiano e l'inglese.
 
 \section{Tecnologie adottate}
 Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \textit{\gls{frontend}} della soluzione saranno sicuramente web-based, in particolare lo stack \textit{\gls{mean}}. Questo insieme applicativo è composto da
@@ -30,16 +34,57 @@ Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che a
 
 \subsection{\mongodb}
 
-TODO
+\mongodb~è un \gls{dbms} non relazionale, orientato ai documenti classificato come \gls{nosql}. Questo significa che rispetto ai tradizionali sistemi relazionali \mongodb~si basa sul concetto di documento e collezione.
+
+Il documento rappresenta un oggetto che si intende memorizzare, mentre una collezione è un insieme di documenti (una tabella se paragonata ai sistemi relazionali).
+\mongodb~memorizza i dati in con una rappresentazione binaria chiamata BSON (Binary JSON). Questa codifica estente la popolare rappresentazione \gls{json} per includere tipi di dato addizionali, come \textit{int, long, date, floating point e decimal 128}. I documenti \acrshort{bson} possono contenere uno o più campi, ognuno dei quali contiene il valore di uno specifico tipo di dato, inclusi array, dati binari o sotto-documenti. \\
+
+\noindent
+Un esempio di paragone \acrshort{json}-\acrshort{bson} è il seguente:
+\lstinputlisting{Chapter1/example.bson}
+Rispetto a \acrshort{json}, \acrshort{bson} è progettato per essere efficiente sia nello spazio di archiviazione che nella velocità di scansione. Gli elementi in un documento \acrshort{bson} sono preceduti da un campo lunghezza per facilitare la scansione e questo in alcuni casi, quando il documento è piccolo,  porterà \acrshort{bson} ad utilizzare più spazio di \acrshort{json} proprio a causa dei prefissi di lunghezza e degli indici di array espliciti. \\
+
+% Documenti
+\noindent
+I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttua di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie ad una singola lettura per ottenere l'intero documento desiderato.
+
+I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i documenti che descrivono i clienti potrebbero contenere l'ID cliente e la data in cui hanno acquistato i nostri prodotti o servizi, ma solo alcuni potrebbero contenere il collegamento ai social media dell'utente o i dati sulla posizione dalla nostra applicazione mobile. I campi possono variare da un documento all'altro; non è necessario dichiarare la struttura dei documenti al sistema --- i documenti sono auto-descrittivi. Se è necessario aggiungere un nuovo campo a un documento, è possibile crearlo senza influire su tutti gli altri documenti nel sistema.
+% Collezioni
+Le collezioni sono quindi un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise).
+% Query
+\begin{table}[!h]
+	\caption{Confronto modello query e indicizzazione di \mongodb~e altri database\cite{mongodbarchitecture}}
+	\centering
+	\label{table:mongodbquerymodel}
+	\begin{tabular}{c c c c}
+		  & \mongodb & Database relazionale  & Databse Key-value\\ 
+		\midrule
+		\multicolumn{1}{l}{Query Key-value} & Si & Si  & Si   \\
+		\multicolumn{1}{l}{Indici secondari} & Si & Si  & No   \\
+		\multicolumn{1}{l}{Intersezione indici} & Si & Si  & No   \\
+		\multicolumn{1}{l}{Range queries} & Si & Si  & No   \\
+		\multicolumn{1}{l}{Query geospaziali} & Si & Aggiunta costosa  & No   \\
+		\multicolumn{1}{l}{Faceted Search} & Si & No  & No   \\
+		\multicolumn{1}{l}{Aggregazione e trasformazione} & Si & Si  & No   \\
+		\multicolumn{1}{l}{Equi e Nonequi \gls{sqljoin}} & Si & Si  & No   \\
+		\multicolumn{1}{l}{Graph processing} & Si & No  & Si   \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+\mongodb~propone un proprio linguaggio di interrogazione e presenta alcune funzionalità non previste dalle altre architetture di database.
+
+% -------------------------- FIX TABLE ALIGNMENT --------------------------
+\pagebreak
+% -------------------------- FIX TABLE ALIGNMENT --------------------------
 
 \subsection{\nodejs}
-\nodejs~è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice Javascript lato server.
+\nodejs~è un ambiente open source e cross platform sviluppato a partire dal 2009 che permette di eseguire codice \gls{javascript} lato server.
 \begin{quote}
-	<<Node.js\textregistered ~ è un runtime Javascript costruito sul motore JavaScript V8 di Chrome. Node.js usa un modello I/O non bloccante e ad eventi, che lo rende un framework leggero ed efficiente. L'ecosistema dei pacchetti di Node.js, npm, è il più grande ecosistema di librerie open source al mondo.>> \cite{nodejs}
+	<<Node.js\textregistered ~ è un runtime \gls{javascript} costruito sul motore \gls{javascript} V8 di Chrome. Node.js usa un modello I/O non bloccante e ad eventi, che lo rende un framework leggero ed efficiente. L'ecosistema dei pacchetti di Node.js, npm, è il più grande ecosistema di librerie open source al mondo.>> \cite{nodejs}
 \end{quote}
 
 \noindent
-Storicamente Javascript era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<Javascript everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
+Storicamente \gls{javascript} era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<\gls{javascript} everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
 
 % Archietettura nodejs
 La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondende \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
@@ -47,7 +92,7 @@ La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda})
 \nodejs~opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente realtime. Processa le richieste in arrivo in un ciclo, chiamato \textit{\gls{eventloop}}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{\gls{callback}} il server rientra in modo automatico nell'\textit{\gls{eventloop}}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{\gls{callback}} da eseguire.
 
 % Vantaggi e svantaggi
-I vantaggi che hanno portato \nodejs~ad avere una diffusione così ampia sono molti. Sicuramente possiamo notare che Javascript è un linguaggio ben conosciuto e largamente utilizzato, quindi la curva di apprendimento di questa tecnologia è molto più breve; offrendo inoltre la programmazione orientata agli eventi permette agli sviluppatori di creare server in grado di gestire un alto numero di richieste simultanee che siano facilmente scalabili senza l'utilizzo del \textit{threading}. Lo svantaggio principale di \nodejs~è la mancanza al supporto per la scalabilità verticale, determinata dalla sua architettura single-thread.
+I vantaggi che hanno portato \nodejs~ad avere una diffusione così ampia sono molti. Sicuramente possiamo notare che \gls{javascript} è un linguaggio ben conosciuto e largamente utilizzato, quindi la curva di apprendimento di questa tecnologia è molto più breve; offrendo inoltre la programmazione orientata agli eventi permette agli sviluppatori di creare server in grado di gestire un alto numero di richieste simultanee che siano facilmente scalabili senza l'utilizzo del \textit{threading}. Lo svantaggio principale di \nodejs~è la mancanza al supporto per la scalabilità verticale, determinata dalla sua architettura single-thread.
 
 \subsection{\expressjs}
 \expressjs~è un \textit{\gls{framework}} per costruire applicazioni web ed \textit{\acrshort{api}} basato sulla piattaforma \nodejs. Nel corso del tempo è devenuto lo standard de facto per i \textit{\gls{framework}} server di \nodejs. 
@@ -84,4 +129,4 @@ Approva le offerte inserite dalle aziende prima che vengano pubblicate, approva 
 Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore
 
 \subsection{Admin}
-Ricopre il ruolo di ammistratore dei dati, è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati
+Ricopre il ruolo di amministratore dei dati, è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati

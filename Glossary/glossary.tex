@@ -5,7 +5,7 @@
 
 \newdualentry{nosql} % label
 {NoSQL}            % abbreviation
-{NoSQL}  % long form
+{No Structured Query Language}  % long form
 {Archivi di dati che il più delle volte non richiedono uno schema fisso (schemaless), evitano spesso le operazioni di giunzione (join) e puntano a scalare in modo orizzontale} % description
 
 \newdualentry{eda}
@@ -46,6 +46,24 @@ Un pattern architetturale comunemente usato per lo sviluppo di software che divi
 {MEAN}
 {MongoDB, Express, Angular \& Node.js}
 {Uno stack di tencologie utilizzate insieme al fine di creare applicazioni web}
+
+
+\newdualentry{json}
+{JSON}
+{Javascript Object Notation}
+{Una rappresentazione testuale che permette di codificare un oggetto \gls{javascript}}
+
+
+\newdualentry{bson}
+{BSON}
+{Binary \acrshort{json}}
+{Una rappresentazione binaria di \gls{json}}
+
+
+\newdualentry{oop}
+{OOP}
+{Object-oriented programming}
+{Un paradigma di programmazione che permette di definire oggetti software in grado si interagire gli uni con gli altri attraverso uno scambio di messaggi}
 
 % use with \gls{label}
 \newglossaryentry
@@ -114,6 +132,34 @@ Un pattern architetturale comunemente usato per lo sviluppo di software che divi
 		back-end
 	},
 	description={
-		Si intende la parte di applicazione non visibile all'utente finale che manipola, gestisce e fornsce i dati alla parte di \textit{\gls{frontend}}
+		Si intende la parte di applicazione non visibile all'utente finale che manipola, gestisce e fornsce i dati alla parte di \gls{frontend}
 	}
+}
+
+\newglossaryentry
+{javascript}
+{
+	name={
+		Javascript
+	},
+	text={
+		javascript
+	},
+	description={
+		Un linguaggio di scripting orientato agli oggetti e agli eventi, comunemente utilizzato nella programmazione Web lato client per la creazione, in siti web e applicazioni web, di effetti dinamici interattivi
+	}
+}
+
+\newglossaryentry
+{sqljoin}
+{
+name={
+	JOIN
+},
+text={
+	JOIN
+},
+description={
+	Una clausola del linguaggio SQL che serve a combinare le tuple di due o più relazioni di un database tramite l'operazione di congiunzione dell'algebra relazionale
+}
 }

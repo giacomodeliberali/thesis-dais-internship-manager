@@ -1,0 +1,9 @@
+// JSON = {"hello":"world"}
+
+BSON:
+  \x16\x00\x00\x00               // dimensione totale documento
+  \x02                           // 0x02 = tipo String
+  hello\x00                      // nome campo. \x00 = terminatore
+  \x06\x00\x00\x00world\x00      // valore campo 
+                                 // (dimensione valore, valore, terminatore)
+  \x00                           // 0x00 = tipo EOO ('end of object')
