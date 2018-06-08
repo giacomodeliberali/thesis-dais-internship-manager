@@ -165,16 +165,17 @@ Se il router determina che lo stato dell'applicazione corrente richiede funziona
 
 \section{Attori del sistema}
 
-Dal momento che vi sono più soggetti diversi che accedono alla piattaforma è necessario definire i ruoli dei soggetti coinvolti. Il sistema prevede la gestione di quattro tipi di account, ognuno con permessi diversi, e la personalizzazione dell'interfaccia in base all'utente correntemente autenticato.
+Dal momento che vi sono più soggetti diversi che accedono alla piattaforma è necessario definire i ruoli dei soggetti coinvolti. Il sistema prevede la gestione di quattro tipi di account --- ognuno con permessi diversi --- e la personalizzazione dell'interfaccia in base all'utente correntemente autenticato. Un account può avere anche più ruoli, ma al momento non esiste un'apposita interfaccia per le gestione; l'assegnazione di un ruolo multiplo deve avvenire tramite accesso diretto al database.
 
 \subsection{Azienda}
-Inserisce le offerte di tirocinio presso una delle proprie sedi, visualizza le candidature ricevute e approva l'inizio di uno stage
+Deve effettuare l'accesso come un membro esterno dell'ateneo indicando le informazioni della propria azienda e quelle dei suoi amministratori. Inserisce le offerte di tirocinio presso una delle proprie sedi, visualizza le candidature ricevute e approva l'inizio di uno stage. Può completare il foglio presenze di un tirocinio in corso (nella propria azienda) e stamparne la documentazione precompilata al termine. Un'azienda ha uno o più amministratori che ne gestiscono le offerte di tirocinio e le candidature.
 
 \subsection{Professore}
-Approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che li coinvolgono come referenti
+Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Una volta eseguito il login per la prima volta viene creato un'account con il questo ruolo basandosi sull'email fornita: se essa termina con \textit{@unive.it} rappresenta un professore, mentre se termina con \textit{@stud.unive.it} rappresenta uno studente. 
+Un professore approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che li coinvolgono come referenti. Può completare il foglio presenze di un tirocinio (do cui è referente) in corso e stamparne la documentazione precompilata al termine.
 
 \subsection{Studente}
-Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore
+Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore come referente. Può completare il foglio presenze di un suo tirocinio in corso e stamparne la documentazione precompilata al termine.
 
 \subsection{Admin}
-Ricopre il ruolo di amministratore dei dati, è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati
+Ricopre il ruolo di amministratore dei dati ed è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati. Non ha un influenza sul processo di gestione dei tirocini in quanto gli altri account formano un ecosistema che si alimenta e gestisce in modo autonomo.
