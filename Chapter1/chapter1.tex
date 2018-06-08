@@ -116,7 +116,52 @@ Qui possiamo vedere che una volta creata l'applicazione (riga 3), viene registra
 
 \subsection{\angular}
 
-\angular~è un \gls{framework} sviluppato da Google per lo sviluppo \gls{frontend} di applicazioni web basato su \gls{typescript}.
+\angular~è un \gls{framework} sviluppato da Google per lo sviluppo \gls{frontend} di applicazioni web basato su \gls{typescript}. Implementa funzionalità core e opzionali in un insieme di librerie di \gls{typescript} che bisogna importare nelle applicazioni. In seguito verrano descritti gli elementi costitutivi di \angular.
+
+
+\subsubsection{NgModules}
+Dichiarano un contesto di compilazione per un insieme di componenti dedicato a un dominio dell'applicazione, un flusso di lavoro o un insieme di funzionalità correlate. Un \textit{NgModule} associa i propri componenti al codice relativo, come i servizi, per formare unità funzionali.
+% 
+Ogni applicazione \angular~--- che in genere contiene più moduli funzionali ---  ha un modulo radice, denominato convenzionalmente \textit{AppModule}, che fornisce il meccanismo di \textit{bootstrap} che avvia l'applicazione.
+
+Come i moduli \gls{javascript}, anche gli \textit{NgModules} possono importare funzionalità da altri \textit{NgModules} e consentire che le proprie funzionalità vengano esportate e utilizzate da altri \textit{NgModules}.
+%
+L'organizzazione del codice in moduli funzionali distinti aiuta nella gestione dello sviluppo di applicazioni complesse e nella progettazione delle stesse, aumentando la riusabilità del codice. Inoltre, questa tecnica consente di sfruttare il \textit{lazy loading}, ovvero il caricamento dei moduli su richiesta, al fine di ridurre al minimo la quantità di codice che deve essere caricata all'avvio.
+
+\subsubsection{Components}
+
+Ogni applicazione \angular~ha almeno un componente, il \textit{root component}, che connette una gerarchia di componenti con il \acrshort{dom} della pagina. Ogni componente è definito mediante una classe che contiene i dati e la logica dell'applicazione a cui è associato un \textit{template} \acrshort{html} che definisce come i dati devono venire visualizzati.
+
+I \textit{decorators} sono funzioni che modificano le classi \gls{javascript}, in particolare il decoratore \textit{@Component} identifica la classe immediatamente sottostante come un componente \angular, definendo template e metadati specifici del componente stesso (come le dipendenze).
+
+Il \textit{template} combina \acrshort{html} con un markup di \angular~che può modificare gli elementi \acrshort{html} prima che vengano visualizzati.
+
+Le \textit{directives} forniscono logica al componente e il \textit{binding markup} connette i dati dell'applicazione con il \gls{dom}.
+
+Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permettono di interpolare valori calcolati dai dati dell'applicazione all'interno del template \acrshort{html}.
+
+Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel template per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come inpuit dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
+
+\subsubsection{Services e dependency injection}
+
+Per dati o logica non associati ad una specifica visualizzazione grafica che si desidera condividere tra componenti, si crea una \textit{service class}. Una definizione di una classe di servizio è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i metadati che consentono al servizio di essere iniettato nei componenti client come dipendenza.
+
+La \gls{di}  consente di mantenere le classi dei componenti snelle ed efficienti delegando logiche di business ai servizi iniettati.
+
+\subsubsection{Routing}
+
+L'\textit{NgModule} \textit{Router} fornisce un servizio che consente di definire un percorso di navigazione tra i diversi componenti dell'applicazione e visualizzarne le gerarchie.
+
+Il router mappa percorsi simili a \acrshort{url} per componenti anziché per pagine, ovvero quando un utente esegue un'azione, ad esempio facendo clic su un collegamento --- che dovrebbe caricare una nuova pagina nel browser --- il router intercetta il comportamento del browser e mostra o nasconde le gerarchie di componenti definite nel modello di routing.
+
+Se il router determina che lo stato dell'applicazione corrente richiede funzionalità particolari e il modulo che le definisce non è stato caricato, il router può caricare il modulo su richiesta (\textit{lazy loading}).
+
+\begin{figure}[!h] 
+	\centering    
+	\includegraphics[width=0.8\textwidth]{Chapter1/Figs/angular-overview}
+	\caption[Architettura di Angular]{Schema dell'architettura di Angular\cite{angularoverview}}
+	\label{fig:angular-overview}
+\end{figure}
 
 \section{Attori del sistema}
 
