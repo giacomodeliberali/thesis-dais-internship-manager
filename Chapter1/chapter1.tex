@@ -5,9 +5,11 @@
 %********************************** %First Section  *************************************
 \section{Da dove nasce questo progetto}
 
-\textbf{Todo}: Spiegare in modo più generico come funzionano gli stage universitari \\
+Nella carriera universitaria di uno studente è prevista dal piano di studi l'inclusione di un tirocinio (internship) che permetterà allo studente di collaborare con un azienda in un progetto che sia al di fuori delle mura dell'ateneo. Vi sono due diversi tipi di tirocini, curriculare ed extra-curriculare; il primo permette il riconoscimento di crediti formativi universitari (CFU), mentre il secondo mira solamente a fornire un'esperienza lavorativa allo studente.
 
-Il progetto \projectName nasce con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
+Per avviare un tirocinio bisogna quindi mettere in comunicazione soggetti eterogenei, ovvero aziende, professori e studenti. Permettere un'efficace collaborazione tra questi attori che appartengono a categorie e ambienti diversi non è semplice e necessita di un controllo granulare e centralizzato.
+
+Il progetto \projectName nasce con proprio con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
 
 Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è piuttosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, alla pubblicazione della stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un rapporto basato su email. 
 
@@ -46,18 +48,24 @@ Rispetto a \acrshort{json}, \acrshort{bson} è progettato per essere efficiente 
 
 % Documenti
 \noindent
-I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttua di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie ad una singola lettura per ottenere l'intero documento desiderato.
+I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttura di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie ad una singola lettura per ottenere l'intero documento desiderato.
 
-I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i documenti che descrivono i clienti potrebbero contenere l'ID cliente e la data in cui hanno acquistato i nostri prodotti o servizi, ma solo alcuni potrebbero contenere il collegamento ai social media dell'utente o i dati sulla posizione dalla nostra applicazione mobile. I campi possono variare da un documento all'altro; non è necessario dichiarare la struttura dei documenti al sistema --- i documenti sono auto-descrittivi. Se è necessario aggiungere un nuovo campo a un documento, è possibile crearlo senza influire su tutti gli altri documenti nel sistema.
+I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i documenti che descrivono i clienti potrebbero contenere l'ID cliente e la data in cui hanno acquistato i nostri prodotti o servizi, ma solo alcuni potrebbero contenere il collegamento ai social media dell'utente o i dati sulla posizione dalla nostra applicazione mobile. I campi possono variare da un documento all'altro; non è necessario dichiarare la struttura dei documenti al sistema --- essi sono auto-descrittivi. Se è necessario aggiungere un nuovo campo a un documento, è possibile crearlo senza influire sugli altri documenti nel sistema.
+
 % Collezioni
-Le collezioni sono quindi un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise).
+Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise). Rapportate al sistema relazionale rappresentano una tabella.
+
 % Query
+\mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione proprio dei sistemi relazionali, ma ne propone uno proprio.
+\lstinputlisting{Chapter1/mongodb.nosql}
+% Table
+\mongodb~presenta alcune funzionalità non previste dalle altre architetture di database. Una comparazione delle features più interessanti tra \mongodb~e altri tipi di database è raffigurata nella tabella sottostante.
 \begin{table}[!h]
 	\caption{Confronto modello query e indicizzazione di \mongodb~e altri database\cite{mongodbarchitecture}}
 	\centering
 	\label{table:mongodbquerymodel}
 	\begin{tabular}{c c c c}
-		  & \mongodb & Database relazionale  & Databse Key-value\\ 
+		  & \mongodb & Database relazionale  & Database Key-value\\ 
 		\midrule
 		\multicolumn{1}{l}{Query Key-value} & Si & Si  & Si   \\
 		\multicolumn{1}{l}{Indici secondari} & Si & Si  & No   \\
@@ -71,7 +79,6 @@ Le collezioni sono quindi un insieme di documenti per  definizione schema-less, 
 		\bottomrule
 	\end{tabular}
 \end{table}
-\mongodb~propone un proprio linguaggio di interrogazione e presenta alcune funzionalità non previste dalle altre architetture di database.
 
 % -------------------------- FIX TABLE ALIGNMENT --------------------------
 \pagebreak

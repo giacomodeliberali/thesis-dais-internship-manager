@@ -1,0 +1,12 @@
+// SQL
+INSERT INTO users               SELECT * FROM users
+    (name, age, gender)         WHERE
+VALUES                              age < 25
+    ('Jack', 22, 'M')
+
+// NoSQL
+db.users.insert({               db.users.find(
+    name: 'Jack',                   age: {
+    age: 22,                            $lt: 25 // $lt = less than
+    gander: 'M'                     }
+})                             })
