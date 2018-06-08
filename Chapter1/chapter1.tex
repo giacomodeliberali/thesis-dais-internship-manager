@@ -57,7 +57,12 @@ Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero 
 
 % Query
 \mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione proprio dei sistemi relazionali, ma ne propone uno proprio.
+\begin{figure}[!h] 
+	\centering    
 \lstinputlisting{Chapter1/mongodb.nosql}
+	\caption[Esempio di sintassi di \mongodb]{Esempio di sintassi di \mongodb~\textit{vs} SQL}
+	\label{fig:mongodb-syntax-example}
+\end{figure}
 % Table
 \mongodb~presenta alcune funzionalità non previste dalle altre architetture di database. Una comparazione delle features più interessanti tra \mongodb~e altri tipi di database è raffigurata nella tabella sottostante.
 \begin{table}[!h]
@@ -108,11 +113,14 @@ Le sue funzionalità principali sono:
 	\item \textit{\acrshort{http}} helpers, come redirect o sistemi di caching: contenuto all'interno del modulo core, mette a disposizione alcune utility class che facilitano operazioni ripetitive oppure forniscono strumenti aggiuntivi utili ad ogni tipologia di sistema che si intende sviluppare
 	\item Supporto a diversi template engines. Dal momento che si possono anche realizzare applicazioni che ritornano del contenuto, ad esempio un applicazione \textit{\gls{mvc}}, è necessario un interprete del template che permetta l'inserimento dinamico di contenuto all'interno di esso. Un esempio di quelli che \expressjs~supporta out of the box sono \textit{Pug (Jade), Haml.js, React, Blade} e altri.
 \end{enumerate}
-
-\noindent
-Un esempio di un'applicazione \expressjs~che una volta avviata risponde 'Hello World!' è la seguente:
-\lstinputlisting{Chapter1/express.js}
-Qui possiamo vedere che una volta creata l'applicazione (riga 3), viene registrata una nuova route (riga 5) alla quale viene associata una \textit{\gls{callback}}. Questa \textit{\gls{callback}} riceve due parametri, la richiesta e la risposta. Il processo di \nodejs~resterà in stato di sleep fino a che una nuova richiesta verrà inoltrata nella route appena definita (quindi fino a che non verrà eseguita una chiamata in \textit{\acrshort{http} GET} all'indirizzo dove è in esecuzione l'applicazione). Una volta ricevuta la notifica \nodejs~entrerà nell'\textit{\gls{eventloop}} per gestirla e una volta completata l'operazione eseguirà la \textit{\gls{callback}} registrata, rispondendo al client che ha effettuato la connessione con la stringa 'Hello World!'.
+% Image
+\begin{figure}[!h] 
+	\centering    
+	\lstinputlisting{Chapter1/express.ts}
+	\caption[Esempio di applicazione \expressjs]{Un esempio di applicazione \expressjs}
+	\label{fig:expressjs-example}
+\end{figure}
+Come possiamo vedere in figura \ref{fig:expressjs-example}, una volta creata l'applicazione (riga 3), viene registrata una nuova route (riga 5) alla quale viene associata una \textit{\gls{callback}}. Questa \textit{\gls{callback}} riceve due parametri, la richiesta e la risposta. Il processo di \nodejs~resterà in stato di sleep fino a che una nuova richiesta verrà inoltrata nella route appena definita (quindi fino a che non verrà eseguita una chiamata in \textit{\acrshort{http} GET} all'indirizzo dove è in esecuzione l'applicazione). Una volta ricevuta la notifica \nodejs~entrerà nell'\textit{\gls{eventloop}} per gestirla e una volta completata l'operazione eseguirà la \textit{\gls{callback}} registrata, rispondendo al client che ha effettuato la connessione con la stringa 'Hello World!'.
 
 \subsection{\angular}
 
