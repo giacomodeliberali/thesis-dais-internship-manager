@@ -8,5 +8,5 @@ VALUES                              age < 25
 db.users.insert({               db.users.find(
     name: 'Jack',                   age: {
     age: 22,                            $lt: 25 // $lt = less than
-    gander: 'M'                     }
-})                             })
+    gender: 'M'                     }
+})                              })

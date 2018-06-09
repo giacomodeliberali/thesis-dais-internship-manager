@@ -35,7 +35,6 @@ Possiamo notare che in figura \ref{fig:server-schema}, all'interno della definiz
 Nel caso l'applicazione cerchi di salvare un oggetto che non rispetti i vincoli imposti dallo \textit{schema} viene sollevata un'eccezione che impedisce di rendere inconsistente il database.
 
 \subsection{Repositories}
-
 I \textit{repositories} sono classi legate ad uno specifico oggetto che esportano operazioni su di esso. Interrogano uno o più \textit{schemas} per leggere, scrivere o aggregare dati, e contengono solamente la logica di accesso ai dati, senza nessuna logica di business (ad esempio il controllo dei permessi). Tutti i \textit{repositories} dervano dal \textit{BaseRepository} che esporta le operazioni di base --- \gls{crud} --- oltre che un metodo per eseguire query personalizzate.
 % File
 \begin{figure}[!h] 
@@ -45,9 +44,83 @@ I \textit{repositories} sono classi legate ad uno specifico oggetto che esportan
 	\label{fig:server-repository}
 \end{figure}
 Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventualmente accedere e ad altri \textit{repositories} iniettati dal sistema di \acrfull{di}. Il sistema di \acrshort{di} adottato dal sistema si basa sul pacchetto \acrshort{npm} `inversisy`, che fornisce anche un modo di aggirare le dipendenze circolari (ad esempio tra due \textit{repositories}) tramite un meccanismo di \textit{lazy-inject}.
+
+
+\subsection{Controllers}
+
+I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e dervano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuiali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{scope} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
+\begin{figure}[!h] 
+	\centering    
+	\lstinputlisting{Chapter2/controller1.ts}
+	\caption[Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}]{Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}}
+	\label{fig:server-controller-1}
+\end{figure}
+Come possiamo notare in figura \ref{fig:server-controller-1} il \textit{controller} sta registrando una route di \expressjs~il cui  secondo parametro è un array. Queso array contiene un insieme di \textit{middleware} che \expressjs~si occuperà di invocare prima di eseguire il codice all'interno della \gls{callback}. Il \textit{middleware}, in questo caso la funzione \textit{ownInternshipProposal}, verifica che l'utente che ha effettuato la chiamata sia effettivamente un soggetto (azienda, professore o studente) della proposta di tirocinio di cui vuole aggiornare lo stato. In caso negativo rifiuta la richiesta con un errore e la termina. L'autenticazione del sistema verrà discussa in dettaglio nel capitolo \textit{\ref{chap:api} - \nameref{chap:api}}.
+
+\subsection{Bootstrap}
+
+L'avvio dell'applicazione avviene nel file \textit{server.ts}, che si preoccupa di registrare tutti i \textit{repositories} nel sistema di \acrlong{di} e infine di rispolvere i \textit{controllers}.
+\begin{figure}[!h] 
+	\centering    
+	\lstinputlisting{Chapter2/server.ts}
+	\caption[Estratto di \textit{Server.ts}, bootstrap del \gls{backend}]{Estratto di \textit{Server.ts}, bootstrap del \gls{backend}}
+	\label{fig:server-controller}
+\end{figure}
+L'applicazione si preoccupa anche di connettersi al database \mongodb~e registrare nel container l'istanza dell'applicazione in modo sia accessibile dove necessario. Definisce inoltre un \textit{middleware} per catturare eventuali eccezioni non gestite dai \textit{controllers}.
+
+\pagebreak
 \section{Archietettura lato client}
-\subsection{Angular}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae laoreet lectus. Donec lacus quam, malesuada ut erat vel, consectetur eleifend tellus. Aliquam non feugiat lacus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque a dolor sit amet dui malesuada malesuada id ac metus. Phasellus posuere egestas mauris, sed porta arcu vulputate ut. Donec arcu erat, ultrices et nisl ut, ultricies facilisis urna. Quisque iaculis, lorem non maximus pretium, dui eros auctor quam, sed sodales libero felis vel orci. Aliquam neque nunc, elementum id accumsan eu, varius eu enim. Aliquam blandit ante et ligula tempor pharetra. Donec molestie porttitor commodo. Integer rutrum turpis ac erat tristique cursus. Sed venenatis urna vel tempus venenatis. Nam eu rhoncus eros, et condimentum elit. Quisque risus turpis, aliquam eget euismod id, gravida in odio. Nunc elementum nibh risus, ut faucibus mauris molestie eu.
- Vivamus quis nunc nec nisl vulputate fringilla. Duis tempus libero ac justo laoreet tincidunt. Fusce sagittis gravida magna, pharetra venenatis mauris semper at. Nullam eleifend felis a elementum sagittis. In vel turpis eu metus euismod tempus eget sit amet tortor. Donec eu rhoncus libero, quis iaculis lectus. Aliquam erat volutpat. Proin id ullamcorper tortor. Fusce vestibulum a enim non volutpat. Nam ut interdum nulla. Proin lacinia felis malesuada arcu aliquet fringilla. Aliquam condimentum, tellus eget maximus porttitor, quam sem luctus massa, eu fermentum arcu diam ac massa. Praesent ut quam id leo molestie rhoncus. Praesent nec odio eget turpis bibendum eleifend non sit amet mi. Curabitur placerat finibus velit, eu ultricies risus imperdiet ut. Suspendisse lorem orci, luctus porta eros a, commodo maximus nisi.
- 
+
+Il \gls{frontend} di \projectName~è un'applicazione \angular~(v6) composta da diversi moduli (\nameref{chap:ngmodules}). Vi sono due moduli principali, uno che contiene le pagine che può visualizzare un utente non autenticato (\textit{NoAuthModule}) e uno che contiene le pagine visibili agli utenti autenticati (\textit{AuthModule}). Il modulo per gli utenti non autenticati viene caricato per primo, mentre il modulo che contiene le pagine protette viene caricato con la tecnica del \textit{lazy-loading} solamente una volta effettuato il login. Esiste poi un altro macro modulo, \textit{SharedModule}, che contiene dipendenze utilizzare in entrambi gli altri due moduli e che viene infatti importato in essi.
+
+\subsection{Moduli e divisione delle responsabilità}
+
+\subsubsection{SharedModule}
+Contiene le dipendenze, i \textit{components}, le \textit{pipes} e le \textit{directives} utilizzate negli altri moduli. Viene importato sia in \textit{NoAuthModule} che in \textit{AuthModule}.
+
+\subsubsection{NoAuthModule}
+Contiene la pagine che solo un utente non autenticato può raggiungere, ovvero \textit{login} di un utente e \textit{registrazione} di un'azienda. Una volta effettuato il login, il \textit{router} carica il modulo \textit{AuthModule} che contiene invece tutte le pagine protette e fintanto che l'utente non effettua il \textit{logout} non può più raggiungere le pagine in \textit{NoAuthModule}.
+
+
+\subsubsection{AuthModule}
+Contiene la pagine che solo un utente autenticato può raggiungere, ovvero il cuore dell'applicazione. Data la sua dimensione questo modulo contiene degli altri sotto moduli:
+\begin{itemize}
+	\item \textit{UserModule}: contiene la parte di gestione dell'account di un utente, con la possibilità di modificarlo
+	\item \textit{Internship}: contiene la parte di gestione dei tirocini (aggiunta, modifica, approvazione, dettaglio, candidatura)
+	\item \textit{InternshipProposal}: contiene la parte di gestione dei tirocini (modifica, approvazione, dettaglio, tracciamento)
+	\item \textit{Shared}: contiene i componenti comuni a questi sotto moduli (header, footer e sidebar)
+\end{itemize}
+
+
+\subsection{Servizi e recupero dei dati}
+I moduli visti poco sopra contengono i componenti responsabili della visualizzazione dei dati, che tuttavia non si preoccupano di recuperare in autonomia. Essi si affidano infatti ad uno strato di servizi che interagiscono con il \gls{backend} dell'applicazione, i \textit{services}.
+I \textit{services} di \angular~seguono lo standard del \gls{backend}, ovvero ognuno di essi si preoccupa di gestire una sola entità.
+ \begin{figure}[!h] 
+ 	\centering    
+ 	\lstinputlisting{Chapter2/service.ts}
+ 	\caption[Esempio di \textit{service} \gls{frontend}]{Esempio di \textit{service} \gls{frontend}}
+ 	\label{fig:client-service}
+ \end{figure}
+All'interno dei componenti che contengono il \textit{template} verranno iniettati uno o più \textit{services} che permetteranno di recuperare i dati da visualizzare.
+
  \subsection{Supporto multi lingua}
+ La gestione della localizzazione dell'app è gestita tramite il pacchetto \acrshort{npm} \textit{ngx-translate}, che fornisce dei componenti per la traduzione delle stringhe nei \textit{template} dei \textit{components} e nei relativi \textit{view-model}. Le traduzioni sono salvate in un file \acrshort{json}
+ \begin{figure}[!h] 
+	\centering    
+	\lstinputlisting{Chapter2/globalization.json}
+	\caption[Estratto del file di globalizzazione \gls{frontend}]{Estratto del file di globalizzazione \gls{frontend}}
+	\label{fig:client-globalization}
+\end{figure}
+ed è possibile recuperare in differenti modi:
+\begin{itemize}
+	\item \textit{Pipe}: da utilizzare nel \textit{template} quando ci sono espressioni da valutare
+	\item \textit{Directive}: da utilizzare nel \textit{template} quando la stringa da tradurre è cablata
+	\item \textit{Service}: da utilizzare nel \textit{view-model} dei \textit{components}
+\end{itemize}
+ \begin{figure}[!h] 
+	\centering    
+	\lstinputlisting{Chapter2/globalization.ts}
+	\caption[Localizzare un \textit{component} con \textit{ngx-translate}]{Localizzare un \textit{component} con \textit{ngx-translate}}
+	\label{fig:client-ngxtranslate}
+\end{figure}
+Un servizio registrato al \textit{bootstrap} dell'applicazione si preoccupa di leggere la lingua corrente e caricare il file di traduzione relativo, oppure uno di \textit{fallback}.
