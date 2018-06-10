@@ -1,13 +1,52 @@
-\chapter{\acrlong{api}}
+\chapter{\acrshort{api} - \acrlong{api}}
 
 \section{Autenticazione}
 \label{chap:api}
-Express middleware, auth controller
+
+Il sistema gestisce l'autenticazione degli utenti e le loro autorizzazioni utilizzando \gls{jwt}. Il \gls{backend} dell'applicazione espone delle \acrshort{rest} \acrshort{api} \textit{state-less}, ovvero che non mantengono nessuna sessione sugli utenti autenticati, ma che si aspettano piuttosto di ricevere in ogni chiamata un \textit{token} che contiene l'identificazione del chiamante.
 
 \subsection{Server side}
 
-Utilizzo JWT per gestire lo stato del sistema
+\expressjs~fornisce la possibilità di utilizzare delle funzioni, chiamate \textit{middleware}, prima che un metodo venga eseguito. Esse vengono eseguite in serie, permettendo di definire in funzioni atomiche controlli di validazione sulla chiamata in cui vengono innestate.
 
+Tutti i \textit{\nameref{server:controllers}} dell'applicazione \nodejs~dervano da un \textit{BaseController} che espone un metodo, \textit{useAuth}.
+
+\begin{figure}[H] 
+	\centering    
+	\lstinputlisting{Chapter4/base-controller.ts}
+	\caption[Metodo \textit{useAuth} di \textit{AuthContoller}]{Metodo \textit{useAuth} di \textit{AuthContoller}}
+	\label{fig:server-base-controller}
+\end{figure}
+
+\noindent
+Questo metodo registra un nuovo \textit{middleware} che ha due funzioni:
+\begin{enumerate}
+	\item verifica che la chiamata corrente contenga in \textit{header} un token valido e non scaduto
+	\item aggiunge al parametro \textit{req.body} una nuova proprietà che contiene il risultato della decodifica del token \acrshort{jwt} (ovvero un oggetto \textit{User}, con i relativi ruoli)
+\end{enumerate}
+Il \textit{middleware} di autenticazione viene eseguito in tutte le chiamate che vengono registrate dopo di lui. Il metodo \textit{useAuth} deve venire infatti chiamato prima di tutti i metodi che utilizzano l'autenticazione e dopo di tutti quelli che non la utilizzano. Per esempio, in figura \ref{fig:server-bootstrap} il metodo \textit{useAuth} è chiamato all'inizio, il che significa che tutti i metodi di \textit{InternshipController} sono protetti da autenticazione.
+
+\begin{figure}[H] 
+	\centering    
+	\lstinputlisting{Chapter4/auth-middleware.ts}
+	\caption[\textit{AuthMiddleware} di \textit{AuthContoller}]{\textit{AuthMiddleware} di \textit{AuthContoller}}
+	\label{fig:server-auth-middleware}
+\end{figure}
+
+\subsubsection{\textit{Authentication scopes}}
+Tutti i metodi registrati dopo l'utilizzo di \textit{useAuth} vengono quindi eseguiti se e soltanto se la chiamata contiene un \textit{token} valido. Durante la loro esecuzione esisterà dunque una proprietà che contiene l'oggetto \textit{User} che ha effettuato la chiamata, e sarà quindi possibile permettere di arrestarne l'esecuzione se l'utente corrente non dovesse disporre del ruolo necessario per eseguirla.
+
+Con questa filosofia ho creato dei \textit{middleware} di autorizzazione predefiniti, chiamati \textit{scopes}, che permettono di autorizzare solo una tipologia di utenti. Gli \textit{scopes} inseriti all'interno dell'applicazione sono:
+\begin{itemize}[itemsep=0pt]
+	\item \textit{adminScope}: permette l'esecuzione se l'utente corrente contiene almeno il ruolo \textit{Admin}
+	\item \textit{companyScope}: permette l'esecuzione se l'utente corrente contiene almeno il ruolo \textit{Company}
+	\item \textit{studentScope}: permette l'esecuzione se l'utente corrente contiene almeno il ruolo \textit{Student}
+	\item \textit{professorScope}: permette l'esecuzione se l'utente corrente contiene almeno il ruolo \textit{Professor}
+	\item \textit{ownCompanyScope}: permette l'esecuzione se l'utente corrente è un amministratore dell'azienda su cui sta eseguendo l'operazione
+	\item \textit{ownInternshipScope}: permette l'esecuzione se l'utente corrente è proprietario del tirocinio su cui sta eseguendo l'operazione
+	\item \textit{ownInternshipProposalScope}: permette l'esecuzione se l'utente corrente è un un soggetto (azienda, professore o studente) della proposta di tirocinio su cui sta eseguendo l'operazione
+\end{itemize}
+Gli \textit{scopes} si possono anche combinare insieme in serie per ottenere autorizzazioni più articolate.
 \subsection{Client side}
 
 Utilizzo JWT per gestire lo stato del sistema
@@ -21,13 +60,13 @@ Descrizione controller base
     \ttfamily
     \caption{Endpoint rest API}
     \centering
-    \label{table:good_table}
+    \label{table:endpoints}
     \begin{tabular}{l c c c c}
     
     
     URL  & Metodo & Parametri  & Risposta  \\ 
     \midrule
-    /api/internship & GET &  & ApiResponseDto<Array<Internship>>   \\
+    /api/internship & GET &  & ApiResponseDto<Array<Internship>\/>   \\
     
     I1LL & 7.48 & 0.56 & 8.7  \\
     

@@ -47,7 +47,7 @@ Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventua
 
 
 \subsection{Controllers}
-
+\label{server:controllers}
 I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e dervano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuiali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{scope} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
 \begin{figure}[!h] 
 	\centering    
@@ -64,7 +64,7 @@ L'avvio dell'applicazione avviene nel file \textit{server.ts}, che si preoccupa 
 	\centering    
 	\lstinputlisting{Chapter2/server.ts}
 	\caption[Estratto di \textit{Server.ts}, bootstrap del \gls{backend}]{Estratto di \textit{Server.ts}, bootstrap del \gls{backend}}
-	\label{fig:server-controller}
+	\label{fig:server-bootstrap}
 \end{figure}
 L'applicazione si preoccupa anche di connettersi al database \mongodb~e registrare nel container l'istanza dell'applicazione in modo sia accessibile dove necessario. Definisce inoltre un \textit{middleware} per catturare eventuali eccezioni non gestite dai \textit{controllers}.
 
