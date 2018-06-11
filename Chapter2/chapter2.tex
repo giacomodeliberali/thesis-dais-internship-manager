@@ -45,12 +45,11 @@ I \textit{repositories} sono classi legate ad uno specifico oggetto che esportan
 \end{figure}
 Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventualmente accedere e ad altri \textit{repositories} iniettati dal sistema di \acrfull{di}. Il sistema di \acrshort{di} adottato dal sistema si basa sul pacchetto \acrshort{npm} `inversisy`, che fornisce anche un modo di aggirare le dipendenze circolari (ad esempio tra due \textit{repositories}) tramite un meccanismo di \textit{lazy-inject}.
 
-
+\pagebreak
 \subsection{Controllers}
 \label{server:controllers}
-I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e dervano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. Tutti i metodi esposti ritornano il risultato wrappato all'interno di un oggetto, \textit{ApiResponseDto}, che contiene anche informazioni aggiuntive, come lo stato \acrshort{http} ed eventuali errori.
-%
-I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuiali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{\hyperref[server:scopes]{autentication middleware}} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
+I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e derivano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. 
+Tutti i metodi esposti ritornano il risultato racchiuso all'interno di un oggetto, \textit{ApiResponseDto}, che contiene anche informazioni aggiuntive, come lo stato \acrshort{http} ed eventuali errori.
 
 \begin{figure}[H] 
 	\centering    
@@ -58,10 +57,13 @@ I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente
 	\caption[Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}]{Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}}
 	\label{fig:server-controller-1}
 \end{figure}
+\noindent
+I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{\hyperref[server:scopes]{autentication middleware}} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
 
 \noindent
 Come possiamo notare in figura \ref{fig:server-controller-1} il \textit{controller} sta registrando una route di \expressjs~il cui  secondo parametro è un array. Queso array contiene un insieme di \textit{middleware} che \expressjs~si occuperà di invocare prima di eseguire il codice all'interno della \gls{callback}. Il \textit{middleware}, in questo caso la funzione \textit{ownInternshipProposal}, verifica che l'utente che ha effettuato la chiamata sia effettivamente un soggetto (azienda, professore o studente) della proposta di tirocinio di cui vuole aggiornare lo stato. In caso negativo rifiuta la richiesta con un errore e la termina. L'autenticazione del sistema verrà discussa in dettaglio nel capitolo \textit{\ref{chap:api} - \nameref{chap:api}}.
 
+\pagebreak
 \subsection{Bootstrap}
 
 L'avvio dell'applicazione avviene nel file \textit{server.ts}, che si preoccupa di registrare tutti i \textit{repositories} nel sistema di \acrlong{di} e infine di rispolvere i \textit{controllers}.
@@ -116,19 +118,20 @@ All'interno dei componenti che contengono il \textit{template} verranno iniettat
 
  \subsection{Supporto multi lingua}
  La gestione della localizzazione dell'app è gestita tramite il pacchetto \acrshort{npm} \textit{ngx-translate}, che fornisce dei componenti per la traduzione delle stringhe nei \textit{template} dei \textit{components} e nei relativi \textit{view-model}. Le traduzioni sono salvate in un file \acrshort{json}
- \begin{figure}[!h] 
+ \begin{figure}[H] 
 	\centering    
 	\lstinputlisting{Chapter2/globalization.json}
 	\caption[Estratto del file di globalizzazione \gls{frontend}]{Estratto del file di globalizzazione \gls{frontend}}
 	\label{fig:client-globalization}
 \end{figure}
+\noindent
 ed è possibile recuperare in differenti modi:
 \begin{itemize}
 	\item \textit{Pipe}: da utilizzare nel \textit{template} quando ci sono espressioni da valutare
 	\item \textit{Directive}: da utilizzare nel \textit{template} quando la stringa da tradurre è cablata
 	\item \textit{Service}: da utilizzare nel \textit{view-model} dei \textit{components}
 \end{itemize}
- \begin{figure}[!h] 
+ \begin{figure}[H] 
 	\centering    
 	\lstinputlisting{Chapter2/globalization.ts}
 	\caption[Localizzare un \textit{component} con \textit{ngx-translate}]{Localizzare un \textit{component} con \textit{ngx-translate}}
