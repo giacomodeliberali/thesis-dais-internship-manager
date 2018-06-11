@@ -48,24 +48,31 @@ Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventua
 
 \subsection{Controllers}
 \label{server:controllers}
-I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e dervano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuiali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{scope} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
-\begin{figure}[!h] 
+I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni dei \textit{repositories}. Anche i \textit{controllers} sono legati ad un unica entità e dervano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. Tutti i metodi esposti ritornano il risultato wrappato all'interno di un oggetto, \textit{ApiResponseDto}, che contiene anche informazioni aggiuntive, come lo stato \acrshort{http} ed eventuali errori.
+%
+I \textit{controllers} sono responsabili di gestire l'autenticazione dell'utente e le eventuiali eccezioni sollevate dai \textit{repositories}. Ogni \textit{controller} può esporre metodi che richiedono ruoli diversi, quindi ogni metodo definisce tramite uno \textit{\hyperref[server:scopes]{autentication middleware}} quale siano gli utenti abilitati ad eseguire quel metodo e in caso negativo ritorna un errore di autenticazione.
+
+\begin{figure}[H] 
 	\centering    
 	\lstinputlisting{Chapter2/controller1.ts}
 	\caption[Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}]{Esempio di registrazione di un metodo \expressjs~in un \textit{Controller}}
 	\label{fig:server-controller-1}
 \end{figure}
+
+\noindent
 Come possiamo notare in figura \ref{fig:server-controller-1} il \textit{controller} sta registrando una route di \expressjs~il cui  secondo parametro è un array. Queso array contiene un insieme di \textit{middleware} che \expressjs~si occuperà di invocare prima di eseguire il codice all'interno della \gls{callback}. Il \textit{middleware}, in questo caso la funzione \textit{ownInternshipProposal}, verifica che l'utente che ha effettuato la chiamata sia effettivamente un soggetto (azienda, professore o studente) della proposta di tirocinio di cui vuole aggiornare lo stato. In caso negativo rifiuta la richiesta con un errore e la termina. L'autenticazione del sistema verrà discussa in dettaglio nel capitolo \textit{\ref{chap:api} - \nameref{chap:api}}.
 
 \subsection{Bootstrap}
 
 L'avvio dell'applicazione avviene nel file \textit{server.ts}, che si preoccupa di registrare tutti i \textit{repositories} nel sistema di \acrlong{di} e infine di rispolvere i \textit{controllers}.
-\begin{figure}[!h] 
+\begin{figure}[H] 
 	\centering    
 	\lstinputlisting{Chapter2/server.ts}
 	\caption[Estratto di \textit{Server.ts}, bootstrap del \gls{backend}]{Estratto di \textit{Server.ts}, bootstrap del \gls{backend}}
 	\label{fig:server-bootstrap}
 \end{figure}
+
+\noindent
 L'applicazione si preoccupa anche di connettersi al database \mongodb~e registrare nel container l'istanza dell'applicazione in modo sia accessibile dove necessario. Definisce inoltre un \textit{middleware} per catturare eventuali eccezioni non gestite dai \textit{controllers}.
 
 \pagebreak
@@ -74,15 +81,18 @@ L'applicazione si preoccupa anche di connettersi al database \mongodb~e registra
 Il \gls{frontend} di \projectName~è un'applicazione \angular~(v6) composta da diversi moduli (\nameref{chap:ngmodules}). Vi sono due moduli principali, uno che contiene le pagine che può visualizzare un utente non autenticato (\textit{NoAuthModule}) e uno che contiene le pagine visibili agli utenti autenticati (\textit{AuthModule}). Il modulo per gli utenti non autenticati viene caricato per primo, mentre il modulo che contiene le pagine protette viene caricato con la tecnica del \textit{lazy-loading} solamente una volta effettuato il login. Esiste poi un altro macro modulo, \textit{SharedModule}, che contiene dipendenze utilizzare in entrambi gli altri due moduli e che viene infatti importato in essi.
 
 \subsection{Moduli e divisione delle responsabilità}
-
+\label{client:modules}
 \subsubsection{SharedModule}
+\label{client:shared-module}
 Contiene le dipendenze, i \textit{components}, le \textit{pipes} e le \textit{directives} utilizzate negli altri moduli. Viene importato sia in \textit{NoAuthModule} che in \textit{AuthModule}.
 
 \subsubsection{NoAuthModule}
+\label{client:no-auth-module}
 Contiene la pagine che solo un utente non autenticato può raggiungere, ovvero \textit{login} di un utente e \textit{registrazione} di un'azienda. Una volta effettuato il login, il \textit{router} carica il modulo \textit{AuthModule} che contiene invece tutte le pagine protette e fintanto che l'utente non effettua il \textit{logout} non può più raggiungere le pagine in \textit{NoAuthModule}.
 
 
 \subsubsection{AuthModule}
+\label{client:auth-module}
 Contiene la pagine che solo un utente autenticato può raggiungere, ovvero il cuore dell'applicazione. Data la sua dimensione questo modulo contiene degli altri sotto moduli:
 \begin{itemize}
 	\item \textit{UserModule}: contiene la parte di gestione dell'account di un utente, con la possibilità di modificarlo
@@ -93,6 +103,7 @@ Contiene la pagine che solo un utente autenticato può raggiungere, ovvero il cu
 
 
 \subsection{Servizi e recupero dei dati}
+\label{client:services}
 I moduli visti poco sopra contengono i componenti responsabili della visualizzazione dei dati, che tuttavia non si preoccupano di recuperare in autonomia. Essi si affidano infatti ad uno strato di servizi che interagiscono con il \gls{backend} dell'applicazione, i \textit{services}.
 I \textit{services} di \angular~seguono lo standard del \gls{backend}, ovvero ognuno di essi si preoccupa di gestire una sola entità.
  \begin{figure}[!h] 

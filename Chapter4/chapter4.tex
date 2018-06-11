@@ -5,7 +5,7 @@
 
 Il sistema gestisce l'autenticazione degli utenti e le loro autorizzazioni utilizzando \gls{jwt}. Il \gls{backend} dell'applicazione espone delle \acrshort{rest} \acrshort{api} \textit{state-less}, ovvero che non mantengono nessuna sessione sugli utenti autenticati, ma che si aspettano piuttosto di ricevere in ogni chiamata un \textit{token} che contiene l'identificazione del chiamante.
 
-\subsection{Server side}
+\subsection{\Gls{backend}}
 
 \expressjs~fornisce la possibilità di utilizzare delle funzioni, chiamate \textit{middleware}, prima che un metodo venga eseguito. Esse vengono eseguite in serie, permettendo di definire in funzioni atomiche controlli di validazione sulla chiamata in cui vengono innestate.
 
@@ -34,6 +34,7 @@ Il \textit{middleware} di autenticazione viene eseguito in tutte le chiamate che
 \end{figure}
 
 \subsubsection{\textit{Authentication scopes}}
+\label{server:scopes}
 Tutti i metodi registrati dopo l'utilizzo di \textit{useAuth} vengono quindi eseguiti se e soltanto se la chiamata contiene un \textit{token} valido. Durante la loro esecuzione esisterà dunque una proprietà che contiene l'oggetto \textit{User} che ha effettuato la chiamata, e sarà quindi possibile permettere di arrestarne l'esecuzione se l'utente corrente non dovesse disporre del ruolo necessario per eseguirla.
 
 Con questa filosofia ho creato dei \textit{middleware} di autorizzazione predefiniti, chiamati \textit{scopes}, che permettono di autorizzare solo una tipologia di utenti. Gli \textit{scopes} inseriti all'interno dell'applicazione sono:
@@ -47,54 +48,156 @@ Con questa filosofia ho creato dei \textit{middleware} di autorizzazione predefi
 	\item \textit{ownInternshipProposalScope}: permette l'esecuzione se l'utente corrente è un un soggetto (azienda, professore o studente) della proposta di tirocinio su cui sta eseguendo l'operazione
 \end{itemize}
 Gli \textit{scopes} si possono anche combinare insieme in serie per ottenere autorizzazioni più articolate.
-\subsection{Client side}
 
-Utilizzo JWT per gestire lo stato del sistema
+\subsection{\Gls{frontend}}
+\subsubsection{Autenticazione nei \textit{\hyperref[client:services]{Services}}}
+L'applicazione \angular~deve ovviamente preoccuparsi di inserire nell'\textit{header} (\acrshort{http}) di tutte le chiamata autenticate il \textit{token} ricevuto al login, dal momento che il server non mantiene nessuna sessione per gli utenti autenticati. Questa logica è inserita all'interno del \textit{BaseService} da cui tutti i \textit{\hyperref[client:services]{Services}} derivano: questa classe espone dei metodi nominati con il \textit{verb} \acrshort{http} che si intende utilizzare. Ha una dipendenza nei confronti di \textit{AuthService} --- che non deriva da \textit{BaseService}, ma espone i metodi di login e registrazione --- per il recupero del \textit{token} corrente.
+
+\begin{figure}[H] 
+	\centering    
+	\lstinputlisting{Chapter4/base-service.ts}
+	\caption[Esempio di metodo esposto da \textit{BaseService}]{Esempio di metodo esposto da \textit{BaseService}}
+	\label{fig:client-auth-base-service}
+\end{figure}
+
+\subsubsection{Autenticazione nei \textit{\hyperref[client:modules]{NgModules}}}
+
+Il modulo che contiene la porzione di applicazione visibile dopo l'autenticazione, \textit{\nameref{client:auth-module}}, per essere caricato con il \textit{lazy-loading} richiede solamente che l'utente sia autenticato e disponga di un token valido. A questo livello non è ancora necessaria l'autorizzazione basata sui ruoli in quanto questo modulo e i suoi sotto moduli comprendono pagine condivise raggiungibili da utenti con ruoli differenti.
+
+L'autorizzazione basata sui ruoli viene infatti applicata a livello di pagina: ad ogni componente registrato nel router di \angular, sono associati uno o più ruoli necessari per accedervi. Nel caso in cui il \textit{token} non contenga un \textit{claim} valido, l'utente viene reindirizzato in una pagina di errore 404.
 
 \section{Endpoints}
 
-\subsection{Controller base}
-Descrizione controller base
+Tutti i \hyperref[server:controllers]{\textit{controllers}} dell'applicazione \expressjs~ritornano i risultati delle chiamate all'interno di un oggetto standard chiamato \textit{ApiResponseDto} che contiene oltre al risultato dell'operazione delle altre informazioni, come lo stato \acrshort{http} ed eventuali errori.
+
+\subsection{BaseController}
+\label{server:base-controller}
+Il \textit{BaseController} espone di default i metodi \acrshort{crud} dell'entità e tutti gli altri \textit{controller} non devono dunque ridefinirli. I metodi che tutti quelli che estendono questa classe base sono rappresentati nella sottostante tabella.
 
 \begin{table}[h]
     \ttfamily
-    \caption{Endpoint rest API}
+    \caption{Endpoint \hyperref[server:base-controller]{\textit{BaseController}}}
     \centering
     \label{table:endpoints}
-    \begin{tabular}{l c c c c}
-    
-    
-    URL  & Metodo & Parametri  & Risposta  \\ 
-    \midrule
-    /api/internship & GET &  & ApiResponseDto<Array<Internship>\/>   \\
-    
-    I1LL & 7.48 & 0.56 & 8.7  \\
-    
-    I2MD & 3.99 & 0.63 & 4.2 \\
-    
-    I2LL & 6.81 & 0.02 & 6.66 \\
-    
-    CMD & 13.47 & 0.09 & 10.55 \\
-    
-    CBL & 11.88 & 0.05 & 13.11\\ 
-    \bottomrule
+    \begin{tabular}{l c c c c}    
+    URL  & Metodo & Parametri  & Risposta & Scope \\ 
+	    \midrule
+	    /<controllerName> & GET &  & Array<T>   \\
+	    /<controllerName>/:id & GET & string & Array<T>   \\
+	    /<controllerName> & POST & T & T  \\
+	    /<controllerName> & PUT & T & T  \\
+	    /<controllerName>/:id & DELETE & string & boolean  & adminScope \\
+	    \bottomrule
     \end{tabular}
     \end{table}
 
-\subsection{Internships}
-Metodi custom
+\subsection{InternshipsController}
 
-\subsection{InternshipProposals}
-Metodi custom
+La route definita per questo controller è 'internships'.
 
-\subsection{Roles}
-Metodi custom
+\label{server:internship-controller}
+\begin{table}[H]
+	\ttfamily
+	\caption{Endpoint \hyperref[server:internship-controller]{\textit{InternshipController}}}
+	\centering
+	\label{table:api:internship-controller}
+	\begin{tabular}{l c c c c}    
+		URL  & Metodo & Scope \\ 
+		\midrule
+		/getByCompanyOwnerId/:ownerId & GET    \\
+		/getApproved & GET   \\
+		/getNotApproved & GET   \\
+		/status & PUT & professorScope \\
+		/status/force & PUT & adminScope \\
+		/status/:status & GET \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
-\subsection{Users}
-Metodi custom
+\subsection{InternshipProposalsController}
 
-\subsection{Companies}
-Metodi custom
+La route definita per questo controller è 'proposals'.
 
-\subsection{Auth}
-Metodi custom
+\label{server:internship-proposals-controller}
+\begin{table}[H]
+	\ttfamily
+	\caption{Endpoint \hyperref[server:internship-proposals-controller]{\textit{InternshipProposalsController}}}
+	\centering
+	\label{table:api:internship-proposals-controller}
+	\begin{tabular}{l c c c c}    
+		URL  & Metodo & Scope \\ 
+		\midrule
+		/getByProfessorId/:professorId & GET    \\
+		/getByCompanyOwnerId/:companyOnwerId & GET   \\
+		/getByStudentId/:studentId & GET   \\
+		/availableplaces/:internshipId & GET \\
+		/status & PUT & ownInternshipProposalScope \\
+		/status/force & PUT & adminScope \\
+		/status/:status & GET \\
+		/addAttendances & POST & ownInternshipProposalScope \\
+		/generateDocs/:internshipProposalId & GET & ownInternshipProposalScope \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{RolesController}
+
+Non ha metodi custom, ma esponse solamente le operazioni del \hyperref[server:base-controller]{\textit{BaseController}}.
+
+\subsection{UsersController}
+La route definita per questo controller è 'users'. Questo controller disabilita l'operazione di update e la sovrascrive con la route 'own'.
+
+\label{server:users-controller}
+\begin{table}[H]
+	\ttfamily
+	\caption{Endpoint \hyperref[server:users-controller]{\textit{UsersController}}}
+	\centering
+	\label{table:api:users-controller}
+	\begin{tabular}{l c c c c}    
+		URL  & Metodo & Scope \\ 
+		\midrule
+		/getByRole/:role & GET    \\
+		/own & PUT & ownUserScope   \\
+		/professors/lookup & POST   \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{CompaniesController}
+
+La route definita per questo controller è 'companies'.
+
+\label{server:companies-controller}
+\begin{table}[H]
+	\ttfamily
+	\caption{Endpoint \hyperref[server:companies-controller]{\textit{CompaniesController}}}
+	\centering
+	\label{table:api:companies-controller}
+	\begin{tabular}{l c c}    
+		URL  & Metodo & Scope \\ 
+		\midrule
+		/getByOwnerId/:ownerId & GET    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{AuthenticationController}
+La route definita per questo controller è 'auth'.
+
+\label{server:auth-controller}
+\begin{table}[H]
+	\ttfamily
+	\caption{Endpoint \hyperref[server:auth-controller]{\textit{AuthenticationController}}}
+	\centering
+	\label{table:api:auth-controller}
+	\begin{tabular}{l c c}    
+		URL  & Metodo & Scope \\ 
+		\midrule
+		/login & POST &  \\
+		/register & POST &  \\
+		/google & GET &  \\
+		/token/validate & GET  &  \\
+		/token/decode & GET  & (solo debug)  \\
+		\bottomrule
+	\end{tabular}
+\end{table}
