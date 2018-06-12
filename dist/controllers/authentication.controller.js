@@ -49,6 +49,15 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
         this.router = express_1.Router();
     }
     /**
+    * Generate a new token for the given [[User]]
+    */
+    static generateToken(user) {
+        return jsonwebtoken_1.sign(user, environment_1.environment.jwtSecret, {
+            // Expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d"
+            expiresIn: "7d" // seven days. 
+        });
+    }
+    /**
    * Register this controller routes
    * @param useAllCustom Indicates if the custom routes should be registred automatically [default true]
    */
@@ -129,10 +138,7 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                         httpCode: 200,
                         data: {
                             user: user.toJSON(),
-                            token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret, {
-                                // Expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d"
-                                expiresIn: "7d" // seven days. 
-                            }),
+                            token: AuthenticationController_1.generateToken(user.toJSON()),
                             isNew: false
                         }
                     }).send();
@@ -188,7 +194,8 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                         httpCode: 200,
                         data: {
                             user: user.toObject(),
-                            token: jsonwebtoken_1.sign(user.toJSON(), environment_1.environment.jwtSecret)
+                            token: AuthenticationController_1.generateToken(user.toJSON()),
+                            isNew: true
                         }
                     }).send();
                 }
@@ -307,7 +314,7 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                     data: {
                         user: userData.user,
                         isNew: userData.isNew,
-                        token: jsonwebtoken_1.sign(userData.user, environment_1.environment.jwtSecret)
+                        token: AuthenticationController_1.generateToken(userData.user)
                     }
                 }).send();
             })(req, res);

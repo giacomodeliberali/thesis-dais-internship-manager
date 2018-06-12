@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "gulp && npm run start start",
+    "dev": "gulp && npm run start",
+    "start:prod": "NODE_ENV=production npm run start",
     "gulp": "./node_modules/.bin/gulp",
     "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
     "doc": "gulp typedoc",

@@ -93,6 +93,16 @@ export class AuthenticationController {
   }
 
   /**
+  * Generate a new token for the given [[User]]
+  */
+  public static generateToken(user: User): string {
+    return sign(user, environment.jwtSecret, {
+      // Expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d"
+      expiresIn: "7d" // seven days. 
+    });
+  }
+
+  /**
  * Register this controller routes
  * @param useAllCustom Indicates if the custom routes should be registred automatically [default true]
  */
@@ -181,10 +191,7 @@ export class AuthenticationController {
             httpCode: 200,
             data: {
               user: user.toJSON(),
-              token: sign(user.toJSON(), environment.jwtSecret, {
-                // Expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d"
-                expiresIn: "7d" // seven days. 
-              }),
+              token: AuthenticationController.generateToken(user.toJSON()),
               isNew: false
             }
           }).send();
@@ -246,7 +253,8 @@ export class AuthenticationController {
             httpCode: 200,
             data: {
               user: user.toObject(),
-              token: sign(user.toJSON(), environment.jwtSecret)
+              token: AuthenticationController.generateToken(user.toJSON()),
+              isNew: true
             }
           }).send();
         }
@@ -380,7 +388,7 @@ export class AuthenticationController {
           data: {
             user: userData.user,
             isNew: userData.isNew,
-            token: sign(userData.user, environment.jwtSecret)
+            token: AuthenticationController.generateToken(userData.user)
           }
         }).send();
       })(req, res);
