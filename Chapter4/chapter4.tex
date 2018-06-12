@@ -3,7 +3,18 @@
 \section{Autenticazione}
 \label{chap:api}
 
-Il sistema gestisce l'autenticazione degli utenti e le loro autorizzazioni utilizzando \gls{jwt}. Il \gls{backend} dell'applicazione espone delle \acrshort{rest} \acrshort{api} \textit{state-less}, ovvero che non mantengono nessuna sessione sugli utenti autenticati, ma che si aspettano piuttosto di ricevere in ogni chiamata un \textit{token} che contiene l'identificazione del chiamante.
+Il sistema gestisce l'autenticazione degli utenti e le loro autorizzazioni utilizzando \gls{jwt}. Il \gls{backend} dell'applicazione espone delle \acrshort{rest} \acrshort{api} \textit{state-less}, ovvero che non mantengono nessuna sessione sugli utenti autenticati, ma che si aspettano piuttosto di ricevere in ogni chiamata un \textit{token} che contiene l'identificazione del chiamante. \\
+
+\noindent
+Nella fase di login, quando un utente effettua l'accesso al proprio account, viene invocato il metodo \textit{login} di \textit{AuthController}, che ritorna ritorna un oggetto contenente:
+\begin{itemize}[itemsep=0pt]
+	\item l'utente che ha effettuato l'accesso
+	\item un flag booleano che indica se l'utente è nuovo o meno
+	\item un \textit{token} \acrshort{jwt}, il cui contenuto è l'utente che ha eseguito il login, firmato con la chiave privata del server
+\end{itemize}
+
+\noindent 
+Il \textit{token} generato dovrà essere incluso in ogni chiamata autenticata che l'applicazione \gls{frontend} desidera effettuare.
 
 \subsection{\Gls{backend}}
 
@@ -21,7 +32,7 @@ Tutti i \textit{\nameref{server:controllers}} dell'applicazione \nodejs~dervano 
 \noindent
 Questo metodo registra un nuovo \textit{middleware} che ha due funzioni:
 \begin{enumerate}
-	\item verifica che la chiamata corrente contenga in \textit{header} un token valido e non scaduto
+	\item verifica che la chiamata corrente contenga nell'\textit{header} \acrshort{http} un \textit{token} valido e non scaduto
 	\item aggiunge al parametro \textit{req.body} una nuova proprietà che contiene il risultato della decodifica del token \acrshort{jwt} (ovvero un oggetto \textit{User}, con i relativi ruoli)
 \end{enumerate}
 Il \textit{middleware} di autenticazione viene eseguito in tutte le chiamate che vengono registrate dopo di lui. Il metodo \textit{useAuth} deve venire infatti chiamato prima di tutti i metodi che utilizzano l'autenticazione e dopo di tutti quelli che non la utilizzano. Per esempio, in figura \ref{fig:server-bootstrap} il metodo \textit{useAuth} è chiamato all'inizio, il che significa che tutti i metodi di \textit{InternshipController} sono protetti da autenticazione.
