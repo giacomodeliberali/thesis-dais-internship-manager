@@ -50,6 +50,7 @@ Con questa filosofia ho creato dei \textit{middleware} di autorizzazione predefi
 Gli \textit{scopes} si possono anche combinare insieme in serie per ottenere autorizzazioni più articolate.
 
 \subsection{\Gls{frontend}}
+\label{chap:client:authentication}
 \subsubsection{Autenticazione nei \textit{\hyperref[client:services]{Services}}}
 L'applicazione \angular~deve ovviamente preoccuparsi di inserire nell'\textit{header} (\acrshort{http}) di tutte le chiamata autenticate il \textit{token} ricevuto al login, dal momento che il server non mantiene nessuna sessione per gli utenti autenticati. Questa logica è inserita all'interno del \textit{BaseService} da cui tutti i \textit{\hyperref[client:services]{Services}} derivano: questa classe espone dei metodi nominati con il \textit{verb} \acrshort{http} che si intende utilizzare. Ha una dipendenza nei confronti di \textit{AuthService} --- che non deriva da \textit{BaseService}, ma espone i metodi di login e registrazione --- per il recupero del \textit{token} corrente.
 
