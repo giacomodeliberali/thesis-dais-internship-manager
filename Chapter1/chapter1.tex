@@ -9,8 +9,8 @@ Nella carriera universitaria di uno studente è prevista dal piano di studi l'in
 
 Per avviare un tirocinio bisogna quindi mettere in comunicazione soggetti eterogenei, ovvero aziende, professori e studenti. Permettere un'efficace collaborazione tra questi attori che appartengono a categorie e ambienti diversi non è semplice e necessita di un controllo granulare e centralizzato.
 
-Il progetto \projectName nasce proprio con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
-
+Il progetto \projectName~nasce proprio con l'intento di semplificare il processo di gestione degli stage universitari. Il sistema correntemente adottato dall'ateneo non permette un'efficace fruizione dei contenuti né da parte degli studenti né tanto meno dal punto di vista dei professori e delle aziende. L'intero sistema è una semplice interfaccia web che mostra agli studenti autenticati tutte le offerte pubblicate.
+%
 Il workflow da seguire per inserire, cercare e candidarsi ad un'offerta di tirocinio è piuttosto macchinoso. Se un'azienda desidera proporre un'offerta di tirocinio prima di tutto deve essere convenzionata con l'ateneo, dopodiché deve inviare un'email alla segreteria che provvederà, una volta validato il contenuto dell'offerta, alla pubblicazione della stessa. Una volta pubblicata l'offerta sarà visibile dagli studenti che potranno candidarsi contattando prima il professore e in seguito l'azienda, sempre mediante un rapporto basato su email. 
 
 Risulta quindi necessaria una soluzione che permetta di automatizzare il più possibile questo processo, che tenga traccia dell'andamento del tirocinio e ne monitori lo stato.
@@ -20,17 +20,17 @@ Risulta quindi necessaria una soluzione che permetta di automatizzare il più po
 %********************************** %Second Section  *************************************
 \section{Scelte e vincoli tecnici} 
 
-La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obbiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere un solo codebase per raggiungere tutti i dispositivi --- computers, smartphones e tablets.
+La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obbiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere una sola soluzione per raggiungere tutti i dispositivi più utilizzati --- computers, smartphones e tablets.
 
-Un requisito di fondamentale importanza è quindi la responsività dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
-Inoltre, per favorire l'accessibilità dell'applicazione, essa dovrà essere multi lingua e in questa prima versione dovrà supportare almeno l'italiano e l'inglese.
+Un requisito di fondamentale importanza è quindi un design responsivo dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
+Per favorire ulteriormente l'accessibilità dell'applicazione, inoltre, essa dovrà essere multi lingua e in questa prima versione supportare almeno l'italiano e l'inglese.
 
 \section{Tecnologie adottate}
-Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \textit{\gls{frontend}} della soluzione saranno sicuramente web-based, in particolare lo stack \textit{\gls{mean}}. Questo insieme applicativo è composto da
+Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \gls{frontend} della soluzione saranno sicuramente web-based, in particolare lo stack \gls{mean}. Questo insieme applicativo è composto da
 \begin{enumerate}
 	\item Un \acrshort{dbms} basato su un database documentale \acrshort{nosql} (\mongodb)
-	\item Un framework server-side per la creazione di applicazione web e \acrshort{rest} \textit{\acrshort{api}} (\expressjs)
-	\item Un framework client-side (\angular)
+	\item Un \gls{framework} server-side per la creazione di applicazioni web e \acrshort{rest} \acrshort{api} (\expressjs)
+	\item Un \gls{framework} per la creazione di \acrshort{spa} client-side (\angular)
 \end{enumerate}
 
 
@@ -39,7 +39,7 @@ Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che a
 \mongodb~è un \gls{dbms} non relazionale, orientato ai documenti classificato come \gls{nosql}. Questo significa che rispetto ai tradizionali sistemi relazionali \mongodb~si basa sul concetto di documento e collezione.
 
 Il documento rappresenta un oggetto che si intende memorizzare, mentre una collezione è un insieme di documenti (una tabella se paragonata ai sistemi relazionali).
-\mongodb~memorizza i dati in con una rappresentazione binaria chiamata BSON (Binary JSON). Questa codifica estente la popolare rappresentazione \gls{json} per includere tipi di dato addizionali, come \textit{int, long, date, floating point e decimal 128}. I documenti \acrshort{bson} possono contenere uno o più campi, ognuno dei quali contiene il valore di uno specifico tipo di dato, inclusi array, dati binari o sotto-documenti.
+\mongodb~memorizza i dati in con una rappresentazione binaria chiamata \gls{bson}. Questa codifica estente la popolare rappresentazione \gls{json} per includere tipi di dato addizionali, come \textit{int, long, date, floating point e decimal 128}. I documenti \acrshort{bson} possono contenere uno o più campi, ognuno dei quali contiene il valore di uno specifico tipo di dato, inclusi array, dati binari o sotto-documenti.
 
 \begin{figure}[!h] 
 	\centering    
@@ -51,23 +51,25 @@ Il documento rappresenta un oggetto che si intende memorizzare, mentre una colle
 Rispetto a \acrshort{json}, \acrshort{bson} è progettato per essere efficiente sia nello spazio di archiviazione che nella velocità di scansione. Gli elementi in un documento \acrshort{bson} sono preceduti da un campo lunghezza per facilitare la scansione e questo in alcuni casi, quando il documento è piccolo,  porterà \acrshort{bson} ad utilizzare più spazio di \acrshort{json} proprio a causa dei prefissi di lunghezza e degli indici di array espliciti.
 
 % Documenti
-I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttura di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie ad una singola lettura per ottenere l'intero documento desiderato.
+I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttura di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie alla singola lettura per il recupero dell'intero documento desiderato.
 
 I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i documenti che descrivono i clienti potrebbero contenere l'ID cliente e la data in cui hanno acquistato i nostri prodotti o servizi, ma solo alcuni potrebbero contenere il collegamento ai social media dell'utente o i dati sulla posizione dalla nostra applicazione mobile. I campi possono variare da un documento all'altro; non è necessario dichiarare la struttura dei documenti al sistema --- essi sono auto-descrittivi. Se è necessario aggiungere un nuovo campo a un documento, è possibile crearlo senza influire sugli altri documenti nel sistema.
 
 % Collezioni
-Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise). Rapportate al sistema relazionale rappresentano una tabella.
+Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise).
 
 % Query
 \mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione proprio dei sistemi relazionali, ma ne propone uno proprio.
-\begin{figure}[!h] 
+\begin{figure}[H] 
 	\centering    
 \lstinputlisting{Chapter1/mongodb.nosql}
 	\caption[Esempio di sintassi di \mongodb]{Esempio di sintassi di \mongodb~\textit{vs} SQL}
 	\label{fig:mongodb-syntax-example}
 \end{figure}
+
 % Table
-\mongodb~presenta alcune funzionalità non previste dalle altre architetture di database. Una comparazione delle features più interessanti tra \mongodb~e altri tipi di database è raffigurata nella tabella sottostante.
+\noindent
+\mongodb~presenta alcune funzionalità non previste dalle altre architetture di database. Una comparazione delle features più interessanti tra \mongodb~e altri tipi di database è raffigurata in tabella \ref{table:mongodbquerymodel}.
 \begin{table}[!h]
 	\caption{Confronto modello query e indicizzazione di \mongodb~e altri database\cite{mongodbarchitecture}}
 	\centering
@@ -127,7 +129,7 @@ Come possiamo vedere in figura \ref{fig:expressjs-example}, una volta creata l'a
 
 \subsection{\angular}
 
-\angular~è un \gls{framework} sviluppato da Google per lo sviluppo \gls{frontend} di applicazioni web basato su \gls{typescript}. Implementa funzionalità core e opzionali in un insieme di librerie di \gls{typescript} che bisogna importare nelle applicazioni. In seguito verrano descritti gli elementi costitutivi di \angular.
+\angular~è un \gls{framework} sviluppato da Google per lo sviluppo \gls{frontend} di \gls{spa} basato su \gls{typescript}. Gli elementi costitutivi principali di \angular~verranno discussi nei prossimi paragrafi.
 
 
 \subsubsection{NgModules}
@@ -150,13 +152,13 @@ Il \textit{template} combina \acrshort{html} con un markup di \angular~che può 
 
 Le \textit{directives} forniscono logica al componente e il \textit{binding markup} connette i dati dell'applicazione con il \gls{dom}.
 
-Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permettono di interpolare valori calcolati dai dati dell'applicazione all'interno del template \acrshort{html}.
+Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permette di interpolare valori calcolati dai dati dell'applicazione all'interno del template \acrshort{html}.
 
-Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel template per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come inpuit dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
+Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel template per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come input dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
 
 \subsubsection{Services e dependency injection}
-
-Per dati o logica non associati ad una specifica visualizzazione grafica che si desidera condividere tra componenti, si crea una \textit{service class}. Una definizione di una classe di servizio è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i metadati che consentono al servizio di essere iniettato nei componenti client come dipendenza.
+\label{chap:client:services}
+Per dati o logica non associati ad una specifica visualizzazione grafica, oppre che si desidera condividere tra componenti, si crea una \textit{service class}. La definizione di un \textit{Service} è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i metadati che consentono al servizio di essere iniettato nei componenti client come dipendenza (i metadati permettono la reflection per il sistema di \acrshort{di}).
 
 La \gls{di}  consente di mantenere le classi dei componenti snelle ed efficienti delegando logiche di business ai servizi iniettati.
 
@@ -177,17 +179,20 @@ Se il router determina che lo stato dell'applicazione corrente richiede funziona
 
 \section{Attori del sistema}
 
-Dal momento che vi sono più soggetti diversi che accedono alla piattaforma è necessario definire i ruoli dei soggetti coinvolti. Il sistema prevede la gestione di quattro tipi di account --- ognuno con permessi diversi --- e la personalizzazione dell'interfaccia in base all'utente correntemente autenticato. Un account può avere anche più ruoli, ma al momento non esiste un'apposita interfaccia per le gestione; l'assegnazione di un ruolo multiplo deve avvenire tramite accesso diretto al database.
+Dal momento che vi sono più soggetti diversi che accedono alla piattaforma è necessario definire i ruoli dei soggetti coinvolti. Il sistema prevede la gestione di quattro tipi di account --- ognuno con permessi diversi --- e la personalizzazione dell'interfaccia in base all'utente correntemente autenticato. Un account può avere anche più ruoli, ma al momento non ne è previsto l'utilizzo.
 
 \subsection{Azienda}
-Deve effettuare l'accesso come un membro esterno dell'ateneo indicando le informazioni della propria azienda e quelle dei suoi amministratori. Inserisce le offerte di tirocinio presso una delle proprie sedi, visualizza le candidature ricevute e approva l'inizio di uno stage. Può completare il foglio presenze di un tirocinio in corso (nella propria azienda) e stamparne la documentazione precompilata al termine. Un'azienda ha uno o più amministratori che ne gestiscono le offerte di tirocinio e le candidature.
+Rappresenta una (o più) persona fisica responsabile della gestione di un'azienda di cui si fa portavoce.
+Deve effettuare l'accesso come un membro esterno dell'ateneo indicando le informazioni della propria azienda e quelle dei suoi amministratori. Inserisce le offerte di tirocinio presso una delle proprie sedi, visualizza le candidature ricevute e approva l'inizio di un tirocinio. Può completare il foglio presenze di un tirocinio in corso nella propria azienda e stamparne la documentazione precompilata al termine. 
 
 \subsection{Professore}
-Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Una volta eseguito il login per la prima volta viene creato un'account con il questo ruolo basandosi sull'email fornita: se essa termina con \textit{@unive.it} rappresenta un professore, mentre se termina con \textit{@stud.unive.it} rappresenta uno studente. 
-Un professore approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che li coinvolgono come referenti. Può completare il foglio presenze di un tirocinio (do cui è referente) in corso e stamparne la documentazione precompilata al termine.
+Rappresenta un componente interno all'ateneo che ha il compito di supervisionare le offerte e seguire gli studenti nel percorso.
+Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Una volta eseguito il login per la prima volta, viene creato un'account il cui ruolo si basa sull'email fornita: se essa termina con \textit{@unive.it} rappresenta un professore, mentre se termina con \textit{@stud.unive.it} rappresenta uno studente. 
+Un professore approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che lo coinvolgono come referente, può completare il foglio presenze di un tirocinio in corso (di cui è referente), e stamparne la documentazione precompilata al termine.
 
 \subsection{Studente}
+Rappresenta un componente interno all'ateneo che desidera effettuare un tirocinio in un'azienda.
 Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore come referente. Può completare il foglio presenze di un suo tirocinio in corso e stamparne la documentazione precompilata al termine.
 
 \subsection{Admin}
-Ricopre il ruolo di amministratore dei dati ed è l'unico soggetto a non avere restrizioni sulla modifica o la cancellazione dei dati. Non ha un influenza sul processo di gestione dei tirocini in quanto gli altri account formano un ecosistema che si alimenta e gestisce in modo autonomo.
+Non rappresenta un soggetto fisico, ma bensì una figura che ricopre il ruolo di amministratore dei dati, unico soggetto a non avere restrizioni sulla modifica o la cancellazione di essi. Non ha un influenza sul processo di gestione dei tirocini in quanto gli altri account formano un ecosistema che si alimenta e gestisce in modo autonomo.
