@@ -17,10 +17,10 @@ Nella fase di login, quando un utente effettua l'accesso al proprio account, vie
 Il \textit{token} generato dovrà essere incluso in ogni chiamata autenticata che l'applicazione \gls{frontend} desidera effettuare.
 
 \subsection{\Gls{backend}}
-
+\label{chap:auth-backend}
 \expressjs~fornisce la possibilità di utilizzare delle funzioni, chiamate \textit{middleware}, prima che un metodo venga eseguito. Esse vengono eseguite in serie, permettendo di definire in funzioni atomiche controlli di validazione sulla chiamata in cui vengono innestate.
 
-Tutti i \textit{\nameref{server:controllers}} dell'applicazione \nodejs~dervano da un \textit{BaseController} che espone un metodo, \textit{useAuth}.
+Tutti i \textit{\nameref{server:controllers}} dell'applicazione \nodejs~derivano da un \textit{BaseController} che espone un metodo, \textit{useAuth}.
 
 \begin{figure}[H] 
 	\centering    
@@ -154,7 +154,7 @@ La route definita per questo controller è 'proposals'.
 
 \subsection{RolesController}
 
-Non ha metodi custom, ma esponse solamente le operazioni del \hyperref[server:base-controller]{\textit{BaseController}}.
+Non ha metodi custom, ma espone solamente le operazioni del \hyperref[server:base-controller]{\textit{BaseController}}.
 
 \subsection{UsersController}
 La route definita per questo controller è 'users'. Questo controller disabilita l'operazione di update e la sovrascrive con la route 'own'.

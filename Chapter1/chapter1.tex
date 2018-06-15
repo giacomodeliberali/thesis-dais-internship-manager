@@ -20,10 +20,10 @@ Risulta quindi necessaria una soluzione che permetta di automatizzare il più po
 %********************************** %Second Section  *************************************
 \section{Scelte e vincoli tecnici} 
 
-La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obbiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere una sola soluzione per raggiungere tutti i dispositivi più utilizzati --- computers, smartphones e tablets.
+La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere una sola soluzione per raggiungere tutti i dispositivi più utilizzati --- computer, smartphone e tablet.
 
 Un requisito di fondamentale importanza è quindi un design responsivo dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
-Per favorire ulteriormente l'accessibilità dell'applicazione, inoltre, essa dovrà essere multi lingua e in questa prima versione supportare almeno l'italiano e l'inglese.
+Per favorire ulteriormente l'accessibilità dell'applicazione, inoltre, essa dovrà essere multilingua e in questa prima versione supportare almeno l'italiano e l'inglese.
 
 \section{Tecnologie adottate}
 Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \gls{frontend} della soluzione saranno sicuramente web-based, in particolare lo stack \gls{mean}. Questo insieme applicativo è composto da
@@ -51,12 +51,12 @@ Il documento rappresenta un oggetto che si intende memorizzare, mentre una colle
 Rispetto a \acrshort{json}, \acrshort{bson} è progettato per essere efficiente sia nello spazio di archiviazione che nella velocità di scansione. Gli elementi in un documento \acrshort{bson} sono preceduti da un campo lunghezza per facilitare la scansione e questo in alcuni casi, quando il documento è piccolo,  porterà \acrshort{bson} ad utilizzare più spazio di \acrshort{json} proprio a causa dei prefissi di lunghezza e degli indici di array espliciti.
 
 % Documenti
-I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttura di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti ad raggruppare tutti i dati di un record in un un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie alla singola lettura per il recupero dell'intero documento desiderato.
+I documenti \acrshort{bson} di \mongodb~sono concettualmente allineati alla struttura di un oggetto nei linguaggi di programmazione \acrshort{oop}. Questo rende più semplice e veloce per gli sviluppatori modellare la struttura dati dell'applicazione. Tendono infatti a raggruppare tutti i dati di un record in un unico documento, in opposizione al sistema relazionale tradizionale in cui le informazioni sarebbero distribuite su diverse tabelle. Questa sorta di aggregazione del dato riduce drammaticamente il bisogno di operazioni di \gls{sqljoin} su tabelle diverse, ottenendo performance superiori grazie alla singola lettura per il recupero dell'intero documento desiderato.
 
 I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i documenti che descrivono i clienti potrebbero contenere l'ID cliente e la data in cui hanno acquistato i nostri prodotti o servizi, ma solo alcuni potrebbero contenere il collegamento ai social media dell'utente o i dati sulla posizione dalla nostra applicazione mobile. I campi possono variare da un documento all'altro; non è necessario dichiarare la struttura dei documenti al sistema --- essi sono auto-descrittivi. Se è necessario aggiungere un nuovo campo a un documento, è possibile crearlo senza influire sugli altri documenti nel sistema.
 
 % Collezioni
-Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practise).
+Le collezioni sono un insieme di documenti per  definizione \textit{schema-less}, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practice).
 
 % Query
 \mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione proprio dei sistemi relazionali, ma ne propone uno proprio.
@@ -97,26 +97,26 @@ Le collezioni sono un insieme di documenti per  definizione schema-less, ovvero 
 \end{quote}
 
 \noindent
-Storicamente \gls{javascript} era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scriping server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<\gls{javascript} everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando  linguaggi per client e server-side.
+Storicamente \gls{javascript} era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scripting server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<\gls{javascript} everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando i linguaggi per client e server-side.
 
 % Archietettura nodejs
-La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondende \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
+La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondente \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
 %Dettagli tecnici
-\nodejs~opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente realtime. Processa le richieste in arrivo in un ciclo, chiamato \textit{\gls{eventloop}}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{\gls{callback}} il server rientra in modo automatico nell'\textit{\gls{eventloop}}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{\gls{callback}} da eseguire.
+\nodejs~opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente real-time. Processa le richieste in arrivo in un ciclo, chiamato \textit{\gls{eventloop}}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{\gls{callback}} il server rientra in modo automatico nell'\textit{\gls{eventloop}}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{\gls{callback}} da eseguire.
 
 % Vantaggi e svantaggi
 I vantaggi che hanno portato \nodejs~ad avere una diffusione così ampia sono molti. Sicuramente possiamo notare che \gls{javascript} è un linguaggio ben conosciuto e largamente utilizzato, quindi la curva di apprendimento di questa tecnologia è molto più breve; offrendo inoltre la programmazione orientata agli eventi permette agli sviluppatori di creare server in grado di gestire un alto numero di richieste simultanee che siano facilmente scalabili senza l'utilizzo del \textit{threading}. Lo svantaggio principale di \nodejs~è la mancanza al supporto per la scalabilità verticale, determinata dalla sua architettura single-thread.
 
 \subsection{\expressjs}
-\expressjs~è un \textit{\gls{framework}} per costruire applicazioni web ed \textit{\acrshort{api}} basato sulla piattaforma \nodejs. Nel corso del tempo è devenuto lo standard de facto per i \textit{\gls{framework}} server di \nodejs. 
+\expressjs~è un \textit{\gls{framework}} per costruire applicazioni web ed \textit{\acrshort{api}} basato sulla piattaforma \nodejs. Nel corso del tempo è divenuto lo standard de facto per i \textit{\gls{framework}} server di \nodejs. 
 % Descrizione principale
-Si presenta in modo minimale, offrendo un sottile livello applicativo che punti a velocizzare lo sviluppo senza tuttavia oscurare le funzionalità di \nodejs. \expressjs~è diviso in diversi moduli che possono essere innestati uno spora l'altro, rendendolo adatto ad ogni tipo di applicazione.  
+Si presenta in modo minimale, offrendo un sottile livello applicativo che punti a velocizzare lo sviluppo senza tuttavia oscurare le funzionalità di \nodejs. \expressjs~è diviso in diversi moduli che possono essere innestati uno sopra l'altro, rendendolo adatto ad ogni tipo di applicazione.  
 % Principali funzionalità
 Le sue funzionalità principali sono:
 \begin{enumerate}[label=(\alph*)]
-	\item Un sistema di routing: contenuto all'interno del pacchetto `express-router`, è il modulo per la gestione e la manipolazioni delle routes. Permette di definire in modo gerarchico un insieme di \textit{\acrshort{url}}, alle quali associare una specifica azione. Un'azione è un metodo che viene invocato e che produce una risposta.
+	\item Un sistema di routing: contenuto all'interno del pacchetto `express-router`, è il modulo per la gestione e la manipolazione delle routes. Permette di definire in modo gerarchico un insieme di \textit{\acrshort{url}}, alle quali associare una specifica azione. Un'azione è un metodo che viene invocato e che produce una risposta.
 	\item \textit{\acrshort{http}} helpers, come redirect o sistemi di caching: contenuto all'interno del modulo core, mette a disposizione alcune utility class che facilitano operazioni ripetitive oppure forniscono strumenti aggiuntivi utili ad ogni tipologia di sistema che si intende sviluppare
-	\item Supporto a diversi template engines. Dal momento che si possono anche realizzare applicazioni che ritornano del contenuto, ad esempio un applicazione \textit{\gls{mvc}}, è necessario un interprete del template che permetta l'inserimento dinamico di contenuto all'interno di esso. Un esempio di quelli che \expressjs~supporta out of the box sono \textit{Pug (Jade), Haml.js, React, Blade} e altri.
+	\item Supporto a diversi template engines. Dal momento che si possono anche realizzare applicazioni che ritornano del contenuto, ad esempio un'applicazione \textit{\gls{mvc}}, è necessario un interprete del template che permetta l'inserimento dinamico di contenuto all'interno di esso. Un esempio di quelli che \expressjs~supporta out of the box sono \textit{Pug (Jade), Haml.js, React, Blade} e altri.
 \end{enumerate}
 % Image
 \begin{figure}[!h] 
@@ -144,21 +144,21 @@ L'organizzazione del codice in moduli funzionali distinti aiuta nella gestione d
 
 \subsubsection{Components}
 
-Ogni applicazione \angular~ha almeno un componente, il \textit{root component}, che connette una gerarchia di componenti con il \acrshort{dom} della pagina. Ogni componente è definito mediante una classe che contiene i dati e la logica dell'applicazione a cui è associato un \textit{template} \acrshort{html} che definisce come i dati devono venire visualizzati.
+Ogni applicazione \angular~ha almeno un componente, il \textit{root component}, che connette una gerarchia di componenti con il \acrshort{dom} della pagina. Ogni componente è definito mediante una classe che contiene i dati e la logica dell'applicazione a cui è associato un \textit{template} \acrshort{html} che definisce come i dati devono essere visualizzati.
 
-I \textit{decorators} sono funzioni che modificano le classi \gls{javascript}, in particolare il decoratore \textit{@Component} identifica la classe immediatamente sottostante come un componente \angular, definendo template e metadati specifici del componente stesso (come le dipendenze).
+I \textit{decorators} sono funzioni che modificano le classi \gls{javascript}, in particolare il decoratore \textit{@Component} identifica la classe immediatamente sottostante come un componente \angular, definendo \textit{template} e \textit{metadati} specifici del componente stesso (come le dipendenze).
 
-Il \textit{template} combina \acrshort{html} con un markup di \angular~che può modificare gli elementi \acrshort{html} prima che vengano visualizzati.
+Il \textit{template} combina \acrshort{html} con un \textit{markup} di \angular~che può modificare gli elementi \acrshort{html} prima che vengano visualizzati.
 
 Le \textit{directives} forniscono logica al componente e il \textit{binding markup} connette i dati dell'applicazione con il \gls{dom}.
 
-Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permette di interpolare valori calcolati dai dati dell'applicazione all'interno del template \acrshort{html}.
+Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permette di interpolare valori calcolati dai dati dell'applicazione all'interno del \textit{template} \acrshort{html}.
 
-Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel template per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come input dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
+Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel \textit{template} per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come input dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
 
 \subsubsection{Services e dependency injection}
 \label{chap:client:services}
-Per dati o logica non associati ad una specifica visualizzazione grafica, oppre che si desidera condividere tra componenti, si crea una \textit{service class}. La definizione di un \textit{Service} è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i metadati che consentono al servizio di essere iniettato nei componenti client come dipendenza (i metadati permettono la reflection per il sistema di \acrshort{di}).
+Per dati o logica non associati ad una specifica visualizzazione grafica, oppure che si desidera condividere tra componenti, si crea una \textit{service class}. La definizione di un \textit{Service} è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i \textit{metadati} che consentono al servizio di essere iniettato nei componenti client come dipendenza (i \textit{metadati} permettono la \textit{reflection} per il sistema di \acrshort{di}).
 
 La \gls{di}  consente di mantenere le classi dei componenti snelle ed efficienti delegando logiche di business ai servizi iniettati.
 
@@ -195,4 +195,4 @@ Rappresenta un componente interno all'ateneo che desidera effettuare un tirocini
 Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Visualizza le offerte di tirocinio pubblicate e propone una candidatura indicando un professore come referente. Può completare il foglio presenze di un suo tirocinio in corso e stamparne la documentazione precompilata al termine.
 
 \subsection{Admin}
-Non rappresenta un soggetto fisico, ma bensì una figura che ricopre il ruolo di amministratore dei dati, unico soggetto a non avere restrizioni sulla modifica o la cancellazione di essi. Non ha un influenza sul processo di gestione dei tirocini in quanto gli altri account formano un ecosistema che si alimenta e gestisce in modo autonomo.
+Non rappresenta un soggetto fisico, ma bensì una figura che ricopre il ruolo di amministratore dei dati, unico soggetto a non avere restrizioni sulla modifica o la cancellazione di essi. Non ha un'influenza sul processo di gestione dei tirocini in quanto gli altri account formano un ecosistema che si alimenta e gestisce in modo autonomo.
