@@ -1,9 +1,26 @@
 \chapter{Casi d'uso e workflow}
 
+\projectName~prevede i seguenti casi d'uso:
+\begin{enumerate}
+	\item \hyperref[sec:registrazione-e-login-di-un-utente]{\textit{Registrazione e login di un utente}}
+	\item \hyperref[sec:creazione--di-un-tirocinio]{\textit{Creazione di un tirocinio}}
+	\item \hyperref[sec:approvazione-di-un-tirocinio]{\textit{Approvazione di un tirocinio}}
+	\item \hyperref[sec:candidatura-ad-un-tirocinio]{\textit{Candidatura ad un tirocinio}}
+	\item \hyperref[sec:approvazione-candidatura-professore]{\textit{Approvazione di una candidatura (professore)}}
+	\item \hyperref[sec:approvazione-candidatura-azienda]{\textit{Approvazione di una candidatura (azienda)}}
+	\item \hyperref[sec:avvio-di-un-tirocinio]{\textit{Avvio di un tirocinio}}
+	\item \hyperref[sec:compilazione-foglio-presenze]{\textit{Comiplazione del foglio presenze}}
+	\item \hyperref[sec:terminazione-di-un-tirocinio]{\textit{Terminazione di un tirocinio}}
+	\item \hyperref[sec:generazione-documentazione]{\textit{Generazione documentazione precompilata}}
+\end{enumerate}
+I casi d'uso saranno illustrati nei paragrafi seguenti.
+
 \section{Ciclo di vita di un tirocinio}
+Prima di definire in dettaglio i casi d'uso è opportuno spiegare l'intero ciclo di vita di un tirocinio, dalla sua creazione alla sua chiusura. Schematicamente il processo di gestione è rappresentato in figura \ref{fig:workflaw}.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{Chapter3/Figs/states-flaw}
+	\includegraphics[width=0.9\textwidth]{Chapter3/Figs/states-flaw}
 	\caption[Ciclo di vita di un tirocinio]{Ciclo di vita di un tirocinio}
 	\label{fig:workflaw}
 \end{figure}
@@ -12,7 +29,7 @@
 
 Nel seguente paragrafo verranno descritti i casi d'uso previsti dall'applicazione.
 
-\subsection{Registrazione e login di un utente}
+\subsection{Registrazione e login di un utente}\label{sec:registrazione-e-login-di-un-utente}
 
 \textit{Deve essere possibile registrare un nuovo utente nel sistema e permettergli di autenticarsi.} \\
 
@@ -57,7 +74,7 @@ Per quanto riguarda un utente con il ruolo di azienda, invece, la procedura di \
 \end{figure}
 
 \pagebreak
-\subsection{Creazione  di un tirocinio}
+\subsection{Creazione  di un tirocinio}\label{sec:creazione--di-un-tirocinio}
 
 
 \textit{Deve essere possibile --- per un utente con il ruolo azienda --- l'aggiunta di una nuova offerta di tirocinio.} \\
@@ -74,7 +91,7 @@ Una volta effettuato l'accesso con le proprie credenziali, sarà sufficiente seg
 \end{figure}
 
 \pagebreak
-\subsection{Approvazione di un tirocinio}
+\subsection{Approvazione di un tirocinio}\label{sec:approvazione-di-un-tirocinio}
 
 \textit{Deve essere possibile per un professore approvare o rifiutare un'offerta di tirocinio di un azienda prima che venga pubblicata.} \\
 
@@ -90,7 +107,7 @@ Una volta che un'azienda pubblica una nuova offerta, essa è visibile da tutti g
 \end{figure}
 
 \pagebreak
-\subsection{Candidatura ad un tirocinio}
+\subsection{Candidatura ad un tirocinio}\label{sec:candidatura-ad-un-tirocinio}
 
 \textit{Deve essere possibile per uno studente candidarsi ad un'offerta di tirocinio pubblicata da un azienda.} \\
 
@@ -106,7 +123,7 @@ Una volta effettuato l'accesso, lo studente può visualizzare tutte le offerte d
 \end{figure}
 
 \pagebreak
-\subsection{Approvazione candidatura (professore)}
+\subsection{Approvazione candidatura (professore)}\label{sec:approvazione-candidatura-professore}
 
 \textit{Deve essere possibile per un professore visualizzare, accettare e rifiutare le proposte di candidatura che lo coinvolgono come referente.} \\
 
@@ -122,7 +139,7 @@ Una volta effettuato l'accesso, il professore può recarsi alla pagina \textit{"
 \end{figure}
 
 \pagebreak
-\subsection{Approvazione candidatura (azienda)}
+\subsection{Approvazione candidatura (azienda)}\label{sec:approvazione-candidatura-azienda}
 
 \textit{Deve essere possibile per un'azienda visualizzare, accettare e rifiutare le proposte di candidatura alle proprie offerte di tirocinio.} \\
 
@@ -138,7 +155,7 @@ Una volta effettuato l'accesso, l'azienda può recarsi alla pagina \textit{"/aut
 \end{figure}
 
 \pagebreak
-\subsection{Avvio di un tirocinio}
+\subsection{Avvio di un tirocinio}\label{sec:avvio-di-un-tirocinio}
 
 \textit{Deve essere possibile, una volta che sia il professore che l'azienda hanno approvato una candidatura di uno studente, avviare il tirocinio per iniziare a tracciarlo.} \\
 
@@ -154,7 +171,7 @@ Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella
 \end{figure}
 
 \pagebreak
-\subsection{Compilazione foglio presenze}
+\subsection{Compilazione foglio presenze}\label{sec:compilazione-foglio-presenze}
 
 \textit{Deve essere possibile, una volta avviato un tirocinio, completare il foglio presenze dello studente.} \\
 
@@ -170,7 +187,7 @@ Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella
 \end{figure}
 
 \pagebreak
-\subsection{Terminazione di un tirocinio}
+\subsection{Terminazione di un tirocinio}\label{sec:terminazione-di-un-tirocinio}
 
 \textit{Deve essere possibile, una volta avviato un tirocinio, terminarlo.} \\
 
@@ -186,7 +203,7 @@ Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella
 \end{figure}
 
 \pagebreak
-\subsection{Generazione documentazione}
+\subsection{Generazione documentazione}\label{sec:generazione-documentazione}
 \textit{Deve essere possibile, una volta terminato un tirocinio, generarne la relativa documentazione precompilata in PDF..} \\
 
 \noindent
