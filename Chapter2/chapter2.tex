@@ -36,7 +36,7 @@ Possiamo notare che in figura \ref{fig:server-schema}, all'interno della definiz
 Nel caso l'applicazione cerchi di salvare un oggetto che non rispetti i vincoli imposti dallo \textit{schema} viene sollevata un'eccezione che impedisce di rendere inconsistente il database.
 
 \subsection{Repositories}
-I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che esportano operazioni su di esso. Interrogano il proprio \textit{schema} per leggere, scrivere o aggregare dati, e contengono solamente la logica di accesso ai dati, senza nessuna logica di business (ad esempio il controllo dei permessi). Tutti i \textit{repositories} derivano dal \textit{BaseRepository} che esporta le operazioni di base --- \gls{crud} --- oltre che un metodo per eseguire query personalizzate.
+I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che esportano operazioni su di esso. Interrogano il proprio \textit{schema} per leggere, scrivere o aggregare dati, e contengono solamente la logica di accesso ai dati, senza nessuna logica di business (ad esempio il controllo dei permessi).
 % File
 \begin{figure}[!h] 
 	\centering    
@@ -44,8 +44,19 @@ I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che 
 	\caption[Esempio di \textit{Repository}]{Esempio di \textit{repository} dell'applicazione \gls{backend}}
 	\label{fig:server-repository}
 \end{figure}
+Tutti i \textit{repositories} derivano dal \textit{BaseRepository} che esporta le operazioni di base --- \gls{crud} --- oltre che un metodo per eseguire query personalizzate.
 Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventualmente accedere ad altri \textit{repositories} iniettati dal sistema di \acrfull{di}. Il sistema di \acrshort{di} adottato dal sistema si basa sul pacchetto \acrshort{npm} `inversisy`, che fornisce anche un modo per aggirare le dipendenze circolari (ad esempio tra due \textit{repositories}) tramite un meccanismo di \textit{lazy-inject}.
 
+\subsubsection{Lista \textit{repositories} pubblici}
+I \textit{repositories} presenti nell'applicazione server sono:
+\begin{itemize}[itemsep=0pt]
+	\item \textit{CompaniesRepository}
+	\item \textit{InternshipProposalsRepository}
+	\item \textit{InternshipsRepository}
+	\item \textit{RolesRepository}
+	\item \textit{UsersRepository}
+\end{itemize}
+ognuno dei quali si occupa di una singola entità ed interagisce con un singolo \textit{schema}. 
 \pagebreak
 \subsection{Controllers}
 \label{server:controllers}

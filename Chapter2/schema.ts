@@ -1,5 +1,5 @@
 /** The [[InternshipProposal]] mongoose schema model  */
-export const InternshipProposalSchema: Schema = new Schema({
+const InternshipProposalSchema: Schema = new Schema({
     attendances: [
         {
             date: {
@@ -17,3 +17,10 @@ export const InternshipProposalSchema: Schema = new Schema({
     status: Schema.Types.Number,
     ...
 });
+
+/** The [[InternshipProposalModel]] mongoose schema model  */
+export const InternshipProposalModel = model<IInternshipProposal>(
+        "InternshipProposal",
+        InternshipProposalSchema, 
+        Defaults.collectionsName.internshipProposals
+    );

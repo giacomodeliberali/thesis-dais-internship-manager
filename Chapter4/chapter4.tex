@@ -80,11 +80,11 @@ L'autorizzazione basata sui ruoli viene infatti applicata a livello di pagina: a
 
 \section{Endpoints}
 
-Tutti i \hyperref[server:controllers]{\textit{controllers}} dell'applicazione \expressjs~ritornano i risultati delle chiamate all'interno di un oggetto standard chiamato \textit{ApiResponseDto} che contiene oltre al risultato dell'operazione delle altre informazioni, come lo stato \acrshort{http} ed eventuali errori.
+Tutti i \hyperref[server:controllers]{\textit{controllers}} dell'applicazione \expressjs~ritornano i risultati delle chiamate all'interno di un oggetto standard chiamato \textit{ApiResponseDto} che contiene oltre al risultato dell'operazione delle altre informazioni, come lo stato \acrshort{http} ed eventuali errori. Tutti i \textit{controllers} sono esposti sotto al path convenzionale "/api".
 
 \subsection{BaseController}
 \label{server:base-controller}
-Il \textit{BaseController} espone di default i metodi \acrshort{crud} dell'entità e tutti gli altri \textit{controller} non devono dunque ridefinirli. I metodi che tutti quelli che estendono questa classe base sono rappresentati nella sottostante tabella.
+Il \textit{BaseController} espone di default i metodi \acrshort{crud} dell'entità parametrica del \textit{controller} che lo estende, in modo tale da non dover riscrivere codice duplicato. I metodi che rende disponibile ai figli sono esposti nella tabella \ref{table:endpoints}.
 
 \begin{table}[h]
     \ttfamily
@@ -101,12 +101,20 @@ Il \textit{BaseController} espone di default i metodi \acrshort{crud} dell'entit
 	    /<controllerName>/:id & DELETE & string & boolean  & adminScope \\
 	    \bottomrule
     \end{tabular}
-    \end{table}
+\end{table}
+
+\noindent
+Nel caso un \textit{controller} derivato non intenda esporre alcuni di questi metodi, è sufficiente in fase di registrazione del \textit{controller} stesso passare delle opzioni al metodo \textit{useCrud(options: CrudOptions)}, specificando i metodi disabilitati oppure \textit{scopes} aggiuntivi.
+
+Il \textit{BaseController} ha una dipendenza dall'applicazione di \expressjs, in quanto deve averne accesso per registrare nuovi metodi.
 
 \subsection{InternshipsController}
-
-La route definita per questo controller è 'internships'.
-
+Questo \textit{controller} gestisce le operazioni sui tirocini. Il suo path è "/internships".
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{internshipsRepository: InternshipsRepository}
+\end{itemize}
+\subsubsection{Endpoint}
 \label{server:internship-controller}
 \begin{table}[H]
 	\ttfamily
@@ -126,10 +134,31 @@ La route definita per questo controller è 'internships'.
 	\end{tabular}
 \end{table}
 
+Gli ultimi tre metodi in tabella sono utilizzati per aggiornare lo stato di un tirocinio:
+\begin{itemize}
+	\item PUT "/status": permette di aggiornare lo stato di un tirocinio (es. da "Non approvato" ad "Approvato"). Dal momento che gli stati dei tirocini seguono una macchina a stati ben precisa, questo metodo verifica che il nuovo stato sia raggiungibile dallo stato corrente e che l'utente che ha effettuato la richiesta abbia il permesso di effettuare questa transizione. La definizione della macchina a stati è riportata in figura \ref{fig:internship-state-machine}.
+	 \begin{figure}[H] 
+		\centering    
+		\includegraphics[width=0.5\textwidth]{Chapter4/Figs/internship-state-machine}
+		\caption[Macchina a stati di un tirocinio]{Macchina a stati di un tirocinio}
+		\label{fig:internship-state-machine}
+	\end{figure}
+	Nel caso l'utente non abbia il permesso di effettuare la transizione viene ritornato un errore di autorizzazione, mentre se lo stato non è raggiungibile viene ritornato un messaggio di errore che riporta l'errata transizione.
+	\item PUT "/status/force": raggiungibile solamente da un utente amministratore, permette di aggiornare lo stato di un tirocinio senza il vincolo della macchina a stati di figura \ref{fig:internship-state-machine}.
+	\item GET "/status/:status": ritorna tutti gli stati che l'utente corrente può raggiungere dallo stato passato come parametro.
+\end{itemize}
+
 \subsection{InternshipProposalsController}
 
-La route definita per questo controller è 'proposals'.
+Questo \textit{controller} gestisce le operazioni sulle candidature ai tirocini. Il suo path è "/proposals".
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{internshipProposalsRepository: InternshipsProposalsRepository}
+	\item \textit{companiesRepository: CompaniesRepository}
+	\item \textit{internshipsRepository: InternshipsRepository}
+\end{itemize}
 
+\subsubsection{Endpoint}
 \label{server:internship-proposals-controller}
 \begin{table}[H]
 	\ttfamily
@@ -143,22 +172,50 @@ La route definita per questo controller è 'proposals'.
 		/getByCompanyOwnerId/:companyOnwerId & GET   \\
 		/getByStudentId/:studentId & GET   \\
 		/availableplaces/:internshipId & GET \\
+		/addAttendances & POST & ownInternshipProposalScope \\
+		/generateDocs/:internshipProposalId & GET & ownInternshipProposalScope \\
 		/status & PUT & ownInternshipProposalScope \\
 		/status/force & PUT & adminScope \\
 		/status/:status & GET \\
-		/addAttendances & POST & ownInternshipProposalScope \\
-		/generateDocs/:internshipProposalId & GET & ownInternshipProposalScope \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
+Anche in questo caso gli ultimi tre metodi in tabella sono utilizzati per aggiornare lo stato di un tirocinio:
+\begin{itemize}
+	\item PUT "/status": permette di aggiornare lo stato di una candidatura (es. da "Iniziata" ad "Terminata"). Dal momento che gli stati di una proposta di tirocinio seguono una macchina a stati ben precisa, questo metodo verifica che il nuovo stato sia raggiungibile dallo stato corrente e che l'utente che ha effettuato la richiesta abbia il permesso di effettuare questa transizione. La definizione della macchina a stati è riportata in figura \ref{fig:internship-proposal-state-machine}.
+	\begin{figure}[H] 
+		\centering    
+		\includegraphics[width=0.4\textwidth]{Chapter4/Figs/internship-proposal-state-machine}
+		\caption[Macchina a stati di una proposta di tirocinio (candidatura)]{Macchina a stati di una proposta di tirocinio (candidatura)}
+		\label{fig:internship-proposal-state-machine}
+	\end{figure}
+	Nel caso l'utente non abbia il permesso di effettuare la transizione viene ritornato un errore di autorizzazione, mentre se lo stato non è raggiungibile viene ritornato un messaggio di errore che riporta l'errata transizione.
+	\item PUT "/status/force": raggiungibile solamente da un utente amministratore, permette di aggiornare lo stato di un tirocinio senza il vincolo della macchina a stati di 	figura \ref{fig:internship-proposal-state-machine}
+	\item GET "/status/:status": ritorna tutti gli stati che l'utente corrente può raggiungere dallo stato passato come parametro.
+\end{itemize}
+
 \subsection{RolesController}
 
-Non ha metodi custom, ma espone solamente le operazioni del \hyperref[server:base-controller]{\textit{BaseController}}.
+Questo \textit{controller} gestisce le operazioni sui ruoli degli utenti. Il suo path è "/roles".
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{rolesRepository: RolesRepository}
+\end{itemize}
+
+\subsubsection{Endpoint}
+
+Non ha metodi custom, ma espone solamente le operazioni \acrshort{crud} offerte da \hyperref[server:base-controller]{\textit{BaseController}}.
 
 \subsection{UsersController}
-La route definita per questo controller è 'users'. Questo controller disabilita l'operazione di update e la sovrascrive con la route 'own'.
 
+Questo \textit{controller} gestisce le operazioni sugli utenti. Il suo path è "/users". Limita l'utilizzo del metodo di aggiornamento ed eliminazione solamente agli utenti con il ruolo di amministratore, per impedire modifiche non autorizzate agli utenti.
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{usersRepository: UsersRepository}
+\end{itemize}
+
+\subsubsection{Endpoint}
 \label{server:users-controller}
 \begin{table}[H]
 	\ttfamily
@@ -177,7 +234,14 @@ La route definita per questo controller è 'users'. Questo controller disabilita
 
 \subsection{CompaniesController}
 
-La route definita per questo controller è 'companies'.
+Questo \textit{controller} gestisce le operazioni sulle aziende. Il suo path è "/companies".
+
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{companiesRepository: CompaniesRepository}
+\end{itemize}
+
+\subsubsection{Endpoint}
 
 \label{server:companies-controller}
 \begin{table}[H]
@@ -194,7 +258,16 @@ La route definita per questo controller è 'companies'.
 \end{table}
 
 \subsection{AuthenticationController}
-La route definita per questo controller è 'auth'.
+
+Questo \textit{controller} gestisce le operazioni di login e registrazione degli utenti. Il suo path è "/auth". Non deriva da \textit{BaseController} in quanto non esporta operazioni sulle entità, ma si preoccupa solamente di verificare l'identità degli utenti e di generare un \textit{token} di accesso. Tutti i suoi metodi sono, per ovvie ragioni, privi di autenticazione e liberamente accessibili.
+
+\subsubsection{Dipendenze}
+\begin{itemize}[itemsep=0pt]
+	\item \textit{usersRepository: UsersRepository}
+	\item \textit{rolesRepository: RolesRepository}
+\end{itemize}
+
+\subsubsection{Endpoint}
 
 \label{server:auth-controller}
 \begin{table}[H]
