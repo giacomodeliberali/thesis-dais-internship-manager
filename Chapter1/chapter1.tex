@@ -20,7 +20,7 @@ Risulta quindi necessaria una soluzione che permetta di automatizzare il più po
 %********************************** %Second Section  *************************************
 \section{Scelte e vincoli tecnici} 
 
-La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obiettivo ho scelto di sviluppare un'applicazione web. Appoggiandosi infatti all'accessibilità offerta dal web sarà sufficiente mantenere una sola soluzione per raggiungere tutti i dispositivi più utilizzati --- computer, smartphone e tablet.
+La soluzione deve essere fruibile da quanti più dispositivi possibili e per raggiungere questo obiettivo ho scelto di sviluppare un'applicazione web. Sfruttando, infatti, l'accessibilità offerta da un applicativo online sarà sufficiente mantenere una sola soluzione per raggiungere tutti i dispositivi più utilizzati --- computer, smartphone e tablet.
 
 Un requisito di fondamentale importanza è quindi un design responsivo dell'applicazione, data la diversità dei dispositivi che si intende supportare. 
 Per favorire ulteriormente l'accessibilità dell'applicazione, inoltre, essa dovrà essere multilingua e in questa prima versione supportare almeno l'italiano e l'inglese.
@@ -44,7 +44,7 @@ Il documento rappresenta un oggetto che si intende memorizzare, mentre una colle
 \begin{figure}[!h] 
 	\centering    
 	\lstinputlisting{Chapter1/example.bson}
-	\caption[ esempio di paragone \acrshort{json}-\acrshort{bson}]{ esempio di paragone \acrshort{json}-\acrshort{bson}}
+	\caption[Esempio di paragone \acrshort{json}-\acrshort{bson}]{Esempio di paragone \acrshort{json}-\acrshort{bson}}
 	\label{fig:json-bson}
 \end{figure}
 \noindent
@@ -158,7 +158,7 @@ Prima che un componente venga visualizzato, \angular~valuta le direttive e risol
 
 \subsubsection{Services e dependency injection}
 \label{chap:client:services}
-Per dati o logica non associati ad una specifica visualizzazione grafica, oppure che si desidera condividere tra componenti, si crea una \textit{service class}. La definizione di un \textit{Service} è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i \textit{metadati} che consentono al servizio di essere iniettato nei componenti client come dipendenza (i \textit{metadati} permettono la \textit{reflection} per il sistema di \acrshort{di}).
+Per dati o logica non associati ad una specifica visualizzazione grafica, oppure che si desidera condividere tra componenti, si crea una \textit{service class}. La definizione di un \textit{Service} è immediatamente preceduta dal decoratore \textit{@Injectable}. Il decoratore fornisce i \textit{metadati} che consentono al servizio di essere iniettato nei componenti client come dipendenza.
 
 La \gls{di}  consente di mantenere le classi dei componenti snelle ed efficienti delegando logiche di business ai servizi iniettati.
 

@@ -45,7 +45,7 @@ I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che 
 	\label{fig:server-repository}
 \end{figure}
 Tutti i \textit{repositories} derivano dal \textit{BaseRepository} che esporta le operazioni di base --- \gls{crud} --- oltre che un metodo per eseguire query personalizzate.
-Ogni \textit{repository} può esporre ulteriori metodi personalizzati ed eventualmente accedere ad altri \textit{repositories} iniettati dal sistema di \acrfull{di}. Il sistema di \acrshort{di} adottato dal sistema si basa sul pacchetto \acrshort{npm} `inversisy`, che fornisce anche un modo per aggirare le dipendenze circolari (ad esempio tra due \textit{repositories}) tramite un meccanismo di \textit{lazy-inject}.
+Ogni \textit{repository} può esporre ulteriori metodi custom ed eventualmente accedere ad altri \textit{repositories} iniettati dal sistema di \acrfull{di}. Il sistema di \acrshort{di} adottato dal sistema si basa sul pacchetto \acrshort{npm} `inversisy`, che fornisce anche un modo per aggirare le dipendenze circolari (ad esempio tra due \textit{repositories}) tramite un meccanismo di \textit{lazy-inject}.
 
 \subsubsection{Lista \textit{repositories} pubblici}
 I \textit{repositories} presenti nell'applicazione server sono:
@@ -61,7 +61,7 @@ ognuno dei quali si occupa di una singola entità ed interagisce con un singolo 
 \subsection{Controllers}
 \label{server:controllers}
 I \textit{controllers} espongono su architettura \acrshort{rest} \acrshort{api} un metodo di \expressjs~ che internamente utilizza le operazioni pubbliche dei \textit{repositories} iniettati nel \textit{controller} stesso. Anche i \textit{controllers} sono legati ad un unica entità e derivano da un \textit{BaseController} che di default espone i metodi per le operazioni di \acrshort{crud} dell'entità. 
-Tutti i metodi esposti ritornano il risultato racchiuso all'interno di un oggetto, \textit{ApiResponseDto}, che contiene anche informazioni aggiuntive, come lo stato \acrshort{http} ed eventuali errori.
+Tutti i metodi esposti ritornano il risultato racchiuso all'interno di un oggetto, \textit{ApiResponseDto<T>}, che contiene anche informazioni aggiuntive, come lo stato \acrshort{http} ed eventuali errori.
 
 \begin{figure}[H] 
 	\centering    
@@ -111,12 +111,12 @@ Contiene la pagine che solo un utente autenticato può raggiungere, ovvero il cu
 \begin{itemize}
 	\item \textit{UserModule}: contiene la parte di gestione dell'account di un utente, con la possibilità di modificarlo
 	\item \textit{InternshipModule}: contiene la parte di gestione dei tirocini (aggiunta, modifica, approvazione, dettaglio, candidatura)
-	\item \textit{InternshipProposalModule}: contiene la parte di gestione dei tirocini (modifica, approvazione, dettaglio, tracciamento)
+	\item \textit{InternshipProposalModule}: contiene la parte di gestione delle proposte di tirocino (modifica, approvazione, dettaglio, tracciamento)
 	\item \textit{SharedModule}: contiene i componenti comuni a questi sotto moduli (header, footer e sidebar)
 \end{itemize}
 
 \noindent
-Questo modulo viene caricato solamente una volta che l'utente ha effettuato il login, e tutte le pagine sono protette da un \hyperref[chap:client:services]{\textit{service}} chiamato \textit{AuthGuard}, eseguito dal router stesso di \angular, che prima di attivare una route verifica che l'utente sia autenticato e abbia i permessi necessari. L'autenticazione e l'autorizzazione client verranno discusse in dettaglio nel capitolo \hyperref[chap:client:authentication]{\ref{chap:client:authentication} - Autenticazione \gls{frontend}}
+Questo modulo viene caricato solamente una volta che l'utente ha effettuato il login, e tutte le pagine sono protette da un \hyperref[chap:client:services]{\textit{service}} chiamato \textit{AuthGuard}, eseguito dal router stesso di \angular, che prima di attivare una route verifica che l'utente sia autenticato e abbia i permessi necessari. L'autenticazione e l'autorizzazione client verranno discusse in dettaglio nel capitolo \hyperref[chap:client:authentication]{\ref{chap:client:authentication} - Autenticazione \gls{frontend}}.
 
 \subsection{Servizi e recupero dei dati}
 \label{client:services}
@@ -139,7 +139,7 @@ All'interno dei componenti che contengono il \textit{template} verranno iniettat
 	\label{fig:client-globalization}
 \end{figure}
 \noindent
-ed è possibile recuperare in differenti modi:
+ed è possibile recuperarle in differenti modi:
 \begin{itemize}
 	\item \textit{Pipe}: da utilizzare nel \textit{template} quando ci sono espressioni da valutare
 	\item \textit{Directive}: da utilizzare nel \textit{template} quando la stringa da tradurre è cablata
@@ -157,4 +157,4 @@ Ogni stringa inserita nel file di traduzione può contenere dei parametri da int
 \end{figure}
 
 \noindent
-La lingua dell'applicazione viene recuperata da un servizio di \hyperref[client:shared-module]{\textit{SharedModules}} registrato al \textit{bootstrap}, che si preoccupa di leggere la lingua del browser, oppure l'ultima preferenza dell'utente, caricare il file di traduzione relativo (oppure uno di \textit{fallback}) e propagare la scelta a tutti gli altri moduli. Utilizzando però il meccanismo di \textit{lazy-loading}, non è possibile cambiare la lingua a run-time, ed è necessario un ricaricamento della pagina per propagare le traduzioni in tutti i componenti.
+La lingua dell'applicazione viene recuperata da un servizio di \hyperref[client:shared-module]{\textit{SharedModule}} registrato al \textit{bootstrap}, che si preoccupa di leggere la lingua del browser, oppure l'ultima preferenza dell'utente, caricare il file di traduzione relativo (oppure uno di \textit{fallback}) e propagare la scelta a tutti gli altri moduli.
