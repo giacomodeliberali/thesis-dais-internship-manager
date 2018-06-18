@@ -158,3 +158,44 @@ Ogni stringa inserita nel file di traduzione può contenere dei parametri da int
 
 \noindent
 La lingua dell'applicazione viene recuperata da un servizio di \hyperref[client:shared-module]{\textit{SharedModule}} registrato al \textit{bootstrap}, che si preoccupa di leggere la lingua del browser, oppure l'ultima preferenza dell'utente, caricare il file di traduzione relativo (oppure uno di \textit{fallback}) e propagare la scelta a tutti gli altri moduli.
+
+\subsection{Design responsivo}
+
+Uno dei requisiti dell'applicazione è la possibilità di utilizzare la piattaforma su dispositivi diversi, inclusi smartphone e tablet. Per raggiungere questo scopo mi sono affidato alle linee guida di Bootstrap, un \gls{framework} \acrshort{css} che definisce un ecosistema per disegnare un layout grafico responsivo. Nelle figure \ref{fig:screenshot:11-12} e \ref{fig:screenshot:13-14} sono presenti due esempi di layout visualizzati a risoluzioni differenti.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{Chapter2/Figs/md-closed}     
+		\caption{Sidebar collassata}
+		\label{fig:screenshot:11}
+	\end{subfigure}        
+\end{figure}
+
+\begin{figure}[h]\ContinuedFloat
+	\centering
+	\begin{subfigure}[b]{0.8\textwidth}
+		\includegraphics[width=\textwidth]{Chapter2/Figs/md-open}     
+		\caption{Sidebar non collassata}
+		\label{fig:screenshot:12}
+	\end{subfigure}  
+	\caption[Screenshot: layout del sistema in un tablet]{Layout del sistema in un tablet}
+	\label{fig:screenshot:11-12}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=1\textwidth]{Chapter2/Figs/xs-open}     
+		\caption{Sidebar non collassata}
+		\label{fig:screenshot:13} 
+	\end{subfigure}        
+	\hfil
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=1\textwidth]{Chapter2/Figs/xs-closed}     
+		\caption{Sidebar collassata}
+		\label{fig:screenshot:14}
+	\end{subfigure}  
+	\caption[Screenshot: layout del sistema in uno smartphone]{Layout del sistema in uno smartphone}
+	\label{fig:screenshot:13-14}
+\end{figure}
