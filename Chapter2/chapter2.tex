@@ -29,14 +29,14 @@ Gli \textit{schemas} sono la definizione dei documenti delle collezioni del data
 \end{figure}
 Possiamo notare che in figura \ref{fig:server-schema}, all'interno della definizione della struttura del documento, vi sono tre proprietà --- \textit{attendances, internship e status}. Ognuno dei campi ha tipo diverso:
 \begin{itemize}
-	\item \textit{attendances} è un array di oggetti con una properietà \textit{date} di tipo \textit{Date} obbligatoria
+	\item \textit{attendances} è un array di oggetti con una proprietà \textit{date} di tipo \textit{Date} obbligatoria
 	\item \textit{internship} è una referenza di un altro schema (Internship), che verrà popolato automaticamente in fase di lettura (effettua un \gls{sqljoin} in automatico con il plugin \acrshort{npm} `mongoose-autopopulate`)
 	\item \textit{status} è semplice numero
 \end{itemize}
 Nel caso l'applicazione cerchi di salvare un oggetto che non rispetti i vincoli imposti dallo \textit{schema} viene sollevata un'eccezione che impedisce di rendere inconsistente il database.
 
 \subsection{Repositories}
-I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che esportano operazioni su di esso. Interrogano il proprio \textit{schema} per leggere, scrivere o aggregare dati, e contengono solamente la logica di accesso ai dati, senza nessuna logica di business (ad esempio il controllo dei permessi).
+I \textit{repositories} sono classi legate ad uno specifico \textit{schema} che esportano operazioni su di esso. Interrogano il proprio \textit{schema} per leggere, scrivere o aggregare dati e contengono solamente la logica di accesso ai dati, senza nessuna logica di business (ad esempio il controllo dei permessi).
 % File
 \begin{figure}[!h] 
 	\centering    
@@ -147,7 +147,7 @@ ed è possibile recuperarle in differenti modi:
 \end{itemize}
 
 \noindent
-Ogni stringa inserita nel file di traduzione può contenere dei parametri da interpolare, che dovranno essere popolati quando si richiede la traduzione. L'organizzazione del file di traduzione è basata sul concetto di contesto: una traduzione può essere generica (come '\textit{Back}' in figura \ref{fig:client-globalization}) oppure specifica per un componente, come il titolo di una pagina. Nel primo caso la risorsa potrà essere riutilizzata in contesti differenti, mentre nel secondo caso no. Tutte le risorse riutilizzabili sono salvate all'interno della voce "Dictionary", mentre tutte le altre sono annidate in un oggetto che auto descrive dove esse vengono utilizzate.
+Ogni stringa inserita nel file di traduzione può contenere dei parametri da interpolare, che dovranno essere popolati quando si richiede la traduzione. L'organizzazione del file di traduzione è basata sul concetto di contesto: una traduzione può essere generica (come '\textit{Back}' in figura \ref{fig:client-globalization}) oppure specifica per un componente, come il titolo di una pagina. Nel primo caso la risorsa potrà essere riutilizzata in contesti differenti, mentre nel secondo caso no. Tutte le risorse riutilizzabili sono salvate all'interno della voce "Dictionary", mentre tutte le altre sono annidate in un oggetto che auto-descrive dove esse vengono utilizzate.
 
  \begin{figure}[H] 
 	\centering    

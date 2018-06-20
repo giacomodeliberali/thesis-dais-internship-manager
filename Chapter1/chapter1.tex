@@ -26,7 +26,7 @@ Un requisito di fondamentale importanza è quindi un design responsivo dell'appl
 Per favorire ulteriormente l'accessibilità dell'applicazione, inoltre, essa dovrà essere multilingua e in questa prima versione supportare almeno l'italiano e l'inglese.
 
 \section{Tecnologie adottate}
-Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che andrò ad utilizzare per il \gls{frontend} della soluzione saranno sicuramente web-based, in particolare lo stack \gls{mean}. Questo insieme applicativo è composto da
+Dal momento che ho deciso di puntare su un'applicazione web, le tecnologie che andrò ad utilizzare per il \gls{frontend} della soluzione saranno sicuramente web-based, in particolare lo stack \gls{mean}. Questo insieme applicativo è composto da
 \begin{enumerate}
 	\item Un \acrshort{dbms} basato su un database documentale \acrshort{nosql} (\mongodb)
 	\item Un \gls{framework} server-side per la creazione di applicazioni web e \acrshort{rest} \acrshort{api} (\expressjs)
@@ -39,7 +39,7 @@ Dal momento che ho deciso di puntare su un applicazione web, le tecnologie che a
 \mongodb~è un \gls{dbms} non relazionale, orientato ai documenti classificato come \gls{nosql}. Questo significa che rispetto ai tradizionali sistemi relazionali \mongodb~si basa sul concetto di documento e collezione.
 
 Il documento rappresenta un oggetto che si intende memorizzare, mentre una collezione è un insieme di documenti (una tabella se paragonata ai sistemi relazionali).
-\mongodb~memorizza i dati in con una rappresentazione binaria chiamata \gls{bson}. Questa codifica estente la popolare rappresentazione \gls{json} per includere tipi di dato addizionali, come \textit{int, long, date, floating point e decimal 128}. I documenti \acrshort{bson} possono contenere uno o più campi, ognuno dei quali contiene il valore di uno specifico tipo di dato, inclusi array, dati binari o sotto-documenti.
+\mongodb~memorizza i dati in con una rappresentazione binaria chiamata \gls{bson}. Questa codifica estende la popolare rappresentazione \gls{json} per includere tipi di dato addizionali, come \textit{int, long, date, floating point e decimal 128}. I documenti \acrshort{bson} possono contenere uno o più campi, ognuno dei quali contiene il valore di uno specifico tipo di dato, inclusi array, dati binari o sotto-documenti.
 
 \begin{figure}[!h] 
 	\centering    
@@ -59,7 +59,7 @@ I documenti \mongodb~possono variare nella struttura. Ad esempio, tutti i docume
 Le collezioni sono un insieme di documenti per  definizione \textit{schema-less}, ovvero contengono documenti con tipologie eventualmente diverse (non è considerata una best-practice).
 
 % Query
-\mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione proprio dei sistemi relazionali, ma ne propone uno proprio.
+\mongodb, essendo basato sul modello \acrshort{nosql} non utilizza il linguaggio di interrogazione tipico dei sistemi relazionali, ma ne propone uno proprio.
 \begin{figure}[H] 
 	\centering    
 \lstinputlisting{Chapter1/mongodb.nosql}
@@ -100,7 +100,7 @@ Le collezioni sono un insieme di documenti per  definizione \textit{schema-less}
 Storicamente \gls{javascript} era utilizzato solamente per scripting client-side, spesso incluso all'interno delle pagine web dove veniva eseguito client-side nel browser dell'utente. \nodejs~permette agli sviluppatori di utilizzare scripting server-side, eseguendo comandi che producono contenuto dinamico prima che venga inviato al browser client-side. \nodejs~rappresenta il paradigma <<\gls{javascript} everywhere>>\cite{jseverywhere}, unificando lo sviluppo di applicazioni web attorno ad un unico linguaggio di programmazione piuttosto che separando i linguaggi per client e server-side.
 
 % Archietettura nodejs
-La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}), ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondente \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
+La sua architettura è basata sul modello orientato agli eventi (\acrshort{eda}); ciò significa che \nodejs~richiede al sistema operativo su cui è in esecuzione di ricevere notifiche al verificarsi di determinati eventi, rimanendo in stato di \textit{sleep} fino al ricevimento di tale notifica. Questo pattern architetturale permette una forma di comunicazione non bloccante basata sull'\textit{asynchronous I/O} che per il programmatore finale si traduce nell'utilizzo di \textit{\gls{callback}}. Per segnalare la conclusione di un \textit{task I/O} infatti, \nodejs~invoca la corrispondente \textit{\gls{callback}}, una semplice funzione, alla quale vengono passati i risultati dell'operazione appena conclusa.
 %Dettagli tecnici
 \nodejs~opera in un processo single-thread utilizzando il pattern \textit{\acrshort{patternobserver}} per la sottoscrizione e la gestione degli eventi, ottenendo così performance adatte ad applicazioni altamente real-time. Processa le richieste in arrivo in un ciclo, chiamato \textit{\gls{eventloop}}, dove ogni connessione è una piccola allocazione di memoria heap anziché un nuovo processo o thread. Alla fine della registrazione della \textit{\gls{callback}} il server rientra in modo automatico nell'\textit{\gls{eventloop}}, a differenza di altri server orientati agli eventi e vi esce solo quando non vi sono ulteriori \textit{\gls{callback}} da eseguire.
 
@@ -152,7 +152,7 @@ Il \textit{template} combina \acrshort{html} con un \textit{markup} di \angular~
 
 Le \textit{directives} forniscono logica al componente e il \textit{binding markup} connette i dati dell'applicazione con il \gls{dom}.
 
-Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permette di interpolare valori calcolati dai dati dell'applicazione all'interno del \textit{template} \acrshort{html}.
+Gli \textit{event binding} permettono all'applicazione di rispondere all'input dell'utente aggiornando i dati dell'applicazione, mentre i \textit{property binding} permettono di interpolare valori calcolati dai dati dell'applicazione all'interno del \textit{template} \acrshort{html}.
 
 Prima che un componente venga visualizzato, \angular~valuta le direttive e risolve la sintassi di \textit{binding} nel \textit{template} per modificare gli elementi \acrshort{html} e il \acrshort{dom} a seconda dei dati dell'applicazione e della loro logica. \angular~supporta il \textit{two-way databinding}, che significa che cambiamenti nel \acrshort{dom}, come input dell'utente, possono venire riflettuti all'interno dei dati dell'applicazione, e viceversa.
 
@@ -188,7 +188,7 @@ Deve effettuare l'accesso come un membro esterno dell'ateneo indicando le inform
 \subsection{Professore}
 Rappresenta un componente interno all'ateneo che ha il compito di supervisionare le offerte e seguire gli studenti nel percorso.
 Deve effettuare l'accesso come un membro dell'ateneo utilizzando l'email istituzionale. Una volta eseguito il login per la prima volta, viene creato un'account il cui ruolo si basa sull'email fornita: se essa termina con \textit{@unive.it} rappresenta un professore, mentre se termina con \textit{@stud.unive.it} rappresenta uno studente. 
-Un professore approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che lo coinvolgono come referente, può completare il foglio presenze di un tirocinio in corso (di cui è referente), e stamparne la documentazione precompilata al termine.
+Un professore approva le offerte inserite dalle aziende prima che vengano pubblicate, approva e visualizza le richieste di candidatura degli studenti che lo coinvolgono come referente, può completare il foglio presenze di un tirocinio in corso (di cui è referente) e stamparne la documentazione precompilata al termine.
 
 \subsection{Studente}
 Rappresenta un componente interno all'ateneo che desidera effettuare un tirocinio in un'azienda.
