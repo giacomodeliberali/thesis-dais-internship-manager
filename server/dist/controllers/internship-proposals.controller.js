@@ -25,7 +25,7 @@ const inversify_1 = require("inversify");
 const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const scopes_1 = require("../utils/auth/scopes");
 const internship_proposal_status_type_machine_1 = require("../utils/state-machines/internship-proposal-status.type.machine");
 const ServerDefaults_1 = require("../ServerDefaults");
@@ -218,21 +218,21 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                     httpCode: 400,
                     response: res,
                     exception: {
-                        message: `Cannot update the internship status from ${dist_1.InternshipProposalStatusType[internshipProposal.status]} to ${dist_1.InternshipProposalStatusType[newState]}`
+                        message: `Cannot update the internship status from ${thesis_dais_internship_manager_core_1.InternshipProposalStatusType[internshipProposal.status]} to ${thesis_dais_internship_manager_core_1.InternshipProposalStatusType[newState]}`
                     }
                 }).send();
             }
             // Update the proposal
-            const update = new dist_1.InternshipProposal(internshipProposal.toObject());
+            const update = new thesis_dais_internship_manager_core_1.InternshipProposal(internshipProposal.toObject());
             update.status = newState;
             // Set startDate once started
-            if (newState === dist_1.InternshipProposalStatusType.Started)
+            if (newState === thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Started)
                 update.startDate = new Date();
             // Set end date once Ended,Canceled or rejected
-            if (newState === dist_1.InternshipProposalStatusType.Ended ||
-                newState === dist_1.InternshipProposalStatusType.Canceled ||
-                newState === dist_1.InternshipProposalStatusType.RejectedByCompany ||
-                newState === dist_1.InternshipProposalStatusType.RejectedByProfessor)
+            if (newState === thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Ended ||
+                newState === thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Canceled ||
+                newState === thesis_dais_internship_manager_core_1.InternshipProposalStatusType.RejectedByCompany ||
+                newState === thesis_dais_internship_manager_core_1.InternshipProposalStatusType.RejectedByProfessor)
                 update.endDate = new Date();
             const result = yield this.internshipProposalsRepository
                 .partialUpdate(update.id, {
@@ -246,7 +246,7 @@ let InternshipProposalsController = class InternshipProposalsController extends 
             if (availablePlaces === 0)
                 yield this.internshipsRepository
                     .partialUpdate(update.internship.id, {
-                    status: dist_1.InternshipStatusType.Closed
+                    status: thesis_dais_internship_manager_core_1.InternshipStatusType.Closed
                 });
             // Return the updated internship proposal
             return new api_response_model_1.ApiResponse({
@@ -277,7 +277,7 @@ let InternshipProposalsController = class InternshipProposalsController extends 
                 if (availablePlaces === 0)
                     yield this.internshipsRepository
                         .partialUpdate(internshipProposal.internship.id, {
-                        status: dist_1.InternshipStatusType.Closed
+                        status: thesis_dais_internship_manager_core_1.InternshipStatusType.Closed
                     });
                 // Return the updated internship proposal
                 return new api_response_model_1.ApiResponse({

@@ -1,4 +1,4 @@
-import { Defaults, BaseEntity } from "gdl-thesis-core/dist";
+import { Defaults, BaseEntity } from "thesis-dais-internship-manager-core";
 import { Collection, Db, ObjectID } from "mongodb";
 import { injectable, inject, unmanaged } from "inversify";
 import { Model, SchemaType, DocumentQuery } from "mongoose";

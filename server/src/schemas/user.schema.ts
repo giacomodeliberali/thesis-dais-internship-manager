@@ -3,9 +3,9 @@ import { normalizeToJson, normalizeSchema, normalizeToObject } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 import { RoleModel } from "./role.schema";
 import { ObjectID } from "bson";
-import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
+import { AuthType } from "thesis-dais-internship-manager-core/models/enums/auth-type.enum";
 import { IUser } from "../models/interfaces";
-import { Defaults } from "gdl-thesis-core/dist";
+import { Defaults } from "thesis-dais-internship-manager-core";
 const bcrypt = require('bcrypt');
 
 /** The [[User]] mongoose schema */

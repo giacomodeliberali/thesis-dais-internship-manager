@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { User, Company, Address } from 'gdl-thesis-core/dist';
+import { User, Company, Address } from 'thesis-dais-internship-manager-core';
 import { UsersService } from '../../../services/user.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { CompaniesService } from '../../../services/companies.service';

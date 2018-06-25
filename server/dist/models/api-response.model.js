@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 /**
  * A generic rest API response. Used in Express controllers
  */
-class ApiResponse extends dist_1.Constructor {
+class ApiResponse extends thesis_dais_internship_manager_core_1.Constructor {
     /**
      * Extract the information in this response
      */

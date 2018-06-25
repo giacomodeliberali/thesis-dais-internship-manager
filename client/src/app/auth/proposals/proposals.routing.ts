@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { generateAuthRoute } from '../../helpers/generate.auth-route.helper';
 import { InternshipProposalsListComponent } from './proposals-list/internship-proposals-list.component';
 import { InternshipOwnProposalsListComponent } from './own-proposals-list/internship-own-proposals-list.component';
-import { RoleType, Role } from 'gdl-thesis-core/dist';
+import { RoleType, Role } from 'thesis-dais-internship-manager-core';
 import { InternshipProposalDetailsComponent } from './details/internship-proposal-details.component';
 import { InternshipProposalEditComponent } from './edit/internship-proposal-edit.component';
 import { InternshipProposalApproveComponent } from './approve/internship-proposal-approve.component';

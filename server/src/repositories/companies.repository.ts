@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, Company, ApiResponseDto } from "gdl-thesis-core/dist";
+import { Defaults, Company, ApiResponseDto } from "thesis-dais-internship-manager-core";
 import { inject, injectable } from "inversify";
 import { CompanyModel } from "../schemas/company.schema";
 import { Model } from "mongoose";

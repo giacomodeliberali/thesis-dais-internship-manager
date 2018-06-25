@@ -1,6 +1,6 @@
 import { BaseService } from "./base.service";
 import { injectable } from "inversify";
-import { User, ApiResponseDto, Internship, Company } from "gdl-thesis-core/dist";
+import { User, ApiResponseDto, Internship, Company } from "thesis-dais-internship-manager-core";
 import { MailOptions } from "../models/mail-options.interface";
 /**
  * The emails service

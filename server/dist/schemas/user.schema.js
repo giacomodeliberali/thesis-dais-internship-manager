@@ -11,8 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const base_1 = require("./base");
 const autopopulate = require("mongoose-autopopulate");
-const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
-const dist_1 = require("gdl-thesis-core/dist");
+const auth_type_enum_1 = require("thesis-dais-internship-manager-core/models/enums/auth-type.enum");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const bcrypt = require('bcrypt');
 /** The [[User]] mongoose schema */
 exports.UserSchema = new mongoose_1.Schema({
@@ -110,4 +110,4 @@ exports.UserSchema.methods.isValidPassword = function (newPassword) {
 /** Auto populates 'Role' property before any 'find' and 'findOne' */
 exports.UserSchema.plugin(autopopulate);
 /** The [[UserModel]] mongoose schema model  */
-exports.UserModel = mongoose_1.model("User", exports.UserSchema, dist_1.Defaults.collectionsName.users);
+exports.UserModel = mongoose_1.model("User", exports.UserSchema, thesis_dais_internship_manager_core_1.Defaults.collectionsName.users);

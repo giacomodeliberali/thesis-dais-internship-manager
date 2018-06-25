@@ -1,6 +1,6 @@
 import { BaseService } from "./base.service";
 import { injectable } from "inversify";
-import { User, ApiResponseDto, Defaults } from "gdl-thesis-core/dist";
+import { User, ApiResponseDto, Defaults } from "thesis-dais-internship-manager-core";
 import { Observable } from 'rxjs';
 /**
  * The users service

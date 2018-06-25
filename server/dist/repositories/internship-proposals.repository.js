@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const inversify_1 = require("inversify");
 const mongoose_1 = require("mongoose");
 const di_types_1 = require("../utils/di-types");
@@ -36,7 +36,7 @@ let InternshipsProposalsRepository = class InternshipsProposalsRepository extend
      */
     constructor(internshipProposalModel, internshipRepository) {
         // Initialize [[BaseRepository]] 
-        super(internshipProposalModel, dist_1.Defaults.collectionsName.internshipProposals);
+        super(internshipProposalModel, thesis_dais_internship_manager_core_1.Defaults.collectionsName.internshipProposals);
         this.internshipProposalModel = internshipProposalModel;
         this.internshipRepository = internshipRepository;
     }
@@ -48,7 +48,7 @@ let InternshipsProposalsRepository = class InternshipsProposalsRepository extend
         return __awaiter(this, void 0, void 0, function* () {
             const proposals = yield this.find({
                 internship: internshipId,
-                status: dist_1.InternshipProposalStatusType.Confirmed
+                status: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Confirmed
             });
             const internship = yield this.internshipRepository.get(internshipId);
             if (proposals && internship)

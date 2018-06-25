@@ -1,6 +1,6 @@
 import { environment } from "environments/environment";
 import { Injectable } from "@angular/core";
-import { User, ApiResponseDto, AuthResponse } from 'gdl-thesis-core/dist';
+import { User, ApiResponseDto, AuthResponse } from 'thesis-dais-internship-manager-core';
 import { HttpClient } from "@angular/common/http";
 import { BaseService } from "./base.service";
 import { JwtHelperService } from '@auth0/angular-jwt';

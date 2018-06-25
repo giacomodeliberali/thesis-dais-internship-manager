@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 /**
  * Return true if the given role number has at least one requiredRoles or is an admin
  * @param role The current logged in user role
@@ -8,7 +8,7 @@ const dist_1 = require("gdl-thesis-core/dist");
  */
 function canExec(role, requiredRoles) {
     // If the user is an admin, return always true
-    if ((role & dist_1.RoleType.Admin) === dist_1.RoleType.Admin)
+    if ((role & thesis_dais_internship_manager_core_1.RoleType.Admin) === thesis_dais_internship_manager_core_1.RoleType.Admin)
         return true;
     // Otherwise check roles
     let canExecV = false;

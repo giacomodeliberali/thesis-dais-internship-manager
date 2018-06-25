@@ -3,7 +3,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { AuthService } from '../../../services/auth.service';
-import { InternshipStatusType, Internship } from 'gdl-thesis-core/dist';
+import { InternshipStatusType, Internship } from 'thesis-dais-internship-manager-core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';

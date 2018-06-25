@@ -1,6 +1,6 @@
 import { BaseService } from "./base.service";
 import { injectable } from "inversify";
-import { User, ApiResponseDto, Internship, InternshipStatusType, Defaults } from "gdl-thesis-core/dist";
+import { User, ApiResponseDto, Internship, InternshipStatusType, Defaults } from "thesis-dais-internship-manager-core";
 /**
  * The internships service
  *

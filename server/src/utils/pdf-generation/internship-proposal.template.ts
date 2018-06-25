@@ -1,4 +1,4 @@
-import { InternshipProposal } from "gdl-thesis-core/dist";
+import { InternshipProposal } from "thesis-dais-internship-manager-core";
 import * as moment from 'moment';
 import 'moment/locale/it';
 /**

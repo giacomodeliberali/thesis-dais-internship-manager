@@ -29,8 +29,8 @@ const ServerDefaults_1 = require("../ServerDefaults");
 const repositories_1 = require("../repositories");
 const passport = require("passport");
 const passport_1 = require("passport");
-const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
-const dist_1 = require("gdl-thesis-core/dist");
+const auth_type_enum_1 = require("thesis-dais-internship-manager-core/models/enums/auth-type.enum");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const api_response_model_1 = require("../models/api-response.model");
 const GooglePlusTokenStrategy = require('passport-google-plus-token');
 /**
@@ -183,7 +183,7 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                 // Set the authType to local
                 req.body.authType = auth_type_enum_1.AuthType.Local;
                 // Find 'Company' role
-                const role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Company, "Company");
+                const role = yield this.rolesRepository.getOrCreateOne(thesis_dais_internship_manager_core_1.RoleType.Company, "Company");
                 req.body.role = role.id;
                 // Register the user
                 const user = yield this.usersRepository.register(req.body);
@@ -255,13 +255,13 @@ let AuthenticationController = AuthenticationController_1 = class Authentication
                 let role = null;
                 if (email.endsWith("@stud.unive.it")) {
                     // Student
-                    role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Student, "Student");
+                    role = yield this.rolesRepository.getOrCreateOne(thesis_dais_internship_manager_core_1.RoleType.Student, "Student");
                     if (!role)
                         return next({ message: "Cannot get or create a valid role entry for 'Student'" });
                 }
                 else if (email.endsWith("@unive.it")) {
                     // Professor
-                    role = yield this.rolesRepository.getOrCreateOne(dist_1.RoleType.Professor, "Professor");
+                    role = yield this.rolesRepository.getOrCreateOne(thesis_dais_internship_manager_core_1.RoleType.Professor, "Professor");
                     if (!role)
                         return next({ message: "Cannot get or create a valid role entry for 'Professor'" });
                 }

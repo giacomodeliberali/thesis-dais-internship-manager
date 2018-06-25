@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from "mongoose";
-import { User, Defaults } from "gdl-thesis-core/dist";
+import { User, Defaults } from "thesis-dais-internship-manager-core";
 import { normalizeToJson, normalizeSchema } from "./base";
 import * as autopopulate from "mongoose-autopopulate";
 import { ICompany } from "../models/interfaces";

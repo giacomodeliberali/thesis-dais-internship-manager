@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const StateMachine = require("javascript-state-machine");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const can_exec_helper_1 = require("../auth/can-exec.helper");
 /**
  * The state machine helper for the [[InternshipProposalStatusType]]
@@ -15,18 +15,18 @@ class InternshipProposalStatusTypeMachine {
         /** The allowed transitions */
         this.transitions = [
             // Accepting flaw
-            { name: 'approvedByProfessor', from: dist_1.InternshipProposalStatusType.Started.toString(), to: dist_1.InternshipProposalStatusType.WaitingForProfessor.toString(), requiredRoles: [dist_1.RoleType.Professor] },
-            { name: 'approvedByCompany', from: dist_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: dist_1.InternshipProposalStatusType.WaitingForCompany.toString(), requiredRoles: [dist_1.RoleType.Professor] },
-            { name: 'confirmed', from: dist_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: dist_1.InternshipProposalStatusType.Confirmed.toString(), requiredRoles: [dist_1.RoleType.Company] },
-            { name: 'started', from: dist_1.InternshipProposalStatusType.Confirmed.toString(), to: dist_1.InternshipProposalStatusType.Started.toString() },
-            { name: 'ended', from: dist_1.InternshipProposalStatusType.Started.toString(), to: dist_1.InternshipProposalStatusType.Ended.toString() },
+            { name: 'approvedByProfessor', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Started.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForProfessor.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Professor] },
+            { name: 'approvedByCompany', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForCompany.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Professor] },
+            { name: 'confirmed', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Confirmed.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Company] },
+            { name: 'started', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Confirmed.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Started.toString() },
+            { name: 'ended', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Started.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Ended.toString() },
             // Professor reject
-            { name: 'rejectedByProfessor', from: dist_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: dist_1.InternshipProposalStatusType.RejectedByProfessor.toString(), requiredRoles: [dist_1.RoleType.Professor] },
+            { name: 'rejectedByProfessor', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.RejectedByProfessor.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Professor] },
             // Company reject
-            { name: 'rejectedByCompany', from: dist_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: dist_1.InternshipProposalStatusType.RejectedByCompany.toString(), requiredRoles: [dist_1.RoleType.Company] },
+            { name: 'rejectedByCompany', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.RejectedByCompany.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Company] },
             // Student cancel
-            { name: 'canceled', from: dist_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: dist_1.InternshipProposalStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Student, dist_1.RoleType.Professor] },
-            { name: 'canceled', from: dist_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: dist_1.InternshipProposalStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Student, dist_1.RoleType.Professor] },
+            { name: 'canceled', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForProfessor.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Canceled.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Student, thesis_dais_internship_manager_core_1.RoleType.Professor] },
+            { name: 'canceled', from: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.WaitingForCompany.toString(), to: thesis_dais_internship_manager_core_1.InternshipProposalStatusType.Canceled.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Student, thesis_dais_internship_manager_core_1.RoleType.Professor] },
         ];
         this.stateMachine = new StateMachine({
             init: initialState.toString(),
@@ -42,7 +42,7 @@ class InternshipProposalStatusTypeMachine {
         const states = [
             {
                 value: currentState,
-                text: dist_1.InternshipProposalStatusType[currentState]
+                text: thesis_dais_internship_manager_core_1.InternshipProposalStatusType[currentState]
             }
         ];
         this.transitions.forEach(t => {
@@ -52,7 +52,7 @@ class InternshipProposalStatusTypeMachine {
                 if (!states.find(s => s.value === v)) {
                     states.push({
                         value: v,
-                        text: dist_1.InternshipProposalStatusType[v]
+                        text: thesis_dais_internship_manager_core_1.InternshipProposalStatusType[v]
                     });
                 }
             }

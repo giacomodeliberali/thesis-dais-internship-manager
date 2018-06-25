@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
-import { RoleType, Role } from 'gdl-thesis-core/dist';
+import { RoleType, Role } from 'thesis-dais-internship-manager-core';
 import { canExec } from '../../../helpers/can-exec.helper';
 
 declare var $: any;

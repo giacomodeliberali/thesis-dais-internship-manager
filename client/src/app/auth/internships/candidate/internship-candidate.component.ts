@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType, InternshipProposal, InternshipProposalStatusType } from 'gdl-thesis-core/dist';
+import { User, Internship, CompanyStatusType, Company, Address, InternshipStatusType, InternshipProposal, InternshipProposalStatusType } from 'thesis-dais-internship-manager-core';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { InternshipsService } from '../../../services/internships.service';
 /* import * as moment from 'moment';

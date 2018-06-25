@@ -9,9 +9,9 @@ gulp.task("typedoc", function () {
         .pipe(typedoc({
             module: "commonjs",
             target: "es5",
-            out: "./docs",
+            out: "../docs/dev-docs/core",
             mode: "file",
-            name: "Thesis - Core",
+            name: "DAIS Internship Manager - Core",
             lib: [
                 "lib.es2017.d.ts",
                 "lib.dom.d.ts"

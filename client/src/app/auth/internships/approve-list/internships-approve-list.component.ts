@@ -3,7 +3,7 @@ import { InternshipsService } from '../../../services/internships.service';
 import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { GridComponent, Column } from '../../../components/grid/grid.component';
-import { Internship } from 'gdl-thesis-core/dist';
+import { Internship } from 'thesis-dais-internship-manager-core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 

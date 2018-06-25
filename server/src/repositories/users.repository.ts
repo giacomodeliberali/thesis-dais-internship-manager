@@ -1,11 +1,11 @@
 import { BaseRepository } from "./base";
-import { Defaults, User, RoleType } from "gdl-thesis-core/dist";
+import { Defaults, User, RoleType } from "thesis-dais-internship-manager-core";
 import { inject, injectable } from "inversify";
 import { Model } from "mongoose";
 import { types } from "../utils/di-types";
 import { UserModel } from "../schemas/user.schema";
 import { IUser } from "../models/interfaces";
-import { AuthType } from "gdl-thesis-core/dist/models/enums/auth-type.enum";
+import { AuthType } from "thesis-dais-internship-manager-core/models/enums/auth-type.enum";
 const bcrypt = require('bcrypt');
 
 /**

@@ -1,4 +1,4 @@
-import { RoleType } from "gdl-thesis-core/dist";
+import { RoleType } from "thesis-dais-internship-manager-core";
 import { AuthGuardService } from "../services/auth-guard.service";
 import { Route } from "@angular/router";
 

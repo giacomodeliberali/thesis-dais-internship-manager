@@ -5,7 +5,7 @@ import { UsersRepository } from "../repositories";
 import { types } from "../utils/di-types";
 import { ApiResponse } from "../models/api-response.model";
 import { IUser } from "../models/interfaces";
-import { User, RoleType } from "gdl-thesis-core/dist";
+import { User, RoleType } from "thesis-dais-internship-manager-core";
 import { ServerDefaults } from "../ServerDefaults";
 import { adminScope } from "../utils/auth/scopes";
 import { sign } from "jsonwebtoken";

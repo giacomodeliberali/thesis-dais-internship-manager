@@ -6,7 +6,7 @@ import { types } from "../utils/di-types";
 import { IInternship } from "../models/interfaces";
 import { ApiResponse } from "../models/api-response.model";
 import { InternshipStatusTypeMachine } from "../utils/state-machines/internship-status.type.machine";
-import { InternshipStatusType, Internship, User } from "gdl-thesis-core/dist";
+import { InternshipStatusType, Internship, User } from "thesis-dais-internship-manager-core";
 import { professorScope, adminScope } from "../utils/auth/scopes";
 import { ServerDefaults } from "../ServerDefaults";
 

@@ -5,7 +5,7 @@ import { InternshipsProposalsRepository, CompaniesRepository, InternshipsReposit
 import { types } from "../utils/di-types";
 import { IInternshipProposal } from "../models/interfaces";
 import { ApiResponse } from "../models/api-response.model";
-import { InternshipProposalStatusType, InternshipProposal, User, Company, InternshipStatusType } from "gdl-thesis-core/dist";
+import { InternshipProposalStatusType, InternshipProposal, User, Company, InternshipStatusType } from "thesis-dais-internship-manager-core";
 import { ownInternshipProposal, adminScope } from "../utils/auth/scopes";
 import { InternshipProposalStatusTypeMachine } from "../utils/state-machines/internship-proposal-status.type.machine";
 import { ServerDefaults } from "../ServerDefaults";

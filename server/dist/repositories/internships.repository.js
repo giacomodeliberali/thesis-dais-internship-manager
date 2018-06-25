@@ -21,7 +21,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const inversify_1 = require("inversify");
 const mongoose_1 = require("mongoose");
 const di_types_1 = require("../utils/di-types");
@@ -35,7 +35,7 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
      */
     constructor(internshipsModel) {
         // Initialize [[BaseRepository]] 
-        super(internshipsModel, dist_1.Defaults.collectionsName.internships);
+        super(internshipsModel, thesis_dais_internship_manager_core_1.Defaults.collectionsName.internships);
         this.internshipsModel = internshipsModel;
     }
     /**
@@ -56,7 +56,7 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
     getApproved() {
         return __awaiter(this, void 0, void 0, function* () {
             return this.find({
-                status: dist_1.InternshipStatusType.Approved
+                status: thesis_dais_internship_manager_core_1.InternshipStatusType.Approved
             });
         });
     }
@@ -66,7 +66,7 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
     getNotApproved() {
         return __awaiter(this, void 0, void 0, function* () {
             return this.find({
-                status: dist_1.InternshipStatusType.NotApproved
+                status: thesis_dais_internship_manager_core_1.InternshipStatusType.NotApproved
             });
         });
     }
@@ -78,7 +78,7 @@ let InternshipsRepository = class InternshipsRepository extends base_1.BaseRepos
         const _super = name => super[name];
         return __awaiter(this, void 0, void 0, function* () {
             if (item)
-                item.status = dist_1.InternshipStatusType.NotApproved;
+                item.status = thesis_dais_internship_manager_core_1.InternshipStatusType.NotApproved;
             return _super("create").call(this, item);
         });
     }

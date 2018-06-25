@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const base_1 = require("./base");
 const autopopulate = require("mongoose-autopopulate");
 /** The [[InternshipProposalSchema]] mongoose schema */
@@ -43,4 +43,4 @@ base_1.normalizeSchema(exports.InternshipProposalSchema);
 /** Auto populates 'internship,student,professor' properties before any 'find' and 'findOne' */
 exports.InternshipProposalSchema.plugin(autopopulate);
 /** The [[InternshipProposalModel]] mongoose schema model  */
-exports.InternshipProposalModel = mongoose_1.model("InternshipProposal", exports.InternshipProposalSchema, dist_1.Defaults.collectionsName.internshipProposals);
+exports.InternshipProposalModel = mongoose_1.model("InternshipProposal", exports.InternshipProposalSchema, thesis_dais_internship_manager_core_1.Defaults.collectionsName.internshipProposals);

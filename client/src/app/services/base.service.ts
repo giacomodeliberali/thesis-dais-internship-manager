@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "environments/environment";
 import { AuthService } from "./auth.service";
 import { injectable } from "inversify";
-import { ApiResponseDto } from "gdl-thesis-core/dist";
+import { ApiResponseDto } from "thesis-dais-internship-manager-core";
 import { Observable } from 'rxjs';
 import 'rxjs/operators';
 

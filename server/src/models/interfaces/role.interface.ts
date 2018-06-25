@@ -1,5 +1,5 @@
 import { IBaseEntity } from "./base";
-import { Role } from "gdl-thesis-core/dist";
+import { Role } from "thesis-dais-internship-manager-core";
 
 /**
  * A [[User]] role

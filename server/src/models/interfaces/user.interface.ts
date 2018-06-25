@@ -1,5 +1,5 @@
 import { IBaseEntity } from "./base";
-import { User } from "gdl-thesis-core/dist";
+import { User } from "thesis-dais-internship-manager-core";
 
 /**
  * A registred user

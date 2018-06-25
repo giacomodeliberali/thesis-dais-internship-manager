@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
-import { RoleType, Company } from 'gdl-thesis-core/dist';
+import { RoleType, Company } from 'thesis-dais-internship-manager-core';
 import { canExec } from '../../../helpers/can-exec.helper';
 import { CompaniesService } from '../../../services/companies.service';
 import { LoadingService } from '../../../helpers/loading.helper';

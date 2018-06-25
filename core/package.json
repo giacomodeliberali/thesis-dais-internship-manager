@@ -1,11 +1,11 @@
 {
-  "name": "gdl-thesis-core",
+  "name": "thesis-dais-internship-manager-core",
   "version": "1.0.0",
   "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/giacomodeliberali/thesis-core.git"
+    "url": "https://github.com/giacomodeliberali/thesis-dais-internship-manager"
   },
   "main": "dist/index.js",
   "scripts": {

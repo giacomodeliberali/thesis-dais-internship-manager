@@ -4,7 +4,7 @@ import { NotificationHelper } from '../../../helpers/notification.helper';
 import { DatePipe } from '@angular/common';
 import { InternshipProposalService } from '../../../services/internships-proposal.service';
 import { AuthService } from '../../../services/auth.service';
-import { InternshipProposalStatusType, InternshipProposal } from 'gdl-thesis-core/dist';
+import { InternshipProposalStatusType, InternshipProposal } from 'thesis-dais-internship-manager-core';
 import { GridComponent, Column } from '../../../components/grid/grid.component';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

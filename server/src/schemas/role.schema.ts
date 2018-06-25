@@ -1,7 +1,7 @@
 import { Document, Schema, Model, model } from "mongoose";
 import { normalizeToJson, normalizeSchema } from "./base";
 import { IRole } from "../models/interfaces";
-import { Defaults } from "gdl-thesis-core/dist";
+import { Defaults } from "thesis-dais-internship-manager-core";
 
 /** The [[Role]] mongoose schema */
 export const RoleSchema: Schema = new Schema({

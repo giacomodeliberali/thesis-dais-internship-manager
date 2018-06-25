@@ -27,9 +27,9 @@ gulp.task("typedoc", function () {
         .pipe(typedoc({
             module: "commonjs",
             target: "es6",
-            out: "docs",
+            out: "../docs/dev-docs/server",
             mode: "file",
-            name: "Thesis - Server",
+            name: "DAIS Internship Manager - Server",
             readme: "./readme.md",
             experimentalDecorators: true
         }));

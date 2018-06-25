@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform, Injector } from "@angular/core";
-import { Address } from "gdl-thesis-core/dist";
+import { Address } from "thesis-dais-internship-manager-core";
 
 /**
  * Format an [[Address]] object to a string

@@ -4,8 +4,11 @@ var exec = require('child_process').exec;
 var typedoc = require("gulp-typedoc");
 var gulpSequence = require('gulp-sequence');
 
+const repositoryName = "thesis-dais-internship-manager";
+const outPath = "../docs";
+
 gulp.task('build-docs', function (cb) {
-    return exec('ng build --prod --output-path docs --base-href /dais-internship-manager/', function (err, stdout, stderr) {
+    return exec(`ng build --prod --output-path ${outPath} --base-href /${repositoryName}/`, function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
         cb(err);
@@ -13,9 +16,9 @@ gulp.task('build-docs', function (cb) {
 });
 
 gulp.task('copy-index', function () {
-    return gulp.src('docs/index.html')
+    return gulp.src(`${outPath}/index.html`)
         .pipe(rename('404.html'))
-        .pipe(gulp.dest('docs'));
+        .pipe(gulp.dest(outPath));
 });
 
 gulp.task("typedoc", function () {
@@ -24,9 +27,9 @@ gulp.task("typedoc", function () {
         .pipe(typedoc({
             module: "commonjs",
             target: "es",
-            out: "docs/dev-docs/",
+            out: `${outPath}/dev-docs/client`,
             mode: "file",
-            name: "Thesis",
+            name: "DAIS Internship Manager - Client",
             lib: [
                 "lib.es2016.d.ts",
                 "lib.dom.d.ts"

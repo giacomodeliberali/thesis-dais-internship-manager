@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, RoleType, Role } from "gdl-thesis-core/dist";
+import { Defaults, RoleType, Role } from "thesis-dais-internship-manager-core";
 import { inject, injectable } from "inversify";
 import { RoleModel } from "../schemas/role.schema";
 import { Model } from "mongoose";

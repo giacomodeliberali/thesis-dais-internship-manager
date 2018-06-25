@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const StateMachine = require("javascript-state-machine");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const can_exec_helper_1 = require("../auth/can-exec.helper");
 /**
  * The state machine helper for the [[InternshipStatusType]]
@@ -14,11 +14,11 @@ class InternshipStatusTypeMachine {
     constructor(initialState) {
         /** The allowed transitions */
         this.transitions = [
-            { name: 'approved', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Approved.toString(), requiredRoles: [dist_1.RoleType.Professor] },
-            { name: 'rejected', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Rejected.toString(), requiredRoles: [dist_1.RoleType.Professor] },
-            { name: 'closed', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Closed.toString(), requiredRoles: [dist_1.RoleType.Company] },
-            { name: 'canceled', from: dist_1.InternshipStatusType.NotApproved.toString(), to: dist_1.InternshipStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Company] },
-            { name: 'canceled', from: dist_1.InternshipStatusType.Approved.toString(), to: dist_1.InternshipStatusType.Canceled.toString(), requiredRoles: [dist_1.RoleType.Company] }
+            { name: 'approved', from: thesis_dais_internship_manager_core_1.InternshipStatusType.NotApproved.toString(), to: thesis_dais_internship_manager_core_1.InternshipStatusType.Approved.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Professor] },
+            { name: 'rejected', from: thesis_dais_internship_manager_core_1.InternshipStatusType.NotApproved.toString(), to: thesis_dais_internship_manager_core_1.InternshipStatusType.Rejected.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Professor] },
+            { name: 'closed', from: thesis_dais_internship_manager_core_1.InternshipStatusType.Approved.toString(), to: thesis_dais_internship_manager_core_1.InternshipStatusType.Closed.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Company] },
+            { name: 'canceled', from: thesis_dais_internship_manager_core_1.InternshipStatusType.NotApproved.toString(), to: thesis_dais_internship_manager_core_1.InternshipStatusType.Canceled.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Company] },
+            { name: 'canceled', from: thesis_dais_internship_manager_core_1.InternshipStatusType.Approved.toString(), to: thesis_dais_internship_manager_core_1.InternshipStatusType.Canceled.toString(), requiredRoles: [thesis_dais_internship_manager_core_1.RoleType.Company] }
         ];
         this.stateMachine = new StateMachine({
             init: initialState.toString(),
@@ -34,7 +34,7 @@ class InternshipStatusTypeMachine {
         const states = [
             {
                 value: currentState,
-                text: dist_1.InternshipStatusType[currentState]
+                text: thesis_dais_internship_manager_core_1.InternshipStatusType[currentState]
             }
         ];
         this.transitions.forEach(t => {
@@ -44,7 +44,7 @@ class InternshipStatusTypeMachine {
                 if (!states.find(s => s.value === v)) {
                     states.push({
                         value: v,
-                        text: dist_1.InternshipStatusType[v]
+                        text: thesis_dais_internship_manager_core_1.InternshipStatusType[v]
                     });
                 }
             }

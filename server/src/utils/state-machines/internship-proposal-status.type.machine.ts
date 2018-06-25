@@ -1,5 +1,5 @@
 import * as StateMachine from 'javascript-state-machine';
-import { InternshipProposalStatusType, RoleType } from 'gdl-thesis-core/dist';
+import { InternshipProposalStatusType, RoleType } from 'thesis-dais-internship-manager-core';
 import { canExec } from '../auth/can-exec.helper';
 
 /**

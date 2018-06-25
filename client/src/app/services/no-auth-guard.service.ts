@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, CanActivateChild } from '@angular/router';
 import { AuthService } from './auth.service';
-import { RoleType } from 'gdl-thesis-core/dist';
+import { RoleType } from 'thesis-dais-internship-manager-core';
 import { canExec } from '../helpers/can-exec.helper';
 
 /**

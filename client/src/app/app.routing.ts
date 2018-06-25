@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { NoAuthLayoutComponent } from './layouts/no-auth/no-auth-layout.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { RoleType } from 'gdl-thesis-core/dist';
+import { RoleType } from 'thesis-dais-internship-manager-core';
 import { generateAuthRouteModule } from './helpers/generate.auth-route.helper';
 import { NoAuthGuardService } from './services/no-auth-guard.service';
 

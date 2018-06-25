@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import { User, RoleType, Company, Internship } from "gdl-thesis-core/dist";
+import { User, RoleType, Company, Internship } from "thesis-dais-internship-manager-core";
 import { ServerDefaults } from "../../ServerDefaults";
 import { ApiResponse } from "../../models/api-response.model";
 import { container } from "../di-container";

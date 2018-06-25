@@ -1,5 +1,5 @@
 import { BaseRepository } from "./base";
-import { Defaults, InternshipProposal, InternshipProposalStatusType } from "gdl-thesis-core/dist";
+import { Defaults, InternshipProposal, InternshipProposalStatusType } from "thesis-dais-internship-manager-core";
 import { inject, injectable, LazyServiceIdentifer } from "inversify";
 import { InternshipProposalModel } from "../schemas/internship-proposal.schema";
 import { Model } from "mongoose";

@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FullScreenPage } from '../../models/full-screen-page.model';
-import { User, Company } from 'gdl-thesis-core/dist';
+import { User, Company } from 'thesis-dais-internship-manager-core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CompaniesService } from '../../services/companies.service';

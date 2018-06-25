@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const ServerDefaults_1 = require("../../ServerDefaults");
 const api_response_model_1 = require("../../models/api-response.model");
 const di_container_1 = require("../di-container");
@@ -60,7 +60,7 @@ function adminScope(request, response, next) {
     // Check if has role
     if (user) {
         // Check admin scope
-        if ((user.role.type & Number(dist_1.RoleType.Admin)) === Number(dist_1.RoleType.Admin)) {
+        if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Admin)) === Number(thesis_dais_internship_manager_core_1.RoleType.Admin)) {
             return next();
         }
     }
@@ -87,7 +87,7 @@ function companyScope(request, response, next) {
     // Check if has role
     if (user) {
         // Check Company scope
-        if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company)) {
+        if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Company)) === Number(thesis_dais_internship_manager_core_1.RoleType.Company)) {
             return next();
         }
     }
@@ -114,7 +114,7 @@ function studentScope(request, response, next) {
     // Check if has role
     if (user) {
         // Check Student scope
-        if ((user.role.type & Number(dist_1.RoleType.Student)) === Number(dist_1.RoleType.Student)) {
+        if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Student)) === Number(thesis_dais_internship_manager_core_1.RoleType.Student)) {
             return next();
         }
     }
@@ -141,7 +141,7 @@ function professorScope(request, response, next) {
     // Check if has role
     if (user) {
         // Check Professor scope
-        if ((user.role.type & Number(dist_1.RoleType.Professor)) === Number(dist_1.RoleType.Professor)) {
+        if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Professor)) === Number(thesis_dais_internship_manager_core_1.RoleType.Professor)) {
             return next();
         }
     }
@@ -163,13 +163,13 @@ function ownCompany(request, response, next) {
         // Check if has role
         if (user) {
             // If the user is admin, continue
-            if ((user.role.type & Number(dist_1.RoleType.Admin)) === Number(dist_1.RoleType.Admin))
+            if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Admin)) === Number(thesis_dais_internship_manager_core_1.RoleType.Admin))
                 return next();
             try {
                 const comapniesRepsoitory = di_container_1.container.resolve(repositories_1.CompaniesRepository);
                 const icompany = yield comapniesRepsoitory.get(request.body.id);
                 if (icompany) {
-                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && icompany.owners.find(owner => owner.id === user.id)) {
+                    if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Company)) === Number(thesis_dais_internship_manager_core_1.RoleType.Company) && icompany.owners.find(owner => owner.id === user.id)) {
                         return next();
                     }
                 }
@@ -205,7 +205,7 @@ function ownInternship(request, response, next) {
                 const internshipsRepsoitory = di_container_1.container.resolve(repositories_1.InternshipsRepository);
                 const iinternship = yield internshipsRepsoitory.get(request.body.id || request.params.id);
                 if (iinternship) {
-                    if ((user.role.type & Number(dist_1.RoleType.Company)) === Number(dist_1.RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
+                    if ((user.role.type & Number(thesis_dais_internship_manager_core_1.RoleType.Company)) === Number(thesis_dais_internship_manager_core_1.RoleType.Company) && iinternship.company.owners.find(owner => owner.id === user.id)) {
                         return next();
                     }
                 }
@@ -294,7 +294,7 @@ function canExecMw(...roles) {
                 response: response,
                 httpCode: 401,
                 exception: {
-                    message: `Insufficient permission to complete the operation. Required roles are ${roles.map(r => dist_1.RoleType[r]).join(',')}`,
+                    message: `Insufficient permission to complete the operation. Required roles are ${roles.map(r => thesis_dais_internship_manager_core_1.RoleType[r]).join(',')}`,
                     code: "auth/user-unauthorized"
                 }
             }).send();

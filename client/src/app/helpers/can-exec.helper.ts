@@ -1,4 +1,4 @@
-import { RoleType } from "gdl-thesis-core/dist";
+import { RoleType } from "thesis-dais-internship-manager-core";
 
 /**
  * Return true if the given role number has at least one requiredRoles or is an admin

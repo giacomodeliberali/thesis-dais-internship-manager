@@ -1,5 +1,5 @@
 import { OnInit, Component, Input } from "@angular/core";
-import { InternshipProposal, InternshipProposalStatusType } from "gdl-thesis-core/dist";
+import { InternshipProposal, InternshipProposalStatusType } from "thesis-dais-internship-manager-core";
 import { TranslateService } from "@ngx-translate/core";
 import swal from "sweetalert2";
 import { NotificationHelper } from "../../helpers/notification.helper";

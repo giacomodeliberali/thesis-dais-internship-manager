@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 import { generateAuthRoute } from '../../helpers/generate.auth-route.helper';
 import { InternshipsViewComponent } from './view/internships-view.component';
 import { AuthGuardService } from '../../services/auth-guard.service';
-import { RoleType } from 'gdl-thesis-core/dist';
+import { RoleType } from 'thesis-dais-internship-manager-core';
 import { InternshipAddComponent } from './add/internship-add.component';
 import { InternshipEditComponent } from './edit/internship-edit.component';
 import { InternshipsOwnCompanyComponent } from './own-company/internships-own-company.component';

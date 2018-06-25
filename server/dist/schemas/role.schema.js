@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const base_1 = require("./base");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 /** The [[Role]] mongoose schema */
 exports.RoleSchema = new mongoose_1.Schema({
     name: {
@@ -14,4 +14,4 @@ exports.RoleSchema = new mongoose_1.Schema({
 /** Ensure returned object has property id instead of _id and __v */
 base_1.normalizeSchema(exports.RoleSchema);
 /** The [[RoleModel]] mongoose schema model  */
-exports.RoleModel = mongoose_1.model("Role", exports.RoleSchema, dist_1.Defaults.collectionsName.roles);
+exports.RoleModel = mongoose_1.model("Role", exports.RoleSchema, thesis_dais_internship_manager_core_1.Defaults.collectionsName.roles);

@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { Constructor, ApiResponseDto } from 'gdl-thesis-core/dist';
+import { Constructor, ApiResponseDto } from 'thesis-dais-internship-manager-core';
 
 /**
  * A generic rest API response. Used in Express controllers

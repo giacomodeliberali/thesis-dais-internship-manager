@@ -26,7 +26,7 @@ const repositories_1 = require("../repositories");
 const di_types_1 = require("../utils/di-types");
 const api_response_model_1 = require("../models/api-response.model");
 const internship_status_type_machine_1 = require("../utils/state-machines/internship-status.type.machine");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const scopes_1 = require("../utils/auth/scopes");
 const ServerDefaults_1 = require("../ServerDefaults");
 /**
@@ -151,11 +151,11 @@ let InternshipsController = class InternshipsController extends base_controller_
                     httpCode: 400,
                     response: res,
                     exception: {
-                        message: `Cannot update the internship status from ${dist_1.InternshipStatusType[internship.status]} to ${dist_1.InternshipStatusType[newState]}`
+                        message: `Cannot update the internship status from ${thesis_dais_internship_manager_core_1.InternshipStatusType[internship.status]} to ${thesis_dais_internship_manager_core_1.InternshipStatusType[newState]}`
                     }
                 }).send();
             }
-            const update = new dist_1.Internship(internship.toObject());
+            const update = new thesis_dais_internship_manager_core_1.Internship(internship.toObject());
             update.status = newState;
             return this.internshipsRepository
                 .partialUpdate(update.id, {

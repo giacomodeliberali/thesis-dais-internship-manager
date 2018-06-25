@@ -21,11 +21,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const base_1 = require("./base");
-const dist_1 = require("gdl-thesis-core/dist");
+const thesis_dais_internship_manager_core_1 = require("thesis-dais-internship-manager-core");
 const inversify_1 = require("inversify");
 const mongoose_1 = require("mongoose");
 const di_types_1 = require("../utils/di-types");
-const auth_type_enum_1 = require("gdl-thesis-core/dist/models/enums/auth-type.enum");
+const auth_type_enum_1 = require("thesis-dais-internship-manager-core/models/enums/auth-type.enum");
 const bcrypt = require('bcrypt');
 /**
  * The [[user]] repository
@@ -37,7 +37,7 @@ let UsersRepository = class UsersRepository extends base_1.BaseRepository {
      */
     constructor(userModel) {
         // Initialize [[BaseRepository]] 
-        super(userModel, dist_1.Defaults.collectionsName.users);
+        super(userModel, thesis_dais_internship_manager_core_1.Defaults.collectionsName.users);
         this.userModel = userModel;
     }
     /**

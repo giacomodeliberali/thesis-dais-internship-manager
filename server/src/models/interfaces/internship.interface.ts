@@ -1,5 +1,5 @@
 import { IBaseEntity } from "./base";
-import { Internship } from "gdl-thesis-core/dist";
+import { Internship } from "thesis-dais-internship-manager-core";
 
 /**
  * A internship created by a [[Company]]
