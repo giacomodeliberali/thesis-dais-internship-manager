@@ -1,0 +1,14 @@
+{
+    "Dictionary": {
+        "Back": "Indietro",
+        ...
+    },
+    "Pages": {
+        "Index": {
+            "Title": "DAIS Internship Manager",
+            "SubTitle": "Benvenuto {{fullname}}, sono le {{datetime}}"
+        },
+        ...
+    },
+    ...
+}

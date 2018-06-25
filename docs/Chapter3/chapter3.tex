@@ -1,0 +1,218 @@
+\chapter{Casi d'uso e workflow}
+
+\projectName~prevede i seguenti casi d'uso:
+\begin{enumerate}
+	\item \hyperref[sec:registrazione-e-login-di-un-utente]{\textit{Registrazione e login di un utente}}
+	\item \hyperref[sec:creazione--di-un-tirocinio]{\textit{Creazione di un tirocinio}}
+	\item \hyperref[sec:approvazione-di-un-tirocinio]{\textit{Approvazione di un tirocinio}}
+	\item \hyperref[sec:candidatura-ad-un-tirocinio]{\textit{Candidatura ad un tirocinio}}
+	\item \hyperref[sec:approvazione-candidatura-professore]{\textit{Approvazione di una candidatura (professore)}}
+	\item \hyperref[sec:approvazione-candidatura-azienda]{\textit{Approvazione di una candidatura (azienda)}}
+	\item \hyperref[sec:avvio-di-un-tirocinio]{\textit{Avvio di un tirocinio}}
+	\item \hyperref[sec:compilazione-foglio-presenze]{\textit{Compilazione del foglio presenze}}
+	\item \hyperref[sec:terminazione-di-un-tirocinio]{\textit{Terminazione di un tirocinio}}
+	\item \hyperref[sec:generazione-documentazione]{\textit{Generazione documentazione precompilata}}
+\end{enumerate}
+I casi d'uso saranno illustrati nei paragrafi seguenti.
+
+\section{Ciclo di vita di un tirocinio}
+Prima di definire in dettaglio i casi d'uso è opportuno spiegare l'intero ciclo di vita di un tirocinio, dalla sua creazione alla sua chiusura. Schematicamente il processo di gestione è rappresentato in figura \ref{fig:workflaw}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{Chapter3/Figs/states-flaw}
+	\caption[Ciclo di vita di un tirocinio]{Ciclo di vita di un tirocinio}
+	\label{fig:workflaw}
+\end{figure}
+
+\section{Casi d'uso}
+
+Nel seguente paragrafo verranno descritti i casi d'uso previsti dall'applicazione.
+
+\subsection{Registrazione e login di un utente}\label{sec:registrazione-e-login-di-un-utente}
+
+\textit{Deve essere possibile registrare un nuovo utente nel sistema e permettergli di autenticarsi.} \\
+
+\noindent
+Vi sono due tipologie di utenti, quelli interni all'ateneo, professori e studenti, e quelli esterni, aziende. Gli utenti interni devono effettuare l'accesso con il proprio account istituzionale utilizzando Google come provider federato, mentre le aziende possono inserire un'email qualunque. 
+
+Una volta che un membro dell'ateneo esegue l'accesso mediante Google, viene reindirizzato indietro al sistema, che verifica l'email utilizzata nella fase di accesso a Google: se termina con \textit{@stud.unive} rappresenta un utente con il ruolo di studente, mentre se termina con\textit{@unive.it} rappresenta un utente con il ruolo di professore. Una volta determinato il ruolo, il sistema verifica l'esistenza di un utente nella relativa \textit{collection} del database e in caso negativo lo crea. A questo punto l'utente (professore o studente) è autenticato e viene indirizzato nella parte del portale protetta.
+
+Per quanto riguarda un utente con il ruolo di azienda, invece, la procedura di \textit{login} e registrazione è divisa in pagine diverse. Nella pagina di registrazione l'utente deve indicare i dati della propria azienda, un'indirizzo email e una password, dopodiché verranno create sia una nuova azienda che un nuovo utente, associando l'utente come amministratore della nuova azienda. Nella procedura di login invece, l'utente dovrà inserire l'email e la password utilizzate in fase di registrazione.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{Chapter3/Figs/univelogin}
+		\caption{Membro dell'ateneo}
+		\label{fig:univelogin}   
+	\end{subfigure}      
+	\begin{subfigure}[b]{0.4\textwidth}
+		\includegraphics[width=\textwidth]{Chapter3/Figs/companylogin}
+		\caption{Azienda}
+		\label{fig:companylogin}
+	\end{subfigure}
+	\caption[Flusso di login e registrazione di un utente]{Flusso di login e registrazione di un utente}
+	\label{fig:uc-login}
+\end{figure}
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=\textwidth]{Chapter3/Figs/screenshots/register}
+		\caption{Registrazione di un'azienda}
+		\label{fig:screenshot:companyregister}
+	\end{subfigure}
+	\begin{subfigure}[b]{1\textwidth}
+		\includegraphics[width=\textwidth]{Chapter3/Figs/screenshots/login}
+		\caption{Login di un'azienda}
+		\label{fig:screenshot:companylogin}   
+	\end{subfigure}          
+	\caption[Screenshot: login e registrazione di un'azienda]{Login e registrazione di un'azienda}
+	\label{fig:screenshot:1}
+\end{figure}
+
+\pagebreak
+\subsection{Creazione  di un tirocinio}\label{sec:creazione--di-un-tirocinio}
+
+
+\textit{Deve essere possibile --- per un utente con il ruolo azienda --- l'aggiunta di una nuova offerta di tirocinio.} \\
+
+\noindent
+Una volta effettuato l'accesso con le proprie credenziali, sarà sufficiente seguire la voce di menù "Tirocini > Aggiungi tirocinio". Apparirà una pagina con un \textit{form} che permette l'inserimento di un'offerta. Una volta salvata, prima di essere pubblicata deve essere approvata da un professore. Le offerte pubblicate dall'azienda correntemente autenticata possono essere visualizzate seguendo la voce di menù "Azienda > I miei tirocini".
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/addinternship}     
+	\caption[Screenshot: aggiunta di un'offerta di tirocinio]{Aggiunta di un'offerta di tirocinio}
+	\label{fig:screenshot:2}
+\end{figure}
+
+\pagebreak
+\subsection{Approvazione di un tirocinio}\label{sec:approvazione-di-un-tirocinio}
+
+\textit{Deve essere possibile per un professore approvare o rifiutare un'offerta di tirocinio di un'azienda prima che venga pubblicata.} \\
+
+\noindent
+Una volta che un'azienda pubblica una nuova offerta, essa è visibile da tutti gli utenti con il ruolo di professore alla pagina \textit{"/auth/internship/approve"}, raggiungibile dalla voce "Professore > In attesa di approvazione". Da questa pagina, che contiene una tabella, è possibile approvare o rifiutare singolarmente le offerte visionandone il contenuto. Nel caso in cui l'offerta non venga approvata, è possibile specificare un testo libero contenete il motivo del rifiuto che sarà visualizzato dall'azienda.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipapprove}     
+	\caption[Screenshot: approvazione di una nuova offerta di tirocinio]{Approvazione di una nuova offerta di tirocinio}
+	\label{fig:screenshot:3}
+\end{figure}
+
+\pagebreak
+\subsection{Candidatura ad un tirocinio}\label{sec:candidatura-ad-un-tirocinio}
+
+\textit{Deve essere possibile per uno studente candidarsi ad un'offerta di tirocinio pubblicata da un'azienda.} \\
+
+\noindent
+Una volta effettuato l'accesso, lo studente può visualizzare tutte le offerte di tirocinio pubblicate. Una volta selezionata quella di suo gradimento, può --- se vi sono ancora posti liberi --- candidarsi indicando un professore suo referente. La candidatura si effettua tramite il pulsante "Candidati" a fondo pagina di un'offerta di tirocinio. Una volta avviata la candidatura, il professore indicato dovrà accettarla o rifiutarla e solo successivamente sarà rimbalzata all'azienda per la conferma finale.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipcandidate}     
+	\caption[Screenshot: candidatura ad un'offerta di tirocinio]{Candidatura ad un'offerta di tirocinio}
+	\label{fig:screenshot:4}
+\end{figure}
+
+\pagebreak
+\subsection{Approvazione candidatura (professore)}\label{sec:approvazione-candidatura-professore}
+
+\textit{Deve essere possibile per un professore visualizzare, accettare e rifiutare le proposte di candidatura che lo coinvolgono come referente.} \\
+
+\noindent
+Una volta effettuato l'accesso, il professore può recarsi alla pagina \textit{"/auth/proposals/professor"} dalla voce "Professore > Studenti in attesa" e visualizzare tutte le candidature che lo coinvolgono. Può accettarle o rifiutarle singolarmente accedendo alla pagina di dettaglio.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipproposalapprove}     
+	\caption[Screenshot: approvazione di una candidatura (professore)]{Approvazione di una candidatura (professore)}
+	\label{fig:screenshot:5}
+\end{figure}
+
+\pagebreak
+\subsection{Approvazione candidatura (azienda)}\label{sec:approvazione-candidatura-azienda}
+
+\textit{Deve essere possibile per un'azienda visualizzare, accettare e rifiutare le proposte di candidatura alle proprie offerte di tirocinio.} \\
+
+\noindent
+Una volta effettuato l'accesso, l'azienda può recarsi alla pagina \textit{"/auth/proposals/company} dalla voce "Azienda > Proposte ricevute" e visualizzare tutte le candidature che la coinvolgono. Può accettarle o rifiutarle singolarmente accedendo alla pagina di dettaglio.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipproposalapprovecompany}     
+	\caption[Screenshot: approvazione di una candidatura (azienda)]{Approvazione di una candidatura (azienda)}
+	\label{fig:screenshot:6}
+\end{figure}
+
+\pagebreak
+\subsection{Avvio di un tirocinio}\label{sec:avvio-di-un-tirocinio}
+
+\textit{Deve essere possibile, una volta che sia il professore che l'azienda hanno approvato una candidatura di uno studente, avviare il tirocinio per iniziare a tracciarlo.} \\
+
+\noindent
+Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella pagina di dettaglio della candidatura e premere il pulsante "Avvia tirocinio". Da questo momento in poi sarà possibile completare il foglio presenze e terminare il tirocinio.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipproposalstart}     
+	\caption[Screenshot: avvio di un tirocinio]{Avvio di un tirocinio}
+	\label{fig:screenshot:7}
+\end{figure}
+
+\pagebreak
+\subsection{Compilazione foglio presenze}\label{sec:compilazione-foglio-presenze}
+
+\textit{Deve essere possibile, una volta avviato un tirocinio, completare il foglio presenze dello studente.} \\
+
+\noindent
+Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella pagina di dettaglio della candidatura, spostarsi all'interno della sezione "Foglio presenze" e premere il pulsante "Aggiungi". Verranno chiesti data e ore lavorate e un nuovo record sarà aggiunto alla tabella.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshiptrack}     
+	\caption[Screenshot: tracciamento di un tirocinio avviato]{Tracciamento di un tirocinio avviato}
+	\label{fig:screenshot:8}
+\end{figure}
+
+\pagebreak
+\subsection{Terminazione di un tirocinio}\label{sec:terminazione-di-un-tirocinio}
+
+\textit{Deve essere possibile, una volta avviato un tirocinio, terminarlo.} \\
+
+\noindent
+Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella pagina di dettaglio della candidatura e premere il pulsante "Termina candidatura". Da questo momento sarà possibile generare la documentazione associata al tirocinio eseguito.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{Chapter3/Figs/screenshots/internshipended}     
+	\caption[Screenshot: terminazione di un tirocinio]{Terminazione di un tirocinio}
+	\label{fig:screenshot:9}
+\end{figure}
+
+\pagebreak
+\subsection{Generazione documentazione}\label{sec:generazione-documentazione}
+\textit{Deve essere possibile, una volta terminato un tirocinio, generarne la relativa documentazione precompilata in PDF..} \\
+
+\noindent
+Una volta individuato il tirocinio in questione, sarà sufficiente entrare nella pagina di dettaglio della candidatura e premere il pulsante "Genera documentazione". Verrà aperta una nuova finestra del browser contenente il documento PDF precompilato contenente i dettagli del tirocinio, dell'azienda, del professore, dello studente e la tabella del foglio presenze.
+
+\subsubsection{Screenshots}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Chapter3/Figs/screenshots/pdfdocs}     
+	\caption[Screenshot: documentazione generata dal sistema]{Documentazione generata dal sistema}
+	\label{fig:screenshot:10}
+\end{figure}
