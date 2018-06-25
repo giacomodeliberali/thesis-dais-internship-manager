@@ -1,0 +1,36 @@
+<div class="card" [hidden]="!rows">
+    <!--     <div class="card-header">
+        <p class="category" translate>Dictionary.Filter</p>
+    </div> -->
+    <div class="card-content">
+        <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+            </span>
+            <input type="text" value="" class="form-control" placeholder="{{'Dictionary.Search' | translate}}..." (keyup)='updateFilter($event)'>
+        </div>
+    </div>
+</div>
+
+<div class="card" [hidden]="rows">
+    <div class="card-content text-center">
+        <span translate>Dictionary.Loading</span>
+        <i class="fas fa-spin fa-spinner"></i>
+    </div>
+</div>
+
+<ngx-datatable *ngIf="rows && _columns" style="height: 78vh" class="material" [columnMode]="'force'" [footerHeight]="50"
+    [rows]="rows" [columns]="_columns" [scrollbarV]="true" [scrollbarH]="true" [selectionType]="'single'" (select)='onSelect($event)' [messages]="messages">
+
+
+    <ngx-datatable-footer>
+        <ng-template ngx-datatable-footer-template let-rowCount="rowCount">
+
+            <div class="page-count">
+                {{rowCount}}
+                <span translate>Dictionary.TotalRows</span>
+            </div>
+        </ng-template>
+    </ngx-datatable-footer>
+
+</ngx-datatable>

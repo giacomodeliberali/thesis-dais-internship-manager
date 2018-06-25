@@ -1,0 +1,41 @@
+<div class="card" *ngIf="internshipProposal">
+    <div class="card-header">
+        <h4 class="card-title">
+            {{'Dictionary.AttendanceSheet' | translate}}
+        </h4>
+    </div>
+    <div class="card-content">
+        <button type="button btn-success" class="btn btn-default" (click)="addAttendance()" *ngIf="internshipProposal.status === InternshipProposalStatusType.Started">{{'Dictionary.Add' | translate}}</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Ore lavorate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!internshipProposal.attendances || internshipProposal.attendances.length ===  0; else table">
+                    <td colspan="2" class="text-center">{{'Dictionary.NoResults' | translate}}</td>
+                </tr>
+                <tr *ngFor="let attandance of internshipProposal.attendances" #table>
+                    <td>
+                        {{attandance.date | date}}
+                    </td>
+                    <td>
+                        {{attandance.hours}}
+                    </td>
+                </tr>
+
+                <tr *ngIf="internshipProposal.attendances && internshipProposal.attendances.length >  0">
+                    <td>
+                        {{'Dictionary.Total' | translate}}
+                    </td>
+                    <td>
+                        {{totalHours}}
+                        <span *ngIf="internshipProposal.internship.totalHours">/{{internshipProposal.internship.totalHours}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

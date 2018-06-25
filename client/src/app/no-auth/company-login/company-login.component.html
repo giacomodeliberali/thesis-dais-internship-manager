@@ -1,0 +1,72 @@
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">{{'Pages.CompanyLogin.Title' | translate}}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a ruterLinkActive="active" [routerLink]="['/login']">
+                        {{'Pages.CompanyLogin.UniveTitle' | translate}}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper wrapper-full-page">
+    <div class="full-page login-page" data-color="" data-image="assets/img/background/campus.jpg">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+                        <form method="#" action="#">
+                            <div class="card" data-background="color" data-color="blue">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{'Pages.CompanyLogin.Title' | translate}}</h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-group">
+                                        <label translate>Dictionary.Email</label>
+                                        <input type="email" placeholder="{{'Dictionary.Email' | translate}}" class="form-control input-no-border" [(ngModel)]="email"
+                                            name="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label translate>Dictionary.Password</label>
+                                        <input type="password" placeholder="{{'Dictionary.Password' | translate}}" class="form-control input-no-border" [(ngModel)]="password"
+                                            name="password">
+                                    </div>
+                                </div>
+                                <div class="card-footer text-center">
+                                    <button type="button" class="btn btn-fill btn-wd " (click)="login()">{{'Dictionary.Login' | translate}}</button>
+                                    <div class="forgot">
+                                        <hr> Nuova azienda?
+                                        <a [routerLink]="['/register']">Crea subito un account!</a>
+                                        <hr> {{'Pages.Login.Else' | translate}}
+                                        <a [routerLink]="['/login']">{{'Pages.CompanyLogin.LoginAsUnive' | translate}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer footer-transparent">
+            <div class="container">
+                <div class="copyright">
+                    &copy; {{today | date: 'yyyy'}} -
+                    <a href="http://www.giacomodeliberali.com">Giacomo De Liberali</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <grid-cmp [rows]="rows" [allRows]="rows" [columns]="columns"></grid-cmp>
+
+                <ng-template #statusTemplate let-row="row" let-value="value">
+                    <span>{{('Enums.InternshipProposalStatusType.' + InternshipProposalStatusType[value]) | translate}}</span>
+                </ng-template>
+                <!-- <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" translate>Pages.CompanyInternshipProposals.Title</h4>
+                        <p class="category" translate>Pages.CompanyInternshipProposals.SubTitle</p>
+                    </div>
+                    <div class="card-content table-responsive table-full-width">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
+                                        {{(col.name) | translate}}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngIf="isLoading">
+                                    <td [attr.colspan]="internshipTable.headerRow.length + 1" class="text-center">
+                                        <span translate>Dictionary.Loading</span>
+                                        <i class="fas fa-spin fa-spinner"></i>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="internshipTable.dataRows.length == 0 && !isLoading">
+                                    <td [attr.colspan]="internshipTable.headerRow.length + 1" class="text-center">
+                                        <span translate>Dictionary.NoResults</span>
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let row of internshipTable.dataRows">
+                                    <td class="td-actions text-center" *ngIf="row.status === InternshipProposalStatusType.WaitingForCompany">
+                                        <a rel="tooltip" title="{{'Dictionary.Details' | translate}}" [routerLink]="'/auth/proposals/approve/' + row.id" class="btn btn-primary btn-simple btn-xs">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <td class="td-actions text-center" *ngIf="row.status !== InternshipProposalStatusType.WaitingForCompany">
+                                        <a rel="tooltip" title="{{'Dictionary.Details' | translate}}" [routerLink]="'/auth/proposals/details/' + row.id" class="btn btn-primary btn-simple btn-xs">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <td *ngFor="let col of internshipTable.headerRow; let colIndex = index" class="{{col.class || ''}}">
+                                        <span *ngIf="!col.formatter && !col.translate">{{val(row,col.value) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="!col.formatter && col.translate">{{val(row,col.value) | tablecol:col.pipe | translate}}</span>
+                                        <span *ngIf="col.formatter && !col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe}}</span>
+                                        <span *ngIf="col.formatter && col.translate">{{col.formatter(val(row,col.value)) | tablecol:col.pipe | translate}}</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>

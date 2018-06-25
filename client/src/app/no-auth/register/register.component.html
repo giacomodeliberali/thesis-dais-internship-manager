@@ -1,0 +1,107 @@
+<nav class="navbar navbar-transparent navbar-absolute">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle navbar-toggle-black" data-toggle="collapse" data-target="#navigation-example-2"
+                (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar "></span>
+                <span class="icon-bar "></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a routerLinkActive="active" [routerLink]="['/login/company']" class="btn" translate>
+                        Pages.Index.LookingForLogin
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="wrapper wrapper-full-page">
+    <div class="register-page">
+        <!--   you can change the color of the filter page using: data-color="blue | azure | green | orange | red | purple" -->
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="header-text">
+                            <h2 translate>Pages.Index.Title</h2>
+                            <h4 translate>Completa i campi sottostanti e crea un nuovo</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4">
+                        <form [formGroup]="myform">
+                            <div class="card card-plain">
+                                <div class="content">
+                                    <div>
+                                        <label>
+                                            Dettagli amministratore azienda
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="{{'Dictionary.Name' | translate}}" formControlName="name" class="form-control" [(ngModel)]="user.name">
+                                        <small class="text-danger" *ngIf="myform.controls['name'].invalid && myform.controls['name'].touched">Full name is mandatory</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="{{'Dictionary.Phone' | translate}}" formControlName="phone" class="form-control" [(ngModel)]="user.phone[0]">
+                                        <small class="text-danger" *ngIf="myform.controls['phone'].invalid && myform.controls['phone'].touched">Phone is mandatory</small>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            Dettagli azienda
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="{{'Dictionary.CompanyName' | translate}}" formControlName="companyName" class="form-control"
+                                            [(ngModel)]="company.name">
+                                        <small class="text-danger" *ngIf="myform.controls['companyName'].invalid && myform.controls['companyName'].touched">Company name is mandatory</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="{{'Dictionary.VatCode' | translate}}" formControlName="vatCode" class="form-control" [(ngModel)]="company.vatCode">
+                                        <small class="text-danger" *ngIf="myform.controls['vatCode'].invalid && myform.controls['vatCode'].touched">VAT code is mandatory</small>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            Dettagli account
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" placeholder="{{'Dictionary.Email' | translate}}" class="form-control" formControlName="email" [(ngModel)]="user.email">
+                                        <small class="text-danger" *ngIf="myform.controls['email'].invalid && myform.controls['email'].touched">Email is required and format should be
+                                            <i>john@doe.com</i>.</small>
+                                    </div>
+                                    <div class="form-group" formGroupName="passwords">
+                                        <input type="password" placeholder="{{'Dictionary.Password' | translate}}" formControlName="password" class="form-control"
+                                            [(ngModel)]="user.password">
+                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.password.invalid && myform.controls.passwords.controls.password.touched">Password is too short</small>
+                                    </div>
+                                    <div class="form-group" formGroupName="passwords">
+                                        <input type="password" placeholder="{{'Dictionary.RepeatPassword' | translate}}" formControlName="repeatPassword" class="form-control">
+                                        <small class="text-danger" *ngIf="myform.controls.passwords.controls.repeatPassword.touched && myform.controls.passwords.errors?.mismatch">Password is different</small>
+                                    </div>
+                                </div>
+                                <div class="footer text-center">
+                                    <button type="submit" class="btn btn-fill btn-danger btn-wd" translate (click)="signup()" [disabled]="myform.invalid">Dictionary.CreateAccount</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer footer-transparent">
+            <div class="container">
+                <div class="copyright">
+                    &copy; {{today | date: 'yyyy'}} -
+                    <a href="http://www.giacomodeliberali.com">Giacomo De Liberali</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>

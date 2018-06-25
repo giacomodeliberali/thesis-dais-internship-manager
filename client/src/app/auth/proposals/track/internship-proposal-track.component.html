@@ -1,0 +1,129 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Pages.InternshipProposalTrack.Title' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label translate>Dictionary.Company</label>
+                            <p class="form-control-static">{{internshipProposal.internship.company.name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Professor</label>
+                            <p class="form-control-static">{{internshipProposal.professor.name}}</p>
+                        </div>
+                        <div class="form-group">
+                            <label translate>Dictionary.Student</label>
+                            <p class="form-control-static">{{internshipProposal.student.name}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.Status' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label translate>Dictionary.Status</label>
+                            <p class="form-control-static">{{('Enums.InternshipProposalStatusType.' + InternshipProposalStatusType[internshipProposal.status])
+                                | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.Details' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+
+                        <div class="row form-group">
+                            <div class="col-lg-6 col-xs-12">
+                                <label translate>Dictionary.Address</label>
+                                <p class="form-control-static">{{internshipProposal.internship.address | address}}</p>
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label translate>Dictionary.StartDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.startDate">{{internshipProposal.internship.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.startDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label translate>Dictionary.EndDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.internship.endDate">{{internshipProposal.internship.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.endDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label translate>Dictionary.TotalHours</label>
+                                <p class="form-control-static">{{internshipProposal.internship.totalHours || ('Dictionary.NotSpecified' | translate)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            {{'Dictionary.CurrentState' | translate}}
+                        </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label translate>Dictionary.RealStartDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.startDate">{{internshipProposal.startDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.startDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label translate>Dictionary.RealEndDate</label>
+                                <p class="form-control-static" *ngIf="internshipProposal.endDate">{{internshipProposal.endDate | date}}</p>
+                                <p class="form-control-static" *ngIf="!internshipProposal.endDate" translate>Dictionary.NotSpecified</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <label translate>Dictionary.RemainingHours</label>
+                                <p class="form-control-static" *ngIf="!internshipProposal.internship.totalHours; else remainingHours">{{'Dictionary.NotSpecified' | translate}}</p>
+                                <p class="form-control-static" remainingHours>{{internshipProposal.internship.totalHours - totalHours > 0 ? internshipProposal.internship.totalHours - totalHours : 0}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <attendances-cmp [internshipProposal]="internshipProposal"></attendances-cmp>
+
+                <div class="card" *ngIf="internshipProposal">
+                    <div class="card-content">
+                        <div>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/professor'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Professor])"
+                                translate>Dictionary.Back</button>
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/company'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Company])"
+                                translate>Dictionary.Back</button>
+
+                            <button type="button" class="btn btn-default" [routerLink]="'/auth/proposals/student'" *ngIf="canExec(authService.currentUser.role.type,[RoleType.Student])"
+                                translate>Dictionary.Back</button>
+
+                            <button *ngIf="internshipProposal.status === InternshipProposalStatusType.Started" class="btn btn-success pull-right" (click)="close()">{{'Dictionary.EndInternshipProposal' | translate}}</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

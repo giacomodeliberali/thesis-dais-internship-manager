@@ -1,0 +1,68 @@
+{
+    "Global": {
+        "InternshipsManager": "Internship Manager"
+    },
+    "Dictionary": {
+        "Login": "Login",
+        "Back": "Back",
+        "Profile": "Profile",
+        "Logout": "Logout",
+        "Dashboard": "Dashboard",
+        "User": "User",
+        "Edit": "Edit",
+        "Add": "Add",
+        "Phone": "Phone",
+        "None": "None",
+        "Italian": "Italian",
+        "English": "English",
+        "Language": "Language",
+        "Email": "Email",
+        "RegistrationDate": "Registration date",
+        "Role": "Role",
+        "Phones": "Phones",
+        "Save": "Save",
+        "Cancel": "Cancel",
+        "ChangeAppLanguage": "Change app language"
+    },
+    "Pages": {
+        "Login": {
+            "Title": "Ca' Foscari's member",
+            "SubTitle": "Use your academic accounto to login ",
+            "CompanyTitle": "Are you a company?",
+            "GotoCompanyLogin": "Otherwise <a href='/login/company'>login as company</a>",
+            "Else": "Otherwise",
+            "LoginAsCompany": "login as company"
+        },
+        "CompanyLogin": {
+            "Title": "Company",
+            "UniveTitle": "Not a company?",
+            "LoginAsUnive": "login as Ca' Foscari's member"
+        },
+        "NotFound": {
+            "Title": "404 - Page not found"
+        },
+        "Internships": {
+            "Title": "Internships",
+            "Overview": {
+                "Title": "Dashboard"
+            }
+        },
+        "User": {
+            "ViewProfile": "View profile"
+        }
+    },
+    "Alerts": {
+        "Save": {
+            "Success": {
+                "Message": "Save done"
+            },
+            "Error": {
+                "Message": "Cannot save"
+            }
+        }
+    },
+    "Roles": {
+        "Student": "Student",
+        "Professor": "Professor"
+    }
+}
