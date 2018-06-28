@@ -1,0 +1,16 @@
+{
+  "name": "thesis-dais-internship-manager",
+  "version": "1.0.0",
+  "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
+  "description": "The application metapackage",
+  "scripts": {
+    "deploy:server:force": "git push heroku `git subtree split --prefix server master`:master --force",
+    "deploy:server": "git subtree push --prefix server heroku master"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-chug": "^0.5.1",
+    "run-sequence": "^2.2.1"
+  }
+}

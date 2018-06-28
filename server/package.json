@@ -1,5 +1,5 @@
 {
-  "name": "gdl-thesis-server",
+  "name": "thesis-dais-internship-manager-server",
   "version": "1.0.0",
   "author": "Giacomo De Liberali, giacomodeliberali@gmail.com",
   "description": "The server side package of the thesis",
@@ -14,8 +14,7 @@
     "start:prod": "NODE_ENV=production npm run start",
     "gulp": "./node_modules/.bin/gulp",
     "tslint": "./node_modules/.bin/tslint -c tslint.json -p tsconfig.json",
-    "doc": "gulp typedoc",
-    "update": "npm i --save git+https://github.com/giacomodeliberali/thesis-core.git#master"
+    "doc": "gulp typedoc"
   },
   "dependencies": {
     "@angular/compiler": "^5.2.9",

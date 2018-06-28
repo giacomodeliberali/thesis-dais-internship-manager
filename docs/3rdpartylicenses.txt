@@ -1,4 +1,4 @@
-sweetalert2@7.24.1
+sweetalert2@7.24.3
 MIT
 The MIT License (MIT)
 
@@ -525,11 +525,11 @@ Apache License
  See the License for the specific language governing permissions and
  limitations under the License.
 
-@angular/core@6.0.6
+@angular/core@6.0.7
 MIT
 MIT
 
-@angular/platform-browser@6.0.6
+@angular/platform-browser@6.0.7
 MIT
 MIT
 
@@ -591,7 +591,7 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 
 END OF TERMS AND CONDITIONS
 
-@angular/common@6.0.6
+@angular/common@6.0.7
 MIT
 MIT
 
@@ -606,7 +606,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-@angular/router@6.0.6
+@angular/router@6.0.7
 MIT
 MIT
 
@@ -614,7 +614,7 @@ MIT
 MIT
 MIT
 
-@angular/forms@6.0.6
+@angular/forms@6.0.7
 MIT
 MIT
 
