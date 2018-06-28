@@ -16,6 +16,12 @@ Con questa piattaforma un’azienda sarà in grado di registrarsi e pubblicare 
 - [Package Shared](https://github.com/giacomodeliberali/thesis-dais-internship-manager/tree/master/core)
 - [App Server](https://github.com/giacomodeliberali/thesis-dais-internship-manager/tree/master/server)
 
+Reference APIs
+
+- [App Client](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/client)
+- [Package Shared](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/core)
+- [App Server](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/server)
+
 ### Sviluppo
 
 Per creare i bundle client e generare la documentazione e reference APIs per client, server e core lanciare il comando `gulp`. Per pubblicare una nuova versione del server su Heroku, lanciare `npm run deploy:server`.
