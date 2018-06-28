@@ -18,9 +18,9 @@ Con questa piattaforma un’azienda sarà in grado di registrarsi e pubblicare 
 
 ### Reference APIs
 
-- [App Client](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/client)
-- [Package Shared](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/core)
-- [App Server](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/server)
+- [App Client](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/client/globals.html)
+- [Package Shared](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/core/globals.html)
+- [App Server](https://giacomodeliberali.github.io/thesis-dais-internship-manager/dev-docs/server/globals.html)
 
 ### Sviluppo
 
